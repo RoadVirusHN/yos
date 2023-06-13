@@ -1,0 +1,33 @@
+@use "../../assets/css/variables.scss";
+body {
+    overflow: hidden;
+}
+
+.container {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3em;
+    height: 100vh;
+    background-image: variables.$background-gradient-image1;
+    //scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+.first{
+    height: 100vh;
+    width: 100%;
+    background-color: variables.$primary-background-color;
+    scroll-snap-align: start;
+}
+.second{
+    height: 100vh;
+    width: 100%;
+    background-color: variables.$secondary-background-color;
+    scroll-snap-align: start;
+}
+
+.last{
+    height: 100vh;
+    width: 100%;
+    background-color: variables.$black-color;
+    scroll-snap-align: start;
+}
