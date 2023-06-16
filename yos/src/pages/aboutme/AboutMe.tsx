@@ -1,14 +1,17 @@
+import Logo from "./components/Logo";
+import Cards from "./components/cards/Cards";
+import "./AboutMe.scss";
 
-import "./AboutMe.scss"
-function AboutMe(){
-
-    return (
-        <div className="container">
-            <div className="first"></div>
-            <div className="second"></div>
-            <div className="last"></div>
-        </div>
-    )
+function AboutMe() {
+  return (
+    <div className="container">
+      <Cards />
+      <div className="wrapper">
+        <Logo />
+      </div>
+      {/* <div className="bg">I'm sticky</div> */}
+    </div>
+  );
 }
 
-export default AboutMe
+export default AboutMe;
