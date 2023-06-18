@@ -6,7 +6,8 @@ import { filt, from, projects, to, trans } from "./utils/CardsData";
 /**
  * !!!Todos
  * - responsive compatibility
- * - more information about card.
+ * - using module.scss
+ * - more information about card. // title https://codepen.io/lbebber/pen/KwGEQv
  * - animation transition chaining 
  */
 function Deck() {

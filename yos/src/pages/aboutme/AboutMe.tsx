@@ -1,6 +1,6 @@
-import Logo from "./components/Logo";
 import Cards from "./components/cards/Cards";
 import "./AboutMe.scss";
+import Logo from "./components/logo/Logo";
 
 function AboutMe() {
   return (

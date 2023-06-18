@@ -2,29 +2,23 @@
   position: relative;
   width: 160px;
   height: 160px;
-  background: url('https://mixkit.imgix.net/art/preview/mixkit-woman-with-a-handbag-walking-her-small-dog-207-original-large.png?q=80&auto=format%2Ccompress&h=200&q=50&dpr=2')
-  center / cover;
+  background: url("../../../../assets/img/coloredTwat.png") center / cover;
   border-radius: 10%;
   box-shadow: 10px 10px 30px 15px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.5s, opacity 0.5s;
   will-change: transform;
-  border: 5px solid rgb(0, 0, 0);
+  border: 3px solid rgb(132, 132, 132);
   cursor: pointer;
-  overflow: hidden;
+  display: flex;
   touch-action: none;
+  user-select: none;
 }
 
-.logo:hover {
-  box-shadow:  
-  0px 0px 20px 10px #fff, /* inner white */ 
-  0px 0px 30px 20px #f0f, /* middle magenta */ 
-  0px 0px 50px 30px #0ff; /* outer cyan */
-}
-
-.logo > div {
-  will-change: transform;
-  height: 100%;
-  margin: 0vw 0;
+.logo.shadow {
+  box-shadow: 
+  0 0 30px 15px #fff,  /* inner white */
+  0 0 57px 33px #f0f, /* middle magenta */
+  0 0 65px 55px #0ff; /* outer cyan */
 }
 
 .logo > div > * {
@@ -33,10 +27,150 @@
   background-position: center center;
   margin: 0vw 0;
 }
+.logo > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
 
 .logoContainer {
+  position: relative;
   display: flex;
   align-items: center;
   height: 100%;
   justify-content: center;
+  left: 20%;
+}
+
+.LogoShine {
+  border-radius: 10%;
+}
+
+.LogoText {
+  display: flex;
+  perspective: 600px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 66%;
+  font-family: "Helvetica", sans-serif;
+  font-size: 20px;
+  text-shadow: 10px 10px 3px rgba(8, 14, 35, 0.2);
+  transition: text-shadow 200ms ease;
+  font-weight: bolder;
+  color: rgba(255, 255, 255, 0.95);
+  transition: scale linear 0.5s;
+}
+
+$color-1: #e91e63;
+$color-2: #03a9f4;
+$color-3: #2ecc71;
+$black: #000;
+
+$base-duration: 200ms;
+
+.logo:active > .LogoText {
+  scale: 1.6;
+  transition: color ease-in-out 0.5s;
+  transition: scale ease-in-out 0.5s;
+  &:before,
+  &:after {
+    position: absolute;
+    content: 'ROADVIRUSHN';
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+  &:before {
+    top: 49%;
+    left: 49%;
+    color: rgba($color-1, 0.8);
+    animation: distort1 $base-duration linear infinite;
+  }
+
+  &:after {
+    top: 51%;
+    left: 51%;
+    color: rgba($color-2, 0.8);
+    animation: distort2 $base-duration linear infinite;
+  }
+}
+
+@keyframes distort1 {
+  0% {
+    top: 49%;
+    left: 49%;
+  }
+  12.5% {
+    top: 49%;
+    left: 50%;
+  }
+  25% {
+    top: 49%;
+    left: 51%;
+  }
+  37.5% {
+    top: 50%;
+    left: 51%;
+  }
+  50% {
+    top: 51%;
+    left: 51%;
+  }
+  62.5% {
+    top: 51%;
+    left: 50%;
+  }
+  75% {
+    top: 51%;
+    left: 49%;
+  }
+  87.5% {
+    top: 50%;
+    left: 49%;
+  }
+  100% {
+    top: 49%;
+    left: 49%;
+  }
+}
+
+@keyframes distort2 {
+  0% {
+    top: 51%;
+    left: 51%;
+  }
+  12.5% {
+    top: 50%;
+    left: 51%;
+  }
+  25% {
+    top: 49%;
+    left: 51%;
+  }
+  37.5% {
+    top: 49%;
+    left: 50%;
+  }
+  50% {
+    top: 49%;
+    left: 49%;
+  }
+  62.5% {
+    top: 50%;
+    left: 49%;
+  }
+  75% {
+    top: 51%;
+    left: 49%;
+  }
+  87.5% {
+    top: 51%;
+    left: 50%;
+  }
+  100% {
+    top: 51%;
+    left: 51%;
+  }
 }
