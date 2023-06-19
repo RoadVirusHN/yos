@@ -1,3 +1,6 @@
+// Data about components, Animation State, Hard coded datas, Constants etc...
+import { AnimData } from "../../../../../types/Animation";
+
 // Datas
 export const projects = [
   {
@@ -26,35 +29,6 @@ export const projects = [
   },
 ];
 
-// These two are just helpers, they curate spring data, values that are later being interpolated into css
-export const to = (i: number) => ({
-  x: 0,
-  y: i * -4, // make slightly upward
-  z: i,
-  scale: 1,
-  rot: -10 + Math.random() * 20,
-  gray: 0,
-  blur: 0,
-  delay: i * 100,
-});
-export const from = (i: number) => ({
-  x: 1000,
-  y: -1000,
-  rot: 0,
-  z: 1,
-  gray: 0,
-  blur: 0,
-  scale: 1.5,
-});
-// This is being used down there in the view, it interpolates rotation and scale into a css transform
-export const trans = (r: number, s: number) =>
-  `perspective(1500px) rotateX(30deg) rotateY(${
-    r / 10
-  }deg) rotateZ(${r}deg) scale(${s})`;
-
-export const filt = (gray: number, blur: number) =>
-  `grayscale(${gray}) blur(${blur}px)`;
-
 export type CardProperties = {
   x?: number;
   y?: number;
@@ -65,4 +39,95 @@ export type CardProperties = {
   scale?: number;
   immedeiate?: boolean;
   config?: { [key: string]: number };
+};
+
+// So many states, check comments.
+export const animationData: AnimData = {
+  initialProps: {
+    card: {
+      to: (i: number) => ({ // default piled deck.
+        x: 0,
+        y: i * -4, // make slightly upward
+        z: i,
+        scale: 1,
+        rot: -10 + Math.random() * 20,
+        gray: 0,
+        blur: 0,
+        delay: i * 100,
+      }),
+      from: (i: number) => ({ // cards fly from outside -> need to initiate when scrolled!
+        x: window.innerWidth * 2,
+        y: -window.innerWidth * 2,
+        rot: 0,
+        z: 1,
+        gray: 0,
+        blur: 0,
+        scale: 1.5,
+      }),
+    },
+  },
+  states: {
+    stateTop: () => ({ // the card is on the top of deck
+      card: {
+        x: 0,
+        z: projects.length,
+        y: projects.length * -4,
+        scale: 1,
+        gray: 0,
+        blur: 0,
+        config: { tension: 500 },
+      },
+    }),
+    statePick: (rot: number) => ({ // the card has been picked.
+      card: {
+        scale: 1.1,
+        delay: undefined,
+        rot: Math.max(Math.min(rot, 10), -10) + (Math.random() * 6 - 3),
+        config: { friction: 50, tension: 800 },
+      },
+    }),
+    stateFloat: () => ({// the card is grabbing.
+      card: {
+        z: projects.length,
+        scale: 1.1,
+        gray: 0,
+        blur: 0,
+        config: { tension: 200 },
+      },
+    }),
+    stateFlickable: () => ({// the held card is far enough to be flicked
+      card: {
+        z: 0.1,
+        scale: 1,
+        gray: 0.7,
+        blur: 2,
+      },
+    }),
+    stateMove: (mouseDelta: { dX: number; dY: number }) => ({ // the held card is moving.
+      card: {
+        x: mouseDelta.dX,
+        y: mouseDelta.dY,
+      },
+    }),
+    stateDeck: (index: number) => ({ // the card is sorting by index.
+      card: {
+        x: 0,
+        y: index * -4,
+        z: index,
+        scale: 1,
+        gray: 0,
+        blur: 0,
+        config: { tension: 200 },
+      },
+    }),
+    stateFloor: () => ({// put card at floor == last of the deck.
+      card: {        
+        z: 0,
+        scale: 1,
+        gray: 0.7,
+        blur: 2,
+        config: { tension: 200 },
+      },
+    }),
+  },
 };

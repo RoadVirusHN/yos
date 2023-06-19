@@ -1,24 +1,31 @@
+// scss file only contains these.
+// - constant properties
+// - responsive properties
+// - unrelated with animations.
+
 .logo {
   position: relative;
   width: 160px;
   height: 160px;
-  background: url("../../../../assets/img/coloredTwat.png") center / cover;
+  background: url("../../../../../assets/img/coloredTwat.png") center / cover;
   border-radius: 10%;
-  box-shadow: 10px 10px 30px 15px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.5s, opacity 0.5s;
   will-change: transform;
   border: 3px solid rgb(132, 132, 132);
   cursor: pointer;
+  perspective: 600px;
   display: flex;
   touch-action: none;
   user-select: none;
+
+  // it seems react-spring doesn't support multiple box-shadow.
+  transition: box-shadow ease-in 0.5s;
 }
 
-.logo.shadow {
-  box-shadow: 
-  0 0 30px 15px #fff,  /* inner white */
-  0 0 57px 33px #f0f, /* middle magenta */
-  0 0 65px 55px #0ff; /* outer cyan */
+.logo:active {
+  // it seems react-spring doesn't support multiple box-shadow.
+  transition: box-shadow ease-in 0.5s;
+  box-shadow: 0 0 30px 15px #fff, /* inner white */ 0 0 57px 33px #f0f,
+    /* middle magenta */ 0 0 65px 55px #0ff !important; /* outer cyan */
 }
 
 .logo > div > * {
@@ -41,28 +48,26 @@
   align-items: center;
   height: 100%;
   justify-content: center;
-  left: 20%;
 }
 
-.LogoShine {
+.logoReflection {
   border-radius: 10%;
 }
 
-.LogoText {
+.logoText {
   display: flex;
   perspective: 600px;
   justify-content: center;
   align-items: center;
   margin-top: 66%;
   font-family: "Helvetica", sans-serif;
-  font-size: 20px;
+  font-size: 0.4em;
   text-shadow: 10px 10px 3px rgba(8, 14, 35, 0.2);
   transition: text-shadow 200ms ease;
   font-weight: bolder;
   color: rgba(255, 255, 255, 0.95);
-  transition: scale linear 0.5s;
 }
-
+// code from https://codepen.io/joshuaward/embed/RgOxKd?default-tab=result&editable=true&theme-id=dark#css-box
 $color-1: #e91e63;
 $color-2: #03a9f4;
 $color-3: #2ecc71;
@@ -70,14 +75,13 @@ $black: #000;
 
 $base-duration: 200ms;
 
-.logo:active > .LogoText {
-  scale: 1.6;
+.logo:active > .logoText {
   transition: color ease-in-out 0.5s;
   transition: scale ease-in-out 0.5s;
   &:before,
   &:after {
     position: absolute;
-    content: 'ROADVIRUSHN';
+    content: "ROADVIRUSHN";
     transform: translate(-50%, -50%);
     z-index: -1;
   }

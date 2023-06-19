@@ -1,11 +1,26 @@
-import { Controller, SpringValue } from "react-spring";
-import { CardProperties, projects } from "./CardsData";
+import { SpringValue } from "react-spring";
+import { projects } from "./CardsData";
+
+/**
+ * !!!Todos
+ * Maybe flickableDistance variable doesn't change due to the closure?
+ */
 
 // define helper functions
-export let flickableDistance = { w: -1, h: -1 };
+let flickableDistance = { w: -1, h: -1 };
+
 export const getFlickableDistance = (card: HTMLElement) => {
   return { w: card.offsetWidth / 2, h: card.offsetHeight / 2 };
 };
+
+// This is being used down there in the view, it interpolates rotation and scale into a css transform
+export const trans = (r: number, s: number) =>
+  `perspective(1500px) rotateX(30deg) rotateY(${
+    r / 10
+  }deg) rotateZ(${r}deg) scale(${s})`;
+
+export const filt = (gray: number, blur: number) =>
+  `grayscale(${gray}) blur(${blur}px)`;
 
 export function getDragDistance(
   e: React.MouseEvent,
@@ -47,20 +62,6 @@ export function putCardAtLast(
   queue.current = [index].concat(queue.current.filter((ele) => ele !== index));
 }
 
-export function makeCardTopAnim(index: number, api: any) {
-  api.start((i: number) => {
-    if (index !== i) return;
-    return {
-      x: 0,
-      z: projects.length,
-      y: projects.length * -4,
-      scale: 1,
-      gray: 0,
-      blur: 0,
-      config: { tension: 500 },
-    };
-  });
-}
 export function canFlick(
   element: HTMLElement,
   index: number,
@@ -77,91 +78,4 @@ export function canFlick(
   // check the drag distance is enough to flick(card size).
   const flickable = dX > flickableDistance.w || dY > flickableDistance.h;
   return flickable;
-}
-// define animation play functions
-export const pickCardAnim = (
-  index: number,
-  api: any,
-  props: { [keys: string]: SpringValue<number> }[]
-) => {
-  api.start((i: number) => {
-    if (index !== i) return;
-    return {
-      scale: 1.1,
-      delay: undefined,
-      rot:
-        Math.max(Math.min(props[index].rot.get(), 10), -10) +
-        (Math.random() * 6 - 3),
-      config: { friction: 50, tension: 800 },
-    };
-  });
-};
-
-export function setFlickableCardAnim(
-  index: number,
-  flickable: boolean,
-  api: any
-) {
-  api.start((i: number) => {
-    if (index !== i) return;
-    return flickable
-      ? {
-          z: 0.1,
-          scale: 1,
-          gray: 0.7,
-          blur: 2,
-        }
-      : {
-          z: projects.length,
-          scale: 1.1,
-          gray: 0,
-          blur: 0,
-          config: { tension: 200 },
-        };
-  });
-}
-
-export function cardFollowCursorAnim(
-  index: number,
-  mouseDelta: { dX: number; dY: number },
-  api: any
-) {
-  api.set((i: number, _ctrl: Controller<CardProperties>) => {
-    if (index !== i) return {};
-    return {
-      x: mouseDelta.dX,
-      y: mouseDelta.dY,
-    };
-  });
-}
-export function putCardAnim(
-  index: number,
-  flickable: boolean,
-  api: any,
-  queue: React.MutableRefObject<number[]>
-) {
-  api.start((i: number) => {
-    if (flickable && index === i) {
-      return {
-        // put card at floor, last of the deck.
-        z: 0,
-        scale: 1,
-        gray: 0.7,
-        blur: 2,
-        config: { tension: 200 },
-      };
-    } else {
-      // rearrange all card by their order in the deck.
-      const currentIndex = queue.current.indexOf(i);
-      return {
-        x: 0,
-        y: currentIndex * -4,
-        z: currentIndex,
-        scale: 1,
-        gray: 0,
-        blur: 0,
-        config: { tension: 200 },
-      };
-    }
-  });
 }

@@ -1,4 +1,9 @@
-.cardsContainer {
+// scss file only contains these.
+// - constant properties
+// - responsive properties
+// - unrelated with animations.
+
+.deckContainer {
     background: lightblue;
     display: flex;
     align-items: center;
@@ -6,9 +11,9 @@
     justify-content: center;
     transform-style: preserve-3D;
   }
-  .deck {
+  .cardWrapper {
     position: absolute;
-    width:fit-content;
+    width: fit-content;
     height: fit-content;
     will-change: transform;
     display: flex;
@@ -17,7 +22,7 @@
     touch-action: none;
   }
   
-  .deck > div {
+  .cardWrapper > .card {
     cursor: grab;
     background-color: white;
     background-size: auto 85%;
@@ -33,6 +38,6 @@
     border-radius: 10px;
     box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
   }
-  .deck > div:active {
+  .cardWrapper > .card:active {
     cursor: grabbing;
  }
