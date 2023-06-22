@@ -4,16 +4,16 @@
 // - unrelated with animations.
 
 .deckContainer {
-    overflow: hidden;
-    height: 100%;
-  }
-  
-  .deck {
-    background: lightblue;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-    transform-style: preserve-3D;
-  }
-  
+  overflow: hidden;
+  background: lightblue;
+  height: 100%;
+}
+
+.deck {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  transform-style: preserve-3D;
+}

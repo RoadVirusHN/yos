@@ -20,15 +20,15 @@ export default function Cards() {
   const changeOrder = (value: number[], except: number) => {
     order.current = value;
     children.current.forEach((child) => {
-      if (child&&child.current) {
+      if (child && child.current) {
         (child as RefObject<CardRef>).current!.stackUp(except);
       }
     });
   };
-  const getOrder = () => order.current;  
+  const getOrder = () => order.current;
   return (
     <div className={ClassNames.deckContainer}>
-      <SquigTitle squigVisible="visible"/>
+      <SquigTitle squigVisible="visible" />
       <div className={ClassNames.deck}>
         {infos.map((info) => (
           <Card

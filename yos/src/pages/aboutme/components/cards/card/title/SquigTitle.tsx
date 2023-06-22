@@ -35,15 +35,12 @@ const SquigTitle = ({ squigVisible }: { squigVisible: string }) => {
           />
         </filter>
       </defs>
-      <text x="50%" y="50%" className={ClassNames.title} filter="url(#squiggly)">
-        <tspan dy="-0.7em" dx="0.2em">
-          Pudding
+      <text x="50%" y="50%"  filter="url(#squiggly)">
+        <tspan className={ClassNames.title} dy="0em" dx="=0em">
+          Very Long and Big Project Name yeah!
         </tspan>
-        <tspan dy="1em" dx="-2em">
-          &amp;
-        </tspan>
-        <tspan dy="1em" dx="-2.5em">
-          한글 실험
+        <tspan className={ClassNames.sub} dy="1em" dx="-10em" rotate="10">
+          그리고 작은 한국어 프로젝트 명
         </tspan>
       </text>
     </animated.svg>
