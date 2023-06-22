@@ -26,15 +26,15 @@ export default function useLogoHook(): MyHook {
   const refLogo = useRef<HTMLDivElement>(null);
   const prevAngleTurns = useRef([135, 0]);
 
-  const onMouseDown = (_e: React.MouseEvent) => {
-    toEmphasizeAnim(
-      states.stateIdle(refelctionDefaultFunction(prevAngleTurns)),
-      { apiLogo, apiText }
-    );
-  };
+  // const onMouseDown = (_e: React.MouseEvent) => {
+  //   toEmphasizeAnim(
+  //     states.stateEmphasize(),
+  //     { apiLogo, apiText }
+  //   );
+  // };
 
   const onMouseUpandLeave = (_e: React.MouseEvent) => {
-    toIdleAnim(states.stateEmphasize(), { apiLogo, apiText, apiReflection });
+    //toIdleAnim(states.stateIdle(refelctionDefaultFunction(prevAngleTurns)), { apiLogo, apiText, apiReflection });
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function useLogoHook(): MyHook {
     },
     Handlers: {
       logo: {
-        onMouseDown,
+        //onMouseDown,
         onMouseUp: onMouseUpandLeave,
         onMouseLeave: onMouseUpandLeave,
       },

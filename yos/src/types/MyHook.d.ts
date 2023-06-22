@@ -10,6 +10,6 @@ export interface MyHook {
     };
   };
   Styles: {
-    [component: string]: Lookup
+    [component: string]: any
   };
 }

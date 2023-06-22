@@ -1,6 +1,9 @@
-import { animated } from "react-spring";
 import Class from "./utils/Cards.module.scss";
-import useCardsHook from "./utils/CardsHook";
+import { projects as infos } from "./utils/CardsData";
+import Card, { CardProps } from "./card/Card";
+import { ForwardedRef, RefObject, useRef, useState } from "react";
+import { CardRef } from "./card/utils/CardHook";
+import React from "react";
 /**
  * !!!Todos
  * - responsive compatibility
@@ -9,20 +12,32 @@ import useCardsHook from "./utils/CardsHook";
  * - onMouseUp global EventHandler for debugging.
  * - cards fly from outside -> need to initiate when scrolled!
  */
+
 export default function Cards() {
-  const {Handlers, Styles} = useCardsHook();
-   return (
+  const order = useRef(Array.from(infos, (info) => info["index"])); // backward queue
+  const children = useRef(Array.from(infos, (info) => React.createRef()));
+  const changeOrder = (value: number[], except: number) => {
+    order.current = value;
+    children.current.forEach((child) => {
+      if (child&&child.current) {
+        (child as RefObject<CardRef>).current!.stackUp(except);
+      }
+    });
+  };
+  const getOrder = () => order.current;  
+  return (
     <div className={Class.deckContainer}>
-      {Object.entries(Styles).map(([key, {x, y, z, transform, backgroundImage, filter}], i) => (        
-        <animated.div className={Class.cardWrapper} key={i} style={{ x, y, z }}>
-          {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
-          <animated.div
-            className={Class.card}
-            {...Handlers[key]}
-            style = {{transform, backgroundImage, filter}}
+      <div className={Class.deck}>
+        {infos.map((info) => (
+          <Card
+            key={info.index}
+            info={info}
+            ref={children.current[info.index] as RefObject<CardRef>}
+            changeOrder={changeOrder}
+            getOrder={getOrder}
           />
-        </animated.div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

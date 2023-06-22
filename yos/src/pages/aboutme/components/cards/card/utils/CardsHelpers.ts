@@ -1,5 +1,5 @@
 import { SpringValue } from "react-spring";
-import { projects } from "./CardsData";
+import { projects } from "../../utils/CardsData";
 
 /**
  * !!!Todos
@@ -7,7 +7,7 @@ import { projects } from "./CardsData";
  */
 
 // define helper functions
-let flickableDistance = { w: -1, h: -1 };
+let flickableDistance = { w: window.innerWidth/4, h: window.innerHeight/4};
 
 export const getFlickableDistance = (card: HTMLElement) => {
   return { w: card.offsetWidth / 2, h: card.offsetHeight / 2 };
@@ -22,13 +22,13 @@ export const trans = (r: number, s: number) =>
 export const filt = (gray: number, blur: number) =>
   `grayscale(${gray}) blur(${blur}px)`;
 
-export function getDragDistance(
-  e: React.MouseEvent,
-  dragStart: React.MutableRefObject<{ [keys: string]: number }>
+export function getDistance(
+  to: { x: number; y: number; },
+  fr: { x: number; y: number; }
 ): { dX: number; dY: number } {
   return {
-    dX: e.pageX - dragStart.current.x,
-    dY: e.pageY - dragStart.current.y,
+    dX: to.x - fr.x,
+    dY: to.y - fr.y,
   };
 }
 
@@ -63,18 +63,16 @@ export function putCardAtLast(
 }
 
 export function canFlick(
-  element: HTMLElement,
-  index: number,
-  props: { [keys: string]: SpringValue<number> }[]
+  props: { [keys: string]: SpringValue<number> }
 ) {
   const [dX, dY] = [
-    Math.abs(props[index].x.get()),
-    Math.abs(props[index].y.get() - projects.length * -4),
+    Math.abs(props.x.get()),
+    Math.abs(props.y.get() - projects.length * -4),
   ];
   // getFlickableDistance for this card.
-  if (flickableDistance.w === -1 && flickableDistance.h === -1) {
-    flickableDistance = getFlickableDistance(element);
-  }
+  // if (flickableDistance.w === -1 && flickableDistance.h === -1) {
+  //   flickableDistance = getFlickableDistance(element);
+  // }
   // check the drag distance is enough to flick(card size).
   const flickable = dX > flickableDistance.w || dY > flickableDistance.h;
   return flickable;

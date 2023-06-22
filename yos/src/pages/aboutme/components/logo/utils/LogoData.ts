@@ -1,7 +1,9 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
+
 import { AnimData } from "../../../../../types/Animation";
 
-export const animationData : AnimData = {
+
+export const animationData = {
   initialProps: {
     logo: {
       rotateX: 0,
