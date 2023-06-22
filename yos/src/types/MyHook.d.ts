@@ -1,5 +1,3 @@
-import { Lookup } from "react-spring";
-
 export interface MyHook {
   Refs: {
     [component: string]: React.RefObject<any>;
@@ -10,6 +8,9 @@ export interface MyHook {
     };
   };
   Styles: {
-    [component: string]: any
+    [component: string]: any;
+  };
+  Flags?: {
+    [flag: string]: any;
   };
 }

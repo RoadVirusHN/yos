@@ -31,37 +31,6 @@ export function getDistance(
     dY: to.y - fr.y,
   };
 }
-
-export function isDraggingByLeftClick(e: React.MouseEvent) {
-  return e.buttons === 1;
-}
-
-export function isDragging(
-  dragStart: React.MutableRefObject<{ [keys: string]: number }>
-) {
-  return dragStart.current.x !== -1 && dragStart.current.y !== -1;
-}
-
-export function isCardAtTop(
-  index: number,
-  queue: React.MutableRefObject<number[]>
-) {
-  return queue.current.at(-1) === index;
-}
-
-export function dragOver(
-  dragStart: React.MutableRefObject<{ [keys: string]: number }>
-) {
-  dragStart.current = { x: -1, y: -1 };
-}
-
-export function putCardAtLast(
-  index: number,
-  queue: React.MutableRefObject<number[]>
-) {
-  queue.current = [index].concat(queue.current.filter((ele) => ele !== index));
-}
-
 export function canFlick(
   props: { [keys: string]: SpringValue<number> }
 ) {
@@ -69,11 +38,6 @@ export function canFlick(
     Math.abs(props.x.get()),
     Math.abs(props.y.get() - projects.length * -4),
   ];
-  // getFlickableDistance for this card.
-  // if (flickableDistance.w === -1 && flickableDistance.h === -1) {
-  //   flickableDistance = getFlickableDistance(element);
-  // }
-  // check the drag distance is enough to flick(card size).
   const flickable = dX > flickableDistance.w || dY > flickableDistance.h;
   return flickable;
 }

@@ -1,5 +1,5 @@
 import { SpringRef, Lookup, SpringValue } from "react-spring";
-import { animationData } from "./CardsData";
+import { animationData } from "./CardData";
 
 // define animation play functions
 
@@ -35,4 +35,14 @@ export function putCardAnim(flickable: boolean, api: SpringRef<Lookup<any>>) {
       ? animationData.states.stateFloor()
       : animationData.states.stateTop()
   );
+}
+
+
+export function frontCardAnim(api: SpringRef<Lookup<any>>) {
+  
+}
+
+
+export function backCardAnim(api: SpringRef<Lookup<any>>) {
+  
 }

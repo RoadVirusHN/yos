@@ -1,8 +1,8 @@
 import { useSpring } from "react-spring";
 import { MyHook } from "../../../../../../types/MyHook";
-import { animationData } from "./CardsData";
+import { animationData } from "./CardData";
 import { useEffect, useImperativeHandle, useRef } from "react";
-import { canFlick, getDistance } from "./CardsHelpers";
+import { canFlick, getDistance } from "./CardHelpers";
 import {
   cardFollowCursorAnim,
   toTopCardAnim,
@@ -11,7 +11,7 @@ import {
   setFlickableCardAnim,
   setFloatCardAnim,
   toDeckCardAnim,
-} from "./CardsAnim";
+} from "./CardAnim";
 export type CardRef = {
   stackUp: (except: number) => void;
 };
@@ -43,7 +43,7 @@ export default function useCardHook(
   };
 
   const handleMove = (e: MouseEvent) => {
-    // should be added in document event listner
+    // only dragging&top card can be moved.
     if (e.button === 0 && orderCache.current.at(-1) === info.index) {
       const fr = { x: e.pageX, y: e.pageY };
       const dragDist = getDistance(fr, dragStart.current);
@@ -54,6 +54,7 @@ export default function useCardHook(
 
   const handleMouseUp = (e: MouseEvent) => {
     orderCache.current = getOrder();
+    // only top card can be placed.
     if (orderCache.current.at(-1) === info.index) {
       dragStart.current = { x: -1, y: -1 };
       const flickable = canFlick(props);
@@ -73,13 +74,16 @@ export default function useCardHook(
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button === 0) {
+      // when clicked,
       orderCache.current = getOrder();
       if (orderCache.current.at(-1) === info.index) {
+        // pick card animation.
         dragStart.current = { x: e.pageX, y: e.pageY };
         pickCardAnim(api, props);
         window.addEventListener("mouseup", handleMouseUp);
         window.addEventListener("mousemove", handleMove);
       } else if (orderCache.current[0] === info.index) {
+        // floor card to top
         toTopCardAnim(api);
         changeOrder(
           orderCache.current.slice(1).concat([info.index]),
@@ -95,6 +99,15 @@ export default function useCardHook(
     onDragStart: defaultPreventor,
   };
 
-  const result: MyHook = { Refs: {}, Handlers, Styles: props };
+  const result: MyHook = {
+    Refs: {},
+    Handlers,
+    Styles: {
+      ...props,
+    },
+    Flags: {
+      squigVisible: getOrder().at(-1) === info.index ? "visible" : "hidden",
+    },
+  };
   return result;
 }

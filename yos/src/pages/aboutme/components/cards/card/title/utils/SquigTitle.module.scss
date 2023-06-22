@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Pen+Script:400');
+
+.title,
+.sub {
+  font-family: "Nanum Pen Script";
+  stroke: #787978;
+  fill: #787978;
+  left: 50%;
+  text-align: center;
+  vertical-align: middle;
+  width: 100vw;
+}
+.squig {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  width: 100%;
+  outline: none;
+  text-align: center;
+  user-select: none;
+  touch-action: none;
+  text-anchor: middle;
+}

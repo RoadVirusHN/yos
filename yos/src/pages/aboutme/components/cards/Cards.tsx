@@ -1,9 +1,10 @@
-import Class from "./utils/Cards.module.scss";
+import ClassNames from "./utils/Cards.module.scss";
 import { projects as infos } from "./utils/CardsData";
 import Card, { CardProps } from "./card/Card";
 import { ForwardedRef, RefObject, useRef, useState } from "react";
 import { CardRef } from "./card/utils/CardHook";
 import React from "react";
+import SquigTitle from "./card/title/SquigTitle";
 /**
  * !!!Todos
  * - responsive compatibility
@@ -26,8 +27,9 @@ export default function Cards() {
   };
   const getOrder = () => order.current;  
   return (
-    <div className={Class.deckContainer}>
-      <div className={Class.deck}>
+    <div className={ClassNames.deckContainer}>
+      <SquigTitle squigVisible="visible"/>
+      <div className={ClassNames.deck}>
         {infos.map((info) => (
           <Card
             key={info.index}
