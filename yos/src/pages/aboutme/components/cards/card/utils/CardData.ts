@@ -51,7 +51,7 @@ export const animationData: AnimData<CardAnimInputs> = {
     stateStart: (i: number) => ({
       x: 0,
       y: i * -4, // make slightly upward
-      z: i,
+      z: i + 1,
       scale: 1,
       rot: -8 + Math.random() * 16,
       gray: 0,
@@ -95,7 +95,7 @@ export const animationData: AnimData<CardAnimInputs> = {
     }),
     stateFlickable: () => {
       return {
-        z: 0.4,
+        z: 1.4,
         scale: 1,
         gray: 0.7,
         blur: 2,
@@ -129,7 +129,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       config: { tension: 200 },
     }),
     stateFloor: () => ({
-      z: 0.3,
+      z: 1.3,
       scale: 1,
       gray: 0.7,
       blur: 2,
