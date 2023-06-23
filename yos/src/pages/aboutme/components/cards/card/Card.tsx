@@ -13,12 +13,12 @@ export type CardProps = {
 };
 
 const Card = forwardRef<CardRef, CardProps>(
-  ({ info, changeOrder, getOrder }, ref) => {
+  ({ info, changeOrder, getOrder }, selfRef) => {
     const { Styles, Handlers, Flags } = useCardHook(
       info,
       changeOrder,
       getOrder,
-      ref
+      selfRef
     );
 
     const { x, y, z, rot, scale, gray, blur } = Styles;

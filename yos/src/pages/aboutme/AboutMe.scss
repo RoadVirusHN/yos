@@ -1,6 +1,7 @@
 @use "../../assets/css/variables.scss";
 body {
   overflow-x: hidden;
+  touch-action: none;
 }
 
 .container {

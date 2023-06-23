@@ -1,7 +1,11 @@
 import { useSpring } from "react-spring";
 import { MyHook } from "../../../../../../types/MyHook";
 import { animationData } from "./CardData";
-import { useEffect, useImperativeHandle, useRef } from "react";
+import {
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import { canFlick, getDistance } from "./CardHelpers";
 import {
   cardFollowCursorAnim,
@@ -20,13 +24,13 @@ export default function useCardHook(
   info: { [key: string]: any },
   changeOrder: (value: number[], except: number) => void,
   getOrder: () => number[],
-  ref: React.ForwardedRef<CardRef>
+  selfRef: React.ForwardedRef<CardRef>
 ): MyHook {
   const [props, api] = useSpring(() => animationData.initialProps(info.index));
   const orderCache = useRef(getOrder());
   const dragStart = useRef({ x: -1, y: -1 });
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(selfRef, () => ({
     stackUp: (except: number) => {
       if (info.index !== except) {
         toDeckCardAnim(api, getOrder().indexOf(info.index));
@@ -47,7 +51,12 @@ export default function useCardHook(
     if (e.button === 0 && orderCache.current.at(-1) === info.index) {
       const fr = { x: e.pageX, y: e.pageY };
       const dragDist = getDistance(fr, dragStart.current);
-      canFlick(props) ? setFlickableCardAnim(api) : setFloatCardAnim(api);
+
+      if (canFlick(props)) {
+        setFlickableCardAnim(api);
+      } else {        
+        setFloatCardAnim(api);
+      }
       cardFollowCursorAnim(api, dragDist);
     }
   };
@@ -56,7 +65,6 @@ export default function useCardHook(
     orderCache.current = getOrder();
     // only top card can be placed.
     if (orderCache.current.at(-1) === info.index) {
-      dragStart.current = { x: -1, y: -1 };
       const flickable = canFlick(props);
       if (flickable) {
         changeOrder(
@@ -67,6 +75,7 @@ export default function useCardHook(
         );
       }
       putCardAnim(flickable, api);
+      dragStart.current = { x: -1, y: -1 };
     }
     window.removeEventListener("mouseup", handleMouseUp);
     window.removeEventListener("mousemove", handleMove);

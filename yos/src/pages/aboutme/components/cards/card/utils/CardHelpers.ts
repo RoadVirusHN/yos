@@ -1,5 +1,6 @@
 import { SpringValue } from "react-spring";
 import { projects } from "../../utils/CardsData";
+import { flickableDistance } from "./CardData";
 
 /**
  * !!!Todos
@@ -7,7 +8,6 @@ import { projects } from "../../utils/CardsData";
  */
 
 // define helper functions
-let flickableDistance = { w: window.innerWidth/4, h: window.innerHeight/4};
 
 export const getFlickableDistance = (card: HTMLElement) => {
   return { w: card.offsetWidth / 2, h: card.offsetHeight / 2 };
@@ -23,17 +23,15 @@ export const filt = (gray: number, blur: number) =>
   `grayscale(${gray}) blur(${blur}px)`;
 
 export function getDistance(
-  to: { x: number; y: number; },
-  fr: { x: number; y: number; }
+  to: { x: number; y: number },
+  fr: { x: number; y: number }
 ): { dX: number; dY: number } {
   return {
     dX: to.x - fr.x,
     dY: to.y - fr.y,
   };
 }
-export function canFlick(
-  props: { [keys: string]: SpringValue<number> }
-) {
+export function canFlick(props: { [keys: string]: SpringValue<number> }) {
   const [dX, dY] = [
     Math.abs(props.x.get()),
     Math.abs(props.y.get() - projects.length * -4),

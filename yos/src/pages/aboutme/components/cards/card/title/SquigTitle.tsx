@@ -23,7 +23,7 @@ const SquigTitle = ({ squigVisible }: { squigVisible: string }) => {
           <AnimFeTurbulence
             id="turbulence"
             baseFrequency="0.02"
-            numOctaves="3"
+            numOctaves="2"
             result="noise"
             seed={seed}
           />
@@ -36,7 +36,7 @@ const SquigTitle = ({ squigVisible }: { squigVisible: string }) => {
         </filter>
       </defs>
       <text x="50%" y="50%"  filter="url(#squiggly)">
-        <tspan className={ClassNames.title} dy="0em" dx="=0em">
+        <tspan className={ClassNames.title}>
           Very Long and Big Project Name yeah!
         </tspan>
         <tspan className={ClassNames.sub} dy="1em" dx="-10em" rotate="10">

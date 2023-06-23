@@ -37,12 +37,6 @@ export function putCardAnim(flickable: boolean, api: SpringRef<Lookup<any>>) {
   );
 }
 
+export function frontCardAnim(api: SpringRef<Lookup<any>>) {}
 
-export function frontCardAnim(api: SpringRef<Lookup<any>>) {
-  
-}
-
-
-export function backCardAnim(api: SpringRef<Lookup<any>>) {
-  
-}
+export function backCardAnim(api: SpringRef<Lookup<any>>) {}

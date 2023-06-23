@@ -2,6 +2,16 @@
 import { AnimData } from "../../../../../../types/Animation";
 import { projects } from "../../utils/CardsData";
 
+export let flickableDistance = {
+  w: (window.innerWidth / 4) * 1.1,
+  h: (window.innerHeight / 4) * 1.1,
+};
+
+const snapDist = {
+  sX: (window.innerWidth / 2),
+  sY: (window.innerHeight / 2),
+};
+
 export type CardStyle = {
   x?: number;
   y?: number;
@@ -54,18 +64,18 @@ export const animationData: AnimData<CardAnimInputs> = {
       to: [
         {
           z: projects.length,
-          scale: 1.1,          
+          scale: 1.1,
           gray: 0,
           rot: -8 + Math.random() * 16,
           blur: 0,
-          config: { tension: 210, friction: 20 }
+          config: { tension: 210, friction: 20 },
         },
         {
           x: 0,
           y: projects.length * -4,
           rot: -8 + Math.random() * 16,
           scale: 1,
-          config: { tension: 210, friction: 20 }
+          config: { tension: 210, friction: 20 },
         },
       ],
     }),
@@ -83,17 +93,32 @@ export const animationData: AnimData<CardAnimInputs> = {
       blur: 0,
       config: { tension: 200 },
     }),
-    stateFlickable: () => ({
-      z: 0.4,
-      scale: 1,
-      gray: 0.7,
-      blur: 2,
-    }),
-    stateMove: (mouseDelta: { dX: number; dY: number }) => ({
-      x: mouseDelta.dX,
-      y: mouseDelta.dY,
-      immediate: true,
-    }),
+    stateFlickable: () => {
+      return {
+        z: 0.4,
+        scale: 1,
+        gray: 0.7,
+        blur: 2,
+      };
+    },
+    stateMove: (mouseDelta: { dX: number; dY: number }) => {
+      let { dX, dY } = mouseDelta;
+      const absX = Math.abs(dX);
+      const absY = Math.abs(dY);
+      if (absX > flickableDistance.w && absX < snapDist.sX) {
+        const ratio = snapDist.sX / absX;
+        dX = dX * ratio;
+      }
+
+      if (absY > flickableDistance.h && absY < snapDist.sY) {
+        const ratio = snapDist.sY / absY;
+        dY = dY * ratio;
+      }
+      return {
+        x: dX,
+        y: dY,
+      };
+    },
     stateDeck: (order: number) => ({
       x: 0,
       y: order * -4,
