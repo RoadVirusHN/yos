@@ -1,4 +1,5 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
+import { config } from "react-spring";
 import { AnimData } from "../../../../../../types/Animation";
 import { projects } from "../../utils/CardsData";
 
@@ -8,8 +9,8 @@ export let flickableDistance = {
 };
 
 const snapDist = {
-  sX: (window.innerWidth / 2),
-  sY: (window.innerHeight / 2),
+  sX: window.innerWidth / 2,
+  sY: window.innerHeight / 2,
 };
 
 export type CardStyle = {
@@ -44,6 +45,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       gray: 0,
       blur: 0,
       scale: 1.5,
+      cursor: i === projects.length - 1 ? "grab" : "default",
       side: true,
     };
   },
@@ -57,6 +59,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       gray: 0,
       blur: 0,
       side: true,
+      cursor: i === projects.length - 1 ? "grab" : "default",
       delay: i * 200,
     }),
     stateTop: () => ({
@@ -68,6 +71,7 @@ export const animationData: AnimData<CardAnimInputs> = {
           gray: 0,
           rot: -8 + Math.random() * 16,
           blur: 0,
+          cursor: "grab",
           config: { tension: 210, friction: 20 },
         },
         {
@@ -75,6 +79,7 @@ export const animationData: AnimData<CardAnimInputs> = {
           y: projects.length * -4,
           rot: -8 + Math.random() * 16,
           scale: 1,
+          cursor: "grab",
           config: { tension: 210, friction: 20 },
         },
       ],
@@ -84,23 +89,24 @@ export const animationData: AnimData<CardAnimInputs> = {
       scale: 1.1,
       rot: Math.max(Math.min(rot, 5), -5) + (Math.random() * 6 - 3),
       delay: undefined,
+      cursor: "grabbing",
       config: { friction: 50, tension: 800 },
     }),
     stateFloat: () => ({
       z: projects.length + 1,
+      cursor: "grabbing",
       scale: 1.1,
       gray: 0,
       blur: 0,
       config: { tension: 200 },
     }),
-    stateFlickable: () => {
-      return {
-        z: 1.4,
-        scale: 1,
-        gray: 0.7,
-        blur: 2,
-      };
-    },
+    stateFlickable: () => ({
+      z: 1.5,
+      scale: 1,
+      gray: 0.7,
+      blur: 2,
+      cursor: "grabbing",
+    }),
     stateMove: (mouseDelta: { dX: number; dY: number }) => {
       let { dX, dY } = mouseDelta;
       const absX = Math.abs(dX);
@@ -117,6 +123,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       return {
         x: dX,
         y: dY,
+        cursor: "grabbing",
       };
     },
     stateDeck: (order: number) => ({
@@ -126,14 +133,16 @@ export const animationData: AnimData<CardAnimInputs> = {
       scale: 1,
       gray: 0,
       blur: 0,
+      cursor: order === projects.length - 1 ? "grab" : "default",
       config: { tension: 200 },
     }),
     stateFloor: () => ({
-      z: 1.3,
+      z: 1,
       scale: 1,
       gray: 0.7,
       blur: 2,
-      config: { tension: 200 },
+      cursor: "alias",
+      config: config.stiff,
     }),
   },
 };

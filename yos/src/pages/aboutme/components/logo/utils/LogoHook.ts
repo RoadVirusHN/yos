@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSpring } from "react-spring";
-import { animationData } from "./LogoData";
+import { animationData, LogoStyle } from "./LogoData";
 import {
   calcX,
   calcY,
@@ -16,29 +16,32 @@ export default function useLogoHook(): MyHook {
   // Create Refs, States and Handlers, Styles then return them.
 
   const { initialProps, states } = animationData;
-  const [logoStyles, apiLogo] = useSpring(() => initialProps.logo);
-  const [textStyles, apiText] = useSpring(() => initialProps.text);
+
+  const [logoStyles, apiLogo] = useSpring(() => initialProps().logo);
+  const [textStyles, apiText] = useSpring(() => initialProps().text);
   const [reflectionStyles, apiReflection] = useSpring(
-    () => initialProps.reflection
+    () => (initialProps() as LogoStyle).reflection
+    // I had enough to solve this freaking type error.
   );
 
   const rect = useRef<DOMRect | null>(null);
   const refLogo = useRef<HTMLDivElement>(null);
   const prevAngleTurns = useRef([135, 0]);
 
-  // const onMouseDown = (_e: React.MouseEvent) => {
-  //   toEmphasizeAnim(
-  //     states.stateEmphasize(),
-  //     { apiLogo, apiText }
-  //   );
-  // };
+  const onMouseDown = (_e: React.MouseEvent) => {
+    toEmphasizeAnim(states.stateEmphasize(), { apiLogo, apiText });
+  };
 
   const onMouseUpandLeave = (_e: React.MouseEvent) => {
-    //toIdleAnim(states.stateIdle(refelctionDefaultFunction(prevAngleTurns)), { apiLogo, apiText, apiReflection });
+    toIdleAnim(states.stateIdle(refelctionDefaultFunction(prevAngleTurns)), {
+      apiLogo,
+      apiText,
+      apiReflection,
+    });
   };
 
   useEffect(() => {
-    const onMouseMove : toRotateAnim = (e: MouseEvent) => {
+    const onMouseMove: toRotateAnim = (e: MouseEvent) => {
       rect.current = refLogo.current!.getBoundingClientRect();
       apiLogo.start({
         rotateX: calcX(e.pageY, rect),
@@ -61,7 +64,7 @@ export default function useLogoHook(): MyHook {
     },
     Handlers: {
       logo: {
-        //onMouseDown,
+        onMouseDown,
         onMouseUp: onMouseUpandLeave,
         onMouseLeave: onMouseUpandLeave,
       },

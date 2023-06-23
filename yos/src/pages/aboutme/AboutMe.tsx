@@ -6,10 +6,9 @@ function AboutMe() {
   return (
     <div className="container">
       <div className="wrapper">
+        <Logo />
         <Cards />
       </div>
-        {/* <Logo /> */}
-      {/* <div className="bg">I'm sticky</div> */}
     </div>
   );
 }

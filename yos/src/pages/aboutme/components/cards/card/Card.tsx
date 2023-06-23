@@ -3,8 +3,6 @@ import ClassNames from "./utils/Card.module.scss";
 import useCardHook, { CardRef } from "./utils/CardHook";
 import { forwardRef } from "react";
 import { filt, trans } from "./utils/CardHelpers";
-import SquigTitle from "./title/SquigTitle";
-// Define the CardRef type
 
 export type CardProps = {
   info: { [key: string]: any };
@@ -14,15 +12,15 @@ export type CardProps = {
 
 const Card = forwardRef<CardRef, CardProps>(
   ({ info, changeOrder, getOrder }, selfRef) => {
-    const { Styles, Handlers, Flags } = useCardHook(
+    const { Styles, Handlers } = useCardHook(
       info,
       changeOrder,
       getOrder,
       selfRef
     );
 
-    const { x, y, z, rot, scale, gray, blur } = Styles;
-
+    const { x, y, z, cursor, rot, scale, gray, blur } = Styles;
+      
     return (
       <animated.div
         className={ClassNames.cardWrapper}
@@ -36,6 +34,7 @@ const Card = forwardRef<CardRef, CardProps>(
             transform: to([rot, scale], trans),
             filter: to([gray, blur], filt),
             backgroundImage: `url(${info.preview})`,
+            cursor
           }}
         >
           <animated.div className={ClassNames.front} />

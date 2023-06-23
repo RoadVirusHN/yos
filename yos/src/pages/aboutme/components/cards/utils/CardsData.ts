@@ -39,7 +39,7 @@ export const projects = [
   {
     index: 2,
     project: {
-      title: "DKT&DKDKT: ML Competition & Web Service",
+      title: "DKT: ML Competition & Web Service",
       sub: "Deep Knowledge Tracing ML Team Competition & Web service",
     },
     preview:

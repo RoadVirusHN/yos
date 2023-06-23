@@ -113,10 +113,7 @@ export default function useCardHook(
     Handlers,
     Styles: {
       ...props,
-    },
-    Flags: {
-      squigVisible: getOrder().at(-1) === info.index ? "visible" : "hidden",
-    },
+    }
   };
   return result;
 }

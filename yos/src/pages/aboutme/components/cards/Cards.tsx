@@ -10,38 +10,36 @@ import SquigTitle, { SquigRef } from "./card/title/SquigTitle";
  * - responsive compatibility
  * - more information about card. // title https://codepen.io/lbebber/pen/KwGEQv
  * - animation transition chaining
- * - onMouseUp global EventHandler for debugging.
  * - cards fly from outside -> need to initiate when scrolled!
  */
 
 export default function Cards() {
-  const order = useRef(Array.from(infos, (info) => info["index"])); // backward queue
-  const children = useRef(Array.from(infos, (info) => React.createRef()));
-  const titleRef = useRef(null);
+  const order = useRef<number[]>(Array.from(infos, (info) => info["index"])); // backward queue
+  const children = useRef<RefObject<CardRef>[]>(
+    Array.from(infos, (_info) => React.createRef())
+  );
+  const titleRef = useRef<SquigRef>(null);
   const changeOrder = (value: number[], except: number) => {
     order.current = value;
     children.current.forEach((child) => {
-      if (child && child.current) {
-        (child as RefObject<CardRef>).current!.stackUp(except);
+      if (child.current) {
+        child.current!.stackUp(except);
       }
     });
-    (titleRef as RefObject<SquigRef>).current!.updateProject(
-      order.current.at(-1) || 0
-    );
+    if (titleRef.current) {
+      titleRef.current.updateProject(order.current.at(-1) || infos.length - 1);
+    }
   };
   const getOrder = () => order.current;
   return (
     <div className={ClassNames.deckContainer}>
-      <SquigTitle
-        squigVisible="visible"
-        ref={titleRef as RefObject<SquigRef>}
-      />
+      <SquigTitle ref={titleRef} />
       <div className={ClassNames.deck}>
         {infos.map((info) => (
           <Card
             key={info.index}
             info={info}
-            ref={children.current[info.index] as RefObject<CardRef>}
+            ref={children.current[info.index]}
             changeOrder={changeOrder}
             getOrder={getOrder}
           />

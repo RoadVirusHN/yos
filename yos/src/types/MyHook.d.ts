@@ -10,7 +10,4 @@ export interface MyHook {
   Styles: {
     [component: string]: any;
   };
-  Flags?: {
-    [flag: string]: any;
-  };
 }

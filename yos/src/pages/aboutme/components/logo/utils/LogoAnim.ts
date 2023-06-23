@@ -1,5 +1,6 @@
 import { Lookup, SpringRef } from "react-spring";
 import { componentProps } from "../../../../../types/Animation";
+import { LogoAnimInputs } from "./LogoData";
 
 /**
  * there are three States in Logo.
@@ -9,7 +10,7 @@ import { componentProps } from "../../../../../types/Animation";
  */
  
 export const toEmphasizeAnim = (
-  states: componentProps,
+  states: LogoAnimInputs,
   apis: { apiLogo: SpringRef<Lookup<any>>; apiText: SpringRef<Lookup<any>> }
 ) => {
   const { logo, text } = states;
@@ -20,7 +21,7 @@ export const toEmphasizeAnim = (
 };
 
 export const toIdleAnim = (
-  states: componentProps,
+  states: LogoAnimInputs,
   apis: {
     apiLogo: SpringRef<Lookup<any>>;
     apiText: SpringRef<Lookup<any>>;

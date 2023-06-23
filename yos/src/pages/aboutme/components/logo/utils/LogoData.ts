@@ -1,10 +1,27 @@
-// Data about components, Animation State, Hard coded datas, Constants etc...
-
 import { AnimData } from "../../../../../types/Animation";
 
-
-export const animationData = {
-  initialProps: {
+export interface LogoStyle {
+  logo?: {
+    rotateX?: number;
+    rotateY?: number;
+    rotateZ?: number;
+    scale?: number;
+    x?: number;
+    y?: number;
+    boxShadow?: string;
+    config?: { mass?: number; tension?: number; friction?: number };
+  };
+  reflection?: {
+    background?: string;
+  };
+  text?: { x?: number; y?: number; scale?: number };
+  immediate?: boolean;
+  config?: { friction?: number; mass?: number; tension?: number };
+}
+export type LogoAnimInputs = LogoStyle;
+// Data about components, Animation State, Hard coded datas, Constants etc...
+export const animationData: AnimData<LogoAnimInputs> = {
+  initialProps: (): LogoAnimInputs => ({
     logo: {
       rotateX: 0,
       rotateY: 0,
@@ -20,7 +37,7 @@ export const animationData = {
         "linear-gradient(0deg,rgba(255,255,255,0.25) 0%,rgba(255, 255, 255, 0) 60%)",
     },
     text: { x: 0, y: 0, scale: 1 },
-  },
+  }),
   states: {
     stateIdle: (getReflectionDefault: () => string) => ({
       logo: {
@@ -30,7 +47,7 @@ export const animationData = {
       },
       reflection: { background: getReflectionDefault() },
       text: { scale: 1 },
-    } ),
+    }),
 
     stateEmphasize: () => ({
       logo: {
