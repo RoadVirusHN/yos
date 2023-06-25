@@ -8,7 +8,9 @@ export class CardAnimations {
     api: SpringRef<Lookup<any>>,
     props: { [x: string]: SpringValue<any> }
   ) {
-    return api.start(animationData.states.stateTop());
+    console.log(props);
+
+    return api.start(animationData.states.stateTop(props.rz.get()));
   }
 
   @animation
@@ -50,8 +52,6 @@ export class CardAnimations {
     api: SpringRef<Lookup<any>>,
     props: { [x: string]: SpringValue<any> }
   ) {
-    console.log("flip card!");
-
     if (props.side.get() === "front") {
       return api.start(animationData.states.stateBack(props));
     } else {
@@ -77,7 +77,7 @@ export class CardAnimations {
     return api.start(
       flickable
         ? animationData.states.stateFloor()
-        : animationData.states.stateTop()
+        : animationData.states.stateTop(props.rz.get())
     );
   }
 }

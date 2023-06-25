@@ -11,7 +11,7 @@ export const getFlickableDistance = (card: HTMLElement) => {
 // This is being used down there in the view, it interpolates rotation and scale into a css transform
 export const trans = (rx: number, ry: number, rz: number, s: number) =>
   `perspective(1500px) rotateX(${rx + 30}deg) rotateY(${
-    ry + rz / 10
+    ry + Math.min(rz / 10, 1)
   }deg) rotateZ(${rz}deg) scale(${s})`;
 
 export const filt = (gray: number, blur: number) =>

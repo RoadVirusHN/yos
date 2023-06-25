@@ -32,20 +32,27 @@ const Card = forwardRef<CardRef, CardProps>(
           {...Handlers.card}
           style={{
             cursor,
-            filter: to([gray, blur], filt),
             transform: to([rx, ry, rz, scale], trans),
           }}
         >
-          <animated.div className={ClassNames.dustJacket} {...Handlers.dustJacket}>asdfasd</animated.div>
+          <animated.div
+            className={ClassNames.dustJacket}
+            {...Handlers.dustJacket}
+            draggable="false"
+          >
+            asdfasd
+          </animated.div>
           <animated.div
             className={`${ClassNames.front} ${ClassNames.face}`}
             style={{
               backgroundImage: `url(${info.preview})`,
+              filter: to([gray, blur], filt),
             }}
           />
-          <animated.div
-            className={`${ClassNames.back} ${ClassNames.face}`}
-          > hang on yo. </animated.div>
+          <animated.div className={`${ClassNames.back} ${ClassNames.face}`}>
+            {" "}
+            hang on yo.{" "}
+          </animated.div>
         </animated.div>
       </animated.div>
     );

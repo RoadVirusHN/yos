@@ -32,6 +32,8 @@ export default function useCardHook(
 
   const defaultPreventor = (e: Event) => {
     e.preventDefault();
+    console.log("asdfsd");
+    
   };
 
   const handleMove = (e: MouseEvent) => {
@@ -108,7 +110,11 @@ export default function useCardHook(
     Refs: {},
     Handlers: {
       card: Handlers,
-      dustJacket: { onMouseDown: dustJacketMouseDown },
+      dustJacket: {
+        onMouseDown: dustJacketMouseDown,
+        onDragOver: defaultPreventor,
+        onDragStart: defaultPreventor,
+      },
     },
     Styles: {
       ...props,

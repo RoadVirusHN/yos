@@ -70,14 +70,14 @@ export const animationData: AnimData<CardAnimInputs> = {
       cursor: i === projects.length - 1 ? "grab" : "default",
       delay: i * 200,
     }),
-    stateTop: () => ({
+    stateTop: (rz: number) => ({
       from: {},
       to: [
         {
           z: projects.length,
           scale: 1.1,
           gray: 0,
-          rz: -8 + Math.random() * 16,
+          rz: rz - 4 + Math.random() * 8,
           blur: 0,
           cursor: "grab",
           config: { tension: 210, friction: 20 },
@@ -85,7 +85,6 @@ export const animationData: AnimData<CardAnimInputs> = {
         {
           x: 0,
           y: projects.length * -4,
-          rz: -8 + Math.random() * 16,
           scale: 1,
           cursor: "grab",
           config: { tension: 210, friction: 20 },
@@ -152,15 +151,16 @@ export const animationData: AnimData<CardAnimInputs> = {
       config: config.stiff,
     }),
     stateFront: (props: { [key: string]: any }) => {
-      if (props.side.get()==="front") {
-        return {}
+      if (props.side.get() === "front") {
+        return {};
       }
       return {
-        from: {side:"front"},
+        from: { side: "front" },
         to: [
-          { ry: 0, rz:45, z: 100, scale: 1.4 },
+          { ry: 0, rz: 45, z: 100, scale: 1.4 },
           {
             rx: 0,
+            ry: 0,
             rz: -8 + Math.random() * 16,
             z: props.z.get(),
             scale: 1,
@@ -173,19 +173,19 @@ export const animationData: AnimData<CardAnimInputs> = {
       };
     },
     stateBack: (props: { [key: string]: any }) => {
-      if (props.side.get()==="back") {
-        return {}
+      if (props.side.get() === "back") {
+        return {};
       }
       return {
-        from: {side:"back"},
+        from: { side: "back" },
         to: [
-          { ry: 180, rz:45, z: 100, scale: 1.4 },
+          { ry: 180, rz: 45, z: 100, scale: 1.4 },
           {
-            rx: 180,
-            rz: 90 -8 + Math.random() * 16,
+            //rx: 180,
+            rz: 90 - 4 + Math.random() * 8,
             z: props.z.get(),
             scale: 1,
-          },  
+          },
         ],
         config: {
           tension: 380,

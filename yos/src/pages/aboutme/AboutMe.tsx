@@ -9,6 +9,7 @@ function AboutMe() {
         <Logo />
         <Cards />
       </div>
+      
     </div>
   );
 }

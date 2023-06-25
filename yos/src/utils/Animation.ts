@@ -13,7 +13,6 @@ export function animation(
     ...args: any[]
   ) {
     const formerAnim = props.onAnim.get();
-    console.log(`former was ${formerAnim}`);
     if (formerAnim !== "") {
       console.log(`${key} animation prevented by ${formerAnim}`);
       return;
