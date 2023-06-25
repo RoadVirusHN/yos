@@ -17,12 +17,15 @@ export type CardStyle = {
   x?: number;
   y?: number;
   z?: number;
-  rot?: number;
+  rx?: number;
+  ry?: number;
+  rz?: number;
   gray?: number;
   blur?: number;
   scale?: number;
   delay?: number;
-  side?: boolean;
+  side?: string;
+  onAnim?: string;
   immediate?: boolean;
   config?: { friction?: number; mass?: number; tension?: number };
 };
@@ -41,12 +44,15 @@ export const animationData: AnimData<CardAnimInputs> = {
       x,
       y,
       z: 1,
-      rot: 0,
+      rx: 0,
+      ry: 0,
+      rz: 0,
       gray: 0,
       blur: 0,
       scale: 1.5,
+      onAnim: "",
       cursor: i === projects.length - 1 ? "grab" : "default",
-      side: true,
+      side: "front",
     };
   },
   states: {
@@ -54,11 +60,13 @@ export const animationData: AnimData<CardAnimInputs> = {
       x: 0,
       y: i * -4, // make slightly upward
       z: i + 1,
+      rx: 0,
+      ry: 0,
       scale: 1,
-      rot: -8 + Math.random() * 16,
+      rz: -8 + Math.random() * 16,
       gray: 0,
       blur: 0,
-      side: true,
+      side: "front",
       cursor: i === projects.length - 1 ? "grab" : "default",
       delay: i * 200,
     }),
@@ -69,7 +77,7 @@ export const animationData: AnimData<CardAnimInputs> = {
           z: projects.length,
           scale: 1.1,
           gray: 0,
-          rot: -8 + Math.random() * 16,
+          rz: -8 + Math.random() * 16,
           blur: 0,
           cursor: "grab",
           config: { tension: 210, friction: 20 },
@@ -77,17 +85,16 @@ export const animationData: AnimData<CardAnimInputs> = {
         {
           x: 0,
           y: projects.length * -4,
-          rot: -8 + Math.random() * 16,
+          rz: -8 + Math.random() * 16,
           scale: 1,
           cursor: "grab",
           config: { tension: 210, friction: 20 },
         },
       ],
     }),
-
-    statePick: (rot: number) => ({
+    statePick: (rz: number) => ({
       scale: 1.1,
-      rot: Math.max(Math.min(rot, 5), -5) + (Math.random() * 6 - 3),
+      rz: rz + (Math.random() * 6 - 3),
       delay: undefined,
       cursor: "grabbing",
       config: { friction: 50, tension: 800 },
@@ -144,6 +151,48 @@ export const animationData: AnimData<CardAnimInputs> = {
       cursor: "alias",
       config: config.stiff,
     }),
+    stateFront: (props: { [key: string]: any }) => {
+      if (props.side.get()==="front") {
+        return {}
+      }
+      return {
+        from: {side:"front"},
+        to: [
+          { ry: 0, rz:45, z: 100, scale: 1.4 },
+          {
+            rx: 0,
+            rz: -8 + Math.random() * 16,
+            z: props.z.get(),
+            scale: 1,
+          },
+        ],
+        config: {
+          tension: 380,
+          friction: 60,
+        },
+      };
+    },
+    stateBack: (props: { [key: string]: any }) => {
+      if (props.side.get()==="back") {
+        return {}
+      }
+      return {
+        from: {side:"back"},
+        to: [
+          { ry: 180, rz:45, z: 100, scale: 1.4 },
+          {
+            rx: 180,
+            rz: 90 -8 + Math.random() * 16,
+            z: props.z.get(),
+            scale: 1,
+          },  
+        ],
+        config: {
+          tension: 380,
+          friction: 60,
+        },
+      };
+    },
   },
 };
 

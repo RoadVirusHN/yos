@@ -4,6 +4,7 @@ import useLogoHook from "./utils/LogoHook";
 /**
  * !!!Todos
  * - responsive compatibility
+ * - refactoring like cards.
  */
 
 // stolen from https://github.com/pmndrs/use-gesture/blob/main/documentation/pages/HeroSandbox/index.js#L153

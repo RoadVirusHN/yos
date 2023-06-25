@@ -1,42 +1,83 @@
 import { SpringRef, Lookup, SpringValue } from "react-spring";
 import { animationData } from "./CardData";
-
+import { animation, unstoppable } from "../../../../../../utils/Animation";
 // define animation play functions
+export class CardAnimations {
+  @animation
+  toTopCardAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> }
+  ) {
+    return api.start(animationData.states.stateTop());
+  }
 
-export function toTopCardAnim(api: SpringRef<Lookup<any>>) {
-  api.start(animationData.states.stateTop());
-}
+  @animation
+  toDeckCardAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> },
+    order: number
+  ) {
+    return api.start(animationData.states.stateDeck(order));
+  }
 
-export function toDeckCardAnim(api: SpringRef<Lookup<any>>, order: number) {
-  api.start(animationData.states.stateDeck(order));
-}
-export const pickCardAnim = (
-  api: SpringRef<Lookup<any>>,
-  props: { [x: string]: SpringValue<any> }
-) => {
-  api.start(animationData.states.statePick(props.rot.get()));
-};
-export function setFloatCardAnim(api: SpringRef<Lookup<any>>) {
-  api.start(animationData.states.stateFloat());
-}
-export function setFlickableCardAnim(api: SpringRef<Lookup<any>>) {
-  api.start(animationData.states.stateFlickable());
-}
+  @animation
+  pickCardAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> }
+  ) {
+    return api.start(animationData.states.statePick(props.rz.get()));
+  }
 
-export function cardFollowCursorAnim(
-  api: SpringRef<Lookup<any>>,
-  mouseDelta: { dX: number; dY: number }
-) {
-  api.start(animationData.states.stateMove(mouseDelta));
-}
-export function putCardAnim(flickable: boolean, api: SpringRef<Lookup<any>>) {
-  api.start(
-    flickable
-      ? animationData.states.stateFloor()
-      : animationData.states.stateTop()
-  );
-}
+  @animation
+  setFloatCardAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> }
+  ) {
+    return api.start(animationData.states.stateFloat());
+  }
 
-export function frontCardAnim(api: SpringRef<Lookup<any>>) {}
+  @animation
+  setFlickableCardAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> }
+  ) {
+    return api.start(animationData.states.stateFlickable());
+  }
 
-export function backCardAnim(api: SpringRef<Lookup<any>>) {}
+  @animation
+  @unstoppable
+  flipCardAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> }
+  ) {
+    console.log("flip card!");
+
+    if (props.side.get() === "front") {
+      return api.start(animationData.states.stateBack(props));
+    } else {
+      return api.start(animationData.states.stateFront(props));
+    }
+  }
+
+  @animation
+  cardFollowCursorAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> },
+    mouseDelta: { dX: number; dY: number }
+  ) {
+    return api.start(animationData.states.stateMove(mouseDelta));
+  }
+
+  @animation
+  putCardAnim(
+    api: SpringRef<Lookup<any>>,
+    props: { [x: string]: SpringValue<any> },
+    flickable: boolean
+  ) {
+    return api.start(
+      flickable
+        ? animationData.states.stateFloor()
+        : animationData.states.stateTop()
+    );
+  }
+}

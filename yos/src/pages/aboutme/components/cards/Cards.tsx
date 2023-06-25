@@ -21,13 +21,14 @@ export default function Cards() {
   const titleRef = useRef<SquigRef>(null);
   const changeOrder = (value: number[], except: number) => {
     order.current = value;
+    
     children.current.forEach((child) => {
       if (child.current) {
         child.current!.stackUp(except);
       }
     });
     if (titleRef.current) {
-      titleRef.current.updateProject(order.current.at(-1) || infos.length - 1);
+      titleRef.current.updateProject(order.current.at(-1) as number);
     }
   };
   const getOrder = () => order.current;

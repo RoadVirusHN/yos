@@ -19,8 +19,8 @@ const Card = forwardRef<CardRef, CardProps>(
       selfRef
     );
 
-    const { x, y, z, cursor, rot, scale, gray, blur } = Styles;
-      
+    const { x, y, z, rx, ry, cursor, rz, scale, gray, blur } = Styles;
+
     return (
       <animated.div
         className={ClassNames.cardWrapper}
@@ -29,16 +29,23 @@ const Card = forwardRef<CardRef, CardProps>(
       >
         <animated.div
           className={ClassNames.card}
-          {...Handlers}
+          {...Handlers.card}
           style={{
-            transform: to([rot, scale], trans),
+            cursor,
             filter: to([gray, blur], filt),
-            backgroundImage: `url(${info.preview})`,
-            cursor
+            transform: to([rx, ry, rz, scale], trans),
           }}
         >
-          <animated.div className={ClassNames.front} />
-          <animated.div className={ClassNames.back} />
+          <animated.div className={ClassNames.dustJacket} {...Handlers.dustJacket}>asdfasd</animated.div>
+          <animated.div
+            className={`${ClassNames.front} ${ClassNames.face}`}
+            style={{
+              backgroundImage: `url(${info.preview})`,
+            }}
+          />
+          <animated.div
+            className={`${ClassNames.back} ${ClassNames.face}`}
+          > hang on yo. </animated.div>
         </animated.div>
       </animated.div>
     );

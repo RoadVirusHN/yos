@@ -1,21 +1,9 @@
 import { useSpring } from "react-spring";
 import { MyHook } from "../../../../../../types/MyHook";
 import { animationData } from "./CardData";
-import {
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import { useEffect, useImperativeHandle, useRef } from "react";
 import { canFlick, getDistance } from "./CardHelpers";
-import {
-  cardFollowCursorAnim,
-  toTopCardAnim,
-  pickCardAnim,
-  putCardAnim,
-  setFlickableCardAnim,
-  setFloatCardAnim,
-  toDeckCardAnim,
-} from "./CardAnim";
+import { CardAnimations } from "./CardAnim";
 export type CardRef = {
   stackUp: (except: number) => void;
 };
@@ -29,11 +17,11 @@ export default function useCardHook(
   const [props, api] = useSpring(() => animationData.initialProps(info.index));
   const orderCache = useRef(getOrder());
   const dragStart = useRef({ x: -1, y: -1 });
-
+  const cardAnim = new CardAnimations();
   useImperativeHandle(selfRef, () => ({
     stackUp: (except: number) => {
       if (info.index !== except) {
-        toDeckCardAnim(api, getOrder().indexOf(info.index));
+        cardAnim.toDeckCardAnim(api, props, getOrder().indexOf(info.index));
       }
     },
   }));
@@ -53,11 +41,11 @@ export default function useCardHook(
       const dragDist = getDistance(fr, dragStart.current);
 
       if (canFlick(props)) {
-        setFlickableCardAnim(api);
-      } else {        
-        setFloatCardAnim(api);
+        cardAnim.setFlickableCardAnim(api, props);
+      } else {
+        cardAnim.setFloatCardAnim(api, props);
       }
-      cardFollowCursorAnim(api, dragDist);
+      cardAnim.cardFollowCursorAnim(api, props, dragDist);
     }
   };
 
@@ -74,7 +62,7 @@ export default function useCardHook(
           info.index
         );
       }
-      putCardAnim(flickable, api);
+      cardAnim.putCardAnim(api, props, flickable);
       dragStart.current = { x: -1, y: -1 };
     }
     window.removeEventListener("mouseup", handleMouseUp);
@@ -83,22 +71,30 @@ export default function useCardHook(
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button === 0) {
-      // when clicked,
+      // when clicked
       orderCache.current = getOrder();
       if (orderCache.current.at(-1) === info.index) {
         // pick card animation.
         dragStart.current = { x: e.pageX, y: e.pageY };
-        pickCardAnim(api, props);
+        cardAnim.pickCardAnim(api, props);
         window.addEventListener("mouseup", handleMouseUp);
         window.addEventListener("mousemove", handleMove);
       } else if (orderCache.current[0] === info.index) {
         // floor card to top
-        toTopCardAnim(api);
+        cardAnim.toTopCardAnim(api, props);
         changeOrder(
           orderCache.current.slice(1).concat([info.index]),
           info.index
         );
       }
+    }
+  };
+
+  const dustJacketMouseDown = (e: React.MouseEvent) => {
+    if (e.button === 0) {
+      e.stopPropagation();
+      cardAnim.flipCardAnim(api, props);
+      console.log(cardAnim.flipCardAnim);
     }
   };
 
@@ -110,10 +106,13 @@ export default function useCardHook(
 
   const result: MyHook = {
     Refs: {},
-    Handlers,
+    Handlers: {
+      card: Handlers,
+      dustJacket: { onMouseDown: dustJacketMouseDown },
+    },
     Styles: {
       ...props,
-    }
+    },
   };
   return result;
 }
