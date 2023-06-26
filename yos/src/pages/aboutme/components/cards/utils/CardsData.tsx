@@ -1,3 +1,4 @@
+import { ReactComponent as CoolCat } from "./coolcat.svg";
 interface CardInfo {
   index: number;
   project: { title: string; sub: string };
@@ -23,7 +24,7 @@ export const projects = [
     project: {
       title: "DNS: Developer Network Service",
       sub: "SNS Cloning Team Project",
-      doodle: <div></div>,
+      doodle: <CoolCat />,
     },
     front: {
       preview:
@@ -42,44 +43,94 @@ export const projects = [
     project: {
       title: "Cat Swimming: Secondhand Sale Searching",
       sub: "Transaction Search & ML Based Filtering Service",
+      doodle: <div></div>,
     },
-    preview:
-      "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+    front: {
+      preview:
+        "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+    },
+    back: {
+      teammates: 6,
+      role: "Leader, Frontend, Backend Engineer",
+      term: "2020.01~2020.02",
+      github: "",
+      service: "",
+    },
   },
   {
     index: 2,
     project: {
       title: "DKT: ML Competition & Web Service",
       sub: "Deep Knowledge Tracing ML Team Competition & Web service",
+      doodle: <div></div>,
     },
-    preview:
-      "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
+    front: {
+      preview:
+        "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
+    },
+    back: {
+      teammates: 6,
+      role: "Leader, Frontend, Backend Engineer",
+      term: "2020.01~2020.02",
+      github: "",
+      service: "",
+    },
   },
   {
     index: 3,
     project: {
       title: "YOS: This cool Stuff!",
       sub: "Beautiful AboutMe Page",
+      doodle: <div></div>,
     },
-    preview:
-      "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg",
+    front: {
+      preview:
+        "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg",
+    },
+    back: {
+      teammates: 6,
+      role: "Leader, Frontend, Backend Engineer",
+      term: "2020.01~2020.02",
+      github: "",
+      service: "",
+    },
   },
   {
     index: 4,
     project: {
       title: "Subbrain: Jekyll based My Blog",
       sub: "Subbrain: Jekyll based My Blog",
+      doodle: <div></div>,
     },
-    preview:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/RWS_Tarot_02_High_Priestess.jpg/690px-RWS_Tarot_02_High_Priestess.jpg",
+    front: {
+      preview:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/RWS_Tarot_02_High_Priestess.jpg/690px-RWS_Tarot_02_High_Priestess.jpg",
+    },
+    back: {
+      teammates: 6,
+      role: "Leader, Frontend, Backend Engineer",
+      term: "2020.01~2020.02",
+      github: "",
+      service: "",
+    },
   },
   {
     index: 5,
     project: {
       title: "Movie-Dick",
       sub: "some cool cinema page",
+      doodle: <CoolCat />,
     },
-    preview:
-      "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
+    front: {
+      preview:
+        "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
+    },
+    back: {
+      teammates: 6,
+      role: "Leader, Frontend, Backend Engineer",
+      term: "2020.01~2020.02",
+      github: "",
+      service: "",
+    },
   },
 ];

@@ -26,7 +26,9 @@ const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
     updateProject: (topIdx: number) => {
       setTitle(projects.filter((pjt) => pjt.index === topIdx)[0].project.title);
       setSub(projects.filter((pjt) => pjt.index === topIdx)[0].project.sub);
-      setDoodle(projects.filter((pjt) => pjt.index === topIdx)[0].project.doodle)
+      setDoodle(
+        projects.filter((pjt) => pjt.index === topIdx)[0].project.doodle
+      );
     },
   }));
 
@@ -51,7 +53,7 @@ const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
       </defs>
       <svg filter="url(#squiggly) drop-shadow( 2px 2px 3px rgba(50, 50, 50, .7))">
         <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <div>
+          <div style={{ width: "100%", height: "100%" }}>
             <h1
               // @ts-ignore
               xmlns="http://www.w3.org/1999/xhtml"
@@ -66,7 +68,9 @@ const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
             >
               {sub}
             </h3>
-            {doodle}
+            <div style={{ margin: 0, width: "100%", height: "100%" }}>
+              {doodle}
+            </div>
           </div>
         </foreignObject>
       </svg>

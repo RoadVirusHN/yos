@@ -92,7 +92,7 @@ export default function useCardHook(
     }
   };
 
-  const dustJacketMouseDown = (e: React.MouseEvent) => {
+  const bandMouseDown = (e: React.MouseEvent) => {
     if (e.button === 0) {
       e.stopPropagation();
       cardAnim.flipCardAnim(api, props);
@@ -110,8 +110,8 @@ export default function useCardHook(
     Refs: {},
     Handlers: {
       card: Handlers,
-      dustJacket: {
-        onMouseDown: dustJacketMouseDown,
+      band: {
+        onMouseDown: bandMouseDown,
         onDragOver: defaultPreventor,
         onDragStart: defaultPreventor,
       },

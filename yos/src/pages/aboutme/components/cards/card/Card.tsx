@@ -3,6 +3,9 @@ import ClassNames from "./utils/Card.module.scss";
 import useCardHook, { CardRef } from "./utils/CardHook";
 import { forwardRef } from "react";
 import { filt, trans } from "./utils/CardHelpers";
+import BackFace from "./components/backFace/BackFace";
+import FrontFace from "./components/frontFace/FrontFace";
+import Band from "./components/band/Band";
 
 export type CardProps = {
   info: { [key: string]: any };
@@ -35,31 +38,9 @@ const Card = forwardRef<CardRef, CardProps>(
             transform: to([rx, ry, rz, scale], trans),
           }}
         >
-          <animated.div
-            className={ClassNames.dustJacket}
-            {...Handlers.dustJacket}
-            draggable="false"
-          >
-            asdfasd
-          </animated.div>
-          <animated.div
-            className={`${ClassNames.front} ${ClassNames.face}`}
-            style={{
-              backgroundImage: `url(${info.preview})`,
-              filter: to([gray, blur], filt),
-            }}
-          />
-          <animated.div
-            className={`${ClassNames.back} ${ClassNames.face}`}
-            style={{
-              filter: to([gray, blur], filt),
-            }}
-          >
-            <p>asdfasdf</p>
-            <p>asdfasdf</p>
-            <p>asdfasdf</p>
-            <p>asdfasdf</p>
-          </animated.div>
+          <Band handlers={Handlers.band}/>
+          <FrontFace {...{ preview: info.front.preview, gray, blur }} />
+          <BackFace {...{ gray, blur }} />
         </animated.div>
       </animated.div>
     );
