@@ -4,7 +4,7 @@ import Card from "./card/Card";
 import { RefObject, useRef } from "react";
 import { CardRef } from "./card/utils/CardHook";
 import React from "react";
-import SquigTitle, { SquigRef } from "./card/title/SquigTitle";
+import Doodle, { DoodleRef } from "./card/components/doodle/Doodle";
 /**
  * !!!Todos
  * - responsive compatibility
@@ -18,7 +18,7 @@ export default function Cards() {
   const children = useRef<RefObject<CardRef>[]>(
     Array.from(infos, (_info) => React.createRef())
   );
-  const titleRef = useRef<SquigRef>(null);
+  const titleRef = useRef<DoodleRef>(null);
   const changeOrder = (value: number[], except: number) => {
     order.current = value;
     
@@ -34,7 +34,7 @@ export default function Cards() {
   const getOrder = () => order.current;
   return (
     <div className={ClassNames.deckContainer}>
-      <SquigTitle ref={titleRef} />
+      <Doodle ref={titleRef} />
       <div className={ClassNames.deck}>
         {infos.map((info) => (
           <Card

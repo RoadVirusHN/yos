@@ -1,8 +1,8 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
 
-import { AnimData } from "../../../../../../../types/Animation";
+import { AnimData } from "../../../../../../../../types/Animation";
 
-export type SquigStyle = {
+export type DoodleStyle = {
   seed?: number;
   scale?: number;
   config?: {
@@ -13,13 +13,13 @@ export type SquigStyle = {
   };
 };
 
-export type SquigAnimInputs =
-  | SquigStyle
+export type DoodleAnimInputs =
+  | DoodleStyle
   | {
-      from: SquigStyle;
-      to: SquigStyle | SquigStyle[];
+      from: DoodleStyle;
+      to: DoodleStyle | DoodleStyle[];
     };
-export const animationData: AnimData<SquigAnimInputs> = {
+export const animationData: AnimData<DoodleAnimInputs> = {
   initialProps: () => ({
     from: { seed: 0, scale: 6 },
     to: [

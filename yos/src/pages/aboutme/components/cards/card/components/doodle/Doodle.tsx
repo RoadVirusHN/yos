@@ -1,16 +1,16 @@
-import ClassNames from "./utils/SquigTitle.module.scss";
+import ClassNames from "./utils/Doodle.module.scss";
 import { animated, useSpring } from "react-spring";
-import { animationData } from "./utils/SquigData";
-import { projects } from "../../utils/CardsData";
+import { animationData } from "./utils/DoodleData";
+import { projects } from "../../../utils/CardsData";
 import { forwardRef, useImperativeHandle, useState } from "react";
 
 const AnimFeTurbulence = animated("feTurbulence");
 const AnimFeDisplacementMap = animated("feDisplacementMap");
 
-export type SquigRef = {
+export type DoodleRef = {
   updateProject: (topIdx: number) => void;
 };
-const SquigTitle = forwardRef<SquigRef>(({}, selfRef) => {
+const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
   const { seed, scale } = useSpring({
     ...animationData.initialProps(),
     loop: true,
@@ -20,16 +20,18 @@ const SquigTitle = forwardRef<SquigRef>(({}, selfRef) => {
 
   const [title, setTitle] = useState(projects.at(-1)!.project.title);
   const [sub, setSub] = useState(projects.at(-1)!.project.sub);
+  const [doodle, setDoodle] = useState(projects.at(-1)!.project.doodle);
 
   useImperativeHandle(selfRef, () => ({
-    updateProject: (topIdx: number) => {      
+    updateProject: (topIdx: number) => {
       setTitle(projects.filter((pjt) => pjt.index === topIdx)[0].project.title);
       setSub(projects.filter((pjt) => pjt.index === topIdx)[0].project.sub);
+      setDoodle(projects.filter((pjt) => pjt.index === topIdx)[0].project.doodle)
     },
   }));
 
   return (
-    <animated.svg className={ClassNames.squig}>
+    <animated.svg className={ClassNames.doodle}>
       <defs>
         <filter id="squiggly">
           <AnimFeTurbulence
@@ -47,16 +49,29 @@ const SquigTitle = forwardRef<SquigRef>(({}, selfRef) => {
           />
         </filter>
       </defs>
-      <text x="50%" y="50%" filter="url(#squiggly) drop-shadow( 2px 2px 3px rgba(50, 50, 50, .7))">
-        <tspan className={ClassNames.title} x="50%" dy="-0.9em">
-          {title}
-        </tspan>
-        <tspan className={ClassNames.sub} x="50%" dy="1em">
-          {sub}
-        </tspan>
-      </text>
+      <svg filter="url(#squiggly) drop-shadow( 2px 2px 3px rgba(50, 50, 50, .7))">
+        <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div>
+            <h1
+              // @ts-ignore
+              xmlns="http://www.w3.org/1999/xhtml"
+              className={ClassNames.title}
+            >
+              {title}
+            </h1>
+            <h3
+              // @ts-ignore
+              xmlns="http://www.w3.org/1999/xhtml"
+              className={ClassNames.sub}
+            >
+              {sub}
+            </h3>
+            {doodle}
+          </div>
+        </foreignObject>
+      </svg>
     </animated.svg>
   );
 });
 
-export default SquigTitle;
+export default Doodle;

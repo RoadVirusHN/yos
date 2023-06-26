@@ -4,13 +4,13 @@ import { AnimData } from "../../../../../../types/Animation";
 import { projects } from "../../utils/CardsData";
 
 export let flickableDistance = {
-  w: (window.innerWidth / 4) * 1.1,
-  h: (window.innerHeight / 4) * 1.1,
+  w: 160,
+  h: 128,
 };
 
 const snapDist = {
-  sX: window.innerWidth / 2,
-  sY: window.innerHeight / 2,
+  sX: window.innerWidth / 3,
+  sY: window.innerHeight / 3,
 };
 
 export type CardStyle = {
@@ -107,8 +107,8 @@ export const animationData: AnimData<CardAnimInputs> = {
       config: { tension: 200 },
     }),
     stateFlickable: () => ({
-      z: 1.5,
-      scale: 1,
+      z: projects.length + 1,
+      scale: 1.1,
       gray: 0.7,
       blur: 2,
       cursor: "grabbing",
@@ -167,7 +167,7 @@ export const animationData: AnimData<CardAnimInputs> = {
           },
         ],
         config: {
-          tension: 380,
+          tension: 440,
           friction: 60,
         },
       };
@@ -188,7 +188,7 @@ export const animationData: AnimData<CardAnimInputs> = {
           },
         ],
         config: {
-          tension: 380,
+          tension: 440,
           friction: 60,
         },
       };

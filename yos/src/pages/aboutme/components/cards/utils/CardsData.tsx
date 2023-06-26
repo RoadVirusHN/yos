@@ -23,9 +23,19 @@ export const projects = [
     project: {
       title: "DNS: Developer Network Service",
       sub: "SNS Cloning Team Project",
+      doodle: <div></div>,
     },
-    preview:
-      "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg",
+    front: {
+      preview:
+        "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg",
+    },
+    back: {
+      teammates: 6,
+      role: "Leader, Frontend, Backend Engineer",
+      term: "2020.01~2020.02",
+      github: "",
+      service: "",
+    },
   },
   {
     index: 1,

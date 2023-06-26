@@ -49,9 +49,16 @@ const Card = forwardRef<CardRef, CardProps>(
               filter: to([gray, blur], filt),
             }}
           />
-          <animated.div className={`${ClassNames.back} ${ClassNames.face}`}>
-            {" "}
-            hang on yo.{" "}
+          <animated.div
+            className={`${ClassNames.back} ${ClassNames.face}`}
+            style={{
+              filter: to([gray, blur], filt),
+            }}
+          >
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
           </animated.div>
         </animated.div>
       </animated.div>
