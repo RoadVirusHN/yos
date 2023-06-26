@@ -24,6 +24,10 @@
       * {
         margin: 0;
       }
+      .doodleContainer {
+        width: "100%";
+        height: "100%";
+      }
       .title {
         font-family: "Hi Melody", cursive;
         color: blueviolet;
@@ -47,10 +51,17 @@
         width: 90%;
         margin: auto;
       }
-      svg {
-        position: absolute;
-        left: 0;
-        bottom: 0;
+      .graffiti {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        resize: both;
+        & > svg {
+          resize: both;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+        }
       }
     }
   }

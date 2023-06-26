@@ -1,4 +1,5 @@
-import { ReactComponent as CoolCat } from "./coolcat.svg";
+import { ReactComponent as CoolCat } from "./graffities/coolcat.svg";
+// !important : dont get the graffiti directly from the component
 interface CardInfo {
   index: number;
   project: { title: string; sub: string };
@@ -24,7 +25,7 @@ export const projects = [
     project: {
       title: "DNS: Developer Network Service",
       sub: "SNS Cloning Team Project",
-      doodle: <CoolCat />,
+      graffiti: <CoolCat />,
     },
     front: {
       preview:
@@ -43,7 +44,7 @@ export const projects = [
     project: {
       title: "Cat Swimming: Secondhand Sale Searching",
       sub: "Transaction Search & ML Based Filtering Service",
-      doodle: <div></div>,
+      graffiti: <div></div>,
     },
     front: {
       preview:
@@ -62,7 +63,7 @@ export const projects = [
     project: {
       title: "DKT: ML Competition & Web Service",
       sub: "Deep Knowledge Tracing ML Team Competition & Web service",
-      doodle: <div></div>,
+      graffiti: <div></div>,
     },
     front: {
       preview:
@@ -81,7 +82,7 @@ export const projects = [
     project: {
       title: "YOS: This cool Stuff!",
       sub: "Beautiful AboutMe Page",
-      doodle: <div></div>,
+      graffiti: <div></div>,
     },
     front: {
       preview:
@@ -100,7 +101,7 @@ export const projects = [
     project: {
       title: "Subbrain: Jekyll based My Blog",
       sub: "Subbrain: Jekyll based My Blog",
-      doodle: <div></div>,
+      graffiti: <div></div>,
     },
     front: {
       preview:
@@ -119,7 +120,7 @@ export const projects = [
     project: {
       title: "Movie-Dick",
       sub: "some cool cinema page",
-      doodle: <CoolCat />,
+      graffiti: <CoolCat />,
     },
     front: {
       preview:

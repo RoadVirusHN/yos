@@ -20,14 +20,14 @@ const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
 
   const [title, setTitle] = useState(projects.at(-1)!.project.title);
   const [sub, setSub] = useState(projects.at(-1)!.project.sub);
-  const [doodle, setDoodle] = useState(projects.at(-1)!.project.doodle);
+  const [graffiti, setGraffiti] = useState(projects.at(-1)!.project.graffiti);
 
   useImperativeHandle(selfRef, () => ({
     updateProject: (topIdx: number) => {
       setTitle(projects.filter((pjt) => pjt.index === topIdx)[0].project.title);
       setSub(projects.filter((pjt) => pjt.index === topIdx)[0].project.sub);
-      setDoodle(
-        projects.filter((pjt) => pjt.index === topIdx)[0].project.doodle
+      setGraffiti(
+        projects.filter((pjt) => pjt.index === topIdx)[0].project.graffiti
       );
     },
   }));
@@ -53,7 +53,7 @@ const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
       </defs>
       <svg filter="url(#squiggly) drop-shadow( 2px 2px 3px rgba(50, 50, 50, .7))">
         <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <div style={{ width: "100%", height: "100%" }}>
+          <div className={ClassNames.doodleContainer}>
             <h1
               // @ts-ignore
               xmlns="http://www.w3.org/1999/xhtml"
@@ -68,9 +68,7 @@ const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
             >
               {sub}
             </h3>
-            <div style={{ margin: 0, width: "100%", height: "100%" }}>
-              {doodle}
-            </div>
+            <div className={ClassNames.graffiti}>{graffiti}</div>
           </div>
         </foreignObject>
       </svg>
