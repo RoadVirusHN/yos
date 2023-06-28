@@ -27,7 +27,8 @@ interface CardInfo {
     role: string;
     status: BandStatus;
     description: string;
-    result: string;
+    teammates: number,
+    term: string,
   };
 }
 
@@ -48,6 +49,7 @@ export const projects = [
       status: BandEnum.DONE as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
+      team: "SSAFY",
       github: "",
       service: "",
     },
@@ -75,8 +77,8 @@ export const projects = [
   {
     index: 2,
     project: {
-      title: "DKT: ML Competition & Web Service",
-      sub: "Deep Knowledge Tracing ML Team Competition & Web service",
+      title: "DKT Competition & DKDKT",
+      sub: "Deep Knowledge Tracing Machine Learning & Web Service",
       graffiti: <div></div>,
     },
     front: {
@@ -95,8 +97,8 @@ export const projects = [
   {
     index: 3,
     project: {
-      title: "YOS: This cool Stuff!",
-      sub: "Beautiful AboutMe Page",
+      title: "This Page!",
+      sub: "Beautiful & Interactive ABOUTME",
       graffiti: <div></div>,
     },
     front: {
@@ -104,7 +106,7 @@ export const projects = [
         "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg",
     },
     back: {
-      teammates: 6,
+      teammates: 1,
       status: BandEnum.INPROGRESS as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
@@ -115,8 +117,8 @@ export const projects = [
   {
     index: 4,
     project: {
-      title: "Subbrain: Jekyll based My Blog",
-      sub: "Subbrain: Jekyll based My Blog",
+      title: "SUBBRAIN",
+      sub: "Jekyll based Static Blog",
       graffiti: <div></div>,
     },
     front: {
@@ -124,7 +126,7 @@ export const projects = [
         testGif,
     },
     back: {
-      teammates: 6,
+      teammates: 1,
       status: BandEnum.DROPPED as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
@@ -136,14 +138,14 @@ export const projects = [
     index: 5,
     project: {
       title: "Movie-Dick",
-      sub: "some cool cinema page",
+      sub: "Movie Information & Ticketing",
       graffiti: <CoolCat />,
     },
     front: {
       preview: testBig,
     },
     back: {
-      teammates: 6,
+      teammates: 1001,
       status: BandEnum.INPROGRESS as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",

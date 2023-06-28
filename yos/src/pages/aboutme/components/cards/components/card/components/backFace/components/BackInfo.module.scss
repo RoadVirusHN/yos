@@ -1,0 +1,13 @@
+.backInfoContainer {
+  display: flex;
+  justify-content: space-around ;
+  align-items: center;
+  flex-direction: column;
+  transform: rotateZ(90deg);
+  
+  .team {
+    text-align: center;
+    font-size: larger;
+    letter-spacing: -10px;
+  }
+}

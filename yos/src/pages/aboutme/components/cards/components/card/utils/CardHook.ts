@@ -71,8 +71,6 @@ export default function useCardHook(
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    console.log("asdfsdf");
-    
     if (e.button === 0) {
       // when clicked
       orderCache.current = getOrder();
@@ -96,7 +94,13 @@ export default function useCardHook(
   const beforeBandMouseDown = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (e.button === 0) {
-      cardAnim.flipCardAnim(api, props);
+      orderCache.current = getOrder();
+      if (
+        orderCache.current.at(-1) === info.index ||
+        orderCache.current[0] === info.index
+      ) {
+        cardAnim.flipCardAnim(api, props);
+      }
     }
     return props.side.get();
   };

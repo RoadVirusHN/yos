@@ -48,7 +48,7 @@ const Card = forwardRef<CardRef, CardProps>(
             styles={{ gray, blur }}
           />
           <FrontFace {...{ preview: info.front.preview, gray, blur }} />
-          <BackFace {...{backInfo: info.back, gray, blur }} />
+          <BackFace {...{ backInfo: info.back, gray, blur }} />
         </animated.div>
       </animated.div>
     );
