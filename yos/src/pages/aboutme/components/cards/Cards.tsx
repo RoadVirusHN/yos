@@ -1,10 +1,10 @@
+import Card from "./components/card/Card";
+import { CardRef } from "./components/card/utils/CardHook";
+import Doodle, { DoodleRef } from "./components/doodle/Doodle";
 import ClassNames from "./utils/Cards.module.scss";
 import { projects as infos } from "./utils/CardsData";
-import Card from "./card/Card";
 import { RefObject, useRef } from "react";
-import { CardRef } from "./card/utils/CardHook";
 import React from "react";
-import Doodle, { DoodleRef } from "./card/components/doodle/Doodle";
 /**
  * !!!Todos
  * - responsive compatibility

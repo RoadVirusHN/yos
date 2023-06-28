@@ -1,5 +1,17 @@
-import { ReactComponent as CoolCat } from "./graffities/coolcat.svg";
+import { ReactComponent as CoolCat } from "./assets/graffities/coolcat.svg";
+import testGif from "./assets/previews/test.gif";
+import testBig from "./assets/previews/test-big.gif";
 // !important : dont get the graffiti directly from the component
+
+export const BandEnum = {
+  DEFAULT: "DEFAULT",
+  POSTPONED: "POSTPONED",
+  DONE: "DONE",
+  DROPPED: "DROPPED",
+  INPROGRESS: "INPROGRESS",
+};
+export type BandStatus = keyof typeof BandEnum;
+
 interface CardInfo {
   index: number;
   project: { title: string; sub: string };
@@ -13,6 +25,7 @@ interface CardInfo {
     team: number;
     date: string;
     role: string;
+    status: BandStatus;
     description: string;
     result: string;
   };
@@ -28,11 +41,11 @@ export const projects = [
       graffiti: <CoolCat />,
     },
     front: {
-      preview:
-        "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg",
+      preview: "./previews/test.gif",
     },
     back: {
       teammates: 6,
+      status: BandEnum.DONE as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
       github: "",
@@ -52,6 +65,7 @@ export const projects = [
     },
     back: {
       teammates: 6,
+      status: BandEnum.POSTPONED as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
       github: "",
@@ -71,6 +85,7 @@ export const projects = [
     },
     back: {
       teammates: 6,
+      status: BandEnum.DONE as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
       github: "",
@@ -90,6 +105,7 @@ export const projects = [
     },
     back: {
       teammates: 6,
+      status: BandEnum.INPROGRESS as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
       github: "",
@@ -105,10 +121,11 @@ export const projects = [
     },
     front: {
       preview:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/RWS_Tarot_02_High_Priestess.jpg/690px-RWS_Tarot_02_High_Priestess.jpg",
+        testGif,
     },
     back: {
       teammates: 6,
+      status: BandEnum.DROPPED as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
       github: "",
@@ -123,11 +140,11 @@ export const projects = [
       graffiti: <CoolCat />,
     },
     front: {
-      preview:
-        "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
+      preview: testBig,
     },
     back: {
       teammates: 6,
+      status: BandEnum.INPROGRESS as BandStatus,
       role: "Leader, Frontend, Backend Engineer",
       term: "2020.01~2020.02",
       github: "",
