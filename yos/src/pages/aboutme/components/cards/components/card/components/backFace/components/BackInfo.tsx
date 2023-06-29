@@ -1,22 +1,15 @@
-import { BandStatus } from "../../../../../utils/CardsData";
+import { CardInfoBackInfos } from "../../../../../utils/CardsData";
 import InfoMapper from "./components/InfoMapper";
 import Teammates from "./components/Teammates";
 import ClassNames from "./BackInfo.module.scss";
+import IconLink from "./components/IconLink";
 
 const BackInfo = ({
   backInfo,
   width,
   height,
 }: {
-  backInfo: {
-    team: number;
-    date: string;
-    role: string;
-    status: BandStatus;
-    description: string;
-    teammates: number;
-    term: string;
-  };
+  backInfo: CardInfoBackInfos;
   width: number;
   height: number;
 }) => {
@@ -26,7 +19,8 @@ const BackInfo = ({
       style={{ width: height, height: width }}
     >
       <Teammates teamSize={backInfo.teammates} />
-      <InfoMapper infos={backInfo} />
+      <InfoMapper infos={backInfo.infos} />
+      <IconLink links={backInfo.links} />
     </div>
   );
 };

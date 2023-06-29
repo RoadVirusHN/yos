@@ -1,6 +1,7 @@
 import { ReactComponent as CoolCat } from "./assets/graffities/coolcat.svg";
 import testGif from "./assets/previews/test.gif";
 import testBig from "./assets/previews/test-big.gif";
+import { ReactElement } from "react";
 // !important : dont get the graffiti directly from the component
 
 export const BandEnum = {
@@ -12,145 +13,192 @@ export const BandEnum = {
 };
 export type BandStatus = keyof typeof BandEnum;
 
-interface CardInfo {
+export interface CardInfo {
   index: number;
-  project: { title: string; sub: string };
+  url: string;
+  description: {
+    title: string;
+    sub: string;
+    graffities?: {
+      left?: ReactElement<any, any>;
+      right?: ReactElement<any, any>;
+      bottom?: ReactElement<any, any>;
+    };
+  };
   front: {
     preview: string;
-    title: string;
-    link1: string;
-    link2: string;
+    techs: [string];
   };
-  back: {
-    team: number;
-    date: string;
-    role: string;
-    status: BandStatus;
-    description: string;
-    teammates: number,
-    term: string,
-  };
+  back: CardInfoBackInfos;
+}
+export interface CardInfoBackInfos {
+  teammates: number;
+  infos: CardInfoBackInfoMaps;
+  links: { [icon: string]: string };
+  status: BandStatus;
+}
+
+export interface CardInfoBackInfoMaps {
+  group?: string;
+  term?: string;
+  role?: string;
 }
 
 // Datas
-export const projects = [
+export const projects: CardInfo[] = [
   {
     index: 0,
-    project: {
+    url: "asdf",
+    description: {
       title: "DNS: Developer Network Service",
       sub: "SNS Cloning Team Project",
-      graffiti: <CoolCat />,
+      graffities: { left: <CoolCat /> },
     },
     front: {
       preview: "./previews/test.gif",
+      techs: ["vuejs"],
     },
     back: {
       teammates: 6,
       status: BandEnum.DONE as BandStatus,
-      role: "Leader, Frontend, Backend Engineer",
-      term: "2020.01~2020.02",
-      team: "SSAFY",
-      github: "",
-      service: "",
+      infos: {
+        role: "As a Leader, Frontend, Backend Engineer",
+        term: "2020.01~2020.02",
+        group: "SSAFY",
+      },
+      links: {
+        github: ".",
+        ppt: "",
+      },
     },
   },
   {
     index: 1,
-    project: {
-      title: "Cat Swimming: Secondhand Sale Searching",
-      sub: "Transaction Search & ML Based Filtering Service",
-      graffiti: <div></div>,
+    url: "dfs",
+    description: {
+      title: "Cat Swimming 😸",
+      sub: "SecondHand Transaction Search & ML Based Filtering Service",
     },
     front: {
       preview:
         "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+
+      techs: ["reactjs"],
     },
     back: {
       teammates: 6,
       status: BandEnum.POSTPONED as BandStatus,
-      role: "Leader, Frontend, Backend Engineer",
-      term: "2020.01~2020.02",
-      github: "",
-      service: "",
+      infos: {
+        term: "2020.01~2020.02",
+        role: "As a Leader, Frontend, Backend Engineer",
+        group: "SSAFY",
+      },
+      links: {
+        github: "",
+        ppt: "",
+      },
     },
   },
   {
     index: 2,
-    project: {
+    url: "s",
+    description: {
       title: "DKT Competition & DKDKT",
       sub: "Deep Knowledge Tracing Machine Learning & Web Service",
-      graffiti: <div></div>,
     },
     front: {
       preview:
         "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
+      techs: ["pytorch"],
     },
     back: {
       teammates: 6,
       status: BandEnum.DONE as BandStatus,
-      role: "Leader, Frontend, Backend Engineer",
-      term: "2020.01~2020.02",
-      github: "",
-      service: "",
+      infos: {
+        role: "As a Leader, Frontend, Backend Engineer",
+        term: "2020.01~2020.02",
+        group: "SSAFY",
+      },
+      links: {
+        github: "",
+        ppt: "",
+      },
     },
   },
   {
     index: 3,
-    project: {
-      title: "This Page!",
+    url: "d",
+    description: {
+      title: "👇This Page!",
       sub: "Beautiful & Interactive ABOUTME",
-      graffiti: <div></div>,
     },
     front: {
       preview:
         "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg",
+      techs: ["reactjs"],
     },
     back: {
       teammates: 1,
       status: BandEnum.INPROGRESS as BandStatus,
-      role: "Leader, Frontend, Backend Engineer",
-      term: "2020.01~2020.02",
-      github: "",
-      service: "",
+      infos: {
+        role: "As a Leader, Frontend, Backend Engineer",
+        term: "2020.01~2020.02",
+        group: "SSAFY",
+      },
+      links: {
+        github: "",
+        ppt: "",
+      },
     },
   },
   {
     index: 4,
-    project: {
-      title: "SUBBRAIN",
+    url: "",
+    description: {
+      title: "SUBBRAIN🧠",
       sub: "Jekyll based Static Blog",
-      graffiti: <div></div>,
     },
     front: {
-      preview:
-        testGif,
+      preview: testGif,
+      techs: ["jekyll"],
     },
     back: {
       teammates: 1,
       status: BandEnum.DROPPED as BandStatus,
-      role: "Leader, Frontend, Backend Engineer",
-      term: "2020.01~2020.02",
-      github: "",
-      service: "",
+      infos: {
+        role: "As a Leader, Frontend, Backend Engineer",
+        term: "2020.01~2020.02",
+        group: "SSAFY",
+      },
+      links: {
+        github: "",
+        ppt: "",
+      },
     },
   },
   {
     index: 5,
-    project: {
-      title: "Movie-Dick",
+    url: "",
+    description: {
+      title: "🐳 Movie-Dick",
       sub: "Movie Information & Ticketing",
-      graffiti: <CoolCat />,
     },
     front: {
       preview: testBig,
+      techs: ["jsp"],
     },
     back: {
       teammates: 1001,
       status: BandEnum.INPROGRESS as BandStatus,
-      role: "Leader, Frontend, Backend Engineer",
-      term: "2020.01~2020.02",
-      github: "",
-      service: "",
+      infos: {
+        role: "As a Leader, Frontend, Backend Engineer",
+        term: "2020.01~2020.02",
+        group: "SSAFY",
+      },
+      links: {
+        github: "",
+        ppt: "",
+      },
     },
   },
 ];

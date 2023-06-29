@@ -18,16 +18,21 @@ const Doodle = forwardRef<DoodleRef>(({}, selfRef) => {
     config: { duration: 140, tension: 420, friction: 10 },
   });
 
-  const [title, setTitle] = useState(projects.at(-1)!.project.title);
-  const [sub, setSub] = useState(projects.at(-1)!.project.sub);
-  const [graffiti, setGraffiti] = useState(projects.at(-1)!.project.graffiti);
+  const [title, setTitle] = useState(projects.at(-1)!.description.title);
+  const [sub, setSub] = useState(projects.at(-1)!.description.sub);
+  const [graffiti, setGraffiti] = useState(
+    projects.at(-1)!.description.graffities?.left
+  );
 
   useImperativeHandle(selfRef, () => ({
     updateProject: (topIdx: number) => {
-      setTitle(projects.filter((pjt) => pjt.index === topIdx)[0].project.title);
-      setSub(projects.filter((pjt) => pjt.index === topIdx)[0].project.sub);
+      setTitle(
+        projects.filter((pjt) => pjt.index === topIdx)[0].description.title
+      );
+      setSub(projects.filter((pjt) => pjt.index === topIdx)[0].description.sub);
       setGraffiti(
-        projects.filter((pjt) => pjt.index === topIdx)[0].project.graffiti
+        projects.filter((pjt) => pjt.index === topIdx)[0].description.graffities
+          ?.left
       );
     },
   }));

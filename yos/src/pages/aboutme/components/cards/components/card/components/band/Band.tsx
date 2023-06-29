@@ -43,10 +43,8 @@ const Band = ({
   const [side, setSide] = useState("front");
 
   const onMouseDown = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).tagName === "path") {
-      e.stopPropagation();
-      setSide(beforeMouseDown(e));
-    }
+    e.stopPropagation();
+    setSide(beforeMouseDown(e));
   };
   const { gray, blur } = styles;
   const newHandler = {

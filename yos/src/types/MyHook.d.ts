@@ -10,4 +10,5 @@ export interface MyHook {
   Styles: {
     [component: string]: any;
   };
+  
 }

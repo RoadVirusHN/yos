@@ -8,6 +8,10 @@ export const getFlickableDistance = (card: HTMLElement) => {
   return { w: card.offsetWidth / 2, h: card.offsetHeight / 2 };
 };
 
+export function clip(value: number, from: number, to: number) {
+  return Math.min(to, Math.max(value, from));
+}
+
 // This is being used down there in the view, it interpolates rotation and scale into a css transform
 export const trans = (rx: number, ry: number, rz: number, s: number) =>
   `perspective(1400px) rotateX(${rx + 15}deg) rotateY(${

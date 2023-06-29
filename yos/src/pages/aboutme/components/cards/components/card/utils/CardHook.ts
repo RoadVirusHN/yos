@@ -36,6 +36,8 @@ export default function useCardHook(
   };
 
   const handleMove = (e: MouseEvent) => {
+    console.log("parent move");
+    
     // only dragging&top card can be moved.
     if (e.button === 0 && orderCache.current.at(-1) === info.index) {
       const fr = { x: e.pageX, y: e.pageY };
@@ -122,7 +124,7 @@ export default function useCardHook(
       },
     },
     Styles: {
-      ...props,
+      ...props
     },
   };
   return result;

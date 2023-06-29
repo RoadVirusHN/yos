@@ -1,7 +1,7 @@
 import { filt } from "../../utils/CardHelpers";
 import ClassNames from "./BackFace.module.scss";
 import { animated, to } from "react-spring";
-import { BandStatus } from "../../../../utils/CardsData";
+import { BandStatus, CardInfoBackInfos } from "../../../../utils/CardsData";
 import cardBack from "./cardBack-min.jpg";
 import BackInfo from "./components/BackInfo";
 import { useEffect, useRef, useState } from "react";
@@ -15,15 +15,7 @@ const BackFace = ({
   gray,
   blur,
 }: {
-  backInfo: {
-    team: number;
-    date: string;
-    role: string;
-    status: BandStatus;
-    description: string;
-    teammates: number;
-    term: string;
-  };
+  backInfo: CardInfoBackInfos;
   gray: number;
   blur: number;
 }) => {
@@ -34,7 +26,7 @@ const BackFace = ({
   useEffect(() => {
     setWidth(ref.current ? ref.current.clientWidth : 0);
     setHeight(ref.current ? ref.current.clientHeight : 0);
-  }, [ref]);
+  });
   return (
     <animated.div
       ref={ref}

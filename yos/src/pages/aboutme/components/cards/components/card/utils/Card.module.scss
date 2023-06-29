@@ -18,6 +18,8 @@
     min-height: 254px;
     width: 45vw;
     height: 32vw;
+    max-width: 540px;
+    max-height: 381px;
     will-change: transform;
     border-radius: 10px;
     box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
@@ -30,19 +32,48 @@
     }
     .band {
       position: absolute;
-      right: 0;
-      top: 0;
+      right: -22px;
+      top: -17px;
       z-index: 9;
+
+      //generate clip from https://www.cssportal.com/css-clip-path-generator/
+      -webkit-clip-path: polygon(
+        2% 0,
+        54% 0,
+        98% 43%,
+        98% 96%,
+        86% 96%,
+        85% 88%,
+        11% 12%,
+        2% 11%
+      );
+      clip-path: polygon(
+        2% 0,
+        54% 0,
+        98% 43%,
+        98% 96%,
+        86% 96%,
+        85% 88%,
+        11% 12%,
+        2% 11%
+      );
       touch-action: none;
       user-select: none;
       & > * {
         position: relative;
-        left: 22px;
-        bottom: 17px;
       }
       path {
-        cursor: pointer;  
+        cursor: pointer;
       }
     }
   }
+}
+
+.serviceOverlay {
+  position: absolute;
+  left: -8vw;
+  top: -10%;
+  width: 145px;
+  height: 101px;
+  z-index: 999;
 }

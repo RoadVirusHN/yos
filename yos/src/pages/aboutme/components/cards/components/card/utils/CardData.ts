@@ -2,6 +2,7 @@
 import { config } from "react-spring";
 import { AnimData } from "../../../../../../../types/Animation";
 import { projects } from "../../../utils/CardsData";
+import { clip } from "./CardHelpers";
 
 export let flickableDistance = {
   w: 160,
@@ -20,6 +21,7 @@ export type CardStyle = {
   rx?: number;
   ry?: number;
   rz?: number;
+  isTop?: number;
   gray?: number;
   blur?: number;
   scale?: number;
@@ -50,6 +52,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       gray: 0,
       blur: 0,
       scale: 1.5,
+      isTop: i === projects.length - 1 ? 1 : 0,
       onAnim: "",
       cursor: i === projects.length - 1 ? "grab" : "default",
       side: "front",
@@ -67,11 +70,14 @@ export const animationData: AnimData<CardAnimInputs> = {
       gray: 0,
       blur: 0,
       side: "front",
+      isTop: i === projects.length - 1 ? 1 : 0,
       cursor: i === projects.length - 1 ? "grab" : "default",
       delay: i * 200,
     }),
     stateTop: (rz: number) => ({
-      from: {},
+      from: {
+        isTop: 1,
+      },
       to: [
         {
           z: projects.length,
@@ -139,6 +145,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       scale: 1,
       gray: 0,
       blur: 0,
+      isTop: order === projects.length - 1 ? 1 : 0,
       cursor: order === projects.length - 1 ? "grab" : "default",
       config: { tension: 200 },
     }),
@@ -148,6 +155,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       gray: 0.7,
       blur: 2,
       cursor: "alias",
+      isTop: 0,
       config: config.stiff,
     }),
     stateFront: (props: { [key: string]: any }) => {
