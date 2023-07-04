@@ -12,34 +12,10 @@
     letter-spacing: -2px;
     width: 90%;
     .me {
-      transform: scale(1.0);
+      transform: scale(1);
     }
     .teammate {
-      transform: scale(1.0);
-    }
-  }
-
-  .infoMapper {
-    width: 80%;
-    .infoItem {
-      display: table;
-      * {
-        display: table-cell;
-        vertical-align: middle;
-      }
-      .infoItemIcon {
-        min-width: 48px;
-        min-height: 64px;
-        width: 7vw;
-        height: 7vw;
-        max-width: 64px;
-        max-height: 96px;
-      }
-      span {
-        font-size: 0.4em;
-        width: 100%;
-        margin: 5px;
-      }
+      transform: scale(1);
     }
   }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ClassNames from "./BackInfo.module.scss";
+import ClassNames from "./InfoMapper.module.scss";
 
 const InfoMapper = ({ infos }: { infos: { [key: string]: any } }) => {
   const [icons, setIcons] = useState<{ [key: string]: any }>({});

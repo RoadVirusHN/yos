@@ -1,5 +1,5 @@
 import ClassNames from "./Doodle.module.scss";
-import { animated, useSpring } from "react-spring";
+import { animated } from "react-spring";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { projects } from "src/data/CardsData";
 

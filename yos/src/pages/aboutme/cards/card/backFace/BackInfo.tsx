@@ -1,5 +1,5 @@
 import { CardInfoBackInfos } from "src/data/CardsData";
-import InfoMapper from "./InfoMapper";
+import InfoMapper from "src/components/InfoMapper/InfoMapper";
 import Teammates from "./Teammates";
 import ClassNames from "./BackInfo.module.scss";
 import IconLink from "./IconLink";
