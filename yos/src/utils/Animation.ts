@@ -1,40 +1,11 @@
-import { Lookup, SpringRef, SpringValue } from "react-spring";
+// This is being used down there in the view, it interpolates rotation and scale into a css transform
+export const trans = (rx: number, ry: number, rz: number, s: number) =>
+  `perspective(1400px) rotateX(${rx + 15}deg) rotateY(${
+    ry + Math.min(rz / 10, 1)
+  }deg) rotateZ(${rz}deg) scale(${s})`;
 
-export function animation(
-  target: any,
-  key: string,
-  desc: PropertyDescriptor
-): void {
-  // should be top
-  const method = desc.value;
-  desc.value = function (
-    api: SpringRef<Lookup<any>>,
-    props: { [x: string]: SpringValue<any> },
-    ...args: any[]
-  ) {
-    const formerAnim = props.onAnim.get();
-    if (formerAnim !== "") {
-      console.log(`${key} animation prevented by ${formerAnim}`);
-      return;
-    }
-    return method(api, props, ...args);
-  };
-}
+export const filt = (gray: number, blur: number) =>
+  `grayscale(${gray}) blur(${blur}px)`;
 
-export function unstoppable(
-  target: any,
-  key: string,
-  desc: PropertyDescriptor
-): void {
-  const method = desc.value;
-  desc.value = async function (
-    api: SpringRef<Lookup<any>>,
-    props: { [x: string]: SpringValue<any> },
-    ...args: any[]
-  ) {
-    api.start({ immediate: true, onAnim: key });
-    return method(api, props, ...args)[0].then((e: any) => {
-      api.start({ immediate: true, onAnim: "" });
-    });
-  };
-}
+export const flip = (y: number, z: number) =>
+  `rotateY(${y}deg) rotateZ(${z}deg);`;

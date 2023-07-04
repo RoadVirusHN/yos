@@ -1,7 +1,7 @@
-@use "assets/css/variables";
+@use "assets/css/variables" as vars;
 body {
   margin: 0;
-  background-image: variables.$background-gradient;
+  background-image: vars.$background-gradient;
 }
 .wrapper {
   position: relative;

@@ -1,6 +1,6 @@
 import { Lookup } from "react-spring";
 
-interface componentProps {
+export interface componentProps {
   [component: string]: Lookup;
 }
 
