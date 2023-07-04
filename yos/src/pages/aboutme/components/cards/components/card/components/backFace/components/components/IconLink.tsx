@@ -27,18 +27,6 @@ const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
 
   return (
     <div className={ClassNames.IconLinkContainer}>
-      <div
-        style={{
-          width: "50px",
-          height: "50px",
-          backgroundColor: "red",
-          cursor: "pointer",
-        }}
-        onMouseDown={(e) => {
-          e.stopPropagation();
-          console.log("works in div");
-        }}
-      ></div>
       {Object.entries(links).map(([iconName, url], i) => {
         const IconSrc = icons[iconName];
         return (
@@ -50,13 +38,9 @@ const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
             style={{ cursor: "pointer" }}
             onMouseDown={(e) => {
               e.stopPropagation();
-              e.nativeEvent.stopPropagation();
-              console.log("click");
             }}
             onMouseMove={(e) => {
               e.stopPropagation();
-              e.nativeEvent.stopPropagation();
-              console.log("move");
             }}
           >
             <div>
@@ -69,19 +53,6 @@ const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
           </a>
         );
       })}
-      <div
-        style={{
-          width: "50px",
-          height: "50px",
-          backgroundColor: "red",
-          cursor: "pointer",
-          shapeOutside: "polygon(0 0, 100% 100%, 30% 100%, 0 70%)",
-        }}
-        onMouseDown={(e) => {
-          e.stopPropagation();
-          console.log("works in div");
-        }}
-      ></div>
     </div>
   );
 };

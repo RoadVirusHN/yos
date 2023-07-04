@@ -1,6 +1,7 @@
 import Card from "./components/card/Card";
 import { CardRef } from "./components/card/utils/CardHook";
 import Doodle, { DoodleRef } from "./components/doodle/Doodle";
+import SquiggleFilter from "./components/squiggleFilter/SquiggleFilter";
 import ClassNames from "./utils/Cards.module.scss";
 import { projects as infos } from "./utils/CardsData";
 import { RefObject, useLayoutEffect, useRef, useState } from "react";
@@ -49,6 +50,7 @@ export default function Cards() {
 
   return (
     <div className={ClassNames.deckContainer}>
+      <SquiggleFilter />
       <Doodle ref={DoodleRef} />
       <div className={ClassNames.deck}>
         {infos.map((info) => (

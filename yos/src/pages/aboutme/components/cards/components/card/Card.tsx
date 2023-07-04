@@ -32,7 +32,7 @@ const Card = forwardRef<CardRef, CardProps>(
         key={info.index}
         style={{ x, y, z }}
       >
-        <ServiceCloud isTop={isTop} styles={{ gray, blur }} />
+        <ServiceCloud isTop={isTop} styles={{ gray, blur }} url={info.url} />
         <animated.div
           className={ClassNames.card}
           {...Handlers.card}
@@ -41,7 +41,7 @@ const Card = forwardRef<CardRef, CardProps>(
             transform: to([rx, ry, rz, scale], trans),
           }}
         >
-          <FrontFace {...{ preview: info.front.preview, gray, blur }} />
+          <FrontFace {...{ frontInfo: info.front, gray, blur }} />
           <BackFace {...{ backInfo: info.back, gray, blur }} />
           <Band
             beforeMouseDown={Handlers.band.onMouseDown}

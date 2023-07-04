@@ -32,12 +32,9 @@ export default function useCardHook(
 
   const defaultPreventor = (e: Event) => {
     e.preventDefault();
-    console.log("asdfsd");
   };
 
-  const handleMove = (e: MouseEvent) => {
-    console.log("parent move");
-    
+  const handleMove = (e: MouseEvent) => {    
     // only dragging&top card can be moved.
     if (e.button === 0 && orderCache.current.at(-1) === info.index) {
       const fr = { x: e.pageX, y: e.pageY };

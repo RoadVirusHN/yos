@@ -10,7 +10,7 @@ function AboutMe() {
         {/* <div style={{width: "500px", height: "500px", }}>
           <Loading />
         </div> */}
-        <Logo />
+        {/* <Logo /> */}
         <Cards />
       </div>
     </div>

@@ -6,13 +6,13 @@ import ClassNames from "../BackInfo.module.scss";
 const Teammates = ({ teamSize }: { teamSize: number }) => {
   return (
     <div className={ClassNames.team}>
-      {teamSize === 1 ? <Solo /> : <Me />}
+      {teamSize === 1 ? <Solo className={ClassNames.metheking}/> : <Me className={ClassNames.me}/>}
       {teamSize > 6 ? (
         <>
-          <span>+</span> <Teammate /> <span>&times; {teamSize - 1}</span>
+          <span>+</span> <Teammate className={ClassNames.teammate}/> <span>&times; {teamSize - 1}</span>
         </>
       ) : (
-        Array.from(Array(teamSize - 1).keys()).map((i) => <Teammate key={i} />)
+        Array.from(Array(teamSize - 1).keys()).map((i) => <Teammate key={i} className={ClassNames.teammate} />)
       )}
     </div>
   );

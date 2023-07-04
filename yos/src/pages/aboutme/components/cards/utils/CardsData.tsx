@@ -2,6 +2,7 @@ import { ReactComponent as CoolCat } from "./assets/graffities/coolcat.svg";
 import testGif from "./assets/previews/test.gif";
 import testBig from "./assets/previews/test-big.gif";
 import { ReactElement } from "react";
+import Kejang from "./assets/graffities/kejang/Kejang";
 // !important : dont get the graffiti directly from the component
 
 export const BandEnum = {
@@ -22,7 +23,7 @@ export interface CardInfo {
     graffities?: {
       left?: ReactElement<any, any>;
       right?: ReactElement<any, any>;
-      bottom?: ReactElement<any, any>;
+      bottom?: ReactElement<any, any> | string;
     };
   };
   front: {
@@ -52,18 +53,18 @@ export const projects: CardInfo[] = [
     description: {
       title: "DNS: Developer Network Service",
       sub: "SNS Cloning Team Project",
-      graffities: { left: <CoolCat /> },
+      graffities: { bottom: '"MY FIRST WEB PROJECT!"' },
     },
     front: {
       preview: "./previews/test.gif",
-      techs: ["vuejs"],
+      techs: ["VUEJS"],
     },
     back: {
       teammates: 6,
       status: BandEnum.DONE as BandStatus,
       infos: {
         role: "As a Leader, Frontend, Backend Engineer",
-        term: "2020.01~2020.02",
+        term: "2020.01 ~ 2020.02",
         group: "SSAFY",
       },
       links: {
@@ -78,18 +79,23 @@ export const projects: CardInfo[] = [
     description: {
       title: "Cat Swimming 😸",
       sub: "SecondHand Transaction Search & ML Based Filtering Service",
+      graffities: {
+        left: <CoolCat />,
+        bottom: "Wonderful Idea",
+        right: <Kejang />,
+      },
     },
     front: {
       preview:
         "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
 
-      techs: ["reactjs"],
+      techs: ["REACTJS"],
     },
     back: {
       teammates: 6,
       status: BandEnum.POSTPONED as BandStatus,
       infos: {
-        term: "2020.01~2020.02",
+        term: "2020.01 ~ 2020.02",
         role: "As a Leader, Frontend, Backend Engineer",
         group: "SSAFY",
       },
@@ -109,14 +115,14 @@ export const projects: CardInfo[] = [
     front: {
       preview:
         "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
-      techs: ["pytorch"],
+      techs: ["PYTORCH"],
     },
     back: {
       teammates: 6,
       status: BandEnum.DONE as BandStatus,
       infos: {
         role: "As a Leader, Frontend, Backend Engineer",
-        term: "2020.01~2020.02",
+        term: "2020.01 ~ 2020.02",
         group: "SSAFY",
       },
       links: {
@@ -135,14 +141,14 @@ export const projects: CardInfo[] = [
     front: {
       preview:
         "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg",
-      techs: ["reactjs"],
+      techs: ["REACTJS"],
     },
     back: {
       teammates: 1,
       status: BandEnum.INPROGRESS as BandStatus,
       infos: {
         role: "As a Leader, Frontend, Backend Engineer",
-        term: "2020.01~2020.02",
+        term: "2020.01 ~ 2020.02",
         group: "SSAFY",
       },
       links: {
@@ -160,14 +166,14 @@ export const projects: CardInfo[] = [
     },
     front: {
       preview: testGif,
-      techs: ["jekyll"],
+      techs: ["JEKYLL"],
     },
     back: {
       teammates: 1,
       status: BandEnum.DROPPED as BandStatus,
       infos: {
         role: "As a Leader, Frontend, Backend Engineer",
-        term: "2020.01~2020.02",
+        term: "2020.01 ~ 2020.02",
         group: "SSAFY",
       },
       links: {
@@ -185,14 +191,14 @@ export const projects: CardInfo[] = [
     },
     front: {
       preview: testBig,
-      techs: ["jsp"],
+      techs: ["JSP"],
     },
     back: {
       teammates: 1001,
       status: BandEnum.INPROGRESS as BandStatus,
       infos: {
         role: "As a Leader, Frontend, Backend Engineer",
-        term: "2020.01~2020.02",
+        term: "2020.01 ~ 2020.02",
         group: "SSAFY",
       },
       links: {

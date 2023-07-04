@@ -34,7 +34,7 @@ const InfoMapper = ({ infos }: { infos: { [key: string]: any } }) => {
 
         return (
           <div key={i} className={ClassNames.infoItem}>
-            {IconSrc && <img src={IconSrc} alt={iconName} />}
+            {IconSrc && <img className={ClassNames.infoItemIcon} src={IconSrc} alt={iconName} />}
             {IconSrc ? "" : "ERROR!"} <span>{content}</span>
           </div>
         );
