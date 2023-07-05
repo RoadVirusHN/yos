@@ -1,8 +1,8 @@
 import { ReactComponent as CoolCat } from "src/assets/img/cards/graffities/coolcat.svg";
 import testGif from "src/assets/img/cards/previews/test.gif";
 import testBig from "src/assets/img/cards/previews/test-big.gif";
-import { ReactElement } from "react";
 import Kejang from "src/assets/img/cards/graffities/kejang/Kejang";
+import { ReactElement } from "react";
 // !important : dont get the graffiti directly from the component
 
 export const BandEnum = {
@@ -23,7 +23,6 @@ export interface CardInfo {
     graffities?: {
       left?: ReactElement<any, any>;
       right?: ReactElement<any, any>;
-      bottom?: ReactElement<any, any> | string;
     };
   };
   front: {
@@ -53,7 +52,7 @@ export const projects: CardInfo[] = [
     description: {
       title: "DNS: Developer Network Service",
       sub: "SNS Cloning Team Project",
-      graffities: { bottom: '"MY FIRST WEB PROJECT!"' },
+      graffities: { right: <svg>"MY FIRST WEB PROJECT!"</svg> },
     },
     front: {
       preview: "./previews/test.gif",
@@ -80,9 +79,8 @@ export const projects: CardInfo[] = [
       title: "Cat Swimming 😸",
       sub: "SecondHand Transaction Search & ML Based Filtering Service",
       graffities: {
-        left: <CoolCat />,
-        bottom: "Wonderful Idea",
-        right: <Kejang />,
+        left: <CoolCat/>,
+        right: <Kejang/>,
       },
     },
     front: {
@@ -139,8 +137,7 @@ export const projects: CardInfo[] = [
       sub: "Beautiful & Interactive ABOUTME",
     },
     front: {
-      preview:
-        "",
+      preview: "",
       techs: ["REACTJS"],
     },
     back: {

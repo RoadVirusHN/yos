@@ -1,16 +1,20 @@
-.doodle {
-  pointer-events: none;
+.doodleTitle {
   position: absolute;
   text-align: center;
   display: flex;
   justify-content: center;
   vertical-align: middle;
+  text-anchor: middle;
   width: 100%;
-  height: 100%;
+  height: 50%;
   outline: none;
   user-select: none;
+  pointer-events: none;
   touch-action: none;
   filter: url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7));
+  color: blueviolet;
+  font-family: "Hi Melody", cursive;
+  z-index: 999;
 
   foreignObject {
     width: 100%;
@@ -18,66 +22,67 @@
     * {
       margin: 0;
     }
+    .title {
+      font-weight: bold;
+      font-size: 1.5em;
+      line-height: 1.4em;
+    }
+    .sub {
+      font-size: 1.2em;
+      line-height: 1em;
+    }
+  }
+}
+.doodle {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  color: blueviolet;
+  font-family: "Hi Melody", cursive;
+  z-index: -1;
+  outline: none;
+  user-select: none;
+  touch-action: none;
+  pointer-events: none;
+  overflow: visible;
+  foreignObject {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    * {
+      margin: 0;
+    }
     .doodleContainer {
       width: 100%;
       height: 100%;
-      .title {
-        font-family: "Hi Melody", cursive;
-        color: blueviolet;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        text-anchor: middle;
-        font-size: 1.5em;
-        line-height: 1.4em;
-        width: 90%;
-        margin: auto;
-        z-index: 999;
-      }
-      .sub {
-        text-anchor: middle;
-        font-family: "Hi Melody", cursive;
-        color: blueviolet;
-        text-align: center;
-        vertical-align: middle;
-        font-size: 1.2em;
-        line-height: 1em;
-        width: 90%;
-        margin: auto;
-        z-index: 999;
-      }
-    }
-    .graffiti {
-      margin: 0;
-      position: absolute;
-      &.graffiti-left {
-        left: 0;
-        height: 100%;
-        width: 50vw;
-        svg {
-          height: 100%;
-          width: 50vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      overflow: visible;
+      .graffiti {
+        margin: 0;
+        &.graffiti-left {
+          max-height: 100%;
+          height: fit-content;
+          width: calc(35%);
+          transform: rotateZ(30deg);
+          svg {
+            position: relative;
+            left:-18%;
+          }
         }
-      }
-      &.graffiti-right {
-        right: 0;
-        width: 50vw;
-        height: 100%;
-      }
-      &.graffiti-bottom {
-        width: 100%;
-        bottom: 0;
-        svg {
-          height: 100%;
-          width: 50vw;
+        &.graffiti-right {
+          max-height: 100%;
+          height: fit-content;
+          width: calc(35%);
+          transform: rotateZ(-30deg);
+          svg {
+            position: relative;
+            right:-18%;
+          }
         }
-      }
-      & > svg {
-        max-width: 100%;
-        max-height: 100%;
-        height: 100%;
-        width: 100%;
-        resize: both;
       }
     }
   }

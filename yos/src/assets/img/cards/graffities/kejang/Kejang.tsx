@@ -1,49 +1,46 @@
 import { ReactComponent as Kejang0 } from "./kejang-stand.svg";
 import { ReactComponent as Kejang1 } from "./kejang-jump.svg";
-import { ReactComponent as Ballonword } from "./balloonword.svg";
+import { ReactComponent as Balloonword } from "./balloonword.svg";
 import { animated, useSpring } from "react-spring";
 
-const Kejang = () => {
+const AnimatedG = animated("g");
+const Kejang = ({ color = "black" }: { color?: string }) => {
   const props = useSpring({
     from: { opacity1: 1, opacity2: 0 },
     to: { opacity1: 0, opacity2: 1 },
-    loop: true,
+    loop: { reverse: true },
     immediate: true,
-    delay: 1000,
+    delay: 500,
   });
 
   return (
-    <div>
-      <animated.svg
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-        }}
-      >
-        <Ballonword />
-      </animated.svg>
-      <animated.svg
-        style={{
-          opacity: props.opacity1,
-          position: "absolute",
-          left: 0,
-          top: 0,
-        }}
-      >
-        <Kejang0 />
-      </animated.svg>
-      <animated.svg
-        style={{
-          opacity: props.opacity2,
-          position: "absolute",
-          left: 0,
-          top: 0,
-        }}
-      >
-        <Kejang1 />
-      </animated.svg>
-    </div>
+    <animated.svg
+      viewBox="0 0 973 805"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="kejang">
+        <AnimatedG
+          id="kejang-jump"
+          style={{ opacity: props.opacity1 }}
+          stroke={color}
+          filter="url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7))"
+        >
+          <Kejang0 />
+        </AnimatedG>
+        <AnimatedG
+          id="kejang-stand"
+          style={{ opacity: props.opacity2 }}
+          stroke={color}
+          filter="url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7))"
+        >
+          <Kejang1 />
+        </AnimatedG>
+        <svg xmlns="http://www.w3.org/2000/svg" stroke={color}>
+          <Balloonword />
+        </svg>
+      </g>
+    </animated.svg>
   );
 };
 
