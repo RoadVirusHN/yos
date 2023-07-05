@@ -8,14 +8,24 @@
 
   .team {
     text-align: center;
-    font-size: 1em;
+    font-size: 0.7em;
     letter-spacing: -2px;
     width: 90%;
-    .me {
-      transform: scale(1);
+    .meTheKing{
+      display: inline-block;
+      width: 35%;
+      height: auto;
     }
-    .teammate {
-      transform: scale(1);
+    .me{
+      display: inline-block;
+      width: 15%;
+      height: auto;
+    }
+    .teammate{
+      display: inline-block;
+      width: 10%;
+      height: auto;
+
     }
   }
 

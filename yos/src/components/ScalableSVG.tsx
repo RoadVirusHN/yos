@@ -1,4 +1,4 @@
-import React, { ComponentType, cloneElement } from "react";
+import React, { ComponentType, ReactElement, cloneElement } from "react";
 import { ReactNode } from "react";
 
 export function WithScalableSVG<T extends object>(
@@ -20,16 +20,16 @@ export function WithScalableSVG<T extends object>(
 }
 
 type ScalableSVGWrapperProps = {
-  content: ReactNode;
+  content: ReactElement;
 };
 
 const ScalableSVGWrapper = ({ content }: ScalableSVGWrapperProps) => {
   const wrappedContent = cloneElement(content as any, {
+    ...content.props,
     width: "100%",
     height: "100%",
     preserveAspectRatio: "xMidYMid meet",
   });
-  console.log(wrappedContent);
   return wrappedContent;
 };
 
