@@ -1,5 +1,4 @@
 import React, { ComponentType, ReactElement, cloneElement } from "react";
-import { ReactNode } from "react";
 
 export function WithScalableSVG<T extends object>(
   WrappedSVG: ComponentType<T>

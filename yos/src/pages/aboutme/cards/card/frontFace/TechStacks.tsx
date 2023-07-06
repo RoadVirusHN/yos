@@ -5,7 +5,7 @@ import ClassNames from "./FrontFace.module.scss";
  */
 const TechStacks = ({ techs }: { techs: [string] }) => {
   return (
-    <div className={ClassNames.techStacks} style={{ height: "100%" }}>
+    <div className={ClassNames.techStacks} style={{ height: "20%" }}>
       {techs.map((tech, i) => (
         <div className={ClassNames.tech} key={i}>
           {tech}

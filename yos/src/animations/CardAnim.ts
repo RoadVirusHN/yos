@@ -8,8 +8,6 @@ export class CardAnimations {
     api: SpringRef<Lookup<any>>,
     props: { [x: string]: SpringValue<any> }
   ) {
-    console.log(props);
-
     return api.start(animationData.states.stateTop(props.rz.get()));
   }
 

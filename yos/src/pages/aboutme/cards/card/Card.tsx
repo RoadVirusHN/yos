@@ -41,7 +41,7 @@ const Card = forwardRef<CardRef, CardProps>(
             transform: to([rx, ry, rz, scale], trans),
           }}
         >
-          <FrontFace {...{ frontInfo: info.front, gray, blur }} />
+          <FrontFace {...{ frontInfo: info.front, gray, blur, isTop }} />
           <BackFace {...{ backInfo: info.back, gray, blur }} />
           <Band
             beforeMouseDown={Handlers.band.onMouseDown}

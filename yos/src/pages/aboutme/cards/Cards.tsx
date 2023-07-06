@@ -45,7 +45,7 @@ export default function Cards() {
     }
   };
   const getOrder = () => order.current;
-  const [_width, _height] = useWindowSize();
+  //const [_width, _height] = useWindowSize();
 
   return (
     <div className={ClassNames.deckContainer}>

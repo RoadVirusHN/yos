@@ -8,24 +8,22 @@
 
   .team {
     text-align: center;
-    font-size: 0.7em;
-    letter-spacing: -2px;
+    font-size: calc(24px + 3vw);
     width: 90%;
-    .meTheKing{
+    .meTheKing {
       display: inline-block;
       width: 35%;
       height: auto;
     }
-    .me{
+    .me {
       display: inline-block;
-      width: 15%;
+      width: 12%;
       height: auto;
     }
-    .teammate{
+    .teammate {
       display: inline-block;
       width: 10%;
       height: auto;
-
     }
   }
 
@@ -36,12 +34,20 @@
     position: static;
     a {
       margin: 5px;
-      width: 50px;
-      height: 50px;
+      width: fit-content;
+      height: fit-content;
       z-index: 10;
       div {
-        width: 50px;
-        height: 50px;
+        width: fit-content;
+        height: fit-content;
+        img {
+          min-width: 36px;
+          min-height: 36px;
+          width: 4vw;
+          height: 4vw;
+          max-width: 64px;
+          max-height: 64px;
+        }
       }
     }
   }

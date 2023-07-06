@@ -1,6 +1,6 @@
 import { ReactComponent as CoolCat } from "src/assets/img/cards/graffities/coolcat.svg";
-import testGif from "src/assets/img/cards/previews/test.gif";
-import testBig from "src/assets/img/cards/previews/test-big.gif";
+import testVideo from "src/assets/img/cards/previews/test-big-comp.mp4";
+import testVideoBig from "src/assets/img/cards/previews/test-big.webm";
 import Kejang from "src/assets/img/cards/graffities/kejang/Kejang";
 import { ReactElement } from "react";
 // !important : dont get the graffiti directly from the component
@@ -79,13 +79,13 @@ export const projects: CardInfo[] = [
       title: "Cat Swimming 😸",
       sub: "SecondHand Transaction Search & ML Based Filtering Service",
       graffities: {
-        left: <CoolCat/>,
-        right: <Kejang/>,
+        left: <CoolCat />,
+        right: <Kejang />,
       },
     },
     front: {
       preview:
-        "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+        "",
 
       techs: ["REACTJS"],
     },
@@ -137,7 +137,7 @@ export const projects: CardInfo[] = [
       sub: "Beautiful & Interactive ABOUTME",
     },
     front: {
-      preview: "",
+      preview: testVideoBig,
       techs: ["REACTJS"],
     },
     back: {
@@ -162,7 +162,7 @@ export const projects: CardInfo[] = [
       sub: "Jekyll based Static Blog",
     },
     front: {
-      preview: testGif,
+      preview: testVideo,
       techs: ["JEKYLL"],
     },
     back: {
@@ -187,7 +187,7 @@ export const projects: CardInfo[] = [
       sub: "Movie Information & Ticketing",
     },
     front: {
-      preview: testBig,
+      preview: testVideoBig,
       techs: ["JSP"],
     },
     back: {

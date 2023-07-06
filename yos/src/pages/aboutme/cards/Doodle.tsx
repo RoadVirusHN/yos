@@ -1,12 +1,6 @@
 import ClassNames from "./Doodle.module.scss";
 import { animated } from "react-spring";
-import {
-  ComponentType,
-  ReactElement,
-  forwardRef,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { projects } from "src/data/CardsData";
 import ScalableSVGWrapper from "src/components/ScalableSVG";
 

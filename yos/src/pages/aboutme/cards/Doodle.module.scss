@@ -59,7 +59,7 @@
       height: 100%;
       display: flex;
       justify-content: space-between;
-      align-items: end;
+      align-items: flex-end;
       overflow: visible;
       .graffiti {
         margin: 0;
@@ -70,7 +70,7 @@
           transform: rotateZ(30deg);
           svg {
             position: relative;
-            left:-18%;
+            left:-20%;
           }
         }
         &.graffiti-right {
@@ -80,7 +80,7 @@
           transform: rotateZ(-30deg);
           svg {
             position: relative;
-            right:-18%;
+            right:-20%;
           }
         }
       }

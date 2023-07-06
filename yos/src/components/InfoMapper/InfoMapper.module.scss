@@ -5,17 +5,18 @@
     * {
       display: table-cell;
       vertical-align: middle;
+      margin: 5px;
     }
     .infoItemIcon {
-      min-width: 48px;
-      min-height: 64px;
+      min-width: 36px;
+      min-height: 54px;
       width: 7vw;
       height: 7vw;
       max-width: 64px;
       max-height: 96px;
     }
     span {
-      font-size: 0.4em;
+      font-size: calc(12px + 1vw);
       width: 100%;
       margin: 5px;
     }

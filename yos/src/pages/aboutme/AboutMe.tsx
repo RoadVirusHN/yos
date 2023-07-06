@@ -1,7 +1,7 @@
 import Cards from "./cards/Cards";
 import "./AboutMe.scss";
-import Logo from "./logo/Logo";
-import Loading from "src/components/Loading/Loading";
+// import Logo from "./logo/Logo";
+// import Loading from "src/components/Loading/Loading";
 
 function AboutMe() {
   return (

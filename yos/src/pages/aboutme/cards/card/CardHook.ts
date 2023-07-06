@@ -1,6 +1,6 @@
 import { SpringValue, useSpring } from "react-spring";
 import { animationData, flickableDistance } from "src/data/CardData";
-import { useEffect, useImperativeHandle, useRef } from "react";
+import { useCallback, useEffect, useImperativeHandle, useRef } from "react";
 import { CardAnimations } from "src/animations/CardAnim";
 import { MyHook } from "@customTypes/MyHook";
 import { getManhattanDistance } from "src/utils/math";
@@ -29,10 +29,13 @@ export default function useCardHook(
   const orderCache = useRef(getOrder());
   const dragStart = useRef({ x: -1, y: -1 });
   const cardAnim = new CardAnimations();
+
+  const memoizedGetOrder = useCallback(getOrder, [getOrder]);
+
   useImperativeHandle(selfRef, () => ({
     stackUp: (except: number) => {
       if (info.index !== except) {
-        cardAnim.toDeckCardAnim(api, props, getOrder().indexOf(info.index));
+        cardAnim.toDeckCardAnim(api, props, memoizedGetOrder().indexOf(info.index));
       }
     },
   }));
@@ -47,7 +50,8 @@ export default function useCardHook(
 
   const handleMove = (e: MouseEvent) => {
     // only dragging&top card can be moved.
-    if (e.button === 0 && orderCache.current.at(-1) === info.index) {
+
+    if (e.buttons === 1 && orderCache.current.at(-1) === info.index) {
       const fr = { x: e.pageX, y: e.pageY };
       const dragDist = getManhattanDistance(fr, dragStart.current);
 
@@ -57,11 +61,17 @@ export default function useCardHook(
         cardAnim.setFloatCardAnim(api, props);
       }
       cardAnim.cardFollowCursorAnim(api, props, dragDist);
+    } else if (
+      dragStart.current.x !== -1 &&
+      dragStart.current.y !== -1 &&
+      e.buttons === 0
+    ) {
+      handleMouseUp(e);
     }
   };
 
   const handleMouseUp = (e: MouseEvent) => {
-    orderCache.current = getOrder();
+    orderCache.current = memoizedGetOrder();
     // only top card can be placed.
     if (orderCache.current.at(-1) === info.index) {
       const flickable = canFlick(props);
@@ -81,9 +91,9 @@ export default function useCardHook(
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (e.button === 0) {
+    if (e.buttons === 1) {
       // when clicked
-      orderCache.current = getOrder();
+      orderCache.current = memoizedGetOrder();
       if (orderCache.current.at(-1) === info.index) {
         // pick card animation.
         dragStart.current = { x: e.pageX, y: e.pageY };
@@ -104,7 +114,7 @@ export default function useCardHook(
   const beforeBandMouseDown = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (e.button === 0) {
-      orderCache.current = getOrder();
+      orderCache.current = memoizedGetOrder();
       if (
         orderCache.current.at(-1) === info.index ||
         orderCache.current[0] === info.index

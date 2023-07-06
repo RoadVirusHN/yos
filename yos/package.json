@@ -7,6 +7,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lazy-load-image-component": "^1.6.0",
+    "react-player": "^2.12.0",
     "react-scripts": "5.0.1",
     "react-spring": "^9.7.1",
     "web-vitals": "^2.1.4"
@@ -17,7 +18,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-custom": "react-app-rewired start",
+    "build-custom": "react-app-rewired build",
+    "test-custom": "react-app-rewired test"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -46,7 +51,9 @@
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
     "@types/react-lazy-load-image-component": "^1.5.3",
+    "file-loader": "^6.2.0",
     "gh-pages": "^5.0.0",
+    "react-app-rewired": "^2.2.1",
     "sass": "^1.63.3",
     "typescript": "^4.9.5"
   }

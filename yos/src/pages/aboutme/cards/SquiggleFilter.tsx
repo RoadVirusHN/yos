@@ -9,7 +9,7 @@ const SquiggleFilter = () => {
     ...animationData.initialProps(),
     loop: true,
     immediate: true,
-    config: { duration: 70, tension: 420, friction: 10 },
+    config: { duration: 110, tension: 420, friction: 10 },
   });
   return (
     <animated.svg style={{ width: "0", height: "0", position: "absolute" }}>

@@ -1,35 +1,35 @@
 import { filt } from "src/utils/animation";
 import ClassNames from "./FrontFace.module.scss";
-import { animated, to } from "react-spring";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { SpringValue, animated, to } from "react-spring";
 import TechStacks from "./TechStacks";
+import ReactPlayer from "react-player/lazy";
 /**
- * tap, click to full screen effect!
+ * !!!todos
+ *- Youtube Embeded player hovering problem => Card animations are stopping.
+ *- ResizeObserver loop problem.
  */
+const AnimatedReactPlayer = animated(ReactPlayer);
+
 const FrontFace = ({
   frontInfo,
   gray,
   blur,
+  isTop,
 }: {
   frontInfo: {
     preview: string;
     techs: [string];
   };
-  gray: number;
-  blur: number;
+  gray: SpringValue<number>;
+  blur: SpringValue<number>;
+  isTop: SpringValue<number>;
 }) => {
-  const enterFullscreen = (e: React.MouseEvent) => {
-    if ((e.target as HTMLImageElement).requestFullscreen) {
-      (e.target as HTMLImageElement).requestFullscreen();
-    }
-  };
   return (
     <animated.div
       className={`${ClassNames.front} ${ClassNames.face}`}
       style={{
         filter: to([gray, blur], filt),
       }}
-      onClick={(e) => e.stopPropagation()}
     >
       <div
         style={{
@@ -40,15 +40,17 @@ const FrontFace = ({
           overflow: "visible",
         }}
       >
-        <picture onDoubleClick={enterFullscreen}>
-          <LazyLoadImage
-            className={ClassNames.preview}
-            alt="dorf"
-            effect="opacity"
-            placeholder={<div>some lazy loading spinner</div>}
-            src={frontInfo.preview}
-          />
-        </picture>
+        <AnimatedReactPlayer
+          className={ClassNames.preview}
+          width="100%"
+          height="80%"
+          url={frontInfo.preview}
+          //onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
+          loop
+          controls
+          playing={isTop.to((v) => v === 1) as unknown as boolean}
+          muted
+        />
         <TechStacks techs={frontInfo.techs} />
       </div>
     </animated.div>

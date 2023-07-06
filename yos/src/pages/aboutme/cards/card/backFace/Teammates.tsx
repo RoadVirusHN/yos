@@ -18,11 +18,11 @@ const Teammates = ({ teamSize }: { teamSize: number }) => {
       )}
       {teamSize > 6 ? (
         <>
-          <span>+</span>{" "}
+          +
           <span className={ClassNames.teammate}>
             <ScalableSVGWrapper content={<Teammate />} />
           </span>
-          <span>&times; {teamSize - 1}</span>
+          &times;<span>{teamSize - 1}</span>
         </>
       ) : (
         Array.from(Array(teamSize - 1).keys()).map((i) => (
