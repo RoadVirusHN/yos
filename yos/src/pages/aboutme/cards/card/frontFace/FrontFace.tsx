@@ -1,4 +1,4 @@
-import { filt } from "src/utils/animation";
+import { filt } from "src/utils/Animation";
 import ClassNames from "./FrontFace.module.scss";
 import { SpringValue, animated, to } from "react-spring";
 import TechStacks from "./TechStacks";

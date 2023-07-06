@@ -1,4 +1,4 @@
-import { filt } from "src/utils/animation";
+import { filt } from "src/utils/Animation";
 import ClassNames from "./BackFace.module.scss";
 import { animated, to } from "react-spring";
 import { CardInfoBackInfos } from "src/data/CardsData";

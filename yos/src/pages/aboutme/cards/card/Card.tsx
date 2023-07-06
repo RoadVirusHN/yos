@@ -7,7 +7,7 @@ import FrontFace from "./frontFace/FrontFace";
 import Band from "./band/Band";
 import ServiceCloud from "./ServiceCloud/ServiceCloud";
 import { CardInfo } from "src/data/CardsData";
-import { trans } from "src/utils/animation";
+import { trans } from "src/utils/Animation";
 
 export type CardProps = {
   info: CardInfo;
