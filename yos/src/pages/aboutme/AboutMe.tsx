@@ -1,17 +1,17 @@
-import Cards from "./cards/Cards";
-import "./AboutMe.scss";
+import ClassNames from "./AboutMe.module.scss";
+import Portfolio from "./Portfolio";
 // import Logo from "./logo/Logo";
 // import Loading from "src/components/Loading/Loading";
 
 function AboutMe() {
   return (
-    <div className="container">
-      <div className="wrapper">
+    <div className={ClassNames.container}>
+      <div className={ClassNames.wrapper}>
         {/* <div style={{width: "500px", height: "500px", }}>
           <Loading />
         </div> */}
         {/* <Logo /> */}
-        <Cards />
+        <Portfolio />
       </div>
     </div>
   );

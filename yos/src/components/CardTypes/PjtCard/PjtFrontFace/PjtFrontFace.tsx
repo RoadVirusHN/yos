@@ -10,7 +10,7 @@ import ReactPlayer from "react-player/lazy";
  */
 const AnimatedReactPlayer = animated(ReactPlayer);
 
-const FrontFace = ({
+const PjtFrontFace = ({
   frontInfo,
   gray,
   blur,
@@ -31,30 +31,20 @@ const FrontFace = ({
         filter: to([gray, blur], filt),
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          height: "100%",
-          overflow: "visible",
-        }}
-      >
-        <AnimatedReactPlayer
-          className={ClassNames.preview}
-          width="100%"
-          height="80%"
-          url={frontInfo.preview}
-          //onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
-          loop
-          controls
-          playing={isTop.to((v) => v === 1) as unknown as boolean}
-          muted
-        />
-        <TechStacks techs={frontInfo.techs} />
-      </div>
+      <AnimatedReactPlayer
+        className={ClassNames.preview}
+        width="100%"
+        height="80%"
+        url={frontInfo.preview}
+        //onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
+        loop
+        controls
+        playing={isTop.to((v) => v === 1) as unknown as boolean}
+        muted
+      />
+      <TechStacks techs={frontInfo.techs} />
     </animated.div>
   );
 };
 
-export default FrontFace;
+export default PjtFrontFace;

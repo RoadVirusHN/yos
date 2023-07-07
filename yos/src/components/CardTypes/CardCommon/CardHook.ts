@@ -4,12 +4,11 @@ import { useCallback, useEffect, useImperativeHandle, useRef } from "react";
 import { CardAnimations } from "src/animations/CardAnim";
 import { MyHook } from "@customTypes/MyHook";
 import { getManhattanDistance } from "src/utils/math";
-import { projects } from "src/data/CardsData";
 
 export function canFlick(props: { [keys: string]: SpringValue<number> }) {
   const [dX, dY] = [
     Math.abs(props.x.get()),
-    Math.abs(props.y.get() - projects.length * -4),
+    Math.abs(props.y.get()),
   ];
   const flickable = dX > flickableDistance.w || dY > flickableDistance.h;
   return flickable;

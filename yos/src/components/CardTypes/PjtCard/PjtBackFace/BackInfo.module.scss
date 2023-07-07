@@ -8,21 +8,22 @@
 
   .team {
     text-align: center;
-    font-size: calc(24px + 3vw);
-    width: 90%;
+    font-size: calc(20px + 2vw);
+    letter-spacing: -2px;
+    width: 95%;
     .meTheKing {
       display: inline-block;
-      width: 35%;
+      width: calc(40px + 3vw);
       height: auto;
     }
     .me {
       display: inline-block;
-      width: 12%;
+      width: calc(20px + 2vw);
       height: auto;
     }
     .teammate {
       display: inline-block;
-      width: 10%;
+      width: calc(12px + 2vw);
       height: auto;
     }
   }

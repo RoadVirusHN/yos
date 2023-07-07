@@ -1,13 +1,13 @@
 import ClassNames from "../Card.module.scss";
 import { animated, to } from "react-spring";
-import { ReactComponent as Default } from "src/assets/img/cards/bands/DEFAULT.svg"; 
-import { ReactComponent as InProgress } from "src/assets/img/cards/bands/INPROGRESS.svg"; 
-import { ReactComponent as DONE } from "src/assets/img/cards/bands/DONE.svg"; 
-import { ReactComponent as DROPPED } from "src/assets/img/cards/bands/DROPPED.svg"; 
+import { ReactComponent as Default } from "src/assets/img/cards/bands/DEFAULT.svg";
+import { ReactComponent as InProgress } from "src/assets/img/cards/bands/INPROGRESS.svg";
+import { ReactComponent as DONE } from "src/assets/img/cards/bands/DONE.svg";
+import { ReactComponent as DROPPED } from "src/assets/img/cards/bands/DROPPED.svg";
 import { ReactComponent as POSTPONED } from "src/assets/img/cards/bands/POSTPONED.svg";
 import { useState } from "react";
 import { filt } from "src/utils/Animation";
-import { BandStatus, BandEnum } from "src/data/CardsData";
+import { BandEnum, BandStatus } from "@customTypes/Cards";
 
 const BandMapper = (
   status: BandStatus,

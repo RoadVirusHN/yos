@@ -7,17 +7,19 @@
   backface-visibility: hidden;
 }
 .front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
   background-color: whitesmoke;
   vertical-align: middle;
-  align-items: center;
-  justify-content: center;
-  display: flex;
   box-sizing: border-box;
   border-width: 10px;
   border-color: whitesmoke;
   border-style: solid;
   position: relative;
+  overflow: "visible";
 
   .preview {
     cursor: default;

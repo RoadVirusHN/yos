@@ -1,6 +1,7 @@
 import { animated } from "react-spring";
 import ClassNames from "./Logo.module.scss";
 import useLogoHook from "./LogoHook";
+import React from "react";
 /**
  * !!!Todos
  * - responsive compatibility

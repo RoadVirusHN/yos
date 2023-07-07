@@ -1,21 +1,21 @@
 import { animated, to } from "react-spring";
 import ClassNames from "./Card.module.scss";
-import useCardHook, { CardRef } from "./CardHook";
+import useCardHook, { CardRef } from "../CardCommon/CardHook";
 import { forwardRef } from "react";
-import BackFace from "./backFace/BackFace";
-import FrontFace from "./frontFace/FrontFace";
-import Band from "./band/Band";
+import PjtBackFace from "./PjtBackFace/PjtBackFace";
+import PjtFrontFace from "./PjtFrontFace/PjtFrontFace";
+import Band from "./Band/Band";
 import ServiceCloud from "./ServiceCloud/ServiceCloud";
-import { CardInfo } from "src/data/CardsData";
 import { trans } from "src/utils/Animation";
+import { PjtCardInfo } from "@customTypes/Cards";
 
-export type CardProps = {
-  info: CardInfo;
+type PjtCardProps = {
+  info: PjtCardInfo;
   changeOrder: (value: number[], except: number) => void;
   getOrder: () => number[];
 };
 
-const Card = forwardRef<CardRef, CardProps>(
+const PjtCard = forwardRef<CardRef, PjtCardProps>(
   ({ info, changeOrder, getOrder }, selfRef) => {
     const { Styles, Handlers } = useCardHook(
       info,
@@ -41,8 +41,8 @@ const Card = forwardRef<CardRef, CardProps>(
             transform: to([rx, ry, rz, scale], trans),
           }}
         >
-          <FrontFace {...{ frontInfo: info.front, gray, blur, isTop }} />
-          <BackFace {...{ backInfo: info.back, gray, blur }} />
+          <PjtFrontFace {...{ frontInfo: info.front, gray, blur, isTop }} />
+          <PjtBackFace {...{ backInfo: info.back, gray, blur }} />
           <Band
             beforeMouseDown={Handlers.band.onMouseDown}
             handlers={{
@@ -58,4 +58,4 @@ const Card = forwardRef<CardRef, CardProps>(
   }
 );
 
-export default Card;
+export default PjtCard;
