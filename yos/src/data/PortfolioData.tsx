@@ -1,4 +1,6 @@
 import { ReactComponent as CoolCat } from "src/assets/img/cards/graffities/coolcat.svg";
+import { ReactComponent as TutoBack } from "src/assets/img/cards/graffities/back.svg";
+import { ReactComponent as TutoBorder } from "src/assets/img/cards/graffities/border.svg";
 import testVideo from "src/assets/img/cards/previews/test-big-comp.mp4";
 import testVideoBig from "src/assets/img/cards/previews/test-big.webm";
 import Kejang from "src/assets/img/cards/graffities/kejang/Kejang";
@@ -15,16 +17,16 @@ import { CardTypeEnum, BandEnum } from "./enums/enums";
 // Datas
 export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
   [
+    // {
+    //   index: 0,
+    //   type: CardTypeEnum.END,
+    //   description: {
+    //     title: "end",
+    //     sub: "dsfasd",
+    //   },
+    // },
     {
       index: 0,
-      type: CardTypeEnum.END,
-      description: {
-        title: "end",
-        sub: "dsfasd",
-      },
-    },
-    {
-      index: 1,
       type: CardTypeEnum.PROJTECT,
       url: "asdf",
       description: {
@@ -51,7 +53,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       },
     },
     {
-      index: 2,
+      index: 1,
       url: "dfs",
       type: CardTypeEnum.PROJTECT,
       description: {
@@ -82,7 +84,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       },
     },
     {
-      index: 3,
+      index: 2,
       url: "s",
       type: CardTypeEnum.PROJTECT,
       description: {
@@ -109,7 +111,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       },
     },
     {
-      index: 4,
+      index: 3,
       url: "d",
       type: CardTypeEnum.PROJTECT,
       description: {
@@ -135,7 +137,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       },
     },
     {
-      index: 5,
+      index: 4,
       url: "",
       type: CardTypeEnum.PROJTECT,
       description: {
@@ -161,7 +163,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       },
     },
     {
-      index: 6,
+      index: 5,
       url: "",
       type: CardTypeEnum.PROJTECT,
       description: {
@@ -186,14 +188,14 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
         },
       },
     },
-    // {
-    //   index: 7,
-    //   type: CardTypeEnum.TUTORIAL,
-    //   description: {
-    //     title: "MY COOL PORTFOLIO",
-    //     sub: "Have Fun!",
-    //   },
-    //   front: <div></div>,
-    //   back: <div></div>,
-    // },
+    {
+      index: 6,
+      type: CardTypeEnum.TUTORIAL,
+      description: {
+        title: "Drag & Drop Card to next card.",
+        sub: <></>,
+      },
+      front: <div></div>,
+      back: <TutoBack />,
+    },
   ];

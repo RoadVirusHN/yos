@@ -1,4 +1,4 @@
-import { AllCardInfoType, PjtCardInfo } from "@customTypes/Card";
+import { AllCardInfoType, EndCardInfo, PjtCardInfo, TutorialCardInfo } from "@customTypes/Card";
 import { CardRef } from "../CardTypes/CardCommon/CardHook";
 import SquiggleFilter from "../CardTypes/CardCommon/Filters/SquiggleFilter";
 import ClassNames from "./Deck.module.scss";
@@ -60,7 +60,7 @@ export default function Deck({ cardInfos }: { cardInfos: AllCardInfoType[] }) {
           return (
             <CardComponent
               key={info.index}
-              info={info as PjtCardInfo}
+              info={info as PjtCardInfo & TutorialCardInfo & EndCardInfo}
               ref={children.current[info.index]}
               changeOrder={changeOrder}
               getOrder={getOrder}

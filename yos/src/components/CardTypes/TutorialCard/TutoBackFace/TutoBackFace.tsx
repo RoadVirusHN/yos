@@ -3,6 +3,7 @@ import ClassNames from "./TutoBackFace.module.scss";
 import { animated, to } from "react-spring";
 import cardBack from "src/assets/img/cards/cardBack-min.jpg";
 import { ReactElement, useEffect, useRef, useState } from "react";
+import TutoBackInfo from "./TutoBackInfo";
 
 const TutoBackFace = ({
   backInfo,
@@ -34,7 +35,7 @@ const TutoBackFace = ({
         backgroundSize: "cover",
       }}
     >
-      {backInfo}
+      <TutoBackInfo width={width} height={height} backInfo={backInfo} />
     </animated.div>
   );
 };

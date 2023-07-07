@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export type BandStatus = keyof typeof BandEnum;
 
 export type AllCardInfoType =
@@ -51,7 +53,14 @@ export interface CustomCardInfo {
 export interface TutorialCardInfo {
   type: CardTypeEnum.TUTORIAL;
   index: number;
-  description: PjtCardDesc;
+  description: {
+    title: string;
+    sub: ReactElement;
+    graffities?: {
+      left?: ReactElement;
+      right?: ReactElement;
+    };
+  };
   front: ReactElement;
   back: ReactElement;
 }
