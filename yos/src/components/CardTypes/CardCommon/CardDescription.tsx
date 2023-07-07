@@ -1,8 +1,8 @@
-import ClassNames from "./Doodle.module.scss";
+import ClassNames from "./CardDescription.module.scss";
 import { animated } from "react-spring";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import ScalableSVGWrapper from "src/components/ScalableSVG";
-import { AllCardInfoType } from "@customTypes/Cards";
+import { AllCardInfoType } from "@customTypes/Card";
 
 export type DescRef = {
   updateProject: (topIdx: number) => void;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ClassNames from "./BackInfo.module.scss";
+import ClassNames from "./IconLink.module.scss";
 const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
   const [icons, setIcons] = useState<{ [key: string]: any }>({});
 

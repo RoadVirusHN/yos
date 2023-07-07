@@ -1,4 +1,4 @@
-import ClassNames from "./FrontFace.module.scss";
+import ClassNames from "./PjtFrontFace.module.scss";
 /**
  * cool slide effect! : https://codepen.io/ykadosh/pen/KKezJzz
  * tech logo!

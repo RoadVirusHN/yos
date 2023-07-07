@@ -1,24 +1,10 @@
 import { filt } from "src/utils/Animation";
-import ClassNames from "./PjtBackFace.module.scss";
+import ClassNames from "./EndBackFace.module.scss";
 import { animated, to } from "react-spring";
 import cardBack from "src/assets/img/cards/cardBack-min.jpg";
-import BackInfo from "./BackInfo";
 import { useEffect, useRef, useState } from "react";
-import { PjtCardBackInfos } from "@customTypes/Card";
 
-/**
- * !!! Todo
- * webpack make backface background image to base64, how to prevent it?
- */
-const PjtBackFace = ({
-  backInfo,
-  gray,
-  blur,
-}: {
-  backInfo: PjtCardBackInfos;
-  gray: number;
-  blur: number;
-}) => {
+const EndBackFace = ({ gray, blur }: { gray: number; blur: number }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
@@ -40,9 +26,9 @@ const PjtBackFace = ({
         backgroundSize: "cover",
       }}
     >
-      <BackInfo backInfo={backInfo} width={width} height={height} />
+      click to back flip
     </animated.div>
   );
 };
 
-export default PjtBackFace;
+export default EndBackFace;

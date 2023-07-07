@@ -1,15 +1,15 @@
-import { CardInfoBackInfos } from "src/data/CardsData";
 import InfoMapper from "src/components/InfoMapper/InfoMapper";
 import Teammates from "./Teammates";
 import ClassNames from "./BackInfo.module.scss";
-import IconLink from "./IconLink";
+import IconLink from "../../../IconLink/IconLink";
+import { PjtCardBackInfos } from "@customTypes/Card";
 
 const BackInfo = ({
   backInfo,
   width,
   height,
 }: {
-  backInfo: CardInfoBackInfos;
+  backInfo: PjtCardBackInfos;
   width: number;
   height: number;
 }) => {

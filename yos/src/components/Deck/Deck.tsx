@@ -1,11 +1,14 @@
-import { AllCardInfoType } from "@customTypes/Cards";
+import { AllCardInfoType, PjtCardInfo } from "@customTypes/Card";
 import { CardRef } from "../CardTypes/CardCommon/CardHook";
 import SquiggleFilter from "../CardTypes/CardCommon/Filters/SquiggleFilter";
-import ClassNames from "./Cards.module.scss";
+import ClassNames from "./Deck.module.scss";
 import { RefObject, useLayoutEffect, useRef, useState } from "react";
 import React from "react";
-import CardDescription, { DescRef } from "../CardTypes/CardCommon/CardDescription";
-import AnyCard from "../CardTypes/AnyCard";
+import CardDescription, {
+  DescRef,
+} from "../CardTypes/CardCommon/CardDescription";
+import cardMapper from "./cardMapper";
+import cardComponentMap from "./cardMapper";
 /**
  * !!!Todos
  * - responsive compatibility
@@ -26,11 +29,7 @@ function useWindowSize() {
 
   return size;
 }
-export default function Cards({
-  cardInfos,
-}: {
-  cardInfos: AllCardInfoType[];
-}) {
+export default function Deck({ cardInfos }: { cardInfos: AllCardInfoType[] }) {
   const order = useRef<number[]>(Array.from(cardInfos, (info) => info.index)); // backward queue
   const children = useRef<RefObject<CardRef>[]>(
     Array.from(cardInfos, (_info) => React.createRef())
@@ -54,13 +53,14 @@ export default function Cards({
   return (
     <div className={ClassNames.deckContainer}>
       <SquiggleFilter />
-      <CardDescription ref={descRef} cardInfos={cardInfos}/>
+      <CardDescription ref={descRef} cardInfos={cardInfos} />
       <div className={ClassNames.deck}>
         {cardInfos.map((info) => {
+          const CardComponent = cardComponentMap[info.type];
           return (
-            <AnyCard
+            <CardComponent
               key={info.index}
-              info={info}
+              info={info as PjtCardInfo}
               ref={children.current[info.index]}
               changeOrder={changeOrder}
               getOrder={getOrder}

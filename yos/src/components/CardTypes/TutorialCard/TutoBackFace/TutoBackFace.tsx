@@ -1,21 +1,15 @@
 import { filt } from "src/utils/Animation";
-import ClassNames from "./PjtBackFace.module.scss";
+import ClassNames from "./TutoBackFace.module.scss";
 import { animated, to } from "react-spring";
 import cardBack from "src/assets/img/cards/cardBack-min.jpg";
-import BackInfo from "./BackInfo";
-import { useEffect, useRef, useState } from "react";
-import { PjtCardBackInfos } from "@customTypes/Card";
+import { ReactElement, useEffect, useRef, useState } from "react";
 
-/**
- * !!! Todo
- * webpack make backface background image to base64, how to prevent it?
- */
-const PjtBackFace = ({
+const TutoBackFace = ({
   backInfo,
   gray,
   blur,
 }: {
-  backInfo: PjtCardBackInfos;
+  backInfo: ReactElement<any, any>;
   gray: number;
   blur: number;
 }) => {
@@ -40,9 +34,9 @@ const PjtBackFace = ({
         backgroundSize: "cover",
       }}
     >
-      <BackInfo backInfo={backInfo} width={width} height={height} />
+      {backInfo}
     </animated.div>
   );
 };
 
-export default PjtBackFace;
+export default TutoBackFace;

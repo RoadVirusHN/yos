@@ -1,4 +1,4 @@
-import ClassNames from "../Card.module.scss";
+import ClassNames from "./PjtBand.module.scss";
 import { animated, to } from "react-spring";
 import { ReactComponent as Default } from "src/assets/img/cards/bands/DEFAULT.svg";
 import { ReactComponent as InProgress } from "src/assets/img/cards/bands/INPROGRESS.svg";
@@ -7,9 +7,9 @@ import { ReactComponent as DROPPED } from "src/assets/img/cards/bands/DROPPED.sv
 import { ReactComponent as POSTPONED } from "src/assets/img/cards/bands/POSTPONED.svg";
 import { useState } from "react";
 import { filt } from "src/utils/Animation";
-import { BandEnum, BandStatus } from "@customTypes/Cards";
-
-const BandMapper = (
+import { BandStatus } from "@customTypes/Card";
+import { BandEnum } from "src/data/enums/enums";
+const PjtBandMapper = (
   status: BandStatus,
   newHandler: { [onEvent: string]: any }
 ) => {
@@ -26,7 +26,7 @@ const BandMapper = (
       return <Default {...newHandler} />;
   }
 };
-const Band = ({
+const PjtBand = ({
   beforeMouseDown,
   handlers,
   status,
@@ -63,10 +63,10 @@ const Band = ({
       {side === "front" ? (
         <Default {...newHandler} />
       ) : (
-        BandMapper(status, newHandler)
+        PjtBandMapper(status, newHandler)
       )}
     </animated.div>
   );
 };
 
-export default Band;
+export default PjtBand;

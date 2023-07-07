@@ -1,7 +1,7 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
 import { config } from "react-spring";
-import { projects } from "src/data/CardsData";
 import { AnimData } from "@customTypes/Animation";
+import { PortfolioCards } from "./PortfolioData";
 
 export let flickableDistance = {
   w: 160,
@@ -38,7 +38,7 @@ export type CardAnimInputs =
     };
 export const animationData: AnimData<CardAnimInputs> = {
   initialProps: (i: number) => {
-    const radians = (((i * 360) / projects.length + 180) * Math.PI) / 180;
+    const radians = (((i * 360) / PortfolioCards.length + 180) * Math.PI) / 180;
     const x = window.innerWidth * 2 * Math.cos(radians);
     const y = window.innerWidth * 2 * Math.sin(radians);
     return {
@@ -51,9 +51,9 @@ export const animationData: AnimData<CardAnimInputs> = {
       gray: 0,
       blur: 0,
       scale: 1.5,
-      isTop: i === projects.length - 1 ? 1 : 0,
+      isTop: i === PortfolioCards.length - 1 ? 1 : 0,
       onAnim: "",
-      cursor: i === projects.length - 1 ? "grab" : "default",
+      cursor: i === PortfolioCards.length - 1 ? "grab" : "default",
       side: "front",
     };
   },
@@ -69,8 +69,8 @@ export const animationData: AnimData<CardAnimInputs> = {
       gray: 0,
       blur: 0,
       side: "front",
-      isTop: i === projects.length - 1 ? 1 : 0,
-      cursor: i === projects.length - 1 ? "grab" : "default",
+      isTop: i === PortfolioCards.length - 1 ? 1 : 0,
+      cursor: i === PortfolioCards.length - 1 ? "grab" : "default",
       delay: i * 200,
     }),
     stateTop: (rz: number) => ({
@@ -79,7 +79,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       },
       to: [
         {
-          z: projects.length,
+          z: PortfolioCards.length,
           scale: 1.1,
           gray: 0,
           rz: rz - 4 + Math.random() * 8,
@@ -89,7 +89,7 @@ export const animationData: AnimData<CardAnimInputs> = {
         },
         {
           x: 0,
-          y: projects.length * -4,
+          y: PortfolioCards.length * -4,
           scale: 1,
           cursor: "grab",
           config: { tension: 210, friction: 20 },
@@ -104,7 +104,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       config: { friction: 50, tension: 800 },
     }),
     stateFloat: () => ({
-      z: projects.length + 1,
+      z: PortfolioCards.length + 1,
       cursor: "grabbing",
       scale: 1.1,
       gray: 0,
@@ -112,7 +112,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       config: { tension: 200 },
     }),
     stateFlickable: () => ({
-      z: projects.length + 1,
+      z: PortfolioCards.length + 1,
       scale: 1.1,
       gray: 0.7,
       blur: 2,
@@ -144,8 +144,8 @@ export const animationData: AnimData<CardAnimInputs> = {
       scale: 1,
       gray: 0,
       blur: 0,
-      isTop: order === projects.length - 1 ? 1 : 0,
-      cursor: order === projects.length - 1 ? "grab" : "default",
+      isTop: order === PortfolioCards.length - 1 ? 1 : 0,
+      cursor: order === PortfolioCards.length - 1 ? "grab" : "default",
       config: { tension: 200 },
     }),
     stateFloor: () => ({

@@ -6,10 +6,10 @@ import {
   PjtCardInfo,
   TutorialCardInfo,
   EndCardInfo,
-  BandEnum,
   BandStatus,
-  CardTypeEnum,
-} from "@customTypes/Cards";
+} from "@customTypes/Card";
+import { CardTypeEnum, BandEnum } from "./enums/enums";
+
 // !important : dont get the graffiti directly from the component
 
 // Datas
@@ -186,14 +186,14 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
         },
       },
     },
-    {
-      index: 7,
-      type: CardTypeEnum.TUTORIAL,
-      description: {
-        title: "MY COOL PORTFOLIO",
-        sub: "Have Fun!",
-      },
-      front: <div></div>,
-      back: <div></div>,
-    },
+    // {
+    //   index: 7,
+    //   type: CardTypeEnum.TUTORIAL,
+    //   description: {
+    //     title: "MY COOL PORTFOLIO",
+    //     sub: "Have Fun!",
+    //   },
+    //   front: <div></div>,
+    //   back: <div></div>,
+    // },
   ];

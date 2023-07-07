@@ -1,5 +1,5 @@
 import { filt } from "src/utils/Animation";
-import ClassNames from "./FrontFace.module.scss";
+import ClassNames from "./PjtFrontFace.module.scss";
 import { SpringValue, animated, to } from "react-spring";
 import TechStacks from "./TechStacks";
 import ReactPlayer from "react-player/lazy";

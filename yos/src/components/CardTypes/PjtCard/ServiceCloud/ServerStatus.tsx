@@ -1,5 +1,5 @@
 import { ReactComponent as Dunno } from "src/assets/img/cards/serviceCloud/dunno.svg";
-import ClassNames from "../Card.module.scss";
+import ClassNames from "./ServiceCloud.module.scss";
 import { ReactComponent as Unavailable } from "src/assets/img/cards/serviceCloud/unavailable.svg";
 import { animated, useSpring } from "react-spring";
 const ServerStatus = ({ status }: { status: string }) => {

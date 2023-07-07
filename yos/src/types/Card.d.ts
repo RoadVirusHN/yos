@@ -1,10 +1,3 @@
-export const BandEnum = {
-  DEFAULT: "DEFAULT",
-  POSTPONED: "POSTPONED",
-  DONE: "DONE",
-  DROPPED: "DROPPED",
-  INPROGRESS: "INPROGRESS",
-};
 export type BandStatus = keyof typeof BandEnum;
 
 export type AllCardInfoType =
@@ -13,20 +6,14 @@ export type AllCardInfoType =
   | EndCardInfo
   | TutorialCardInfo;
 
-export const CardTypeEnum = {
-  PROJTECT: "PJT",
-  TUTORIAL: "TUTO",
-  END: "END",
-};
-
 export type CardType = keyof typeof CardTypeEnum;
 
 interface PjtCardDesc {
   title: string;
   sub: string;
   graffities?: {
-    left?: ReactElement<any, any>;
-    right?: ReactElement<any, any>;
+    left?: ReactElement;
+    right?: ReactElement;
   };
 }
 
@@ -58,15 +45,15 @@ export interface CustomCardInfo {
   type: CardType;
   index: number;
   description?: PjtCardDesc;
-  front: ReactElement<any, any>;
-  back: ReactElement<any, any>;
+  front: ReactElement;
+  back: ReactElement;
 }
 export interface TutorialCardInfo {
   type: CardTypeEnum.TUTORIAL;
   index: number;
   description: PjtCardDesc;
-  front: ReactElement<any, any>;
-  back: ReactElement<any, any>;
+  front: ReactElement;
+  back: ReactElement;
 }
 
 export interface EndCardInfo {
