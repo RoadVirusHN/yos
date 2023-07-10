@@ -1,5 +1,4 @@
 import { ReactComponent as CoolCat } from "src/assets/img/cards/graffities/coolcat.svg";
-import { ReactComponent as TutoBack } from "src/assets/img/cards/graffities/back.svg";
 import { ReactComponent as TutoBorder } from "src/assets/img/cards/graffities/border.svg";
 import testVideo from "src/assets/img/cards/previews/test-big-comp.mp4";
 import testVideoBig from "src/assets/img/cards/previews/test-big.webm";
@@ -11,6 +10,8 @@ import {
   BandStatus,
 } from "@customTypes/Card";
 import { CardTypeEnum, BandEnum } from "./enums/enums";
+import TutoBack from "src/assets/img/cards/graffities/tutoBack/TutoBack";
+import TutoFront from "src/assets/img/cards/graffities/tutoFront/TutoFront";
 
 // !important : dont get the graffiti directly from the component
 
@@ -195,7 +196,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
         title: "Drag & Drop Card to next card.",
         sub: <></>,
       },
-      front: <div></div>,
-      back: <TutoBack />,
+      front: <TutoFront/>,
+      back: <TutoBack/>,
     },
   ];

@@ -3,7 +3,6 @@ import { ReactComponent as Kejang1 } from "./kejang-jump.svg";
 import { ReactComponent as Balloonword } from "./balloonword.svg";
 import { animated, useSpring } from "react-spring";
 
-const AnimatedG = animated("g");
 const Kejang = ({ color = "black" }: { color?: string }) => {
   const props = useSpring({
     from: { opacity1: 1, opacity2: 0 },
@@ -20,22 +19,22 @@ const Kejang = ({ color = "black" }: { color?: string }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="kejang">
-        <AnimatedG
+        <animated.g
           id="kejang-jump"
           style={{ opacity: props.opacity1 }}
           stroke={color}
           filter="url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7))"
         >
           <Kejang0 />
-        </AnimatedG>
-        <AnimatedG
+        </animated.g>
+        <animated.g
           id="kejang-stand"
           style={{ opacity: props.opacity2 }}
           stroke={color}
           filter="url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7))"
         >
           <Kejang1 />
-        </AnimatedG>
+        </animated.g>
         <svg xmlns="http://www.w3.org/2000/svg" stroke={color}>
           <Balloonword />
         </svg>

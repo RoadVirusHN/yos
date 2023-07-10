@@ -2,12 +2,11 @@ import { AllCardInfoType, EndCardInfo, PjtCardInfo, TutorialCardInfo } from "@cu
 import { CardRef } from "../CardTypes/CardCommon/CardHook";
 import SquiggleFilter from "../CardTypes/CardCommon/Filters/SquiggleFilter";
 import ClassNames from "./Deck.module.scss";
-import { RefObject, useLayoutEffect, useRef, useState } from "react";
+import { RefObject, useRef } from "react";
 import React from "react";
 import CardDescription, {
   DescRef,
 } from "../CardTypes/CardCommon/CardDescription";
-import cardMapper from "./cardMapper";
 import cardComponentMap from "./cardMapper";
 /**
  * !!!Todos
@@ -16,19 +15,7 @@ import cardComponentMap from "./cardMapper";
  * - animation transition chaining
  * - cards fly from outside -> need to initiate when scrolled!
  */
-function useWindowSize() {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
 
-  return size;
-}
 export default function Deck({ cardInfos }: { cardInfos: AllCardInfoType[] }) {
   const order = useRef<number[]>(Array.from(cardInfos, (info) => info.index)); // backward queue
   const children = useRef<RefObject<CardRef>[]>(
@@ -48,7 +35,6 @@ export default function Deck({ cardInfos }: { cardInfos: AllCardInfoType[] }) {
     }
   };
   const getOrder = () => order.current;
-  const [_width, _height] = useWindowSize();
 
   return (
     <div className={ClassNames.deckContainer}>
