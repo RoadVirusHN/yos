@@ -1,4 +1,9 @@
-import { AllCardInfoType, EndCardInfo, PjtCardInfo, TutorialCardInfo } from "@customTypes/Card";
+import {
+  AllCardInfoType,
+  EndCardInfo,
+  PjtCardInfo,
+  TutorialCardInfo,
+} from "@customTypes/Card";
 import { CardRef } from "../CardTypes/CardCommon/CardHook";
 import SquiggleFilter from "../CardTypes/CardCommon/Filters/SquiggleFilter";
 import ClassNames from "./Deck.module.scss";
@@ -8,6 +13,7 @@ import CardDescription, {
   DescRef,
 } from "../CardTypes/CardCommon/CardDescription";
 import cardComponentMap from "./cardMapper";
+import IconLink from "../IconLink/IconLink";
 /**
  * !!!Todos
  * - responsive compatibility
@@ -54,7 +60,10 @@ export default function Deck({ cardInfos }: { cardInfos: AllCardInfoType[] }) {
           );
         })}
       </div>
-      
+      <div className={`${ClassNames.onePagePortfolio} ${ClassNames.tooltip}`}>
+        <IconLink links={{ pdf: { url: "", tagName: "KOREAN" } }} />
+        <span className={ClassNames.tooltiptext}>ONE PAGE PORTFOLIO!</span>
+      </div>
     </div>
   );
 }

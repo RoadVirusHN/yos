@@ -3,22 +3,52 @@
   width: 90%;
   justify-content: flex-end;
   position: static;
-  a {
+  a.IconLink {
+    text-decoration: none;
     margin: 5px;
     width: fit-content;
     height: fit-content;
+    transition: box-shadow ease-in 0.2s, scale ease-in 0.2s;
+    box-shadow: none;
+    touch-action: none;
+    user-select: none;
+
     z-index: 10;
-    div {
+    div.Icons {
       width: fit-content;
       height: fit-content;
-      img {
-        min-width: 36px;
-        min-height: 36px;
-        width: 4vw;
-        height: 4vw;
-        max-width: 64px;
-        max-height: 64px;
+      div.icon {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        img {
+          min-width: 36px;
+          min-height: 36px;
+          width: 4vw;
+          height: 4vw;
+          max-width: 64px;
+          max-height: 64px;
+        }
+        .iconName {
+          min-width: 36px;
+          width: 4vw;
+          max-width: 64px;
+          height: auto;
+          display: flex;
+          justify-content: center;
+          margin-top: 5px;
+          font-size: 0.5rem;
+          line-height: 0.5rem;
+          font-weight: bold;
+          color: gray;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
       }
     }
+  }
+  a:hover {
+    scale: 1.2;
   }
 }

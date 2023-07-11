@@ -33,7 +33,7 @@ export interface PjtCardInfo {
 export interface PjtCardBackInfos {
   teammates: number;
   infos: PjtCardBackInfosItems;
-  links: { [icon: string]: string };
+  links: { [icon: string]: {url? :string, tagName?: string} };
   status: BandStatus;
 }
 

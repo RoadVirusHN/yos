@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import ClassNames from "./IconLink.module.scss";
-const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
+const IconLink = ({
+  links,
+}: {
+  links: { [icon: string]: { url?: string; tagName?: string } };
+}) => {
   const [icons, setIcons] = useState<{ [key: string]: any }>({});
 
   useEffect(() => {
@@ -8,7 +12,7 @@ const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
       const loadedIcons: { [key: string]: any } = {};
 
       await Promise.all(
-        Object.entries(links).map(async ([iconName, url]) => {
+        Object.entries(links).map(async ([iconName, { url, tagName }]) => {
           try {
             const module = await import(`src/assets/img/icons/${iconName}.svg`);
             const { default: ReactComponent } = module;
@@ -27,11 +31,12 @@ const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
 
   return (
     <div className={ClassNames.IconLinkContainer}>
-      {Object.entries(links).map(([iconName, url], i) => {
+      {Object.entries(links).map(([iconName, { url, tagName }], i) => {
         const IconSrc = icons[iconName];
         return (
           <a
             href={url}
+            className={ClassNames.IconLink}
             rel="noreferrer"
             target="_blank"
             key={i}
@@ -43,9 +48,16 @@ const IconLink = ({ links }: { links: { [icon: string]: string } }) => {
               e.stopPropagation();
             }}
           >
-            <div>
+            <div className={ClassNames.Icons}>
               {IconSrc !== "ERROR!" ? (
-                <img src={IconSrc} alt={iconName} />
+                <div className={ClassNames.icon}>
+                  <img src={IconSrc} alt={tagName} />
+                  {tagName !== "" ? (
+                    <div className={ClassNames.iconName}>{tagName}</div>
+                  ) : (
+                    ""
+                  )}
+                </div>
               ) : (
                 "ERORR!"
               )}
