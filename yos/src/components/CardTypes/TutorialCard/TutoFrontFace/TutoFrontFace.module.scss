@@ -15,9 +15,11 @@
   background-color: whitesmoke;
   vertical-align: middle;
   box-sizing: border-box;
+  border-radius: 25% 10%;
+  box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
+    0 10px 10px -10px rgba(50, 50, 73, 0.3);
   border-width: 10px;
   border-color: whitesmoke;
   border-style: solid;
   position: relative;
-  overflow: "visible";
 }

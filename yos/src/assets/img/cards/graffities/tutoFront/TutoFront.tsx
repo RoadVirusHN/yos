@@ -2,10 +2,18 @@ import ClassNames from "./TutoFront.module.scss";
 
 const TutoFront = () => {
   return (
-    <div className={ClassNames.container}>
-      <div className={ClassNames.portfolio}>PORTFOLIO</div>
-      <div className={ClassNames.name}>JUNSEOK-YUN</div>
-    </div>
+    <>
+      <span className={ClassNames.indicator}>
+        DO NOT CLICK IT{" "}
+        <span style={{ fontSize: "180%", fontWeight: "bold" }}>→</span>
+      </span>
+      <div className={ClassNames.container}>
+        <div className={ClassNames.portfolio}>
+          <div style={{ fontSize: "40%", lineHeight: "20%" }}>THE</div>LUXURIST
+        </div>
+        <div className={ClassNames.name}>JUNSEOK-YUN PORTFOLIO</div>
+      </div>
+    </>
   );
 };
 

@@ -11,7 +11,7 @@ export type AllCardInfoType =
 export type CardType = keyof typeof CardTypeEnum;
 
 interface PjtCardDesc {
-  title: string;
+  title: string | ReactElement;
   sub: string;
   graffities?: {
     left?: ReactElement;
@@ -54,7 +54,7 @@ export interface TutorialCardInfo {
   type: CardTypeEnum.TUTORIAL;
   index: number;
   description: {
-    title: string;
+    title: ReactElement;
     sub: ReactElement;
     graffities?: {
       left?: ReactElement;

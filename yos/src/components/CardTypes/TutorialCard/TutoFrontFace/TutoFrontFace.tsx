@@ -2,6 +2,7 @@ import { filt } from "src/utils/Animation";
 import ClassNames from "./TutoFrontFace.module.scss";
 import { SpringValue, animated, to } from "react-spring";
 import { ReactElement } from "react";
+import TutoTitle from "src/assets/img/cards/graffities/tutoTitle/TutoTitle";
 
 const TutoFrontFace = ({
   frontInfo,

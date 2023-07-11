@@ -54,6 +54,7 @@ export default function Deck({ cardInfos }: { cardInfos: AllCardInfoType[] }) {
           );
         })}
       </div>
+      
     </div>
   );
 }

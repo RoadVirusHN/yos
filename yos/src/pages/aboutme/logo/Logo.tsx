@@ -26,7 +26,7 @@ export default function Logo() {
         />
         <animated.div className={ClassNames.logoText} style={Styles.text}>
           ROADVIRUSHN
-          {/* When change it, you need to change text in hard coded content in ./utils/Logo.module.scss.*/}
+          {/*you need to change text in hard coded content in ./utils/Logo.module.scss.*/}
         </animated.div>
       </animated.div>
     </div>

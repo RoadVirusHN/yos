@@ -10,6 +10,9 @@ const Kejang = ({ color = "black" }: { color?: string }) => {
     loop: { reverse: true },
     immediate: true,
     delay: 500,
+    onChange: () => {
+      console.log("kejang changed");
+    },
   });
 
   return (

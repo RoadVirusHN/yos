@@ -12,6 +12,7 @@ import {
 import { CardTypeEnum, BandEnum } from "./enums/enums";
 import TutoBack from "src/assets/img/cards/graffities/tutoBack/TutoBack";
 import TutoFront from "src/assets/img/cards/graffities/tutoFront/TutoFront";
+import TutoTitle from "src/assets/img/cards/graffities/tutoTitle/TutoTitle";
 
 // !important : dont get the graffiti directly from the component
 
@@ -91,6 +92,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       description: {
         title: "DKT Competition & DKDKT",
         sub: "Deep Knowledge Tracing Machine Learning & Web Service",
+        graffities: { left: <TutoBack /> },
       },
       front: {
         preview:
@@ -193,10 +195,10 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       index: 6,
       type: CardTypeEnum.TUTORIAL,
       description: {
-        title: "Drag & Drop Card to next card.",
+        title: <TutoTitle />,
         sub: <></>,
       },
-      front: <TutoFront/>,
-      back: <TutoBack/>,
+      front: <TutoFront />,
+      back: <TutoBack />,
     },
   ];

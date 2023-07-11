@@ -43,7 +43,14 @@ const CardDescription = forwardRef<DescRef, { cardInfos: AllCardInfoType[] }>(
 
     return (
       <>
-        <animated.svg className={ClassNames.doodleTitle}>
+        <animated.svg
+          className={ClassNames.doodleTitle}
+          filter={
+            typeof title === "string"
+              ? "url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7))"
+              : ""
+          }
+        >
           <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
             <h1 className={ClassNames.title}>{title}</h1>
             <h3 className={ClassNames.sub}>{sub}</h3>

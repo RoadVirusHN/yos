@@ -1,7 +1,7 @@
 import { filt } from "src/utils/Animation";
 import ClassNames from "./TutoBackFace.module.scss";
 import { animated, to } from "react-spring";
-import cardBack from "src/assets/img/cards/cardBack-min.jpg";
+import cardBack from "src/assets/img/cards/graffities/tutoBack/cardboard.webp";
 import { ReactElement, useEffect, useRef, useState } from "react";
 import TutoBackInfo from "./TutoBackInfo";
 
@@ -28,11 +28,12 @@ const TutoBackFace = ({
       className={`${ClassNames.back} ${ClassNames.face}`}
       style={{
         filter: to([gray, blur], filt),
+        backgroundColor: "rgba(0, 0, 0, 0)",
         backgroundImage: `url(${cardBack})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
-        backgroundSize: "cover",
+        backgroundSize: "contain",
       }}
     >
       <TutoBackInfo width={width} height={height} backInfo={backInfo} />
