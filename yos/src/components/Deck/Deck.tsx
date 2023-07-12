@@ -60,8 +60,10 @@ export default function Deck({ cardInfos }: { cardInfos: AllCardInfoType[] }) {
           );
         })}
       </div>
-      <div className={`${ClassNames.onePagePortfolio} ${ClassNames.tooltip}`}>
-        <IconLink links={{ pdf: { url: "", tagName: "KOREAN" } }} />
+      <div className={`${ClassNames.onePagePortfolio}`}>
+        <div className={`${ClassNames.tooltip}`}>
+          <IconLink links={{ pdf: { url: "", tagName: "KOREAN" } }} />
+        </div>
         <span className={ClassNames.tooltiptext}>ONE PAGE PORTFOLIO!</span>
       </div>
     </div>

@@ -175,7 +175,7 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
       },
       front: {
         preview: testVideoBig,
-        techs: ["JSP"],
+        techs: ["JSP", "JSP", "JSP", "JSP", "JSP", "JSP", "JSP", "JSP", "JSP"],
       },
       back: {
         teammates: 1001,

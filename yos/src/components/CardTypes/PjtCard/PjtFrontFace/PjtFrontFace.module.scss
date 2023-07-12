@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   z-index: 1;
   background-color: whitesmoke;
   vertical-align: middle;
@@ -23,26 +23,5 @@
 
   .preview {
     cursor: default;
-  }
-
-  .techStacks {
-    overflow: hidden;
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    .tech {
-      display: flex;
-      align-items: center;
-      gap: 0 0.2rem;
-      color: #e2e8f0;
-      font-size: 0.9rem;
-      background-color: #72cbad;
-      border-radius: 0.4rem;
-      padding: 0.7rem 1rem;
-      margin-right: 1rem; // Must used margin-right instead of gap for the loop to be smooth
-      box-shadow: 0 0.1rem 0.2rem rgb(0 0 0 / 20%),
-        0 0.1rem 0.3rem rgb(0 0 0 / 30%), 0 0.2rem 1rem rgb(0 0 0 / 40%);
-    }
   }
 }

@@ -1,7 +1,7 @@
 import { filt } from "src/utils/Animation";
 import ClassNames from "./PjtFrontFace.module.scss";
 import { SpringValue, animated, to } from "react-spring";
-import TechStacks from "./TechStacks";
+import TechStacks from "src/components/InfinityLoopSlider/InfinityLoopSlider";
 import ReactPlayer from "react-player/lazy";
 /**
  * !!!todos
@@ -18,7 +18,7 @@ const PjtFrontFace = ({
 }: {
   frontInfo: {
     preview: string;
-    techs: [string];
+    techs: string[];
   };
   gray: SpringValue<number>;
   blur: SpringValue<number>;
@@ -42,7 +42,7 @@ const PjtFrontFace = ({
         playing={isTop.to((v) => v === 1) as unknown as boolean}
         muted
       />
-      <TechStacks techs={frontInfo.techs} />
+      <TechStacks tags={frontInfo.techs} />
     </animated.div>
   );
 };

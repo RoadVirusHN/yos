@@ -26,7 +26,7 @@ export interface PjtCardInfo {
   description: PjtCardDesc;
   front: {
     preview: string;
-    techs: [string];
+    techs: string[];
   };
   back: PjtCardBackInfos;
 }

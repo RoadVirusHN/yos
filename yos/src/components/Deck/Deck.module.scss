@@ -25,15 +25,22 @@
   width: fit-content;
   right: 3%;
   bottom: 3%;
+}
+
+.tooltip {
   opacity: 0.5;
   transition: opacity 0.2 ease-in;
 }
-.onePagePortfolio:hover {
+.tooltip:hover {
   opacity: 1;
   transition: opacity 0.2 ease-in;
 }
 
-.tooltip .tooltiptext {
+.tooltip:hover + .tooltiptext {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+.tooltip + .tooltiptext {
   font-family: "Hi Melody", cursive;
   font-weight: bold;
   width: 120px;
@@ -51,11 +58,7 @@
   opacity: 0;
 }
 
-.tooltip:hover .tooltiptext {
-  opacity: 1;
-  transition: opacity 0.2s;
-}
-.tooltip .tooltiptext::after {
+.tooltip + .tooltiptext::after {
   content: " ";
   position: absolute;
   top: 50%;
