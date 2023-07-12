@@ -1,7 +1,9 @@
 .indicator {
   position: absolute;
+  display: flex;
   top: 5%;
-  left: calc(10px);
+  left: 20%;
+  gap: 5px;
   font-size: calc(0.6vw + 12px);
   font-weight: bold;
   transform: rotateZ(-10deg);

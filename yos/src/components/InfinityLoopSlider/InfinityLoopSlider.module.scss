@@ -11,14 +11,9 @@
 
 .loopSlider {
     padding: 5px 0;
-  .inner {
+  .belt {
     display: flex;
     width: fit-content;
-    animation-name: loop;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    animation-duration: 5s;
   }
   .tag {
     display: flex;
@@ -53,11 +48,3 @@
   inset: 0;
 }
 
-@keyframes loop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}

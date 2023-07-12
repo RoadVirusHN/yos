@@ -4,8 +4,10 @@ const TutoFront = () => {
   return (
     <>
       <span className={ClassNames.indicator}>
-        DO NOT CLICK IT{" "}
-        <span style={{ fontSize: "180%", fontWeight: "bold" }}>→</span>
+        <span>
+          DO NOT <br /> CLICK IT 
+        </span>
+        <span style={{ fontSize: "180%", fontWeight: "bold" }}> →</span>
       </span>
       <div className={ClassNames.container}>
         <div className={ClassNames.portfolio}>
