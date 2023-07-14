@@ -1,4 +1,4 @@
-import { filt } from "src/utils/Animation";
+import { filt } from "src/utils/MyAnimation";
 import ClassNames from "./EndFrontFace.module.scss";
 import { SpringValue, animated, to } from "react-spring";
 

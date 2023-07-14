@@ -1,4 +1,4 @@
-import { filt } from "src/utils/Animation";
+import { filt } from "src/utils/MyAnimation";
 import ClassNames from "./EndBackFace.module.scss";
 import { animated, to } from "react-spring";
 import cardBack from "src/assets/img/cards/cardBack-min.jpg";

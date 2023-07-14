@@ -2,7 +2,7 @@ import { animated, to } from "react-spring";
 import ClassNames from "./EndCard.module.scss";
 import useCardHook, { CardRef } from "../CardCommon/CardHook";
 import { forwardRef } from "react";
-import { trans } from "src/utils/Animation";
+import { trans } from "src/utils/MyAnimation";
 import { EndCardInfo } from "@customTypes/Card";
 import EndBackFace from "./EndBackFace/EndBackFace";
 import EndFrontFace from "./EndFrontFace/EndFrontFace";

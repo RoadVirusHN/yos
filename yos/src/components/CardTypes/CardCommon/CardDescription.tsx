@@ -1,8 +1,8 @@
 import ClassNames from "./CardDescription.module.scss";
 import { animated } from "react-spring";
 import { forwardRef, useImperativeHandle, useState } from "react";
-import ScalableSVGWrapper from "src/components/ScalableSVG";
 import { AllCardInfoType } from "@customTypes/Card";
+import { ScalableSVGWrapper } from "src/components/ScalableSVG";
 
 export type DescRef = {
   updateProject: (topIdx: number) => void;

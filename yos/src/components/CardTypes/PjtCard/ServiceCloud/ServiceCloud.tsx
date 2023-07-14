@@ -1,7 +1,7 @@
 import { ReactComponent as Cloud } from "src/assets/img/cards/serviceCloud/Cloud.svg";
 import ClassNames from "./ServiceCloud.module.scss";
 import { SpringValue, animated, config, to, useSpring } from "react-spring";
-import { filt } from "src/utils/Animation";
+import { filt } from "src/utils/MyAnimation";
 import React, { useEffect, useState } from "react";
 import ServerStatus from "./ServerStatus";
 const ServiceCloud = ({

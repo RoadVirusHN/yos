@@ -3,13 +3,10 @@ import { animationData, flickableDistance } from "src/data/CardData";
 import { useCallback, useEffect, useImperativeHandle, useRef } from "react";
 import { CardAnimations } from "src/animations/CardAnim";
 import { MyHook } from "@customTypes/MyHook";
-import { getManhattanDistance } from "src/utils/math";
+import { getManhattanDistance } from "src/utils/MyMath";
 
 export function canFlick(props: { [keys: string]: SpringValue<number> }) {
-  const [dX, dY] = [
-    Math.abs(props.x.get()),
-    Math.abs(props.y.get()),
-  ];
+  const [dX, dY] = [Math.abs(props.x.get()), Math.abs(props.y.get())];
   const flickable = dX > flickableDistance.w || dY > flickableDistance.h;
   return flickable;
 }
@@ -34,7 +31,11 @@ export default function useCardHook(
   useImperativeHandle(selfRef, () => ({
     stackUp: (except: number) => {
       if (info.index !== except) {
-        cardAnim.toDeckCardAnim(api, props, memoizedGetOrder().indexOf(info.index));
+        cardAnim.toDeckCardAnim(
+          api,
+          props,
+          memoizedGetOrder().indexOf(info.index)
+        );
       }
     },
   }));

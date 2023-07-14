@@ -2,7 +2,7 @@ import { animated, to } from "react-spring";
 import ClassNames from "./TutoCard.module.scss";
 import useCardHook, { CardRef } from "../CardCommon/CardHook";
 import { forwardRef } from "react";
-import { trans } from "src/utils/Animation";
+import { trans } from "src/utils/MyAnimation";
 import { TutorialCardInfo } from "@customTypes/Card";
 import TutoBackFace from "./TutoBackFace/TutoBackFace";
 import TutoFrontFace from "./TutoFrontFace/TutoFrontFace";

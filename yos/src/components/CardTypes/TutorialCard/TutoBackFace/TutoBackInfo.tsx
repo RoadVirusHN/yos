@@ -1,8 +1,6 @@
-import { ReactElement, lazy } from "react";
+import { ReactElement } from "react";
 import ClassNames from "./TutoBackFace.module.scss";
-import ScalableSVGWrapper from "src/components/ScalableSVG";
-
-
+import { ScalableSVGWrapper } from "src/components/ScalableSVG";
 
 const TutoBackInfo = ({
   backInfo,

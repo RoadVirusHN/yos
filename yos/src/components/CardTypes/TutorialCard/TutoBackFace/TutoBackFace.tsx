@@ -1,4 +1,4 @@
-import { filt } from "src/utils/Animation";
+import { filt } from "src/utils/MyAnimation";
 import ClassNames from "./TutoBackFace.module.scss";
 import { animated, to } from "react-spring";
 import cardBack from "src/assets/img/cards/graffities/tutoBack/cardboard.webp";

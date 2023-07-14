@@ -6,7 +6,7 @@ import { ReactComponent as DONE } from "src/assets/img/cards/bands/DONE.svg";
 import { ReactComponent as DROPPED } from "src/assets/img/cards/bands/DROPPED.svg";
 import { ReactComponent as POSTPONED } from "src/assets/img/cards/bands/POSTPONED.svg";
 import { useState } from "react";
-import { filt } from "src/utils/Animation";
+import { filt } from "src/utils/MyAnimation";
 import { BandStatus } from "@customTypes/Card";
 import { BandEnum } from "src/data/enums/enums";
 const PjtBandMapper = (

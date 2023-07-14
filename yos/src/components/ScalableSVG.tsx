@@ -1,6 +1,6 @@
 import React, { ComponentType, ReactElement, cloneElement } from "react";
 
-export function WithScalableSVG<T extends object>(
+function WithScalableSVG<T extends object>(
   WrappedSVG: ComponentType<T>
 ) {
   class ScalableSVG extends React.Component<T> {
@@ -32,4 +32,4 @@ const ScalableSVGWrapper = ({ content }: ScalableSVGWrapperProps) => {
   return wrappedContent;
 };
 
-export default ScalableSVGWrapper;
+export {WithScalableSVG, ScalableSVGWrapper};

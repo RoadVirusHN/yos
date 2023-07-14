@@ -3,7 +3,7 @@ import { animated, to } from "react-spring";
 import { ReactComponent as Default } from "src/assets/img/cards/bands/DEFAULT.svg";
 import { ReactComponent as CLICKME } from "src/assets/img/cards/bands/CLICKME.svg";
 import { useState } from "react";
-import { filt } from "src/utils/Animation";
+import { filt } from "src/utils/MyAnimation";
 
 const TutoBand = ({
   beforeMouseDown,

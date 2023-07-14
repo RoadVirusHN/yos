@@ -2,7 +2,7 @@ import { ReactComponent as Me } from "src/assets/img/cards/teams/mePicto.svg";
 import { ReactComponent as Teammate } from "src/assets/img/cards/teams/teammatePicto.svg";
 import { ReactComponent as Solo } from "src/assets/img/cards/teams/soloPicto.svg";
 import ClassNames from "./BackInfo.module.scss";
-import ScalableSVGWrapper from "src/components/ScalableSVG";
+import { ScalableSVGWrapper } from "src/components/ScalableSVG";
 
 const Teammates = ({ teamSize }: { teamSize: number }) => {
   return (

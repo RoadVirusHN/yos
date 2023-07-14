@@ -13,7 +13,7 @@ export const animation = (
     ...args: any[]
   ) {
     if (props.onAnim === undefined) {
-      throw Error("animation should have onAnim property.");
+      throw Error("All Animations should have onAnim property.");
     }
     const formerAnim = props.onAnim.get();
     if (formerAnim !== "") {

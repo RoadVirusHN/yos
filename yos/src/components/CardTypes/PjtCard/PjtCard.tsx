@@ -6,7 +6,7 @@ import PjtBackFace from "./PjtBackFace/PjtBackFace";
 import PjtFrontFace from "./PjtFrontFace/PjtFrontFace";
 import PjtBand from "./PjtBand/PjtBand";
 import ServiceCloud from "./ServiceCloud/ServiceCloud";
-import { trans } from "src/utils/Animation";
+import { trans } from "src/utils/MyAnimation";
 import { PjtCardInfo } from "@customTypes/Card";
 
 type PjtCardProps = {
