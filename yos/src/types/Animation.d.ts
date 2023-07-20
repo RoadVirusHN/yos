@@ -4,9 +4,8 @@ export interface componentProps {
   [component: string]: Lookup;
 }
 
-export interface AnimData<T> {
-  initialProps: (...args: any[]) => T;
+export interface AnimData<AnimProps> {
   states: {
-    [state: string]: (...args: any[]) => T;
+    [state: string]: (...args: any[]) => AnimProps;
   };
 }

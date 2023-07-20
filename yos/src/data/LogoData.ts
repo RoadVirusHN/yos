@@ -21,24 +21,24 @@ export interface LogoStyle {
 export type LogoAnimInputs = LogoStyle;
 // Data about components, Animation State, Hard coded datas, Constants etc...
 export const animationData: AnimData<LogoAnimInputs> = {
-  initialProps: (): LogoAnimInputs => ({
-    logo: {
-      rotateX: 0,
-      rotateY: 0,
-      rotateZ: 0,
-      scale: 1,
-      x: 0,
-      y: 0,
-      boxShadow: "10px 10px 30px 15px rgba(0, 0, 0, 0.3)",
-      config: { mass: 5, tension: 350, friction: 40 },
-    },
-    reflection: {
-      background:
-        "linear-gradient(0deg,rgba(255,255,255,0.25) 0%,rgba(255, 255, 255, 0) 60%)",
-    },
-    text: { x: 0, y: 0, scale: 1 },
-  }),
   states: {
+    stateInit: (): LogoAnimInputs => ({
+      logo: {
+        rotateX: 0,
+        rotateY: 0,
+        rotateZ: 0,
+        scale: 1,
+        x: 0,
+        y: 0,
+        boxShadow: "10px 10px 30px 15px rgba(0, 0, 0, 0.3)",
+        config: { mass: 5, tension: 350, friction: 40 },
+      },
+      reflection: {
+        background:
+          "linear-gradient(0deg,rgba(255,255,255,0.25) 0%,rgba(255, 255, 255, 0) 60%)",
+      },
+      text: { x: 0, y: 0, scale: 1 },
+    }),
     stateIdle: (getReflectionDefault: () => string) => ({
       logo: {
         scale: 1,

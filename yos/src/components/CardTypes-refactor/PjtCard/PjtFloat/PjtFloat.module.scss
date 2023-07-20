@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap");
+.float {
+  position: absolute;
+  left: -5%;
+  top: -15%;
+  width: fit-content;
+  height: fit-content;
+  transform-origin: center;
+  z-index: 999;
+  .serviceDesc {
+    font-family: "Nanum Gothic Coding", monospace;
+    color: #b6c7db;
+    text-shadow: 1px 1px 2px rgb(57, 57, 57);
+    font-weight: bolder;
+    z-index: 5;
+    text-align: center;
+    line-height: 100px;
+    min-width: 120px;
+    min-height: 83px;
+    width: 30vw;
+    height: 30vh;
+    max-width: 145px;
+    max-height: 101px;
+    font-size: 1.3rem;
+    pointer-events: none;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+    }
+  }
+  .serverStatus {
+    position: absolute;
+    right: 0;
+    top: 0;
+    right: -5px;
+    z-index: 9;
+  }
+}

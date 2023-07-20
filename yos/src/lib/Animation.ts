@@ -1,42 +1,59 @@
-import { Lookup, SpringRef, SpringValue } from "react-spring";
+import { CardAnimController } from "src/animations/CardAnim";
 
 export const animation = (
-  _target: any,
+  target: CardAnimController,
   key: string,
   desc: PropertyDescriptor
 ) => {
-  // should be top
   const method = desc.value;
-  desc.value = function (
-    api: SpringRef<Lookup<any>>,
-    props: { [x: string]: SpringValue<any> },
-    ...args: any[]
-  ) {
-    if (props.onAnim === undefined) {
+  desc.value = (controller: CardAnimController, ...args: any[]) => {
+    const [setCardAnim, cardAnim] = [
+      controller.cardAnimAPI.setCardAnim,
+      controller.cardAnimAPI.cardAnim,
+    ];
+
+    if (cardAnim.onAnim === undefined) {
       throw Error("All Animations should have onAnim property.");
     }
-    const formerAnim = props.onAnim.get();
-    if (formerAnim !== "") {
+
+    const formerAnim = cardAnim.onAnim.get();
+    if (formerAnim === "queueable") {
+      setCardAnim.start({
+        onResolve: () => {
+          method(controller, ...args);
+        },
+      });
+    } else if (formerAnim !== "") {
       console.log(`${key} animation prevented by ${formerAnim}`);
       return;
     }
-    return method(api, props, ...args);
+    return method(controller, ...args);
   };
+  return desc;
 };
-export const unstoppable = (
-  _target: any,
-  key: string,
-  desc: PropertyDescriptor
-) => {
-  const method = desc.value;
-  desc.value = async function (
-    api: SpringRef<Lookup<any>>,
-    props: { [x: string]: SpringValue<any> },
-    ...args: any[]
-  ) {
-    api.start({ immediate: true, onAnim: key });
-    return method(api, props, ...args)[0].then((_e: any) => {
-      api.start({ immediate: true, onAnim: "" });
-    });
+export const unstoppable =
+  ({ queue = false } = {}) =>
+  (
+    _target: any, //decorator function object
+    key: string, // decorator function name
+    desc: PropertyDescriptor // additional infos
+  ) => {
+    const method = desc.value;
+    desc.value = function (controller: CardAnimController, ...args: any[]) {
+      const [setCardAnim, cardAnim] = [
+        controller.cardAnimAPI.setCardAnim,
+        controller.cardAnimAPI.cardAnim,
+      ];
+      if (queue) {
+        setCardAnim.start({ immediate: true, onAnim: "queueable" });
+      } else {
+        setCardAnim.start({ immediate: true, onAnim: key });
+      }
+      return [
+        method(controller, ...args)[0].then((_e: any) => {
+          return setCardAnim.start({ immediate: true, onAnim: "" });
+        }),
+      ];
+    };
+    return desc;
   };
-};

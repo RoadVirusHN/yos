@@ -19,13 +19,12 @@ import {
 export default function useLogoHook(): MyHook {
   // Create Refs, States and Handlers, Styles then return them.
 
-  const { initialProps, states } = animationData;
+  const { states } = animationData;
 
-  const [logoStyles, apiLogo] = useSpring(() => initialProps().logo);
-  const [textStyles, apiText] = useSpring(() => initialProps().text);
+  const [logoStyles, apiLogo] = useSpring(() => states.stateInit().logo);
+  const [textStyles, apiText] = useSpring(() => states.stateInit().text);
   const [reflectionStyles, apiReflection] = useSpring(
-    () =>
-      (initialProps() as LogoStyle).reflection // I had enough to solve this freaking type error.
+    () => (states.stateInit() as LogoStyle).reflection // I had enough to solve this freaking type error.
   );
 
   const rect = useRef<DOMRect | null>(null);

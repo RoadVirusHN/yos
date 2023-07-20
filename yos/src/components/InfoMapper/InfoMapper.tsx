@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ClassNames from "./InfoMapper.module.scss";
 
-const InfoMapper = ({ infos }: { infos: { [key: string]: any } }) => {
+export interface InfoItem {
+  name: string;
+  content: string;
+}
+
+const InfoMapper = ({ infos }: { infos: InfoItem[] }) => {
   const [icons, setIcons] = useState<{ [key: string]: any }>({});
 
   useEffect(() => {
@@ -9,13 +14,13 @@ const InfoMapper = ({ infos }: { infos: { [key: string]: any } }) => {
       const loadedIcons: { [key: string]: any } = {};
 
       await Promise.all(
-        Object.entries(infos).map(async ([iconName, content]) => {
+        infos.map(async ({ name, content }) => {
           try {
-            const module = await import(`src/assets/img/icons/${iconName}.svg`);
+            const module = await import(`src/assets/img/icons/${name}.svg`);
             const { default: ReactComponent } = module;
-            loadedIcons[iconName] = ReactComponent;
+            loadedIcons[name] = ReactComponent;
           } catch (err) {
-            loadedIcons[iconName] = "ERROR!";
+            loadedIcons[name] = name;
           }
         })
       );
@@ -28,8 +33,8 @@ const InfoMapper = ({ infos }: { infos: { [key: string]: any } }) => {
 
   return (
     <div className={ClassNames.infoMapper}>
-      {Object.entries(infos).map(([iconName, content], i) => {
-        const IconSrc = icons[iconName];
+      {infos.map(({ name, content }, i) => {
+        const IconSrc = icons[name];
 
         return (
           <div key={i} className={ClassNames.infoItem}>
@@ -37,7 +42,7 @@ const InfoMapper = ({ infos }: { infos: { [key: string]: any } }) => {
               <img
                 className={ClassNames.infoItemIcon}
                 src={IconSrc}
-                alt={iconName}
+                alt={name}
               />
             )}
             {IconSrc ? "" : "ERROR!"} <span>{content}</span>

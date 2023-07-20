@@ -1,0 +1,29 @@
+.backInfoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: rotateZ(90deg);
+  transform-origin: center;
+  .team {
+    text-align: center;
+    font-size: calc(20px + 2vw);
+    letter-spacing: -2px;
+    width: 95%;
+    .meTheKing {
+      display: inline-block;
+      width: calc(50px + 3.5vw);
+      height: auto;
+    }
+    .me {
+      display: inline-block;
+      width: calc(20px + 2vw);
+      height: auto;
+    }
+    .teammate {
+      display: inline-block;
+      width: calc(12px + 2vw);
+      height: auto;
+    }
+  }
+}

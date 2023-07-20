@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import ClassNames from "./IconLink.module.scss";
-const IconLink = ({
-  links,
-}: {
-  links: { [icon: string]: { url?: string; tagName?: string } };
-}) => {
+import { InfoItem } from "../InfoMapper/InfoMapper";
+const IconLink = ({ links }: { links: InfoItem[] }) => {
   const [icons, setIcons] = useState<{ [key: string]: any }>({});
 
   useEffect(() => {
@@ -12,13 +9,15 @@ const IconLink = ({
       const loadedIcons: { [key: string]: any } = {};
 
       await Promise.all(
-        Object.entries(links).map(async ([iconName, { url, tagName }]) => {
+        links.map(async ({ name, content }) => {
+          console.log(name);
+          
           try {
-            const module = await import(`src/assets/img/icons/${iconName}.svg`);
+            const module = await import(`src/assets/img/icons/${name}.svg`);
             const { default: ReactComponent } = module;
-            loadedIcons[iconName] = ReactComponent;
+            loadedIcons[name] = ReactComponent;
           } catch (err) {
-            loadedIcons[iconName] = "ERROR!";
+            loadedIcons[name] = "ERROR!";
           }
         })
       );
@@ -31,11 +30,11 @@ const IconLink = ({
 
   return (
     <div className={ClassNames.IconLinkContainer}>
-      {Object.entries(links).map(([iconName, { url, tagName }], i) => {
-        const IconSrc = icons[iconName];
+      {links.map(({ name, content }, i) => {
+        const IconSrc = icons[name];
         return (
           <a
-            href={url}
+            href={content}
             className={ClassNames.IconLink}
             rel="noreferrer"
             target="_blank"
@@ -51,9 +50,9 @@ const IconLink = ({
             <div className={ClassNames.Icons}>
               {IconSrc !== "ERROR!" ? (
                 <div className={ClassNames.icon}>
-                  <img src={IconSrc} alt={tagName} />
-                  {tagName !== "" ? (
-                    <div className={ClassNames.iconName}>{tagName}</div>
+                  <img src={IconSrc} alt={name} />
+                  {name !== "" ? (
+                    <div className={ClassNames.iconName}>{name}</div>
                   ) : (
                     ""
                   )}

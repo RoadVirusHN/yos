@@ -4,11 +4,14 @@ import { animated } from "react-spring";
 import { range } from "src/utils/MyArray";
 import useCreateHandlers from "./useCreateHandlers";
 import Tag from "./Tag";
-
+export interface TagType {
+  tagName: string;
+  color?: string;
+}
 /**
  * cool slide effect! : https://codepen.io/ykadosh/pen/KKezJzz
  */
-function repeatTags(tags: string[], sliderLength: number, tagLength: number) {
+function repeatTags(tags: TagType[], sliderLength: number, tagLength: number) {
   // repeat tags for circular animation.
   const repeatNumber = Math.ceil(
     (sliderLength * 2) / (tagLength * tags.length)
@@ -17,18 +20,22 @@ function repeatTags(tags: string[], sliderLength: number, tagLength: number) {
   return range(repeatNumber).map((k) => {
     return (
       <Fragment key={k}>
-        {tags.map((name, i) => (
-          <Tag key={i} text={name} />
+        {tags.map(({ tagName, color }, i) => (
+          <Tag key={i} text={tagName} color={color ? color : undefined} />
         ))}
-        {tags.map((name, i) => (
-          <Tag key={k * i + i} text={name} /> // for showing tags after translate belt -50%
+        {tags.map(({ tagName, color }, i) => (
+          <Tag
+            key={k * i + i}
+            text={tagName}
+            color={color ? color : undefined}
+          /> // for showing tags after translate belt -50%
         ))}
       </Fragment>
     );
   });
 }
 
-const InfiniteLoopSlider = ({ tags }: { tags: string[] }) => {
+const InfiniteLoopSlider = ({ tags }: { tags: TagType[] }) => {
   const { onMouseMove, onMouseLeave, x } = useCreateHandlers();
   return (
     <div className={ClassNames.sliderContainer}>
