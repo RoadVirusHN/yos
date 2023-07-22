@@ -172,7 +172,7 @@ export const animationData: AnimData<CardAnimInputs> = {
       config: { tension: 200 },
     }),
     stateFloor: () => ({
-      z: 1,
+      z: 0,
       scale: 1,
       gray: 0.7,
       blur: 2,

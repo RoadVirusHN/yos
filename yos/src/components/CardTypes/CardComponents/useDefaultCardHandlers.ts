@@ -78,6 +78,7 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
       // when clicked
       if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
         // pick card animation.
+        
         dragStart.current = { x: e.pageX, y: e.pageY };
         cardAnimController.pickCardAnim();
         window.addEventListener("mouseup", handleMouseUp);
@@ -96,7 +97,7 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
   };
 
   const onChangeOrder = (order: number[]) => {
-    cardAnimController.toDeckCardAnim(order.indexOf(cardData.Index));
+    return cardAnimController.sortCardAnim(order.indexOf(cardData.Index));
   };
 
   return {

@@ -15,9 +15,7 @@ const TutoBackInfo = ({
   useEffect(() => {
     const loadModule = async () => {
       try {
-        const dynamicImport = await import(
-          `src/assets/${backInfo.Src}`
-        );
+        const dynamicImport = await import(`src/assets/${backInfo.Src}`);
 
         const YourComponent = dynamicImport.default || dynamicImport;
         setDoodle(() => YourComponent);
@@ -31,7 +29,7 @@ const TutoBackInfo = ({
   return (
     <div
       className={ClassNames.backInfoContainer}
-      style={{ width: height, height: width }}
+      style={{ width: height, height: width, padding: "5px" }}
     >
       <ScalableSVGWrapper
         content={DoodleComponent ? <DoodleComponent /> : <div>Loading...</div>}

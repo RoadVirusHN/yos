@@ -2,7 +2,7 @@
   border-radius: 10px;
   position: absolute;
   height: 100%;
-  aspect-ratio: 1/1;
+  width: 100%;  
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -36,11 +36,11 @@ div:has(> .front) {
     flex-direction: column;
     .portfolio {
       font-family: Garamond, serif;
-      font-size: 3rem;
+      font-size: 4rem;
     }
     .name {
       font-family: Georgia, serif;
-      font-size: 1rem;
+      font-size: 1.5rem;
       line-height: 50%;
       color: goldenrod;
     }

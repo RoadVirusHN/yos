@@ -3,6 +3,7 @@ import { DeckStyles } from "src/components/Deck/Deck";
 import { CardAnimInputs, CardStyles, animationData } from "src/data/CardData";
 import { animation, unstoppable } from "src/lib/Animation";
 import { AnimatedStyles } from "./AnimController";
+import { AllCardData } from "src/data/CardProcessors";
 // define animation play functions
 export class CardAnimController {
   cardAnimAPI: {
@@ -16,8 +17,10 @@ export class CardAnimController {
   states: {
     [state: string]: (...args: any[]) => CardAnimInputs;
   };
+  cardData: AllCardData;
 
   constructor(
+    cardData: AllCardData,
     cardAnimAPI: {
       setCardAnim: SpringRef<CardStyles>;
       cardAnim: AnimatedStyles<CardStyles>;
@@ -27,6 +30,7 @@ export class CardAnimController {
       deckAnim: AnimatedStyles<DeckStyles>;
     }
   ) {
+    this.cardData = cardData;
     this.cardAnimAPI = cardAnimAPI;
     this.deckAnimAPI = deckAnimAPI;
     this.states = animationData.states;
@@ -34,6 +38,10 @@ export class CardAnimController {
 
   @animation
   toTopCardAnim() {
+    console.log("totop");
+
+    console.log(this.cardData.Index);
+
     return this.cardAnimAPI.setCardAnim.start(
       this.states.stateTop(
         this.cardAnimAPI.cardAnim.rz.get(),
@@ -43,7 +51,7 @@ export class CardAnimController {
   }
 
   @animation
-  toDeckCardAnim(order: number) {
+  sortCardAnim(order: number) {
     return this.cardAnimAPI.setCardAnim.start(
       this.states.stateDeck(order, this.deckAnimAPI.deckAnim.order.get().length)
     );

@@ -18,7 +18,7 @@ const TutoBack = () => {
   return (
     <svg
       filter="url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7))"
-      viewBox="0 0 108 156"
+      viewBox="-5 -5 113 113"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

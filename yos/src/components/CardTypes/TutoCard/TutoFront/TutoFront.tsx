@@ -26,7 +26,7 @@ const TutoFront = (
             [cardAnimController.deckAnimAPI.deckAnim.order],
             (order) => {
               if (order[1] === cardData.Index) {
-                (ref.current as HTMLDivElement).innerText = "TAHNK YOU!";
+                (ref.current as HTMLDivElement).innerText = "DONE!";
               }
               return "";
             }
@@ -35,7 +35,7 @@ const TutoFront = (
       >
         <div className={ClassNames.container}>
           <div ref={ref} className={ClassNames.portfolio}>
-            <div style={{ fontSize: "40%", lineHeight: "20%" }}>THE</div>
+            <div style={{ fontSize: "50%", lineHeight: "30%" }}>THE</div>
             LUXURIST
           </div>
           <div className={ClassNames.name}>JUNSEOK-YUN PORTFOLIO</div>

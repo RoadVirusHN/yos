@@ -12,14 +12,13 @@ div:has(> .backgroundContainer) {
 
 .backgroundContainer {
   overflow: hidden;
-  display: block;
   height: 100%;
-  aspect-ratio: 1/1 !important;
+  width: 100%;
   border-radius: 10% 25%;
   text-align: center;
   inset: 0;
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
   background-repeat: no-repeat;
   background-position: center;
@@ -29,4 +28,5 @@ div:has(> .backgroundContainer) {
 .backInfoContainer {
   transform: rotateZ(90deg);
   overflow: hidden;
+
 }

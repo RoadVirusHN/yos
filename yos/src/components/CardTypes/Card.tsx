@@ -43,7 +43,11 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
     )
   );
   const cardAnimAPI = { setCardAnim, cardAnim };
-  const cardAnimController = new CardAnimController(cardAnimAPI, deckAnimAPI);
+  const cardAnimController = new CardAnimController(
+    cardData,
+    cardAnimAPI,
+    deckAnimAPI
+  );
   const PropForComponents = {
     cardData,
     cardAnimController,
@@ -69,8 +73,11 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
           {...cardStates.AdditionalHandlers(PropForComponents)}
           style={{
             cursor,
-            transform: to([rx, ry, rz, scale], trans),
-            aspectRatio: ratio,
+            transform: to([rx, ry, rz, scale, ratio], trans),
+            aspectRatio: ratio.to((v) => {
+              if (v === 1) return "1 / 1  ";
+              return "89 / 64";
+            }),
             boxShadow: shadow.to((shadow) =>
               shadow
                 ? "0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3)"

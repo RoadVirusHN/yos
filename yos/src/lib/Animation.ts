@@ -1,17 +1,17 @@
 import { CardAnimController } from "src/animations/CardAnim";
 
-export const animation = (
+export function animation(
   target: CardAnimController,
   key: string,
   desc: PropertyDescriptor
-) => {
-  let method = desc.value;
-  desc.value = function (...args: any[]) {
-    const controller = this as CardAnimController;
-    method = method.bind(this);
+) {
+  const method = desc.value;
+  desc.value = function (this: CardAnimController, ...args: any[]) {
+    // method = method.bind(this); // this produces singleton controller.
+
     const [setCardAnim, cardAnim] = [
-      controller.cardAnimAPI.setCardAnim,
-      controller.cardAnimAPI.cardAnim,
+      this.cardAnimAPI.setCardAnim,
+      this.cardAnimAPI.cardAnim,
     ];
 
     if (cardAnim.onAnim === undefined) {
@@ -22,17 +22,17 @@ export const animation = (
     if (formerAnim === "queueable") {
       setCardAnim.start({
         onResolve: () => {
-          method(...args);
+          method.call(this, ...args);
         },
       });
     } else if (formerAnim !== "") {
       console.log(`${key} animation prevented by ${formerAnim}`);
       return;
     }
-    return method(...args);
+    return method.call(this, ...args);
   };
   return desc;
-};
+}
 export const unstoppable =
   ({ queue = false } = {}) =>
   (
@@ -40,11 +40,11 @@ export const unstoppable =
     key: string, // decorator function name
     desc: PropertyDescriptor // additional infos
   ) => {
-    const method = desc.value;
-    desc.value = function (controller: CardAnimController, ...args: any[]) {
+    let method = desc.value;
+    desc.value = function (this: CardAnimController, ...args: any[]) {
       const [setCardAnim, cardAnim] = [
-        controller.cardAnimAPI.setCardAnim,
-        controller.cardAnimAPI.cardAnim,
+        this.cardAnimAPI.setCardAnim,
+        this.cardAnimAPI.cardAnim,
       ];
       if (queue) {
         setCardAnim.start({ immediate: true, onAnim: "queueable" });
@@ -52,7 +52,7 @@ export const unstoppable =
         setCardAnim.start({ immediate: true, onAnim: key });
       }
       return [
-        method(controller, ...args)[0].then((_e: any) => {
+        method.call(this, ...args)[0].then((_e: any) => {
           return setCardAnim.start({ immediate: true, onAnim: "" });
         }),
       ];

@@ -18,7 +18,10 @@ const TutoBack = (
     useEffect(() => {
       setWidth(ref.current ? ref.current.clientWidth : 0);
       setHeight(ref.current ? ref.current.clientHeight : 0);
-      cardAnimController.cardAnimAPI.setCardAnim.set({ shadow: false });
+      cardAnimController.cardAnimAPI.setCardAnim.set({
+        shadow: false,
+        ratio: 1 / 1,
+      });
     }, []);
     return (
       <animated.div

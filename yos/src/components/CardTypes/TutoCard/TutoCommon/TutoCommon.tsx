@@ -43,12 +43,12 @@ const TutoCommon = (
     return (
       <>
         {side === "front" ? (
-          <span className={ClassNames.indicator}>
+          <animated.span className={ClassNames.indicator} style={{filter: to([gray, blur], filt)}}>
             <span>
               DO NOT <br /> CLICK IT
             </span>
             <span style={{ fontSize: "180%", fontWeight: "bold" }}> →</span>
-          </span>
+          </animated.span>
         ) : (
           ""
         )}
