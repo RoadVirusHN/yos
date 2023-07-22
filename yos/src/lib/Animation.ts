@@ -5,8 +5,10 @@ export const animation = (
   key: string,
   desc: PropertyDescriptor
 ) => {
-  const method = desc.value;
-  desc.value = (controller: CardAnimController, ...args: any[]) => {
+  let method = desc.value;
+  desc.value = function (...args: any[]) {
+    const controller = this as CardAnimController;
+    method = method.bind(this);
     const [setCardAnim, cardAnim] = [
       controller.cardAnimAPI.setCardAnim,
       controller.cardAnimAPI.cardAnim,
@@ -20,14 +22,14 @@ export const animation = (
     if (formerAnim === "queueable") {
       setCardAnim.start({
         onResolve: () => {
-          method(controller, ...args);
+          method(...args);
         },
       });
     } else if (formerAnim !== "") {
       console.log(`${key} animation prevented by ${formerAnim}`);
       return;
     }
-    return method(controller, ...args);
+    return method(...args);
   };
   return desc;
 };

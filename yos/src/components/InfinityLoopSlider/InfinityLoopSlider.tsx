@@ -48,7 +48,7 @@ const InfiniteLoopSlider = ({ tags }: { tags: TagType[] }) => {
           className={ClassNames.belt}
           style={{ transform: x.to((x) => `translateX(-${x}%)`) }}
         >
-          {repeatTags(tags, 2, 1)}
+          {repeatTags(tags, 3, 1)}
         </animated.div>
       </div>
       <div className={ClassNames.fade} />

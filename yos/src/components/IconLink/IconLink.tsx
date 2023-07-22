@@ -10,8 +10,6 @@ const IconLink = ({ links }: { links: InfoItem[] }) => {
 
       await Promise.all(
         links.map(async ({ name, content }) => {
-          console.log(name);
-          
           try {
             const module = await import(`src/assets/img/icons/${name}.svg`);
             const { default: ReactComponent } = module;

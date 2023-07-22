@@ -1,5 +1,5 @@
 import { SpringRef } from "react-spring";
-import { DeckStyles } from "src/components/Deck-refactor/Deck";
+import { DeckStyles } from "src/components/Deck/Deck";
 import { CardAnimInputs, CardStyles, animationData } from "src/data/CardData";
 import { animation, unstoppable } from "src/lib/Animation";
 import { AnimatedStyles } from "./AnimController";
@@ -30,80 +30,75 @@ export class CardAnimController {
     this.cardAnimAPI = cardAnimAPI;
     this.deckAnimAPI = deckAnimAPI;
     this.states = animationData.states;
-    
   }
 
   @animation
-  toTopCardAnim(controller: CardAnimController) {
-    return controller.cardAnimAPI.setCardAnim.start(
-      controller.states.stateTop(
-        controller.cardAnimAPI.cardAnim.rz.get(),
-        controller.deckAnimAPI.deckAnim.order.get().length
+  toTopCardAnim() {
+    return this.cardAnimAPI.setCardAnim.start(
+      this.states.stateTop(
+        this.cardAnimAPI.cardAnim.rz.get(),
+        this.deckAnimAPI.deckAnim.order.get().length
       )
     );
   }
 
   @animation
-  toDeckCardAnim(controller: CardAnimController, order: number) {
-
-    return controller.cardAnimAPI.setCardAnim.start(
-      controller.states.stateDeck(order, controller.deckAnimAPI.deckAnim.order.get().length)
+  toDeckCardAnim(order: number) {
+    return this.cardAnimAPI.setCardAnim.start(
+      this.states.stateDeck(order, this.deckAnimAPI.deckAnim.order.get().length)
     );
   }
 
   @animation
-  pickCardAnim(controller: CardAnimController) {
-    return controller.cardAnimAPI.setCardAnim.start(
-      controller.states.statePick(controller.cardAnimAPI.cardAnim.rz.get())
+  pickCardAnim() {
+    return this.cardAnimAPI.setCardAnim.start(
+      this.states.statePick(this.cardAnimAPI.cardAnim.rz.get())
     );
   }
 
   @animation
-  setFloatCardAnim(controller: CardAnimController) {
-    return controller.cardAnimAPI.setCardAnim.start(
-      controller.states.stateFloat(controller.deckAnimAPI.deckAnim.order.get().length)
+  setFloatCardAnim() {
+    return this.cardAnimAPI.setCardAnim.start(
+      this.states.stateFloat(this.deckAnimAPI.deckAnim.order.get().length)
     );
   }
 
   @animation
-  setFlickableCardAnim(controller: CardAnimController) {
-    return controller.cardAnimAPI.setCardAnim.start(
-      controller.states.stateFlickable(controller.deckAnimAPI.deckAnim.order.get().length)
+  setFlickableCardAnim() {
+    return this.cardAnimAPI.setCardAnim.start(
+      this.states.stateFlickable(this.deckAnimAPI.deckAnim.order.get().length)
     );
   }
 
   @animation
   @unstoppable()
-  flipCardAnim(controller: CardAnimController) {
-    if (controller.cardAnimAPI.cardAnim.side.get() === "front") {
-      return controller.cardAnimAPI.setCardAnim.start(
-        controller.states.stateBack(controller.cardAnimAPI.cardAnim)
+  flipCardAnim() {
+    if (this.cardAnimAPI.cardAnim.side.get() === "front") {
+      return this.cardAnimAPI.setCardAnim.start(
+        this.states.stateBack(this.cardAnimAPI.cardAnim)
       );
     } else {
-      return controller.cardAnimAPI.setCardAnim.start(
-        controller.states.stateFront(controller.cardAnimAPI.cardAnim)
+      return this.cardAnimAPI.setCardAnim.start(
+        this.states.stateFront(this.cardAnimAPI.cardAnim)
       );
     }
   }
 
   @animation
-  cardFollowCursorAnim(
-    controller: CardAnimController,
-    mouseDelta: { dX: number; dY: number }
-  ) {
-    return controller.cardAnimAPI.setCardAnim.start(
-      controller.states.stateMove(mouseDelta)
+  cardFollowCursorAnim(mouseDelta: { dX: number; dY: number }) {
+    return this.cardAnimAPI.setCardAnim.start(
+      this.states.stateMove(mouseDelta)
     );
   }
 
   @animation
-  putCardAnim(controller: CardAnimController, flickable: boolean) {
-    return controller.cardAnimAPI.setCardAnim.start(
+  putCardAnim(flickable: boolean) {
+    return this.cardAnimAPI.setCardAnim.start(
       flickable
-        ? controller.states.stateFloor()
-        : controller.states.stateTop(
-            controller.cardAnimAPI.cardAnim.rz.get(),
-            controller.deckAnimAPI.deckAnim.order.get().length
+        ? this.states.stateFloor()
+        : this.states.stateTop(
+            this.cardAnimAPI.cardAnim.rz.get(),
+            this.deckAnimAPI.deckAnim.order.get().length
           )
     );
   }

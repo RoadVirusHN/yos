@@ -4,6 +4,7 @@ export const BandEnum = {
   DONE: "DONE",
   DROPPED: "DROPPED",
   INPROGRESS: "INPROGRESS",
+  TUTORIAL: "TUTORIAL"
 };
 export const CardTypeEnum = {
   PROJTECT: "PJT",

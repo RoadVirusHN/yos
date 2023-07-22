@@ -1,8 +1,8 @@
-import { ReactComponent as CoolCat } from "src/assets/img/cards/graffities/coolcat.svg";
-import { ReactComponent as TutoBorder } from "src/assets/img/cards/graffities/border.svg";
+import { ReactComponent as CoolCat } from "src/assets/img/cards/doodles/coolcat.svg";
+import { ReactComponent as TutoBorder } from "src/assets/img/cards/doodles/border.svg";
 import testVideo from "src/assets/img/cards/previews/test-big-comp.mp4";
 import testVideoBig from "src/assets/img/cards/previews/test-big.webm";
-import Kejang from "src/assets/img/cards/graffities/kejang/Kejang";
+import Kejang from "src/assets/img/cards/doodles/kejang/Kejang";
 import {
   PjtCardInfo,
   TutorialCardInfo,
@@ -10,9 +10,9 @@ import {
   BandStatus,
 } from "@customTypes/Card";
 import { CardTypeEnum, BandEnum } from "./enums/enums";
-import TutoBack from "src/assets/img/cards/graffities/tutoBack/TutoBack";
-import TutoFront from "src/assets/img/cards/graffities/tutoFront/TutoFront";
-import TutoTitle from "src/assets/img/cards/graffities/tutoTitle/TutoTitle";
+import TutoBack from "src/assets/img/cards/doodles/tutoBack/TutoBack";
+import TutoFront from "src/assets/img/cards/doodles/tutoFront/TutoFront";
+import TutoTitle from "src/assets/img/cards/doodles/tutoTitle/TutoTitle";
 
 // !important : dont get the graffiti directly from the component
 

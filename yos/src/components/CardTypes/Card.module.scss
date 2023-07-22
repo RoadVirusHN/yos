@@ -1,0 +1,30 @@
+// scss file only contains these.
+// - constant properties
+// - responsive properties
+// - unrelated with animations.
+
+.cardWrapper {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  user-select: none;
+  z-index: 1;
+  .card {
+    min-width: 360px;
+    width: 45vw;
+    max-width: 540px;
+    border-radius: 10px;
+    will-change: transform;
+    touch-action: none;
+    user-select: none;
+    transform-style: preserve-3d;
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}

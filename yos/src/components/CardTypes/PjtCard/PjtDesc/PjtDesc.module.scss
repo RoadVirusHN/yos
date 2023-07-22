@@ -1,0 +1,88 @@
+.doodleTitle {
+  position: absolute;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  text-anchor: middle;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  outline: none;
+  user-select: none;
+  pointer-events: none;
+  touch-action: none;
+  color: blueviolet;
+  font-family: "Hi Melody", cursive;
+  z-index: 999;
+  transform: translateZ(999px);
+  filter: url(#squiggly) drop-shadow(2px 2px 3px rgba(50, 50, 50, 0.7));
+  foreignObject {
+    width: 100%;
+    height: 100%;
+    .title {
+      font-weight: bold;
+      font-size: 4rem;
+      line-height: 3rem;
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+    .subtitle {
+      margin-top: 5px;
+      font-size: 3rem;
+      line-height: 2rem;
+    }
+  }
+}
+.doodle {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  color: blueviolet;
+  font-family: "Hi Melody", cursive;
+  z-index: -1;
+  transform: translateZ(-999px) ;
+  outline: none;
+  user-select: none;
+  touch-action: none;
+  pointer-events: none;
+  overflow: visible;
+  foreignObject {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    * {
+      margin: 0;
+    }
+    .doodleContainer {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      overflow: visible;
+      .doodleLeft {
+        max-height: 100%;
+        margin: 0;
+        height: fit-content;
+        width: calc(35%);
+        transform: rotateZ(30deg) rotateX(15deg);
+        svg {
+          position: relative;
+        }
+      }
+      .doodleRight {
+        max-height: 100%;
+        margin: 0;
+        height: fit-content;
+        width: calc(35%);
+        transform: rotateZ(-30deg) rotateX(15deg);
+        svg {
+          position: relative;
+        }
+      }
+    }
+  }
+}

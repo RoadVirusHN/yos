@@ -22,6 +22,8 @@ export type CardStyles = {
   gray: number;
   blur: number;
   scale: number;
+  ratio: number;
+  shadow: boolean;
   isTop: 1 | 0;
   onAnim: string;
   cursor: "grab" | "default" | "grabbing" | "alias";
@@ -42,6 +44,8 @@ export type CardTranstions = {
   isTop?: 1 | 0;
   cursor?: "grab" | "default" | "grabbing" | "alias";
   side?: "front" | "back";
+  ratio?: number;
+  shadow?: boolean;
   onAnim?: string;
   immediate?: boolean;
   config?: { friction?: number; mass?: number; tension?: number };
@@ -71,6 +75,8 @@ export const animationData: AnimData<CardAnimInputs> = {
         scale: 1.5,
         isTop: i === deckLength - 1 ? 1 : 0,
         onAnim: "",
+        ratio: 89 / 64,
+        shadow: true,
         cursor: i === deckLength - 1 ? "grab" : "default",
         side: "front",
       };

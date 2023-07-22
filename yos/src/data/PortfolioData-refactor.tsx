@@ -1,12 +1,12 @@
 import { BandEnum } from "./enums/enums";
-import { PjtCardData, PjtCardProcessor } from "./CardProcessors";
-
-// !important : dont get the graffiti directly from the component
-
-// Datas
-export const PortfolioCards: PjtCardData[] = [
+import {
+  AllCardData,
+  PjtCardProcessor,
+  TutoCardProcessor,
+} from "./CardProcessors";
+export const PortfolioCards: AllCardData[] = [
   {
-    type: PjtCardProcessor,
+    Type: PjtCardProcessor,
     Description: {
       Title: "DNS: Developer Network Service",
       Subtitle: "SNS Cloning Team Project",
@@ -32,7 +32,7 @@ export const PortfolioCards: PjtCardData[] = [
     CommonFace: { Status: BandEnum.DONE },
   },
   {
-    type: PjtCardProcessor,
+    Type: PjtCardProcessor,
     Description: {
       Title: "Cat Swimming 😸",
       Subtitle: "SecondHand Transaction Search & ML Based Filtering Service",
@@ -57,4 +57,15 @@ export const PortfolioCards: PjtCardData[] = [
     },
     CommonFace: { Status: BandEnum.POSTPONED },
   },
-];
+  {
+    Type: TutoCardProcessor,
+    Description: {
+      Src: "img/cards/doodles/tutoBack/TutoBack",
+    },
+    FrontFace: {},
+    BackFace: {
+      Src: "img/cards/doodles/tutoBack/TutoBack",
+    },
+    CommonFace: { Status: BandEnum.TUTORIAL },
+  },
+].map((info, i) => ({ Index: i, ...info }));

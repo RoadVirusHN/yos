@@ -1,4 +1,4 @@
-import Deck from "src/components/Deck-refactor/Deck";
+import Deck from "src/components/Deck/Deck";
 import { PortfolioCards } from "src/data/PortfolioData-refactor";
 import PDFPortfolioButton from "./PDFPortfolioButton";
 

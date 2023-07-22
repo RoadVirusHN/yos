@@ -1,0 +1,49 @@
+.indicator {
+  display: flex;
+  right: 167px;
+  top: 25px;
+  position: absolute;
+  z-index: 999;
+  gap: 5px;
+  font-size: calc(0.6vw + 12px);
+  font-weight: bold;
+  transform: rotateZ(-10deg);
+  color: rgb(221, 63, 95);
+  margin: 0;
+}
+.band {
+  position: absolute;
+  right: 29px;
+  top: -17px;
+  z-index: 9;
+
+  //generate clip from https://www.cssportal.com/css-clip-path-generator/
+  -webkit-clip-path: polygon(
+    2% 0,
+    54% 0,
+    98% 43%,
+    98% 96%,
+    86% 96%,
+    85% 88%,
+    11% 12%,
+    2% 11%
+  );
+  clip-path: polygon(
+    2% 0,
+    54% 0,
+    98% 43%,
+    98% 96%,
+    86% 96%,
+    85% 88%,
+    11% 12%,
+    2% 11%
+  );
+  touch-action: none;
+  user-select: none;
+  & > svg {
+    position: relative;
+  }
+  path {
+    cursor: pointer;
+  }
+}
