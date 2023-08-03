@@ -13,10 +13,8 @@ import TutoBack from "src/components/CardTypes/TutoCard/TutoBack/TutoBack";
 import TutoFront from "src/components/CardTypes/TutoCard/TutoFront/TutoFront";
 import TutoDesc from "src/components/CardTypes/TutoCard/TutoDesc/TutoDesc";
 
-type ExcludeIndex<T> = Pick<T, Exclude<keyof T, "index">>;
-
-export type CardComponentData<T extends keyof ExcludeIndex<U>, U> = {
-  Data: ExcludeIndex<U>[T];
+export type CardComponentData<T> = {
+  Data: Omit<T, "Index">;
   Component: React.ComponentType<CardComponentProps>;
 };
 
@@ -27,18 +25,25 @@ const EmptyComponent = {
   },
 };
 
+type CardComponentKeys =
+  | "Description"
+  | "Float"
+  | "FrontFace"
+  | "BackFace"
+  | "CommonFace";
+
+type CardComponentMap<T> = {
+  [key in CardComponentKeys]: CardComponentData<T>;
+};
+
 export type CardStates<T> = {
   Index: number;
   Type: CardType;
-  Description: CardComponentData<keyof ExcludeIndex<T>, T>;
-  Float: CardComponentData<keyof ExcludeIndex<T>, T>;
-  FrontFace: CardComponentData<keyof ExcludeIndex<T>, T>;
-  BackFace: CardComponentData<keyof ExcludeIndex<T>, T>;
-  CommonFace: CardComponentData<keyof ExcludeIndex<T>, T>;
   AdditionalHandlers: (props: CardComponentProps) => {
     [key: string]: (e: Event) => any;
   };
-};
+} & CardComponentMap<T>;
+
 export type AllCardData = PjtCardData | TutoCardData;
 
 export type TutoCardData = {

@@ -1,6 +1,6 @@
 import { SpringRef } from "react-spring";
 import { DeckStyles } from "src/components/Deck/Deck";
-import { CardAnimInputs, CardStyles, animationData } from "src/data/CardData";
+import { AnimStates, CardStates, CardStyles } from "src/data/CardData";
 import { animation, unstoppable } from "src/lib/Animation";
 import { AnimatedStyles } from "./AnimController";
 import { AllCardData } from "src/data/CardProcessors";
@@ -14,9 +14,7 @@ export class CardAnimController {
     setDeckAnim: SpringRef<DeckStyles>;
     deckAnim: AnimatedStyles<DeckStyles>;
   };
-  states: {
-    [state: string]: (...args: any[]) => CardAnimInputs;
-  };
+  states: AnimStates<CardStyles>;
   cardData: AllCardData;
 
   constructor(
@@ -33,17 +31,13 @@ export class CardAnimController {
     this.cardData = cardData;
     this.cardAnimAPI = cardAnimAPI;
     this.deckAnimAPI = deckAnimAPI;
-    this.states = animationData.states;
+    this.states = CardStates(cardAnimAPI.cardAnim);
   }
 
   @animation
   toTopCardAnim() {
-    console.log("totop");
-
-    console.log(this.cardData.Index);
-
     return this.cardAnimAPI.setCardAnim.start(
-      this.states.stateTop(
+      this.states.StateTop(
         this.cardAnimAPI.cardAnim.rz.get(),
         this.deckAnimAPI.deckAnim.order.get().length
       )
@@ -53,28 +47,28 @@ export class CardAnimController {
   @animation
   sortCardAnim(order: number) {
     return this.cardAnimAPI.setCardAnim.start(
-      this.states.stateDeck(order, this.deckAnimAPI.deckAnim.order.get().length)
+      this.states.StateDeck(order, this.deckAnimAPI.deckAnim.order.get().length)
     );
   }
 
   @animation
   pickCardAnim() {
     return this.cardAnimAPI.setCardAnim.start(
-      this.states.statePick(this.cardAnimAPI.cardAnim.rz.get())
+      this.states.StatePick(this.cardAnimAPI.cardAnim.rz.get())
     );
   }
 
   @animation
   setFloatCardAnim() {
     return this.cardAnimAPI.setCardAnim.start(
-      this.states.stateFloat(this.deckAnimAPI.deckAnim.order.get().length)
+      this.states.StateFloat(this.deckAnimAPI.deckAnim.order.get().length)
     );
   }
 
   @animation
   setFlickableCardAnim() {
     return this.cardAnimAPI.setCardAnim.start(
-      this.states.stateFlickable(this.deckAnimAPI.deckAnim.order.get().length)
+      this.states.StateFlickable(this.deckAnimAPI.deckAnim.order.get().length)
     );
   }
 
@@ -83,11 +77,11 @@ export class CardAnimController {
   flipCardAnim() {
     if (this.cardAnimAPI.cardAnim.side.get() === "front") {
       return this.cardAnimAPI.setCardAnim.start(
-        this.states.stateBack(this.cardAnimAPI.cardAnim)
+        this.states.StateBack(this.cardAnimAPI.cardAnim)
       );
     } else {
       return this.cardAnimAPI.setCardAnim.start(
-        this.states.stateFront(this.cardAnimAPI.cardAnim)
+        this.states.StateFront(this.cardAnimAPI.cardAnim)
       );
     }
   }
@@ -95,7 +89,7 @@ export class CardAnimController {
   @animation
   cardFollowCursorAnim(mouseDelta: { dX: number; dY: number }) {
     return this.cardAnimAPI.setCardAnim.start(
-      this.states.stateMove(mouseDelta)
+      this.states.StateMove(mouseDelta)
     );
   }
 
@@ -103,8 +97,8 @@ export class CardAnimController {
   putCardAnim(flickable: boolean) {
     return this.cardAnimAPI.setCardAnim.start(
       flickable
-        ? this.states.stateFloor()
-        : this.states.stateTop(
+        ? this.states.StateFloor()
+        : this.states.StateTop(
             this.cardAnimAPI.cardAnim.rz.get(),
             this.deckAnimAPI.deckAnim.order.get().length
           )

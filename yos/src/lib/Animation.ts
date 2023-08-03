@@ -1,30 +1,27 @@
+import { Lookup } from "react-spring";
 import { CardAnimController } from "src/animations/CardAnim";
+import { AnimStates } from "src/data/CardData";
 
-export function animation(
-  target: CardAnimController,
+export function animation<T extends Lookup<any>>(
+  _target: AnimStates<T>,
   key: string,
   desc: PropertyDescriptor
 ) {
   const method = desc.value;
-  desc.value = function (this: CardAnimController, ...args: any[]) {
+  desc.value = function (this: AnimStates<T>, ...args: any[]) {
     // method = method.bind(this); // this produces singleton controller.
 
-    const [setCardAnim, cardAnim] = [
-      this.cardAnimAPI.setCardAnim,
-      this.cardAnimAPI.cardAnim,
-    ];
-
-    if (cardAnim.onAnim === undefined) {
+    if (this.StyleValues.onAnim.get() === undefined) {
       throw Error("All Animations should have onAnim property.");
     }
 
-    const formerAnim = cardAnim.onAnim.get();
+    const formerAnim = this.StyleValues.onAnim.get();
     if (formerAnim === "queueable") {
-      setCardAnim.start({
-        onResolve: () => {
-          method.call(this, ...args);
-        },
-      });
+      // setCardAnim.start({
+      //   onResolve: () => {
+      //     method.call(this, ...args);
+      //   },
+      // });
     } else if (formerAnim !== "") {
       console.log(`${key} animation prevented by ${formerAnim}`);
       return;
