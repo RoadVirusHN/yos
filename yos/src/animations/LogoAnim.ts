@@ -1,5 +1,5 @@
-import { Lookup, SpringRef } from "react-spring";
-import { LogoAnimInputs } from "src/data/LogoData";
+import { type Lookup, type SpringRef } from 'react-spring';
+import { type LogoAnimInputs } from 'src/data/LogoData';
 
 /**
  * there are three States in Logo.
@@ -10,7 +10,7 @@ import { LogoAnimInputs } from "src/data/LogoData";
 
 export const toEmphasizeAnim = (
   states: LogoAnimInputs,
-  apis: { apiLogo: SpringRef<Lookup<any>>; apiText: SpringRef<Lookup<any>> }
+  apis: { apiLogo: SpringRef<Lookup<any>>, apiText: SpringRef<Lookup<any>> }
 ) => {
   const { logo, text } = states;
   const { apiLogo, apiText } = apis;
@@ -22,9 +22,9 @@ export const toEmphasizeAnim = (
 export const toIdleAnim = (
   states: LogoAnimInputs,
   apis: {
-    apiLogo: SpringRef<Lookup<any>>;
-    apiText: SpringRef<Lookup<any>>;
-    apiReflection: SpringRef<Lookup<any>>;
+    apiLogo: SpringRef<Lookup<any>>
+    apiText: SpringRef<Lookup<any>>
+    apiReflection: SpringRef<Lookup<any>>
   }
 ) => {
   const { logo, reflection, text } = states;
@@ -34,6 +34,4 @@ export const toIdleAnim = (
   apiText.start(text);
 };
 
-export interface toRotateAnim {
-  (e: MouseEvent): void;
-} // implemented in LogoHook.ts
+export type toRotateAnim = (e: MouseEvent) => void; // implemented in LogoHook.ts

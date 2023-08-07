@@ -11,7 +11,6 @@ export const calcY = (
   rect: React.MutableRefObject<DOMRect | null>
 ) => (x - (rect.current!.x + rect.current!.width / 2)) / 20;
 
-
 export const yText = (py: number) => {
   const cy = window.innerHeight / 2;
   return -((py - cy) / window.innerHeight) * 10;

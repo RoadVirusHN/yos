@@ -1,0 +1,31 @@
+.indicator {
+  position: absolute;
+  display: flex;
+  top: 5%;
+  left: 20%;
+  gap: 5px;
+  font-size: calc(0.6vw + 12px);
+  font-weight: bold;
+  transform: rotateZ(-10deg);
+  color: rgb(221, 63, 95);
+  margin: 0;
+}
+.container {
+  font-family: serif;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .portfolio {
+    font-family: Garamond, serif;
+    font-size: 3rem;
+  }
+  .name {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    line-height: 50%;
+    color: goldenrod;
+  }
+}

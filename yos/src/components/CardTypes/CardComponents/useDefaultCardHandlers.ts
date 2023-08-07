@@ -1,8 +1,8 @@
-import { CardStyles, flickableDistance } from "src/data/CardData";
-import { useEffect, useRef } from "react";
-import { getManhattanDistance } from "src/utils/MyMath";
-import { CardComponentProps } from "../Card";
-import { SpringValues } from "react-spring";
+import { type CardStyles, flickableDistance } from 'src/data/CardData';
+import { useEffect, useRef } from 'react';
+import { getManhattanDistance } from 'src/utils/MyMath';
+import { type CardComponentProps } from '../Card';
+import { type SpringValues } from 'react-spring';
 
 export function canFlick(props: SpringValues<CardStyles>) {
   const [dX, dY] = [Math.abs(props.x.get()), Math.abs(props.y.get())];
@@ -14,10 +14,11 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
   const { cardData, cardAnimController, deckAnimAPI } = cardProps;
 
   useEffect(() => {
-    cardAnimController.TransitionTo.StateStart(
+    void cardAnimController.TransitionTo.StateStart(
       cardData.Index,
       deckAnimAPI.deckAnim.order.get().length
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const defaultPreventor = (e: React.MouseEvent) => {
@@ -34,16 +35,15 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
       const dragDist = getManhattanDistance(fr, dragStart.current);
 
       if (canFlick(cardAnimController.AnimStates.AnimAPI.AnimValues)) {
-        cardAnimController.TransitionTo.StateFlickable(
+        void cardAnimController.TransitionTo.StateFlickable(
           deckAnimAPI.deckAnim.order.get().length
         );
       } else {
-        cardAnimController.TransitionTo.StateFloat(
+        void cardAnimController.TransitionTo.StateFloat(
           deckAnimAPI.deckAnim.order.get().length
         );
       }
-      cardAnimController.TransitionTo.StateMove(dragDist);
-      // cardAnimController.cardFollowCursorAnim(dragDist);
+      void cardAnimController.TransitionTo.StateMove(dragDist);
     } else if (
       dragStart.current.x !== -1 &&
       dragStart.current.y !== -1 &&
@@ -52,36 +52,30 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
       handleMouseUp(e);
     }
   };
-
-  const handleMouseUp = (e: MouseEvent) => {
+  const handleMouseUp = (_e: MouseEvent) => {
     // only top card can be placed.
     if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
-      let result;
-      const flickable = canFlick(
+      if (canFlick(
         cardAnimController.AnimStates.AnimAPI.AnimValues
-      );
-      if (flickable) {
-        result = cardAnimController.TransitionTo.StateFloor();
-      } else {
-        result = cardAnimController.TransitionTo.StateTop(
-          deckAnimAPI.deckAnim.order.get().length
-        );
-      }
-      if (flickable) {
-        result.then((_e: any) => {
+      )) {
+        cardAnimController.TransitionTo.StateFloor().then((_res: any) => {
           deckAnimAPI.setDeckAnim.set({
             order: [cardData.Index].concat(
               deckAnimAPI.deckAnim.order
                 .get()
                 .filter((ele) => ele !== cardData.Index)
-            ),
+            )
           });
         });
+      } else {
+        cardAnimController.TransitionTo.StateTop(
+          deckAnimAPI.deckAnim.order.get().length
+        )
       }
       dragStart.current = { x: -1, y: -1 };
     }
-    window.removeEventListener("mouseup", handleMouseUp);
-    window.removeEventListener("mousemove", handleMove);
+    window.removeEventListener('mouseup', handleMouseUp);
+    window.removeEventListener('mousemove', handleMove);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -89,28 +83,28 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
       // when clicked
       if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
         // pick card animation.
-
         dragStart.current = { x: e.pageX, y: e.pageY };
-        cardAnimController.TransitionTo.StatePick();
+        void cardAnimController.TransitionTo.StatePick();
         window.addEventListener("mouseup", handleMouseUp);
         window.addEventListener("mousemove", handleMove);
       } else if (deckAnimAPI.deckAnim.order.get()[0] === cardData.Index) {
         // floor card to top
-        cardAnimController.TransitionTo.StateTop(
+        void cardAnimController.TransitionTo.StateTop(
           deckAnimAPI.deckAnim.order.get().length
         );
+        // change deck Order
         deckAnimAPI.setDeckAnim.set({
           order: deckAnimAPI.deckAnim.order
             .get()
             .slice(1)
-            .concat([cardData.Index]),
+            .concat([cardData.Index])
         });
       }
     }
   };
 
-  const onChangeOrder = (order: number[]) => {
-    return cardAnimController.TransitionTo.StateDeck(
+  const onChangeOrder = async (order: number[]) => {
+    return await cardAnimController.TransitionTo.StateDeck(
       order.indexOf(cardData.Index),
       order.length
     );
@@ -121,7 +115,7 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
     onDragOver: defaultPreventor,
     onDragStart: defaultPreventor,
     onChangeOrder,
-    onChangeMode: (mode: string) => {},
+    onChangeMode: (_mode: string) => { }
   };
 };
 

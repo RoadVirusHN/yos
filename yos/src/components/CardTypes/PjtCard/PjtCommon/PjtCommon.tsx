@@ -1,62 +1,57 @@
-import { CardComponentData, PjtCardData } from "src/data/CardProcessors";
-import { CardComponentProps } from "src/components/CardTypes/Card";
+import {
+  type CardComponentData,
+  type PjtCardData,
+} from "src/data/CardProcessors";
+import { type CardComponentProps } from "src/components/CardTypes/Card";
 import { useState } from "react";
 import { animated, to } from "react-spring";
-import { ReactComponent as Default } from "src/assets/img/cards/bands/DEFAULT.svg";
-import { ReactComponent as InProgress } from "src/assets/img/cards/bands/INPROGRESS.svg";
-import { ReactComponent as DONE } from "src/assets/img/cards/bands/DONE.svg";
-import { ReactComponent as DROPPED } from "src/assets/img/cards/bands/DROPPED.svg";
-import { ReactComponent as POSTPONED } from "src/assets/img/cards/bands/POSTPONED.svg";
-import { BandStatus } from "@customTypes/Card";
-import { BandEnum } from "src/data/enums/enums";
+import { type BandStatus } from "@customTypes/Card";
+import { CardSideEnum } from "src/data/enums/enums";
 import ClassNames from "./PjtCommon.module.scss";
 import { filt } from "src/utils/MyAnimation";
+import PublicSVG from "src/components/PublicSVG";
 
-const PjtBandMapper = (
-  status: BandStatus,
-  newHandler: { [onEvent: string]: any }
-) => {
-  switch (status) {
-    case BandEnum.INPROGRESS:
-      return <InProgress {...newHandler} />;
-    case BandEnum.DROPPED:
-      return <DROPPED {...newHandler} />;
-    case BandEnum.POSTPONED:
-      return <POSTPONED {...newHandler} />;
-    case BandEnum.DONE:
-      return <DONE {...newHandler} />;
-    default:
-      return <Default {...newHandler} />;
-  }
+const PjtBandMapper = (status: BandStatus, newHandler: Record<string, any>) => {
+  return (
+    <PublicSVG
+      width="168"
+      height="168"
+      {...newHandler}
+      href={`bands/${status as string}.svg`}
+    />
+  );
 };
-const PjtCommon = (
-  pjtInfo: PjtCardData
-): CardComponentData<"CommonFace", PjtCardData> => ({
+const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.CommonFace,
-  Component: ({ cardData, cardAnimController }: CardComponentProps) => {
-    const [side, setSide] = useState("front");
+  Component: ({
+    cardData,
+    cardAnimController,
+    deckAnimAPI,
+  }: CardComponentProps) => {
+    const [side, setSide] = useState(CardSideEnum.FRONT);
 
     const defaultPreventor = (e: React.MouseEvent) => {
       e.preventDefault();
     };
-    const [cardAnimAPI, deckAnimAPI] = [
-      cardAnimController.cardAnimAPI,
-      cardAnimController.deckAnimAPI,
-    ];
+    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
     const beforeBandMouseDown = (e: React.MouseEvent) => {
       e.stopPropagation();
       if (e.button === 0) {
         if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
-          cardAnimController.flipCardAnim();
+          if (cardAnim.side.get() === CardSideEnum.FRONT) {
+            void cardAnimController.TransitionTo.StateBack();
+          } else {
+            void cardAnimController.TransitionTo.StateFront();
+          }
         }
       }
-      return cardAnimAPI.cardAnim.side.get();
+      return cardAnim.side.get();
     };
     const onMouseDown = (e: React.MouseEvent) => {
       e.stopPropagation();
       setSide(beforeBandMouseDown(e));
     };
-    const { gray, blur } = cardAnimAPI.cardAnim;
+    const { gray, blur } = cardAnim;
     const newHandler = {
       onMouseDown,
       onDragOver: defaultPreventor,
@@ -68,10 +63,11 @@ const PjtCommon = (
         style={{
           filter: to([gray, blur], filt),
         }}
+        {...newHandler}
         draggable="false"
       >
-        {side === "front" ? (
-          <Default {...newHandler} />
+        {side === CardSideEnum.FRONT ? (
+          <PublicSVG width="168" height="168" href={`bands/DEFAULT.svg`} />
         ) : (
           PjtBandMapper(cardData.CommonFace.Status, newHandler)
         )}

@@ -1,5 +1,5 @@
-import { animated, config, to, useSpring, useSprings } from "react-spring";
-import ClassName from "./Loading.module.scss";
+import { animated, config, to, useSpring, useSprings } from 'react-spring';
+import ClassName from './Loading.module.scss';
 /**
  * !!!TODO
  * implement later
@@ -7,24 +7,24 @@ import ClassName from "./Loading.module.scss";
 const fiveStarPoints = (r: number) => [
   {
     left: 0,
-    top: 50,
+    top: 50
   },
   {
     left: 30,
-    top: 10,
+    top: 10
   },
   {
     left: 10,
-    top: 20,
+    top: 20
   },
   {
     left: 10,
-    top: 0,
+    top: 0
   },
   {
     left: 30,
-    top: 30,
-  },
+    top: 30
+  }
 ];
 const Loading = () => {
   const [props, api] = useSprings(5, (i) => ({
@@ -33,8 +33,8 @@ const Loading = () => {
       .concat(fiveStarPoints(1).slice(i + 1))
       .concat(fiveStarPoints(1).slice(0, i)),
     loop: true,
-    ease: "easein",
-    config: { tension: 50, friction: 5 },
+    ease: 'easein',
+    config: { tension: 50, friction: 5 }
   }));
   return (
     <animated.div className={ClassName.loading}>
@@ -43,7 +43,7 @@ const Loading = () => {
           className={ClassName.spin}
           style={{
             left: to(left, (left) => `${left}%`),
-            top: to(top, (top) => `${top}%`),
+            top: to(top, (top) => `${top}%`)
           }}
         ></animated.div>
       ))}

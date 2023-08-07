@@ -1,10 +1,12 @@
-import { CardComponentProps } from "src/components/CardTypes/Card";
+import { type CardComponentProps } from "src/components/CardTypes/Card";
 import ClassNames from "./PjtFront.module.scss";
 import { animated, to } from "react-spring";
 import ReactPlayer from "react-player/lazy";
 import TechStacks from "src/components/InfinityLoopSlider/InfinityLoopSlider";
-import { CardComponentData, PjtCardData } from "src/data/CardProcessors";
-import prv from "../../../../assets/img/cards/previews/test-big.webm";
+import {
+  type CardComponentData,
+  type PjtCardData,
+} from "src/data/CardProcessors";
 import { useState } from "react";
 /**
  * !!!todos
@@ -12,26 +14,24 @@ import { useState } from "react";
  *- ResizeObserver loop problem.
  */
 const AnimatedReactPlayer = animated(ReactPlayer);
-const PjtFront = (
-  pjtInfo: PjtCardData
-): CardComponentData<"FrontFace", PjtCardData> => ({
+const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.FrontFace,
-  Component: ({ cardData, cardAnimController }: CardComponentProps) => {
+  Component: ({ cardData, deckAnimAPI }: CardComponentProps) => {
     const [techStacks, _] = useState(
       (cardData as PjtCardData).FrontFace.TechStacks
-    );
+    );    
     return (
       <>
         <AnimatedReactPlayer
           className={ClassNames.preview}
           width="100%"
           height="80%"
-          url={prv}
-          //onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
+          url={cardData.FrontFace.VideoURL}
+          // onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
           loop
           controls
           playing={to(
-            [cardAnimController.deckAnimAPI.deckAnim.order],
+            [deckAnimAPI.deckAnim.order],
             (order: number[]) => order.at(-1) === cardData.Index
           )}
           muted

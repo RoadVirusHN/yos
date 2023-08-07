@@ -1,6 +1,6 @@
-import { animated, useSpring } from "react-spring";
-const AnimFeTurbulence = animated("feTurbulence");
-const AnimFeDisplacementMap = animated("feDisplacementMap");
+import { animated, useSpring } from 'react-spring';
+const AnimFeTurbulence = animated('feTurbulence');
+const AnimFeDisplacementMap = animated('feDisplacementMap');
 
 const SquiggleFilter = () => {
   const { seed, scale } = useSpring({
@@ -8,31 +8,31 @@ const SquiggleFilter = () => {
     to: [
       {
         seed: 1,
-        scale: 8,
+        scale: 8
       },
       {
         seed: 2,
-        scale: 6,
+        scale: 6
       },
       {
         seed: 3,
-        scale: 8,
+        scale: 8
       },
       {
         seed: 4,
-        scale: 6,
+        scale: 6
       },
       {
         seed: 5,
-        scale: 8,
-      },
+        scale: 8
+      }
     ],
     loop: true,
     immediate: true,
-    config: { duration: 110, tension: 420, friction: 10 },
+    config: { duration: 110, tension: 420, friction: 10 }
   });
   return (
-    <animated.svg style={{ width: "0", height: "0", position: "absolute" }}>
+    <animated.svg style={{ width: '0', height: '0', position: 'absolute' }}>
       <defs>
         <filter id="squiggly">
           <AnimFeTurbulence

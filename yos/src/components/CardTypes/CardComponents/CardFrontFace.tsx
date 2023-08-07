@@ -1,22 +1,22 @@
-import { animated, to } from "react-spring";
-import { filt } from "src/utils/MyAnimation";
-import ClassNames from "./CardFrontFace.module.scss";
-import { CardComponentProps } from "../Card";
-import { AllCardData, CardStates } from "src/data/CardProcessors";
+import { animated, to } from 'react-spring';
+import { filt } from 'src/utils/MyAnimation';
+import ClassNames from './CardFrontFace.module.scss';
+import { type CardComponentProps } from '../Card';
+import { type AllCardData, type CardStates } from 'src/data/CardProcessors';
 
 const CardFrontFace = ({
   cardStates,
-  props,
+  props
 }: {
-  cardStates: CardStates<AllCardData>;
-  props: CardComponentProps;
+  cardStates: CardStates<AllCardData>
+  props: CardComponentProps
 }) => {
-  const { gray, blur } = props.cardAnimController.cardAnimAPI.cardAnim;
+  const { gray, blur } = props.cardAnimController.AnimStates.AnimAPI.AnimValues;
   return (
     <animated.div
       className={`${ClassNames.front} ${ClassNames.face}`}
       style={{
-        filter: to([gray, blur], filt),
+        filter: to([gray, blur], filt)
       }}
     >
       <cardStates.FrontFace.Component {...props} />

@@ -1,35 +1,43 @@
-import { ReactComponent as Dunno } from "src/assets/img/cards/serviceCloud/dunno.svg";
 import ClassNames from "./PjtFloat.module.scss";
-import { ReactComponent as Unavailable } from "src/assets/img/cards/serviceCloud/unavailable.svg";
 import { animated, useSpring } from "react-spring";
+import PublicSVG from "src/components/PublicSVG";
+
+export const ServerStatusEnum = {
+  CHECKING: "CHECKING",
+  UNAVAILABLE: "UNAVAILABLE",
+  READY: "READY",
+  PENDING: "PENDING",
+  STOPPED: "STOPPED",
+};
+export type ServerStatusType = keyof typeof ServerStatusEnum;
+
 const ServerStatus = ({ status }: { status: string }) => {
   return (
     <div className={ClassNames.serverStatus}>
-      {status === "checking" ? (
-        <Dunno />
-      ) : status === "unavailable" ? (
-        <Unavailable />
+      {status === ServerStatusEnum.CHECKING ||
+      status === ServerStatusEnum.UNAVAILABLE ? (
+        <PublicSVG href={`serviceCloud/${status}.svg`} width="32" height="32" />
       ) : (
-        <Blinker status={status} />
+        <Blinker status={status as ServerStatusType} />
       )}
     </div>
   );
 };
 
-const Blinker = ({ status }: { status: string }) => {
+const Blinker = ({ status }: { status: ServerStatusType }) => {
   let color;
   switch (status) {
-    case "ready":
+    case ServerStatusEnum.READY:
       color = "#5C9F44";
       break;
-    case "pending":
+    case ServerStatusEnum.PENDING:
       color = "#EED22F";
       break;
-    case "stopped":
+    case ServerStatusEnum.STOPPED:
       color = "#C9274C";
       break;
     default:
-      color = "black"; // do not set it to grey!
+      color = "black"; // do not set it to grey, grey for blink off state.
       break;
   }
   const props = useSpring({

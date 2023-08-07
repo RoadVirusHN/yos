@@ -1,38 +1,28 @@
-import { CardComponentProps } from "src/components/CardTypes/Card";
+import { type CardComponentProps } from "src/components/CardTypes/Card";
 import { animated, to } from "react-spring";
 import ClassNames from "./PjtDesc.module.scss";
-import { CardComponentData, PjtCardData } from "src/data/CardProcessors";
-import { useEffect, useState } from "react";
+import {
+  type CardComponentData,
+  type PjtCardData,
+} from "src/data/CardProcessors";
 
-type DescData = { Title: string; Subtitle: string; Doodle: string };
+interface DescData {
+  Title: string;
+  Subtitle: string;
+  Doodle: () => JSX.Element;
+}
 
-const PjtDesc = (
-  pjtData: PjtCardData
-): CardComponentData<"Description", PjtCardData> => ({
+const PjtDesc = (pjtData: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtData.Description,
   Component: ({ cardData, cardAnimController }: CardComponentProps) => {
     const { Title, Subtitle, Doodle } = cardData.Description as DescData;
-    const [DoodleComponent, setDoodle] = useState<() => JSX.Element>();
-    useEffect(() => {
-      const dynamicImport = import(
-        "../../../../assets/img/cards/pjtDoodles/SampleDoodle"
-      );
-
-      dynamicImport.then((module) => {
-        const YourComponent = module.default || module;
-        setDoodle(() => YourComponent);
-      });
-    });
-
+    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
     return (
       <>
         <animated.svg
           className={ClassNames.doodleTitle}
           style={{
-            opacity: to(
-              [cardAnimController.cardAnimAPI.cardAnim.isTop],
-              (isTop) => isTop
-            ),
+            opacity: cardAnim.isTop,
           }}
         >
           <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
@@ -43,14 +33,11 @@ const PjtDesc = (
         <animated.svg
           className={ClassNames.doodle}
           style={{
-            opacity: to(
-              [cardAnimController.cardAnimAPI.cardAnim.isTop],
-              (isTop) => isTop
-            ),
+            opacity: to([cardAnim.isTop], (isTop) => isTop),
           }}
         >
           <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-            {DoodleComponent ? <DoodleComponent /> : <div>Loading...</div>}
+            <Doodle />
           </foreignObject>
         </animated.svg>
       </>

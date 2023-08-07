@@ -1,35 +1,37 @@
-import { CardComponentData, TutoCardData } from "src/data/CardProcessors";
-import { CardComponentProps } from "src/components/CardTypes/Card";
-import { animated } from "react-spring";
-import BackTexture from "src/assets/img/cards/doodles/tutoBack/cardboard.webp";
-import ClassNames from "./TutoBack.module.scss";
-import { useRef, useState, useEffect } from "react";
-import TutoBackInfo from "./TutoBackInfo";
+import {
+  type CardComponentData,
+  type TutoCardData
+} from 'src/data/CardProcessors'
+import { type CardComponentProps } from 'src/components/CardTypes/Card'
+import { animated } from 'react-spring'
+import BackTexture from 'src/assets/components/TutoCard/doodles/tutoBack/cardboard.webp'
+import ClassNames from './TutoBack.module.scss'
+import { useRef, useState, useEffect } from 'react'
+import TutoBackInfo from './TutoBackInfo'
 
-const TutoBack = (
-  tutoInfo: TutoCardData
-): CardComponentData<"BackFace", TutoCardData> => ({
+const TutoBack = (tutoInfo: TutoCardData): CardComponentData<TutoCardData> => ({
   Data: tutoInfo.BackFace,
   Component: ({ cardData, cardAnimController }: CardComponentProps) => {
-    const ref = useRef<HTMLDivElement>(null);
-    const [height, setHeight] = useState(0);
-    const [width, setWidth] = useState(0);
+    const ref = useRef<HTMLDivElement>(null)
+    const [height, setHeight] = useState(0)
+    const [_width, setWidth] = useState(0)
+    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI]
 
     useEffect(() => {
-      setWidth(ref.current ? ref.current.clientWidth : 0);
-      setHeight(ref.current ? ref.current.clientHeight : 0);
-      cardAnimController.cardAnimAPI.setCardAnim.set({
+      setWidth(ref.current != null ? ref.current.clientWidth : 0)
+      setHeight(ref.current != null ? ref.current.clientHeight : 0)
+      cardAnim.AnimRef.set({
         shadow: false,
-        ratio: 1 / 1,
-      });
-    }, []);
+        ratio: 1 / 1
+      })
+    }, [cardAnim])
     return (
       <animated.div
         ref={ref}
         className={ClassNames.backgroundContainer}
         style={{
           backgroundImage: `url(${BackTexture})`,
-          backgroundColor: "rgba(0, 0, 0, 0)",
+          backgroundColor: 'rgba(0, 0, 0, 0)'
         }}
       >
         <TutoBackInfo
@@ -38,7 +40,7 @@ const TutoBack = (
           backInfo={cardData.BackFace as { Src: string }}
         />
       </animated.div>
-    );
-  },
-});
-export default TutoBack;
+    )
+  }
+})
+export default TutoBack

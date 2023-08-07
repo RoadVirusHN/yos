@@ -1,8 +1,8 @@
-import ClassNames from "./Deck.module.scss";
-import Card from "../CardTypes/Card";
-import { useSpring } from "react-spring";
-import { AllCardData } from "src/data/CardProcessors";
-import SquiggleFilter from "../CardTypes/CardComponents/Filters/SquiggleFilter";
+import ClassNames from './Deck.module.scss';
+import Card from '../CardTypes/Card';
+import { useSpring } from 'react-spring';
+import { type AllCardData } from 'src/data/CardProcessors';
+import SquiggleFilter from '../CardTypes/CardComponents/Filters/SquiggleFilter';
 /**
  * !!!Todos
  * - responsive compatibility
@@ -10,20 +10,20 @@ import SquiggleFilter from "../CardTypes/CardComponents/Filters/SquiggleFilter";
  * - cards fly from outside -> need to initiate when scrolled!
  */
 
-export type DeckStyles = {
-  mode: "DECK";
-  order: number[];
-};
+export interface DeckStyles {
+  mode: 'DECK'
+  order: number[]
+}
 
-export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {
+export default function Deck ({ cardDatas }: { cardDatas: AllCardData[] }) {
   const [deckAnim, setDeckAnim] = useSpring<DeckStyles>(() => ({
     order: cardDatas.map((data) => data.Index),
-    mode: "DECK",
+    mode: 'DECK'
   }));
 
   const deckAnimAPI = {
     setDeckAnim,
-    deckAnim,
+    deckAnim
   };
   return (
     <div className={ClassNames.overflowHider}>

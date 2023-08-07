@@ -1,32 +1,66 @@
-import { ReactComponent as Me } from "src/assets/img/cards/teams/mePicto.svg";
-import { ReactComponent as Teammate } from "src/assets/img/cards/teams/teammatePicto.svg";
-import { ReactComponent as Solo } from "src/assets/img/cards/teams/soloPicto.svg";
 import ClassNames from "./BackInfo.module.scss";
 import { ScalableSVGWrapper } from "src/components/ScalableSVG";
+import PublicSVG from "src/components/PublicSVG";
 
-const Teammates = ({ teamSize }: { teamSize: number }) => {  
+const Teammates = ({ teamSize }: { teamSize: number }) => {
   return (
     <div className={ClassNames.team}>
       {teamSize === 1 ? (
         <span className={ClassNames.meTheKing}>
-          <ScalableSVGWrapper content={<Solo />} />
+          <ScalableSVGWrapper
+            content={
+              <PublicSVG
+                href={"icons/soloPicto.svg"}
+                width={86}
+                height={81}
+                viewBox="0 0 112 106"
+              />
+            }
+          />
         </span>
       ) : (
         <span className={ClassNames.me}>
-          <ScalableSVGWrapper content={<Me />} />
+          <ScalableSVGWrapper
+            content={
+              <PublicSVG
+                href={"icons/mePicto.svg"}
+                width={43}
+                height={69}
+                viewBox="0 0 56 90"
+              />
+            }
+          />
         </span>
       )}
       {teamSize > 6 ? (
         <>
           +
           <span className={ClassNames.teammate}>
-            <ScalableSVGWrapper content={<Teammate />} />
+            <ScalableSVGWrapper
+              content={
+                <PublicSVG
+                  href={"icons/teammatePicto.svg"}
+                  width={35}
+                  height={55}
+                  viewBox={"0 0 45 72"}
+                />
+              }
+            />
           </span>
           &times;<span>{teamSize - 1}</span>
         </>
       ) : (
         Array.from(Array(teamSize - 1).keys()).map((i) => (
-          <Teammate key={i} className={ClassNames.teammate} />
+          <svg
+            key={i}
+            className={ClassNames.teammate}
+            width={35}
+            height={55}
+            viewBox={"0 0 45 72"}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <image href={`${process.env.PUBLIC_URL}/icons/teammatePicto.svg`} />
+          </svg>
         ))
       )}
     </div>

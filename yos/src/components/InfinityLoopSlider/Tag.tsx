@@ -1,10 +1,10 @@
-import ClassNames from "./InfinityLoopSlider.module.scss";
+import ClassNames from './InfinityLoopSlider.module.scss';
 const Tag = ({
   text,
-  color: bgcolor = "#334155",
+  color: bgcolor = '#334155'
 }: {
-  text: string;
-  color?: string;
+  text: string
+  color?: string
 }) => (
   <div className={ClassNames.tag} style={{ backgroundColor: bgcolor }}>
     <span>#</span> {text}

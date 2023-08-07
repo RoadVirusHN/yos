@@ -1,11 +1,10 @@
-import { animated, to } from "react-spring";
-import { AnimatedStyles } from "src/animations/AnimController";
+import { type Lookup, type SpringValues, animated, to } from 'react-spring';
 
-type Handlers<T extends AnimatedStyles<any>> = {
-  [K in keyof T]: (v: ReturnType<T[K]["get"]>) => void; // 'T' only refers to a type, but is being used as a value here.ts(2693)
+type Handlers<T extends SpringValues<Lookup<any>>> = {
+  [K in keyof T]: (_v: ReturnType<T[K]['get']>) => void; // 'T' only refers to a type, but is being used as a value here.ts(2693)
 };
 
-const useSpringValueListner = <T extends AnimatedStyles<any>>(
+const useSpringValueListner = <T extends SpringValues<Lookup<any>>>(
   props: T,
   handlers: Handlers<T>
 ) => {
@@ -15,11 +14,11 @@ const useSpringValueListner = <T extends AnimatedStyles<any>>(
         <animated.div
           key={i}
           style={{
-            display: "none",
+            display: 'none',
             content: to([props[prop]], (v) => {
               handlers[prop](v);
-              return "";
-            }),
+              return '';
+            })
           }}
         ></animated.div>
       ))}

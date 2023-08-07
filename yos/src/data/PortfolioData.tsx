@@ -1,23 +1,22 @@
-import { ReactComponent as CoolCat } from "src/assets/img/cards/doodles/coolcat.svg";
-import { ReactComponent as TutoBorder } from "src/assets/img/cards/doodles/border.svg";
-import testVideo from "src/assets/img/cards/previews/test-big-comp.mp4";
-import testVideoBig from "src/assets/img/cards/previews/test-big.webm";
-import Kejang from "src/assets/img/cards/doodles/kejang/Kejang";
+import { ReactComponent as CoolCat } from 'src/assets/img/cards/doodles/coolcat.svg';
+import { ReactComponent as TutoBorder } from 'src/assets/img/cards/doodles/border.svg';
+import testVideoBig from 'src/assets/components/PjtCard/previews/test-big.webm';
+import Kejang from 'src/assets/components/PjtCard/doodles/kejang/Kejang';
 import {
-  PjtCardInfo,
-  TutorialCardInfo,
-  EndCardInfo,
-  BandStatus,
-} from "@customTypes/Card";
-import { CardTypeEnum, BandEnum } from "./enums/enums";
-import TutoBack from "src/assets/img/cards/doodles/tutoBack/TutoBack";
-import TutoFront from "src/assets/img/cards/doodles/tutoFront/TutoFront";
-import TutoTitle from "src/assets/img/cards/doodles/tutoTitle/TutoTitle";
+  type PjtCardInfo,
+  type TutorialCardInfo,
+  type EndCardInfo,
+  type BandStatus
+} from '@customTypes/Card';
+import { CardTypeEnum, BandEnum } from './enums/enums';
+import TutoBack from 'src/assets/components/TutoCard/doodles/tutoBack/TutoBack';
+import TutoFront from 'src/assets/components/TutoCard/doodles/tutoFront/TutoFront';
+import TutoTitle from 'src/assets/components/TutoCard/doodles/tutoTitle/TutoTitle';
 
 // !important : dont get the graffiti directly from the component
 
 // Datas
-export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
+export const PortfolioCards: Array<PjtCardInfo | TutorialCardInfo | EndCardInfo> =
   [
     // {
     //   index: 0,
@@ -30,175 +29,175 @@ export const PortfolioCards: (PjtCardInfo | TutorialCardInfo | EndCardInfo)[] =
     {
       index: 0,
       type: CardTypeEnum.PROJTECT,
-      url: "asdf",
+      url: 'asdf',
       description: {
-        title: "DNS: Developer Network Service",
-        sub: "SNS Cloning Team Project",
-        graffities: { right: <svg>"MY FIRST WEB PROJECT!"</svg> },
+        title: 'DNS: Developer Network Service',
+        sub: 'SNS Cloning Team Project',
+        graffities: { right: <svg>"MY FIRST WEB PROJECT!"</svg> }
       },
       front: {
-        preview: "./previews/test.gif",
-        techs: ["VUEJS"],
+        preview: './previews/test.gif',
+        techs: ['VUEJS']
       },
       back: {
         teammates: 6,
         status: BandEnum.DONE as BandStatus,
         infos: {
-          role: "As a Leader, Frontend, Backend Engineer",
-          term: "2020.01 ~ 2020.02",
-          group: "SSAFY",
+          role: 'As a Leader, Frontend, Backend Engineer',
+          term: '2020.01 ~ 2020.02',
+          group: 'SSAFY'
         },
         links: {
-          github: { url: ".", tagName: "GITHUB" },
-          ppt: { url: ".", tagName: "PPT" },
-        },
-      },
+          github: { url: '.', tagName: 'GITHUB' },
+          ppt: { url: '.', tagName: 'PPT' }
+        }
+      }
     },
     {
       index: 1,
-      url: "dfs",
+      url: 'dfs',
       type: CardTypeEnum.PROJTECT,
       description: {
-        title: "Cat Swimming 😸",
-        sub: "SecondHand Transaction Search & ML Based Filtering Service",
+        title: 'Cat Swimming 😸',
+        sub: 'SecondHand Transaction Search & ML Based Filtering Service',
         graffities: {
           left: <CoolCat />,
-          right: <Kejang />,
-        },
+          right: <Kejang />
+        }
       },
       front: {
-        preview: "",
+        preview: '',
 
-        techs: ["REACTJS"],
+        techs: ['REACTJS']
       },
       back: {
         teammates: 6,
         status: BandEnum.POSTPONED as BandStatus,
         infos: {
-          term: "2020.01 ~ 2020.02",
-          role: "As a Leader, Frontend, Backend Engineer",
-          group: "SSAFY",
+          term: '2020.01 ~ 2020.02',
+          role: 'As a Leader, Frontend, Backend Engineer',
+          group: 'SSAFY'
         },
         links: {
-          github: { url: ".", tagName: "GITHUB" },
-          ppt: { url: ".", tagName: "PPT" },
-        },
-      },
+          github: { url: '.', tagName: 'GITHUB' },
+          ppt: { url: '.', tagName: 'PPT' }
+        }
+      }
     },
     {
       index: 2,
-      url: "s",
+      url: 's',
       type: CardTypeEnum.PROJTECT,
       description: {
-        title: "DKT Competition & DKDKT",
-        sub: "Deep Knowledge Tracing Machine Learning & Web Service",
-        graffities: { left: <TutoBack /> },
+        title: 'DKT Competition & DKDKT',
+        sub: 'Deep Knowledge Tracing Machine Learning & Web Service',
+        graffities: { left: <TutoBack /> }
       },
       front: {
         preview:
-          "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
-        techs: ["PYTORCH"],
+          'https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg',
+        techs: ['PYTORCH']
       },
       back: {
         teammates: 6,
         status: BandEnum.DONE as BandStatus,
         infos: {
-          role: "As a Leader, Frontend, Backend Engineer",
-          term: "2020.01 ~ 2020.02",
-          group: "SSAFY",
+          role: 'As a Leader, Frontend, Backend Engineer',
+          term: '2020.01 ~ 2020.02',
+          group: 'SSAFY'
         },
         links: {
-          github: { url: ".", tagName: "GITHUB" },
-          ppt: { url: ".", tagName: "PPT" },
-        },
-      },
+          github: { url: '.', tagName: 'GITHUB' },
+          ppt: { url: '.', tagName: 'PPT' }
+        }
+      }
     },
     {
       index: 3,
-      url: "d",
+      url: 'd',
       type: CardTypeEnum.PROJTECT,
       description: {
-        title: "👇This Page!",
-        sub: "Beautiful & Interactive ABOUTME",
+        title: '👇This Page!',
+        sub: 'Beautiful & Interactive ABOUTME'
       },
       front: {
         preview: testVideoBig,
-        techs: ["REACTJS"],
+        techs: ['REACTJS']
       },
       back: {
         teammates: 1,
         status: BandEnum.INPROGRESS as BandStatus,
         infos: {
-          role: "As a Leader, Frontend, Backend Engineer",
-          term: "2020.01 ~ 2020.02",
-          group: "SSAFY",
+          role: 'As a Leader, Frontend, Backend Engineer',
+          term: '2020.01 ~ 2020.02',
+          group: 'SSAFY'
         },
         links: {
-          github: { url: ".", tagName: "GITHUB" },
-          ppt: { url: ".", tagName: "PPT" },
-        },
-      },
+          github: { url: '.', tagName: 'GITHUB' },
+          ppt: { url: '.', tagName: 'PPT' }
+        }
+      }
     },
     {
       index: 4,
-      url: "",
+      url: '',
       type: CardTypeEnum.PROJTECT,
       description: {
-        title: "SUBBRAIN🧠",
-        sub: "Jekyll based Static Blog",
+        title: 'SUBBRAIN🧠',
+        sub: 'Jekyll based Static Blog'
       },
       front: {
-        preview: testVideo,
-        techs: ["JEKYLL"],
+        preview: testVideoBig,
+        techs: ['JEKYLL']
       },
       back: {
         teammates: 1,
         status: BandEnum.DROPPED as BandStatus,
         infos: {
-          role: "As a Leader, Frontend, Backend Engineer",
-          term: "2020.01 ~ 2020.02",
-          group: "SSAFY",
+          role: 'As a Leader, Frontend, Backend Engineer',
+          term: '2020.01 ~ 2020.02',
+          group: 'SSAFY'
         },
         links: {
-          github: { url: ".", tagName: "GITHUB" },
-          ppt: { url: ".", tagName: "PPT" },
-        },
-      },
+          github: { url: '.', tagName: 'GITHUB' },
+          ppt: { url: '.', tagName: 'PPT' }
+        }
+      }
     },
     {
       index: 5,
-      url: "",
+      url: '',
       type: CardTypeEnum.PROJTECT,
       description: {
-        title: "🐳 Movie-Dick",
-        sub: "Movie Information & Ticketing",
+        title: '🐳 Movie-Dick',
+        sub: 'Movie Information & Ticketing'
       },
       front: {
         preview: testVideoBig,
-        techs: ["JSP", "JSP", "JSP", "JSP", "JSP", "JSP", "JSP", "JSP", "JSP"],
+        techs: ['JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP']
       },
       back: {
         teammates: 1001,
         status: BandEnum.INPROGRESS as BandStatus,
         infos: {
-          role: "As a Leader, Frontend, Backend Engineer",
-          term: "2020.01 ~ 2020.02",
-          group: "SSAFY",
+          role: 'As a Leader, Frontend, Backend Engineer',
+          term: '2020.01 ~ 2020.02',
+          group: 'SSAFY'
         },
         links: {
-          github: { url: ".", tagName: "GITHUB" },
-          ppt: { url: ".", tagName: "PPT" },
-        },
-      },
+          github: { url: '.', tagName: 'GITHUB' },
+          ppt: { url: '.', tagName: 'PPT' }
+        }
+      }
     },
     {
       index: 6,
       type: CardTypeEnum.TUTORIAL,
       description: {
         title: <TutoTitle />,
-        sub: <></>,
+        sub: <></>
       },
       front: <TutoFront />,
-      back: <TutoBack />,
-    },
+      back: <TutoBack />
+    }
   ];

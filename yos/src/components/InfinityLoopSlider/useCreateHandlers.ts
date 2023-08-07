@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useSpring } from "react-spring";
+import { useEffect } from 'react';
+import { useSpring } from 'react-spring';
 
 const DEFAULT_DURATION = 8000;
 const FAST_DURATION = 2000; // less time to animate == faster animation
@@ -11,9 +11,9 @@ const useCreateHandlers = () => {
       from: { x: 0 },
       to: { x: 50 },
       loop: true,
-      config: { duration: DEFAULT_DURATION }, // duration of **EACH STEP OF ANIM**;
+      config: { duration: DEFAULT_DURATION } // duration of **EACH STEP OF ANIM**;
     });
-  }, []);
+  }, [api]);
 
   const onMouseMove = (e: React.MouseEvent) => {
     const currentRect = (
@@ -31,22 +31,22 @@ const useCreateHandlers = () => {
         {
           x: direction ? 0 : 50,
           config: {
-            duration: (duration * (direction ? currentX : 50 - currentX)) / 50,
-          },
+            duration: (duration * (direction ? currentX : 50 - currentX)) / 50
+          }
         },
         { x: direction ? 50 : 0, immediate: true },
         {
           x: currentX,
           config: {
-            duration: (duration * (direction ? 50 - currentX : currentX)) / 50,
-          },
-        },
+            duration: (duration * (direction ? 50 - currentX : currentX)) / 50
+          }
+        }
       ],
-      loop: true,
+      loop: true
     });
   };
 
-  const onMouseLeave = (e: React.MouseEvent) => {
+  const onMouseLeave = (_e: React.MouseEvent) => {
     // set anim to inital state
     const currentX = props.x.get();
     api.start({
@@ -55,18 +55,18 @@ const useCreateHandlers = () => {
         {
           x: 50,
           config: {
-            duration: (DEFAULT_DURATION * (50 - currentX)) / 50,
-          },
+            duration: (DEFAULT_DURATION * (50 - currentX)) / 50
+          }
         },
         { x: 0, immediate: true },
         {
           x: currentX,
           config: {
-            duration: (DEFAULT_DURATION * currentX) / 50,
-          },
-        },
+            duration: (DEFAULT_DURATION * currentX) / 50
+          }
+        }
       ],
-      loop: true,
+      loop: true
     });
   };
 

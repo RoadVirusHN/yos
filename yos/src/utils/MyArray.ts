@@ -1,8 +1,8 @@
-export function range(n1: number, n2?: number, term = 1) {
-  let [from, to] = typeof n2 === "number" ? [n1, n2] : [0, n1];
+export function range (n1: number, n2?: number, term = 1) {
+  const [from, to] = typeof n2 === 'number' ? [n1, n2] : [0, n1];
   let i = 0;
   let element = from;
-  let result = [];
+  const result = [];
 
   while (from < to ? element < to : element > to) {
     result[i] = element;
@@ -11,7 +11,7 @@ export function range(n1: number, n2?: number, term = 1) {
   }
   return result;
 }
-export function arraysAreEqual<T>(arr1: T[], arr2: T[]) {
+export function arraysAreEqual<T> (arr1: T[], arr2: T[]) {
   if (arr1.length !== arr2.length) {
     return false;
   }

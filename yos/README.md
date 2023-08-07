@@ -44,3 +44,26 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## MEMO
+### WHERE SHOULD I PUT MY IMAGES
+- public folder : put only files below
+    - images frequently be used, neeeded to cache (logo, favicon, icon at footer and header)
+    - common Metas like txt, htmls(robot.txt, sitemap.xml, index.html)
+    - fonts
+- assets folder : Static, but not frequently used
+    - images in the certain webpages. (about me, portfolio logos)
+    - large images need to optimized by webpacks
+- CDN : User contents, frequently processed Images
+### GIF TO WEBM
+```
+ffmpeg -i file.gif -c vp9 -b:v 0 -crf 40 file.webm
+```
+
+`-i`: Specifies the input file, in this case file.gif.
+
+`-c`: Specifies the codec, vp9 works in most browsers.
+
+`-b:v`: Specifies the video bitrate, 0 allows us to specify the quality via the -crf option.
+
+`-crf`: Specifies the quality, ranges between 0-63, lower means better quality

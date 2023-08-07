@@ -1,20 +1,22 @@
 import { BandEnum } from "./enums/enums";
 import {
-  AllCardData,
+  type AllCardData,
   PjtCardProcessor,
   TutoCardProcessor,
 } from "./CardProcessors";
+import video from "src/assets/components/PjtCard/previews/test-big.webm";
+import SampleDoodle from "src/assets/components/PjtCard/doodles/SampleDoodle";
 export const PortfolioCards: AllCardData[] = [
   {
     Type: PjtCardProcessor,
     Description: {
       Title: "DNS: Developer Network Service",
       Subtitle: "SNS Cloning Team Project",
-      Doodle: "src/img/cards/pjtDoodles/SampleDoodle.tsx",
+      Doodle: SampleDoodle,
     },
     Float: { URL: "asdf" },
     FrontFace: {
-      VideoURL: "src/img/cards/previews/test-big.webm",
+      VideoURL: video,
       TechStacks: [{ tagName: "VUEJS" }],
     },
     BackFace: {
@@ -36,11 +38,11 @@ export const PortfolioCards: AllCardData[] = [
     Description: {
       Title: "Cat Swimming 😸",
       Subtitle: "SecondHand Transaction Search & ML Based Filtering Service",
-      Doodle: "src/img/cards/pjtDoodles/SampleDoodle.tsx",
+      Doodle: SampleDoodle,
     },
     Float: { URL: "asdf" },
     FrontFace: {
-      VideoURL: "src/img/cards/previews/test-big.webm",
+      VideoURL: video,
       TechStacks: [{ tagName: "PYTORCH" }],
     },
     BackFace: {

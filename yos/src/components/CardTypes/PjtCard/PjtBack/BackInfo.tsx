@@ -1,19 +1,19 @@
-import InfoMapper, { InfoItem } from "src/components/InfoMapper/InfoMapper";
-import Teammates from "./Teammates";
-import ClassNames from "./BackInfo.module.scss";
-import IconLink from "../../../IconLink/IconLink";
+import InfoMapper, { type InfoItem } from 'src/components/InfoMapper/InfoMapper';
+import Teammates from './Teammates';
+import ClassNames from './BackInfo.module.scss';
+import IconLink from '../../../IconLink/IconLink';
 const BackInfo = ({
   backInfo,
   width,
-  height,
+  height
 }: {
   backInfo: {
-    Teammates: number;
-    Infos: InfoItem[];
-    Links: InfoItem[];
-  };
-  width: number;
-  height: number;
+    Teammates: number
+    Infos: InfoItem[]
+    Links: InfoItem[]
+  }
+  width: number
+  height: number
 }) => {
   return (
     <div

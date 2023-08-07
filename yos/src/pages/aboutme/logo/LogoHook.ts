@@ -1,22 +1,22 @@
-import { useEffect, useRef } from "react";
-import { useSpring } from "react-spring";
-import { animationData, LogoStyle } from "src/data/LogoData";
+import { useEffect, useRef } from 'react';
+import { useSpring } from 'react-spring';
+import { animationData, type LogoStyle } from 'src/data/LogoData';
 import {
   calcX,
   calcY,
   refelctionDefaultFunction,
   reflect,
   xText,
-  yText,
-} from "./LogoHelpers";
-import { MyHook } from "@customTypes/MyHook";
+  yText
+} from './LogoHelpers';
+import { type MyHook } from '@customTypes/MyHook';
 import {
   toEmphasizeAnim,
   toIdleAnim,
-  toRotateAnim,
-} from "src/animations/LogoAnim";
+  type toRotateAnim
+} from 'src/animations/LogoAnim';
 
-export default function useLogoHook(): MyHook {
+export default function useLogoHook (): MyHook {
   // Create Refs, States and Handlers, Styles then return them.
 
   const { states } = animationData;
@@ -24,7 +24,7 @@ export default function useLogoHook(): MyHook {
   const [logoStyles, apiLogo] = useSpring(() => states.stateInit().logo);
   const [textStyles, apiText] = useSpring(() => states.stateInit().text);
   const [reflectionStyles, apiReflection] = useSpring(
-    () => (states.stateInit() as LogoStyle).reflection // I had enough to solve this freaking type error.
+    () => (states.stateInit()).reflection // I had enough to solve this freaking type error.
   );
 
   const rect = useRef<DOMRect | null>(null);
@@ -39,7 +39,7 @@ export default function useLogoHook(): MyHook {
     toIdleAnim(states.stateIdle(refelctionDefaultFunction(prevAngleTurns)), {
       apiLogo,
       apiText,
-      apiReflection,
+      apiReflection
     });
   };
 
@@ -48,34 +48,34 @@ export default function useLogoHook(): MyHook {
       rect.current = refLogo.current!.getBoundingClientRect();
       apiLogo.start({
         rotateX: calcX(e.pageY, rect),
-        rotateY: calcY(e.pageX, rect),
+        rotateY: calcY(e.pageX, rect)
       });
       apiText.start({ y: yText(e.pageY), x: xText(e.pageX), scale: 1.3 });
       apiReflection.start({
-        background: reflect(e.pageX, e.pageY, rect, prevAngleTurns),
+        background: reflect(e.pageX, e.pageY, rect, prevAngleTurns)
       });
     };
-    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener('mousemove', onMouseMove);
     return () => {
-      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener('mousemove', onMouseMove);
     };
   }, [apiLogo, apiReflection, apiText]);
 
   return {
     Refs: {
-      logo: refLogo,
+      logo: refLogo
     },
     Handlers: {
       logo: {
         onMouseDown,
         onMouseUp: onMouseUpandLeave,
-        onMouseLeave: onMouseUpandLeave,
-      },
+        onMouseLeave: onMouseUpandLeave
+      }
     },
     Styles: {
       logo: logoStyles,
       reflection: reflectionStyles,
-      text: textStyles,
-    },
+      text: textStyles
+    }
   };
 }

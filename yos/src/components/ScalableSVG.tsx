@@ -1,10 +1,10 @@
-import React, { ComponentType, ReactElement, cloneElement } from "react";
+import React, { type ComponentType, type ReactElement, cloneElement } from 'react';
 
-function WithScalableSVG<T extends object>(
+function WithScalableSVG<T extends object> (
   WrappedSVG: ComponentType<T>
 ) {
   class ScalableSVG extends React.Component<T> {
-    render() {
+    render () {
       return (
         <WrappedSVG
           width="100%"
@@ -18,18 +18,18 @@ function WithScalableSVG<T extends object>(
   return ScalableSVG;
 }
 
-type ScalableSVGWrapperProps = {
-  content: ReactElement;
-};
+interface ScalableSVGWrapperProps {
+  content: ReactElement
+}
 
 const ScalableSVGWrapper = ({ content }: ScalableSVGWrapperProps) => {
   const wrappedContent = cloneElement(content as any, {
     ...content.props,
-    width: "100%",
-    height: "100%",
-    preserveAspectRatio: "xMidYMid meet",
+    width: '100%',
+    height: '100%',
+    preserveAspectRatio: 'xMidYMid meet'
   });
   return wrappedContent;
 };
 
-export {WithScalableSVG, ScalableSVGWrapper};
+export { WithScalableSVG, ScalableSVGWrapper };

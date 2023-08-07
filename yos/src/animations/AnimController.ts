@@ -1,20 +1,20 @@
-import { AsyncResult, Controller, Lookup } from "react-spring";
-import { AnimStates } from "src/data/CardData";
+import { type AsyncResult, type Controller, type Lookup } from 'react-spring';
+import { type AnimStates } from 'src/data/CardData';
 type StateTransitions<
   T extends AnimStates<Styles>,
   Styles extends Lookup<any>
-> = {
-  [state in keyof OnlyClassMethods<T>]: (
-    ...args: Parameters<OnlyClassMethods<T>[state]>
-  ) => AsyncResult<Controller<Styles>>;
-};
-type OnlyClassMethodsBody<T> = {
+> =
+  {
+    [state in keyof OnlyClassMethods<T>]: (
+      ...args: Parameters<OnlyClassMethods<T>[state]>
+    ) => AsyncResult<Controller<Styles>>;
+  };
+type _OnlyClassMethodsBody<T> = {
   [state in keyof T]: T[state] extends (...args: any) => any ? T[state] : never;
 }[keyof T];
 type OnlyClassMethods<T> = {
   [state in keyof T]: T[state] extends (...args: any) => any ? T[state] : never;
 };
-type OnlyClassMethodsName<T> = keyof OnlyClassMethods<T>;
 
 export default class AnimController<
   T extends AnimStates<Styles>,
@@ -29,22 +29,28 @@ export default class AnimController<
   }
 
   private setTransitionTo(States: T) {
-    let TransitionTo = {} as StateTransitions<T, Styles>;
     const proto = Object.getPrototypeOf(States) as { [key in keyof T]: T[key] };
-    const keys = Object.getOwnPropertyNames(proto) as (keyof T)[];
-    keys.forEach((k: keyof T, i: number) => {
-      if ((k as string).startsWith("State") && typeof proto[k] === "function") {
-        let stateFunc = proto[k] as (...args: any) => any;
-        TransitionTo[k] = this.setTransitionToState(stateFunc);
-      }
-    });
-    return TransitionTo;
+    const keys = Object.getOwnPropertyNames(proto) as Array<keyof T>;
+    return keys.reduce<StateTransitions<T, Styles>>(
+      (transitionObj, k) => {
+        if ((k as string).startsWith('State') && typeof proto[k] === 'function') {
+          let stateFunc = proto[k] as (...args: any) => any;
+          stateFunc = stateFunc.bind(this.AnimStates)
+          return {
+            ...transitionObj,
+            [k]: this.setTransitionToState(stateFunc)
+          };
+        }
+        return transitionObj;
+      },
+      this.TransitionTo
+    )
   }
 
   private setTransitionToState(stateFunc: (...args: any) => any) {
-    return (...args: Parameters<typeof stateFunc>) => {
-      let state = stateFunc(...args);
-      return this.AnimStates.AnimAPI.AnimRef.start(state)[0];
+    return async (...args: Parameters<typeof stateFunc>) => {
+      const state = stateFunc(...args);
+      return await this.AnimStates.AnimAPI.AnimRef.start(state)[0];
       // const formerAnim = this.AnimAPI.anim.onAnim?.get();
       // this.AnimAPI.anim.onAnim?.isAnimating;
       // switch (formerAnim) {

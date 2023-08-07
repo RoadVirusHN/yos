@@ -1,94 +1,92 @@
-import { CardComponentData, PjtCardData } from "src/data/CardProcessors";
-import { CardComponentProps } from "src/components/CardTypes/Card";
-import { animated, config, to, useSpring } from "react-spring";
-import ClassNames from "./PjtFloat.module.scss";
-import { useEffect, useState } from "react";
-import { filt } from "src/utils/MyAnimation";
-import ServerStatus from "./ServerStatus";
-import Cloud from "src/assets/img/cards/serviceCloud/Cloud.svg";
+import { type CardComponentData, type PjtCardData } from 'src/data/CardProcessors';
+import { type CardComponentProps } from 'src/components/CardTypes/Card';
+import { animated, config, to, useSpring } from 'react-spring';
+import ClassNames from './PjtFloat.module.scss';
+import { useEffect, useState } from 'react';
+import { filt } from 'src/utils/MyAnimation';
+import ServerStatus, { ServerStatusEnum } from './ServerStatus';
 
-const PjtFloat = (
-  pjtInfo: PjtCardData
-): CardComponentData<"Float", PjtCardData> => ({
+const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.Float,
-  Component: ({ cardData, cardAnimController: ctrl }: CardComponentProps) => {
+  Component: ({ cardData, cardAnimController }: CardComponentProps) => {
     const [url, _] = useState((cardData as PjtCardData).Float.URL);
-    const [status, _setStatus] = useState("checking");
+    const [status, _setStatus] = useState(ServerStatusEnum.CHECKING);
     const [{ scale }, api] = useSpring(() => ({
-      scale: 1,
+      scale: 1
     }));
 
-    const onHover = (e: React.MouseEvent) => {
+    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
+    const onHover = (_e: React.MouseEvent) => {
       api.start(() => ({
         from: {},
         to: [
           {
-            scale: 1.2,
-          },
+            scale: 1.2
+          }
         ],
-        config: config.wobbly,
+        config: config.wobbly
       }));
     };
-    const onHoverOut = (e: React.MouseEvent) => {
+    const onHoverOut = (_e: React.MouseEvent) => {
       api.start(() => ({
         from: {},
         to: [
           {
-            scale: 1,
-          },
+            scale: 1
+          }
         ],
-        config: config.wobbly,
+        config: config.wobbly
       }));
     };
 
     useEffect(() => {
-      //fetch with url
-      //fetch().then(res=>setStatus(res.json()))
+      // fetch with url
+      // fetch().then(res=>setStatus(res.json()))
     }, []);
+    let serviceDesc = <span>Service InAccessible</span>;
+    if (url !== "") {
+      switch (status) {
+        case ServerStatusEnum.READY:
+          serviceDesc = <span>Click to Access This Service!</span>
+          break
+        case ServerStatusEnum.CHECKING:
+          serviceDesc = <span>Checking...</span>
+          break
+        case ServerStatusEnum.PENDING:
+          serviceDesc = <span>Pending...</span>
+          break
+        case ServerStatusEnum.STOPPED:
+          serviceDesc = <span>Click to Restart Server!</span>
+          break
+        default:
+          serviceDesc = <span>Error!</span>
+      }
+    }
     return (
       <animated.div
         className={ClassNames.float}
         onMouseOver={onHover}
         onMouseOut={onHoverOut}
         style={{
-          filter: to(
-            [ctrl.cardAnimAPI.cardAnim.gray, ctrl.cardAnimAPI.cardAnim.blur],
-            filt
-          ),
-          transform: to(
-            [ctrl.cardAnimAPI.cardAnim.isTop, scale],
-            (isTop, scale) => {
-              return `rotateZ(${(1 - isTop) * 160}deg) scale(${
-                isTop * (scale as number)
+          filter: to([cardAnim.gray, cardAnim.blur], filt),
+          transform: to([cardAnim.isTop, scale], (isTop, scale) => {
+            return `rotateZ(${(1 - isTop) * 160}deg) scale(${isTop * (scale)
               })`;
-            }
-          ),
-          backgroundImage: `url(${Cloud})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-          backgroundSize: "contain",
+          }),
+          backgroundImage: `url(${process.env.PUBLIC_URL + "/serviceCloud/Cloud.svg"})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'contain'
         }}
       >
         <div className={ClassNames.serviceDesc}>
-          {url === "" ? (
-            <span>Service InAccessible</span>
-          ) : status === "ready" ? (
-            <span>Click to Access This Service!</span>
-          ) : status === "checking" ? (
-            <span>Checking...</span>
-          ) : status === "pending" ? (
-            <span>Pending...</span>
-          ) : status === "stopped" ? (
-            <span>Click to Restart Server!</span>
-          ) : (
-            <span>Error!</span>
-          )}
+          {serviceDesc}
         </div>
-        <ServerStatus status={url === "" ? "unavailable" : status} />
-      </animated.div>
+        <ServerStatus status={url === '' ? ServerStatusEnum.UNAVAILABLE : status} />
+      </animated.div >
     );
-  },
+  }
 });
 
 export default PjtFloat;

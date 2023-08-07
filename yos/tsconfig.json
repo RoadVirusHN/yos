@@ -18,16 +18,17 @@
     "jsx": "react-jsx",
     "experimentalDecorators": true,
     "baseUrl": "./",
-    "paths": { //!!!todos : webpack doesn't recognize ts aliases,
+    "paths": {
+      //!!!todos : webpack doesn't recognize ts aliases,
       // "@data/*": ["src/data/*"],
       "@lib/*": ["src/lib/*"],
       "@customTypes/*": ["src/types/*"],
-      "@scss/*": ["src/assets/css/*"],
+      "@scss/*": ["src/assets/css/*"]
       // "@utils/*": ["src/utils/*"],
       // "@animations/*": ["src/animations/*"],
       // "@assets/*": ["src/assets/*"],
       // "@components/*": ["src/components/*"]
-    },    
+    }
   },
   "include": ["src"]
 }
