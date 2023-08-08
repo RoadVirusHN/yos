@@ -68,13 +68,15 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
     cardAnimAPI.AnimValues;
   const { onMouseDown, onDragOver, onDragStart } = Handlers;
   const CardBodyHandlers = { onMouseDown, onDragOver, onDragStart };
+  console.log(typeof cardStates);
+  console.log(cardStates);
 
   return (
     <>
       {SpringValueListener}
       <cardStates.Description.Component {...PropForComponents} />
       <animated.div className={ClassNames.cardWrapper} style={{ x, y, z }}>
-        {/* <cardStates.Float.Component {...PropForComponents} /> */}
+        <cardStates.Float.Component {...PropForComponents} />
         <animated.div
           className={ClassNames.card}
           {...CardBodyHandlers}

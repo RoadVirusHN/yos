@@ -11,12 +11,12 @@ export const ServerStatusEnum = {
 };
 export type ServerStatusType = keyof typeof ServerStatusEnum;
 
-const ServerStatus = ({ status }: { status: string }) => {
+const ServerStatus = ({ status }: { status: ServerStatusType }) => {
   return (
     <div className={ClassNames.serverStatus}>
       {status === ServerStatusEnum.CHECKING ||
       status === ServerStatusEnum.UNAVAILABLE ? (
-        <PublicSVG href={`@assets/commons/serviceCloud/${status}.svg`}/>
+        <PublicSVG href={`commons/serviceCloud/${status}.svg`}/>
       ) : (
         <Blinker status={status as ServerStatusType} />
       )}

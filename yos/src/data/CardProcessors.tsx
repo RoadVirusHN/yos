@@ -21,7 +21,7 @@ export interface CardComponentData<T> {
 
 const EmptyComponent = {
   Data: null,
-  Component: {} as React.ComponentType<CardComponentProps<AllCardData>>,
+  Component: ()=><></>,
 };
 
 type CardComponentKeys = keyof Omit<AllCardData, "Type" | "Index">;

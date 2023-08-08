@@ -1,18 +1,27 @@
-import { type CardComponentData, type PjtCardData } from '@data/CardProcessors';
-import { type CardComponentProps } from '@components/CardTypes/Card';
-import { animated, config, to, useSpring } from 'react-spring';
-import ClassNames from './PjtFloat.module.scss';
-import { useEffect, useState } from 'react';
-import { filt } from '@utils/MyAnimation';
-import ServerStatus, { ServerStatusEnum } from './ServerStatus';
+import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
+import { type CardComponentProps } from "@components/CardTypes/Card";
+import { animated, config, to, useSpring } from "react-spring";
+import ClassNames from "./PjtFloat.module.scss";
+import { useEffect, useState } from "react";
+import { filt } from "@utils/MyAnimation";
+import Cloud from "@assets/commons/serviceCloud/Cloud.svg";
+import ServerStatus, {
+  ServerStatusEnum,
+  ServerStatusType,
+} from "./ServerStatus";
 
 const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.Float,
-  Component: ({ cardData, cardAnimController }: CardComponentProps<PjtCardData>) => {
+  Component: ({
+    cardData,
+    cardAnimController,
+  }: CardComponentProps<PjtCardData>) => {
     const [url, _] = useState((cardData as PjtCardData).Float.URL);
-    const [status, _setStatus] = useState(ServerStatusEnum.CHECKING);
+    const [status, _setStatus] = useState<ServerStatusType>(
+      ServerStatusEnum.CHECKING as ServerStatusType
+    );
     const [{ scale }, api] = useSpring(() => ({
-      scale: 1
+      scale: 1,
     }));
 
     const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
@@ -21,10 +30,10 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         from: {},
         to: [
           {
-            scale: 1.2
-          }
+            scale: 1.2,
+          },
         ],
-        config: config.wobbly
+        config: config.wobbly,
       }));
     };
     const onHoverOut = (_e: React.MouseEvent) => {
@@ -32,10 +41,10 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         from: {},
         to: [
           {
-            scale: 1
-          }
+            scale: 1,
+          },
         ],
-        config: config.wobbly
+        config: config.wobbly,
       }));
     };
 
@@ -47,21 +56,23 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
     if (url !== "") {
       switch (status) {
         case ServerStatusEnum.READY:
-          serviceDesc = <span>Click to Access This Service!</span>
-          break
+          serviceDesc = <span>Click to Access This Service!</span>;
+          break;
         case ServerStatusEnum.CHECKING:
-          serviceDesc = <span>Checking...</span>
-          break
+          serviceDesc = <span>Checking...</span>;
+          break;
         case ServerStatusEnum.PENDING:
-          serviceDesc = <span>Pending...</span>
-          break
+          serviceDesc = <span>Pending...</span>;
+          break;
         case ServerStatusEnum.STOPPED:
-          serviceDesc = <span>Click to Restart Server!</span>
-          break
+          serviceDesc = <span>Click to Restart Server!</span>;
+          break;
         default:
-          serviceDesc = <span>Error!</span>
+          serviceDesc = <span>Error!</span>;
       }
     }
+    console.log(serviceDesc);
+
     return (
       <animated.div
         className={ClassNames.float}
@@ -70,23 +81,26 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         style={{
           filter: to([cardAnim.gray, cardAnim.blur], filt),
           transform: to([cardAnim.isTop, scale], (isTop, scale) => {
-            return `rotateZ(${(1 - isTop) * 160}deg) scale(${isTop * (scale)
-              })`;
+            return `rotateZ(${(1 - isTop) * 160}deg) scale(${isTop * scale})`;
           }),
-          backgroundImage: `url(${process.env.PUBLIC_URL + "/serviceCloud/Cloud.svg"})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'contain'
+          backgroundImage: `url(${Cloud})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          backgroundSize: "contain",
         }}
       >
-        <div className={ClassNames.serviceDesc}>
-          {serviceDesc}
-        </div>
-        <ServerStatus status={url === '' ? ServerStatusEnum.UNAVAILABLE : status} />
-      </animated.div >
+        <div className={ClassNames.serviceDesc}>{serviceDesc}</div>
+        <ServerStatus
+          status={
+            (url === ""
+              ? ServerStatusEnum.UNAVAILABLE
+              : status) as ServerStatusType
+          }
+        />
+      </animated.div>
     );
-  }
+  },
 });
 
 export default PjtFloat;
