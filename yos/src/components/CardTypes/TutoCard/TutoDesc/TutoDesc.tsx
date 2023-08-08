@@ -1,31 +1,34 @@
-import { type CardComponentProps } from 'src/components/CardTypes/Card';
-import { animated, to, useSpring } from 'react-spring';
-import ClassNames from './TutoDesc.module.scss';
-import { type CardComponentData, type TutoCardData } from 'src/data/CardProcessors';
-import { ScalableSVGWrapper } from 'src/components/ScalableSVG';
-import { useEffect, useRef } from 'react';
+import { type CardComponentProps } from "@components/CardTypes/Card";
+import { animated, to, useSpring } from "react-spring";
+import ClassNames from "./TutoDesc.module.scss";
+import {
+  type CardComponentData,
+  type TutoCardData,
+} from "@data/CardProcessors";
+import { ScalableSVGWrapper } from "@lib/SVG/ScalableSVG";
+import { useEffect, useRef } from "react";
 
 const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
   Data: tutoData.Description,
   Component: ({
     cardData,
     cardAnimController,
-    deckAnimAPI
-  }: CardComponentProps) => {
-    const [props, api] = useSpring(() => ({ offset: 0, display: 'block' }));
+    deckAnimAPI,
+  }: CardComponentProps<TutoCardData>) => {
+    const [props, api] = useSpring(() => ({ offset: 0, display: "block" }));
 
     useEffect(() => {
       api.start(() => ({
         from: { offset: 0 },
         to: { offset: 2000 },
         loop: true,
-        config: { duration: 20000 }
+        config: { duration: 20000 },
       }));
     }, [api]);
     const ref = useRef<HTMLDivElement>(null);
     const [cardAnim, deckAnim] = [
       cardAnimController.AnimStates.AnimAPI.AnimValues,
-      deckAnimAPI.deckAnim
+      deckAnimAPI.deckAnim,
     ];
     const { isTop, blur } = cardAnim;
     return (
@@ -36,24 +39,20 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
           style={{
             opacity: isTop.to((v) => {
               if (v === 0) {
-                api.start({ display: 'none' });
+                api.start({ display: "none" });
               }
               return v;
             }),
             content: blur.to((v) => {
               if (ref.current != null) {
                 if (v > 0.1) {
-                  (
-                    ref.current
-                  ).innerHTML = `<span class=${ClassNames.emphasis}>DROP THE CARD!</span>`;
+                  ref.current.innerHTML = `<span class=${ClassNames.emphasis}>DROP THE CARD!</span>`;
                 } else {
-                  (
-                    ref.current
-                  ).innerHTML = `DRAG&nbsp; <span class=${ClassNames.emphasis}>CARD</span> &nbsp;OVER THE DASHED LINE.`;
+                  ref.current.innerHTML = `DRAG&nbsp; <span class=${ClassNames.emphasis}>CARD</span> &nbsp;OVER THE DASHED LINE.`;
                 }
               }
-              return '';
-            })
+              return "";
+            }),
           }}
         >
           DRAG&nbsp;
@@ -71,8 +70,8 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
                   ref.current as HTMLDivElement
                 ).innerHTML = `THANK YOU FOR <span class=${ClassNames.emphasis}>VISITING</span>!`;
               }
-              return '';
-            })
+              return "";
+            }),
           }}
         >
           <ScalableSVGWrapper
@@ -99,7 +98,7 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
         </animated.div>
       </>
     );
-  }
+  },
 });
 
 export default TutoDesc;

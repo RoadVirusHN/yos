@@ -1,7 +1,7 @@
 import ClassNames from './Deck.module.scss';
 import Card from '../CardTypes/Card';
 import { useSpring } from 'react-spring';
-import { type AllCardData } from 'src/data/CardProcessors';
+import { type AllCardData } from '@data/CardProcessors';
 import SquiggleFilter from '../CardTypes/CardComponents/Filters/SquiggleFilter';
 /**
  * !!!Todos

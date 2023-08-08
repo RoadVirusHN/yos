@@ -1,12 +1,9 @@
-import { type CardComponentProps } from "src/components/CardTypes/Card";
+import { type CardComponentProps } from "@components/CardTypes/Card";
 import ClassNames from "./PjtFront.module.scss";
 import { animated, to } from "react-spring";
 import ReactPlayer from "react-player/lazy";
-import TechStacks from "src/components/InfinityLoopSlider/InfinityLoopSlider";
-import {
-  type CardComponentData,
-  type PjtCardData,
-} from "src/data/CardProcessors";
+import TechStacks from "@components/InfinityLoopSlider/InfinityLoopSlider";
+import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 import { useState } from "react";
 /**
  * !!!todos
@@ -16,10 +13,13 @@ import { useState } from "react";
 const AnimatedReactPlayer = animated(ReactPlayer);
 const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.FrontFace,
-  Component: ({ cardData, deckAnimAPI }: CardComponentProps) => {
+  Component: ({ cardData, deckAnimAPI }: CardComponentProps<PjtCardData>) => {
     const [techStacks, _] = useState(
       (cardData as PjtCardData).FrontFace.TechStacks
-    );    
+    );
+    console.log(cardData.FrontFace.VideoURL);
+    
+
     return (
       <>
         <AnimatedReactPlayer

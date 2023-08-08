@@ -1,6 +1,6 @@
 import ClassNames from "./TutoBack.module.scss";
-import { ScalableSVGWrapper } from "src/components/ScalableSVG";
-import TutoBack from "src/assets/components/TutoCard/doodles/tutoBack/TutoBack";
+import { ScalableSVGWrapper } from "@lib/SVG/ScalableSVG";
+import TutoBack from "@assets/components/TutoCard/doodles/tutoBack/TutoBack";
 
 const TutoBackInfo = ({
   backInfo: _,

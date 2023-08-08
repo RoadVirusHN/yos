@@ -1,8 +1,8 @@
 import {
   type CardComponentData,
   type PjtCardData,
-} from "src/data/CardProcessors";
-import { type CardComponentProps } from "src/components/CardTypes/Card";
+} from "@data/CardProcessors";
+import { type CardComponentProps } from "@components/CardTypes/Card";
 import BackInfo from "./BackInfo";
 import { animated } from "react-spring";
 import ClassNames from "./PjtBack.module.scss";
@@ -10,7 +10,7 @@ import { useRef, useState, useEffect } from "react";
 
 const PjtBack = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.BackFace,
-  Component: ({ cardData }: CardComponentProps) => {
+  Component: ({ cardData }: CardComponentProps<PjtCardData>) => {
     const [backInfo, _] = useState((cardData as PjtCardData).BackFace);
     const ref = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);

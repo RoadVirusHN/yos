@@ -1,35 +1,30 @@
 /* eslint-disable no-unused-vars */
 import { type BandStatus, type CardType } from "@customTypes/Card";
-import { type CardComponentProps } from "src/components/CardTypes/Card";
-import { type TagType } from "src/components/InfinityLoopSlider/InfinityLoopSlider";
-import { type InfoItem } from "src/components/InfoMapper/InfoMapper";
+import { type CardComponentProps } from "@components/CardTypes/Card";
+import { type TagType } from "@components/InfinityLoopSlider/InfinityLoopSlider";
+import { type InfoItem } from "@components/InfoMapper/InfoMapper";
 import { CardTypeEnum } from "./enums/enums";
-import PjtBack from "src/components/CardTypes/PjtCard/PjtBack/PjtBack";
-import PjtCommon from "src/components/CardTypes/PjtCard/PjtCommon/PjtCommon";
-import PjtDesc from "src/components/CardTypes/PjtCard/PjtDesc/PjtDesc";
-import PjtFloat from "src/components/CardTypes/PjtCard/PjtFloat/PjtFloat";
-import PjtFront from "src/components/CardTypes/PjtCard/PjtFront/PjtFront";
-import TutoCommon from "src/components/CardTypes/TutoCard/TutoCommon/TutoCommon";
-import TutoBack from "src/components/CardTypes/TutoCard/TutoBack/TutoBack";
-import TutoFront from "src/components/CardTypes/TutoCard/TutoFront/TutoFront";
-import TutoDesc from "src/components/CardTypes/TutoCard/TutoDesc/TutoDesc";
+import PjtBack from "@components/CardTypes/PjtCard/PjtBack/PjtBack";
+import PjtCommon from "@components/CardTypes/PjtCard/PjtCommon/PjtCommon";
+import PjtDesc from "@components/CardTypes/PjtCard/PjtDesc/PjtDesc";
+import PjtFloat from "@components/CardTypes/PjtCard/PjtFloat/PjtFloat";
+import PjtFront from "@components/CardTypes/PjtCard/PjtFront/PjtFront";
+import TutoCommon from "@components/CardTypes/TutoCard/TutoCommon/TutoCommon";
+import TutoBack from "@components/CardTypes/TutoCard/TutoBack/TutoBack";
+import TutoFront from "@components/CardTypes/TutoCard/TutoFront/TutoFront";
+import TutoDesc from "@components/CardTypes/TutoCard/TutoDesc/TutoDesc";
 
 export interface CardComponentData<T> {
   Data: T[keyof Omit<T, "Index">];
-  Component: React.ComponentType<CardComponentProps>;
+  Component: React.ComponentType<CardComponentProps<T>>;
 }
 
 const EmptyComponent = {
   Data: null,
-  Component: {} as React.ComponentType<CardComponentProps>,
+  Component: {} as React.ComponentType<CardComponentProps<AllCardData>>,
 };
 
-type CardComponentKeys =
-  | "Description"
-  | "Float"
-  | "FrontFace"
-  | "BackFace"
-  | "CommonFace";
+type CardComponentKeys = keyof Omit<AllCardData, "Type" | "Index">;
 
 type CardComponentMap<T> = {
   [key in CardComponentKeys]: CardComponentData<T>;
@@ -39,17 +34,26 @@ export type CardStates<T> = {
   Index: number;
   Type: CardType;
   AdditionalHandlers: (
-    props: CardComponentProps
+    props: CardComponentProps<T>
   ) => Record<string, (e: Event) => any>;
 } & CardComponentMap<T>;
 
-export type AllCardData = PjtCardData | TutoCardData;
+export type AllCardData = {
+  Type: Function;
+  Index: number;
+  Description: Record<string, unknown>;
+  FrontFace: Record<string, unknown>;
+  Float: Record<string, unknown>;
+  BackFace: Record<string, unknown>;
+  CommonFace: Record<string, unknown>;
+};
 
 export interface TutoCardData {
   Type: (cardData: TutoCardData) => CardStates<TutoCardData>;
   Index: number;
   Description: { Src: string };
   FrontFace: Record<string, unknown>;
+  Float: any;
   BackFace: { Src: string };
   CommonFace: { Status: BandStatus };
 }

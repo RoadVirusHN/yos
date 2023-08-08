@@ -1,15 +1,15 @@
 import {
   type CardComponentData,
   type PjtCardData,
-} from "src/data/CardProcessors";
-import { type CardComponentProps } from "src/components/CardTypes/Card";
+} from "@data/CardProcessors";
+import { type CardComponentProps } from "@components/CardTypes/Card";
 import { useState } from "react";
 import { animated, to } from "react-spring";
 import { type BandStatus } from "@customTypes/Card";
-import { CardSideEnum } from "src/data/enums/enums";
+import { CardSideEnum } from "@data/enums/enums";
 import ClassNames from "./PjtCommon.module.scss";
-import { filt } from "src/utils/MyAnimation";
-import PublicSVG from "src/components/PublicSVG";
+import { filt } from "@utils/MyAnimation";
+import PublicSVG from "@lib/SVG/PublicSVG";
 
 const PjtBandMapper = (status: BandStatus, newHandler: Record<string, any>) => {
   return (
@@ -27,7 +27,7 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
     cardData,
     cardAnimController,
     deckAnimAPI,
-  }: CardComponentProps) => {
+  }: CardComponentProps<PjtCardData>) => {
     const [side, setSide] = useState(CardSideEnum.FRONT);
 
     const defaultPreventor = (e: React.MouseEvent) => {

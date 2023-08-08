@@ -1,203 +1,83 @@
-import { ReactComponent as CoolCat } from 'src/assets/img/cards/doodles/coolcat.svg';
-import { ReactComponent as TutoBorder } from 'src/assets/img/cards/doodles/border.svg';
-import testVideoBig from 'src/assets/components/PjtCard/previews/test-big.webm';
-import Kejang from 'src/assets/components/PjtCard/doodles/kejang/Kejang';
+import { BandEnum } from "./enums/enums";
 import {
-  type PjtCardInfo,
-  type TutorialCardInfo,
-  type EndCardInfo,
-  type BandStatus
-} from '@customTypes/Card';
-import { CardTypeEnum, BandEnum } from './enums/enums';
-import TutoBack from 'src/assets/components/TutoCard/doodles/tutoBack/TutoBack';
-import TutoFront from 'src/assets/components/TutoCard/doodles/tutoFront/TutoFront';
-import TutoTitle from 'src/assets/components/TutoCard/doodles/tutoTitle/TutoTitle';
+  type AllCardData,
+  PjtCardProcessor,
+  TutoCardProcessor,
+} from "./CardProcessors";
+import video from "@assets/components/PjtCard/previews/test-big.webm";
+import SampleDoodle from "@assets/components/PjtCard/doodles/SampleDoodle";
 
-// !important : dont get the graffiti directly from the component
+export const emptyCard = {
+  Type: {},
+  Description: {},
+  Float: {},
+  FrontFace: {},
+  BackFace: {},
+  CommonFace: {},
+};
 
-// Datas
-export const PortfolioCards: Array<PjtCardInfo | TutorialCardInfo | EndCardInfo> =
-  [
-    // {
-    //   index: 0,
-    //   type: CardTypeEnum.END,
-    //   description: {
-    //     title: "end",
-    //     sub: "dsfasd",
-    //   },
-    // },
-    {
-      index: 0,
-      type: CardTypeEnum.PROJTECT,
-      url: 'asdf',
-      description: {
-        title: 'DNS: Developer Network Service',
-        sub: 'SNS Cloning Team Project',
-        graffities: { right: <svg>"MY FIRST WEB PROJECT!"</svg> }
-      },
-      front: {
-        preview: './previews/test.gif',
-        techs: ['VUEJS']
-      },
-      back: {
-        teammates: 6,
-        status: BandEnum.DONE as BandStatus,
-        infos: {
-          role: 'As a Leader, Frontend, Backend Engineer',
-          term: '2020.01 ~ 2020.02',
-          group: 'SSAFY'
-        },
-        links: {
-          github: { url: '.', tagName: 'GITHUB' },
-          ppt: { url: '.', tagName: 'PPT' }
-        }
-      }
+export const PortfolioCards: AllCardData[] = [
+  {
+    Type: PjtCardProcessor,
+    Description: {
+      Title: "DNS: Developer Network Service",
+      Subtitle: "SNS Cloning Team Project",
+      Doodle: SampleDoodle,
     },
-    {
-      index: 1,
-      url: 'dfs',
-      type: CardTypeEnum.PROJTECT,
-      description: {
-        title: 'Cat Swimming 😸',
-        sub: 'SecondHand Transaction Search & ML Based Filtering Service',
-        graffities: {
-          left: <CoolCat />,
-          right: <Kejang />
-        }
-      },
-      front: {
-        preview: '',
-
-        techs: ['REACTJS']
-      },
-      back: {
-        teammates: 6,
-        status: BandEnum.POSTPONED as BandStatus,
-        infos: {
-          term: '2020.01 ~ 2020.02',
-          role: 'As a Leader, Frontend, Backend Engineer',
-          group: 'SSAFY'
-        },
-        links: {
-          github: { url: '.', tagName: 'GITHUB' },
-          ppt: { url: '.', tagName: 'PPT' }
-        }
-      }
+    Float: { URL: "asdf" },
+    FrontFace: {
+      VideoURL: video,
+      TechStacks: [{ tagName: "VUEJS" }],
     },
-    {
-      index: 2,
-      url: 's',
-      type: CardTypeEnum.PROJTECT,
-      description: {
-        title: 'DKT Competition & DKDKT',
-        sub: 'Deep Knowledge Tracing Machine Learning & Web Service',
-        graffities: { left: <TutoBack /> }
-      },
-      front: {
-        preview:
-          'https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg',
-        techs: ['PYTORCH']
-      },
-      back: {
-        teammates: 6,
-        status: BandEnum.DONE as BandStatus,
-        infos: {
-          role: 'As a Leader, Frontend, Backend Engineer',
-          term: '2020.01 ~ 2020.02',
-          group: 'SSAFY'
-        },
-        links: {
-          github: { url: '.', tagName: 'GITHUB' },
-          ppt: { url: '.', tagName: 'PPT' }
-        }
-      }
+    BackFace: {
+      Teammates: 6,
+      Infos: [
+        { name: "role", content: "As a Leader, Frontend, Backend Engineer" },
+        { name: "term", content: "2020.01 ~ 2020.02" },
+        { name: "group", content: "SSAFY" },
+      ],
+      Links: [
+        { name: "GITHUB", content: "." },
+        { name: "PPT", content: "." },
+      ],
     },
-    {
-      index: 3,
-      url: 'd',
-      type: CardTypeEnum.PROJTECT,
-      description: {
-        title: '👇This Page!',
-        sub: 'Beautiful & Interactive ABOUTME'
-      },
-      front: {
-        preview: testVideoBig,
-        techs: ['REACTJS']
-      },
-      back: {
-        teammates: 1,
-        status: BandEnum.INPROGRESS as BandStatus,
-        infos: {
-          role: 'As a Leader, Frontend, Backend Engineer',
-          term: '2020.01 ~ 2020.02',
-          group: 'SSAFY'
-        },
-        links: {
-          github: { url: '.', tagName: 'GITHUB' },
-          ppt: { url: '.', tagName: 'PPT' }
-        }
-      }
+    CommonFace: { Status: BandEnum.DONE },
+  },
+  {
+    Type: PjtCardProcessor,
+    Description: {
+      Title: "Cat Swimming 😸",
+      Subtitle: "SecondHand Transaction Search & ML Based Filtering Service",
+      Doodle: SampleDoodle,
     },
-    {
-      index: 4,
-      url: '',
-      type: CardTypeEnum.PROJTECT,
-      description: {
-        title: 'SUBBRAIN🧠',
-        sub: 'Jekyll based Static Blog'
-      },
-      front: {
-        preview: testVideoBig,
-        techs: ['JEKYLL']
-      },
-      back: {
-        teammates: 1,
-        status: BandEnum.DROPPED as BandStatus,
-        infos: {
-          role: 'As a Leader, Frontend, Backend Engineer',
-          term: '2020.01 ~ 2020.02',
-          group: 'SSAFY'
-        },
-        links: {
-          github: { url: '.', tagName: 'GITHUB' },
-          ppt: { url: '.', tagName: 'PPT' }
-        }
-      }
+    Float: { URL: "asdf" },
+    FrontFace: {
+      VideoURL: video,
+      TechStacks: [{ tagName: "PYTORCH" }],
     },
-    {
-      index: 5,
-      url: '',
-      type: CardTypeEnum.PROJTECT,
-      description: {
-        title: '🐳 Movie-Dick',
-        sub: 'Movie Information & Ticketing'
-      },
-      front: {
-        preview: testVideoBig,
-        techs: ['JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP', 'JSP']
-      },
-      back: {
-        teammates: 1001,
-        status: BandEnum.INPROGRESS as BandStatus,
-        infos: {
-          role: 'As a Leader, Frontend, Backend Engineer',
-          term: '2020.01 ~ 2020.02',
-          group: 'SSAFY'
-        },
-        links: {
-          github: { url: '.', tagName: 'GITHUB' },
-          ppt: { url: '.', tagName: 'PPT' }
-        }
-      }
+    BackFace: {
+      Teammates: 6,
+      Infos: [
+        { name: "role", content: "As a Leader, Frontend, Backend Engineer" },
+        { name: "term", content: "2020.01 ~ 2020.02" },
+        { name: "group", content: "SSAFY" },
+      ],
+      Links: [
+        { name: "GITHUB", content: "." },
+        { name: "PPT", content: "." },
+      ],
     },
-    {
-      index: 6,
-      type: CardTypeEnum.TUTORIAL,
-      description: {
-        title: <TutoTitle />,
-        sub: <></>
-      },
-      front: <TutoFront />,
-      back: <TutoBack />
-    }
-  ];
+    CommonFace: { Status: BandEnum.POSTPONED },
+  },
+  {
+    Type: TutoCardProcessor,
+    Description: {
+      Src: "img/cards/doodles/tutoBack/TutoBack",
+    },
+    FrontFace: {},
+    BackFace: {
+      Src: "img/cards/doodles/tutoBack/TutoBack",
+    },
+    CommonFace: { Status: BandEnum.TUTORIAL },
+  },
+].map((info, i) => ({ Index: i, ...emptyCard, ...info }));

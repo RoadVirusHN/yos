@@ -1,5 +1,5 @@
-import { ScalableSVGWrapper } from 'src/components/ScalableSVG';
-import ClassNames from 'src/components/CardTypes/PjtCard/PjtDesc/PjtDesc.module.scss';
+import { ScalableSVGWrapper } from '@lib/SVG/ScalableSVG';
+import ClassNames from '@components/CardTypes/PjtCard/PjtDesc/PjtDesc.module.scss';
 import Kejang from '../doodles/kejang/Kejang';
 import { ReactComponent as CoolCat } from '../doodles/coolcat.svg';
 const SampleDoodle = () => {

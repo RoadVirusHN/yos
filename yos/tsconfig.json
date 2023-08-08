@@ -20,14 +20,13 @@
     "baseUrl": "./",
     "paths": {
       //!!!todos : webpack doesn't recognize ts aliases,
-      // "@data/*": ["src/data/*"],
+      "@data/*": ["src/data/*"],
       "@lib/*": ["src/lib/*"],
       "@customTypes/*": ["src/types/*"],
-      "@scss/*": ["src/assets/css/*"]
-      // "@utils/*": ["src/utils/*"],
-      // "@animations/*": ["src/animations/*"],
-      // "@assets/*": ["src/assets/*"],
-      // "@components/*": ["src/components/*"]
+      "@scss/*": ["src/assets/css/*"],
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"]
     }
   },
   "include": ["src"]

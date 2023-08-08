@@ -1,5 +1,5 @@
-import Deck from 'src/components/Deck/Deck';
-import { PortfolioCards } from 'src/data/PortfolioData-refactor';
+import Deck from '@components/Deck/Deck';
+import { PortfolioCards } from '@data/PortfolioData';
 import PDFPortfolioButton from './PDFPortfolioButton';
 
 const Portfolio = () => {

@@ -3,13 +3,14 @@ import { useEffect, useRef } from 'react';
 import { getManhattanDistance } from 'src/utils/MyMath';
 import { type CardComponentProps } from '../Card';
 import { type SpringValues } from 'react-spring';
+import { AllCardData } from 'src/data/CardProcessors';
 
 export function canFlick(props: SpringValues<CardStyles>) {
   const [dX, dY] = [Math.abs(props.x.get()), Math.abs(props.y.get())];
   const flickable = dX > flickableDistance.w || dY > flickableDistance.h;
   return flickable;
 }
-const useDefaultCardHandlers = (cardProps: CardComponentProps) => {
+const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
   const dragStart = useRef({ x: -1, y: -1 });
   const { cardData, cardAnimController, deckAnimAPI } = cardProps;
 

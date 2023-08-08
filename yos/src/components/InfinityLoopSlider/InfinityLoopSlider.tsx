@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import ClassNames from './InfinityLoopSlider.module.scss';
 import { animated } from 'react-spring';
-import { range } from 'src/utils/MyArray';
+import { range } from '@utils/MyArray';
 import useCreateHandlers from './useCreateHandlers';
 import Tag from './Tag';
 export interface TagType {

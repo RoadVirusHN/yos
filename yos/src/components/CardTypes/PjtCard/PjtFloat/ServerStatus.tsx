@@ -1,6 +1,6 @@
 import ClassNames from "./PjtFloat.module.scss";
 import { animated, useSpring } from "react-spring";
-import PublicSVG from "src/components/PublicSVG";
+import PublicSVG from "@lib/SVG/PublicSVG";
 
 export const ServerStatusEnum = {
   CHECKING: "CHECKING",

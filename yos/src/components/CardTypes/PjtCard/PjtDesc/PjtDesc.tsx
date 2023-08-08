@@ -1,10 +1,10 @@
-import { type CardComponentProps } from "src/components/CardTypes/Card";
+import { type CardComponentProps } from "@components/CardTypes/Card";
 import { animated, to } from "react-spring";
 import ClassNames from "./PjtDesc.module.scss";
 import {
   type CardComponentData,
   type PjtCardData,
-} from "src/data/CardProcessors";
+} from "@data/CardProcessors";
 
 interface DescData {
   Title: string;
@@ -14,7 +14,7 @@ interface DescData {
 
 const PjtDesc = (pjtData: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtData.Description,
-  Component: ({ cardData, cardAnimController }: CardComponentProps) => {
+  Component: ({ cardData, cardAnimController }: CardComponentProps<PjtCardData>) => {
     const { Title, Subtitle, Doodle } = cardData.Description as DescData;
     const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
     return (

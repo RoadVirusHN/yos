@@ -14,7 +14,7 @@ import {
   toEmphasizeAnim,
   toIdleAnim,
   type toRotateAnim
-} from 'src/animations/LogoAnim';
+} from '@lib/Animation/LogoAnim';
 
 export default function useLogoHook (): MyHook {
   // Create Refs, States and Handlers, Styles then return them.

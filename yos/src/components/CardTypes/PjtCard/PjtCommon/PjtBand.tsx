@@ -1,14 +1,14 @@
 import ClassNames from './PjtBand.module.scss';
 import { animated, to } from 'react-spring';
-import { ReactComponent as Default } from 'src/assets/img/cards/bands/DEFAULT.svg';
-import { ReactComponent as InProgress } from 'src/assets/img/cards/bands/INPROGRESS.svg';
-import { ReactComponent as DONE } from 'src/assets/img/cards/bands/DONE.svg';
-import { ReactComponent as DROPPED } from 'src/assets/img/cards/bands/DROPPED.svg';
-import { ReactComponent as POSTPONED } from 'src/assets/img/cards/bands/POSTPONED.svg';
+import { ReactComponent as Default } from '@assets/img/cards/bands/DEFAULT.svg';
+import { ReactComponent as InProgress } from '@assets/img/cards/bands/INPROGRESS.svg';
+import { ReactComponent as DONE } from '@assets/img/cards/bands/DONE.svg';
+import { ReactComponent as DROPPED } from '@assets/img/cards/bands/DROPPED.svg';
+import { ReactComponent as POSTPONED } from '@assets/img/cards/bands/POSTPONED.svg';
 import { useState } from 'react';
-import { filt } from 'src/utils/MyAnimation';
+import { filt } from '@utils/MyAnimation';
 import { type BandStatus } from '@customTypes/Card';
-import { BandEnum } from 'src/data/enums/enums';
+import { BandEnum } from '@data/enums/enums';
 const PjtBandMapper = (
   status: BandStatus,
   newHandler: Record<string, any>

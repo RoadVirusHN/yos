@@ -1,15 +1,15 @@
 import { animated, to } from 'react-spring';
-import { filt } from 'src/utils/MyAnimation';
+import { filt } from '@utils/MyAnimation';
 import ClassNames from './CardFrontFace.module.scss';
 import { type CardComponentProps } from '../Card';
-import { type AllCardData, type CardStates } from 'src/data/CardProcessors';
+import { type AllCardData, type CardStates } from '@data/CardProcessors';
 
 const CardFrontFace = ({
   cardStates,
   props
 }: {
   cardStates: CardStates<AllCardData>
-  props: CardComponentProps
+  props: CardComponentProps<AllCardData>
 }) => {
   const { gray, blur } = props.cardAnimController.AnimStates.AnimAPI.AnimValues;
   return (

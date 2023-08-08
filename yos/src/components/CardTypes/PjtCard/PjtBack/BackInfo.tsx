@@ -1,4 +1,4 @@
-import InfoMapper, { type InfoItem } from 'src/components/InfoMapper/InfoMapper';
+import InfoMapper, { type InfoItem } from '@components/InfoMapper/InfoMapper';
 import Teammates from './Teammates';
 import ClassNames from './BackInfo.module.scss';
 import IconLink from '../../../IconLink/IconLink';

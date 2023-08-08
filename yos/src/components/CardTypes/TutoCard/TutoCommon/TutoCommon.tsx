@@ -1,14 +1,14 @@
 import {
   type CardComponentData,
   type TutoCardData,
-} from "src/data/CardProcessors";
-import { type CardComponentProps } from "src/components/CardTypes/Card";
+} from "@data/CardProcessors";
+import { type CardComponentProps } from "@components/CardTypes/Card";
 import { useState } from "react";
 import { animated, to } from "react-spring";
 import ClassNames from "./TutoCommon.module.scss";
-import { filt } from "src/utils/MyAnimation";
-import { CardSideEnum } from "src/data/enums/enums";
-import PublicSVG from "src/components/PublicSVG";
+import { filt } from "@utils/MyAnimation";
+import { CardSideEnum } from "@data/enums/enums";
+import PublicSVG from "@lib/SVG/PublicSVG";
 
 const TutoCommon = (
   pjtInfo: TutoCardData
@@ -18,7 +18,7 @@ const TutoCommon = (
     cardData,
     cardAnimController,
     deckAnimAPI,
-  }: CardComponentProps) => {
+  }: CardComponentProps<TutoCardData>) => {
     const [side, setSide] = useState(CardSideEnum.FRONT);
 
     const defaultPreventor = (e: React.MouseEvent) => {

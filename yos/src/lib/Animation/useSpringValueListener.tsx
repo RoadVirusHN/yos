@@ -1,7 +1,7 @@
 import { type Lookup, type SpringValues, animated, to } from 'react-spring';
 
 type Handlers<T extends SpringValues<Lookup<any>>> = {
-  [K in keyof T]: (_v: ReturnType<T[K]['get']>) => void; // 'T' only refers to a type, but is being used as a value here.ts(2693)
+  [K in keyof T]: (_v: ReturnType<T[K]['get']>) => void; 
 };
 
 const useSpringValueListner = <T extends SpringValues<Lookup<any>>>(

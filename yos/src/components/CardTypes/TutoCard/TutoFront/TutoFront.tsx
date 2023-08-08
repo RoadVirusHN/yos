@@ -1,8 +1,8 @@
-import { type CardComponentProps } from 'src/components/CardTypes/Card';
+import { type CardComponentProps } from '@components/CardTypes/Card';
 import ClassNames from './TutoFront.module.scss';
 import { animated, to } from 'react-spring';
-import { type CardComponentData, type TutoCardData } from 'src/data/CardProcessors';
-import { filt } from 'src/utils/MyAnimation';
+import { type CardComponentData, type TutoCardData } from '@data/CardProcessors';
+import { filt } from '@utils/MyAnimation';
 import { useRef } from 'react';
 
 const TutoFront = (
@@ -13,7 +13,7 @@ const TutoFront = (
     cardData,
     cardAnimController,
     deckAnimAPI
-  }: CardComponentProps) => {
+  }: CardComponentProps<TutoCardData>) => {
     const ref = useRef<HTMLDivElement>(null);
     const [cardAnim, deckAnim] = [
       cardAnimController.AnimStates.AnimAPI.AnimValues,

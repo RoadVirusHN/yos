@@ -1,14 +1,14 @@
-import { type CardComponentData, type PjtCardData } from 'src/data/CardProcessors';
-import { type CardComponentProps } from 'src/components/CardTypes/Card';
+import { type CardComponentData, type PjtCardData } from '@data/CardProcessors';
+import { type CardComponentProps } from '@components/CardTypes/Card';
 import { animated, config, to, useSpring } from 'react-spring';
 import ClassNames from './PjtFloat.module.scss';
 import { useEffect, useState } from 'react';
-import { filt } from 'src/utils/MyAnimation';
+import { filt } from '@utils/MyAnimation';
 import ServerStatus, { ServerStatusEnum } from './ServerStatus';
 
 const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.Float,
-  Component: ({ cardData, cardAnimController }: CardComponentProps) => {
+  Component: ({ cardData, cardAnimController }: CardComponentProps<PjtCardData>) => {
     const [url, _] = useState((cardData as PjtCardData).Float.URL);
     const [status, _setStatus] = useState(ServerStatusEnum.CHECKING);
     const [{ scale }, api] = useSpring(() => ({

@@ -1,17 +1,17 @@
 import {
   type CardComponentData,
   type TutoCardData
-} from 'src/data/CardProcessors'
-import { type CardComponentProps } from 'src/components/CardTypes/Card'
+} from '@data/CardProcessors'
+import { type CardComponentProps } from '@components/CardTypes/Card'
 import { animated } from 'react-spring'
-import BackTexture from 'src/assets/components/TutoCard/doodles/tutoBack/cardboard.webp'
+import BackTexture from '@assets/components/TutoCard/doodles/tutoBack/cardboard.webp'
 import ClassNames from './TutoBack.module.scss'
 import { useRef, useState, useEffect } from 'react'
 import TutoBackInfo from './TutoBackInfo'
 
 const TutoBack = (tutoInfo: TutoCardData): CardComponentData<TutoCardData> => ({
   Data: tutoInfo.BackFace,
-  Component: ({ cardData, cardAnimController }: CardComponentProps) => {
+  Component: ({ cardData, cardAnimController }: CardComponentProps<TutoCardData>) => {
     const ref = useRef<HTMLDivElement>(null)
     const [height, setHeight] = useState(0)
     const [_width, setWidth] = useState(0)

@@ -1,6 +1,6 @@
 import ClassNames from "./BackInfo.module.scss";
-import { ScalableSVGWrapper } from "src/components/ScalableSVG";
-import PublicSVG from "src/components/PublicSVG";
+import { ScalableSVGWrapper } from "@lib/SVG/ScalableSVG";
+import PublicSVG from "@lib/SVG/PublicSVG";
 
 const Teammates = ({ teamSize }: { teamSize: number }) => {
   return (

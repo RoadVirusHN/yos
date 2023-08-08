@@ -1,4 +1,4 @@
-import IconLink from 'src/components/IconLink/IconLink';
+import IconLink from '@components/IconLink/IconLink';
 import ClassNames from './PDFPortfolioButton.module.scss';
 
 const PDFPortfolioButton = () => {
