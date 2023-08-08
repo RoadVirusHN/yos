@@ -72,9 +72,7 @@ const TutoCommon = (
           {...newHandler}
         >
           <PublicSVG
-            width="168"
-            height="168"
-            href={`bands/${
+            href={`commons/bands/${
               side === CardSideEnum.FRONT ? "TUTODEFAULT" : "TUTORIAL"
             }.svg`}
           />

@@ -1,9 +1,12 @@
-import { type CardComponentProps } from '@components/CardTypes/Card';
-import ClassNames from './TutoFront.module.scss';
-import { animated, to } from 'react-spring';
-import { type CardComponentData, type TutoCardData } from '@data/CardProcessors';
-import { filt } from '@utils/MyAnimation';
-import { useRef } from 'react';
+import { type CardComponentProps } from "@components/CardTypes/Card";
+import ClassNames from "./TutoFront.module.scss";
+import { animated, to } from "react-spring";
+import {
+  type CardComponentData,
+  type TutoCardData,
+} from "@data/CardProcessors";
+import { filt } from "@utils/MyAnimation";
+import { useRef } from "react";
 
 const TutoFront = (
   tutoInfo: TutoCardData
@@ -12,13 +15,14 @@ const TutoFront = (
   Component: ({
     cardData,
     cardAnimController,
-    deckAnimAPI
+    deckAnimAPI,
   }: CardComponentProps<TutoCardData>) => {
     const ref = useRef<HTMLDivElement>(null);
     const [cardAnim, deckAnim] = [
       cardAnimController.AnimStates.AnimAPI.AnimValues,
-      deckAnimAPI.deckAnim
+      deckAnimAPI.deckAnim,
     ];
+
     return (
       <animated.div
         className={`${ClassNames.front} ${ClassNames.face}`}
@@ -26,21 +30,21 @@ const TutoFront = (
           filter: to([cardAnim.gray, cardAnim.blur], filt),
           content: to([deckAnim.order], (order) => {
             if (order[1] === cardData.Index) {
-              (ref.current as HTMLDivElement).innerText = 'DONE!';
+              (ref.current as HTMLDivElement).innerText = "DONE!";
             }
-            return '';
-          })
+            return "";
+          }),
         }}
       >
         <div className={ClassNames.container}>
           <div ref={ref} className={ClassNames.portfolio}>
-            <div style={{ fontSize: '50%', lineHeight: '30%' }}>THE</div>
+            <div style={{ fontSize: "50%", lineHeight: "30%" }}>THE</div>
             LUXURIST
           </div>
           <div className={ClassNames.name}>JUNSEOK-YUN PORTFOLIO</div>
         </div>
       </animated.div>
     );
-  }
+  },
 });
 export default TutoFront;

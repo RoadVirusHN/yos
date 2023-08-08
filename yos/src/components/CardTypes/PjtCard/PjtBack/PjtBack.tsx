@@ -1,8 +1,6 @@
-import {
-  type CardComponentData,
-  type PjtCardData,
-} from "@data/CardProcessors";
+import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 import { type CardComponentProps } from "@components/CardTypes/Card";
+import BackTexture from "@assets/components/PjtCard/cardBack.jpg";
 import BackInfo from "./BackInfo";
 import { animated } from "react-spring";
 import ClassNames from "./PjtBack.module.scss";
@@ -25,7 +23,7 @@ const PjtBack = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         ref={ref}
         className={ClassNames.backgroundContainer}
         style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL + "/cardBack.jpg"})`,
+          backgroundImage: `url(${BackTexture})`,
         }}
       >
         <BackInfo backInfo={backInfo} width={width} height={height} />

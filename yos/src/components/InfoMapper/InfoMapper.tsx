@@ -1,3 +1,4 @@
+import PublicSVG from '@lib/SVG/PublicSVG';
 import ClassNames from './InfoMapper.module.scss';
 
 export interface InfoItem {
@@ -11,11 +12,7 @@ const InfoMapper = ({ infos }: { infos: InfoItem[] }) => {
       {infos.map(({ name, content }, i) => {
         return (
           <div key={i} className={ClassNames.infoItem}>
-            <img
-              className={ClassNames.infoItemIcon}
-              src={`${process.env.PUBLIC_URL}/icons/${name}.svg`}
-              alt={name}
-            />
+            <PublicSVG href={`commons/icons/${name}.svg`} />
             <span>{content}</span>
           </div>
         );

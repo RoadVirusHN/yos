@@ -1,7 +1,9 @@
-import ClassNames from './IconLink.module.scss';
-import { type InfoItem } from '../InfoMapper/InfoMapper';
-const IconLink = ({ links }: { links: InfoItem[] }) => {
+import ClassNames from "./IconLink.module.scss";
+import { type InfoItem } from "../InfoMapper/InfoMapper";
+import { lazy } from "react";
+const PublicSVG = lazy(() => import("@lib/SVG/PublicSVG"));
 
+const IconLink = ({ links }: { links: InfoItem[] }) => {
   return (
     <div className={ClassNames.IconLinkContainer}>
       {links.map(({ name, content }, i) => {
@@ -12,7 +14,7 @@ const IconLink = ({ links }: { links: InfoItem[] }) => {
             rel="noreferrer"
             target="_blank"
             key={i}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onMouseDown={(e) => {
               e.stopPropagation();
             }}
@@ -22,7 +24,7 @@ const IconLink = ({ links }: { links: InfoItem[] }) => {
           >
             <div className={ClassNames.Icons}>
               <div className={ClassNames.icon}>
-                <img src={`${process.env.PUBLIC_URL}/icons/${name}.svg`} alt={name} />
+                <PublicSVG href={`commons/icons/${name}.svg`} />
                 <div className={ClassNames.iconName}>{name}</div>
               </div>
             </div>

@@ -16,7 +16,7 @@ const ServerStatus = ({ status }: { status: string }) => {
     <div className={ClassNames.serverStatus}>
       {status === ServerStatusEnum.CHECKING ||
       status === ServerStatusEnum.UNAVAILABLE ? (
-        <PublicSVG href={`serviceCloud/${status}.svg`} width="32" height="32" />
+        <PublicSVG href={`@assets/commons/serviceCloud/${status}.svg`}/>
       ) : (
         <Blinker status={status as ServerStatusType} />
       )}

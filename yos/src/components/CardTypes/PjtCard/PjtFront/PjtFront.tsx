@@ -14,11 +14,7 @@ const AnimatedReactPlayer = animated(ReactPlayer);
 const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.FrontFace,
   Component: ({ cardData, deckAnimAPI }: CardComponentProps<PjtCardData>) => {
-    const [techStacks, _] = useState(
-      (cardData as PjtCardData).FrontFace.TechStacks
-    );
-    console.log(cardData.FrontFace.VideoURL);
-    
+    const [techStacks, _] = useState(cardData.FrontFace.TechStacks);
 
     return (
       <>

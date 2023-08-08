@@ -1,7 +1,4 @@
-import {
-  type CardComponentData,
-  type PjtCardData,
-} from "@data/CardProcessors";
+import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import { useState } from "react";
 import { animated, to } from "react-spring";
@@ -13,12 +10,7 @@ import PublicSVG from "@lib/SVG/PublicSVG";
 
 const PjtBandMapper = (status: BandStatus, newHandler: Record<string, any>) => {
   return (
-    <PublicSVG
-      width="168"
-      height="168"
-      {...newHandler}
-      href={`bands/${status as string}.svg`}
-    />
+    <PublicSVG {...newHandler} href={`commons/bands/${status as string}.svg`} />
   );
 };
 const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
@@ -67,7 +59,7 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         draggable="false"
       >
         {side === CardSideEnum.FRONT ? (
-          <PublicSVG width="168" height="168" href={`bands/DEFAULT.svg`} />
+          <PublicSVG href={`commons/bands/DEFAULT.svg`} />
         ) : (
           PjtBandMapper(cardData.CommonFace.Status, newHandler)
         )}

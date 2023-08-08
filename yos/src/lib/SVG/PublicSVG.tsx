@@ -1,23 +1,22 @@
-const PublicSVG = ({
-  href,
-  width,
-  height,
-  viewBox = `0 0 ${width} ${height}`,
-}: {
-  href: string;
-  width: number | string;
-  height: number | string;
-  viewBox?: string;
-}) => {
-  return (
-    <svg
-      width={width}
-      height={height}
-      viewBox={viewBox}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <image href={`${process.env.PUBLIC_URL}/${href}`} />
-    </svg>
-  );
+import { useState, useEffect } from "react";
+
+const PublicSVG = ({ href }: { href: string }) => {
+  const [src, setSrc] = useState("");
+
+  // import("@assets/commons/icons/GITHUB.svg").then((res) => console.log(res));
+  useEffect(() => {
+    const fetchSvgContent = async () => {
+      try {
+        const res = await import(`@assets/${href}`);
+        setSrc(res.default);
+      } catch (error) {
+        console.error("Error fetching SVG:", error);
+      }
+    };
+
+    fetchSvgContent();
+  }, [href]);
+
+  return <img src={src} alt={src} />;
 };
 export default PublicSVG;
