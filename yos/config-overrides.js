@@ -7,7 +7,7 @@ module.exports = function override(config) {
     "@data": path.resolve(__dirname, "src/data"),
     "@lib": path.resolve(__dirname, "src/lib"),
     "@customTypes": path.resolve(__dirname, "src/types"),
-    "@scss": path.resolve(__dirname, "src/assets/css"),
+    "@scss": path.resolve(__dirname, "src/assets/scss"),
     "@utils": path.resolve(__dirname, "src/utils"),
     "@assets": path.resolve(__dirname, "src/assets"),
     "@components": path.resolve(__dirname, "src/components"),

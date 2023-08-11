@@ -1,17 +1,17 @@
+@use "@scss" as global;
+
 .IconLinkContainer {
   display: flex;
   width: 90%;
   justify-content: flex-end;
   position: static;
   a.IconLink {
+    @extend %Uninteractable;
     text-decoration: none;
     margin: 5px;
     width: fit-content;
     height: fit-content;
     transition: box-shadow ease-in 0.2s, scale ease-in 0.2s;
-    box-shadow: none;
-    touch-action: none;
-    user-select: none;
 
     z-index: 10;
     div.Icons {

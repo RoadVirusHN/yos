@@ -23,7 +23,7 @@
       "@data/*": ["src/data/*"],
       "@lib/*": ["src/lib/*"],
       "@customTypes/*": ["src/types/*"],
-      "@scss/*": ["src/assets/css/*"],
+      "@scss": ["src/assets/scss"],
       "@utils/*": ["src/utils/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"]

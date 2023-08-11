@@ -1,16 +1,16 @@
+@use "@scss" as global;
+
 .onePagePortfolio {
+  @extend %Uninteractable;
   position: absolute;
   width: fit-content;
   right: 3%;
   bottom: 3%;
-  touch-action: none;
-  user-select: none;
 }
 .tooltip {
+  @extend %Uninteractable;
   opacity: 0.5;
   transition: opacity 0.2 ease-in;
-  touch-action: none;
-  user-select: none;
   & + .tooltiptext {
     font-family: "Hi Melody", cursive;
     font-weight: bold;

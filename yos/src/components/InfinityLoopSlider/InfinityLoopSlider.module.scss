@@ -1,3 +1,4 @@
+@use "@scss" as global;
 .sliderContainer {
   width: 100%;
   padding: 5px 0;
@@ -37,7 +38,7 @@
 }
 
 .fade {
-  pointer-events: none;
+  @extend %Uninteractable;
   background: linear-gradient(
     90deg,
     whitesmoke,

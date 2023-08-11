@@ -1,3 +1,4 @@
+@use "@scss" as main;
 .doodleTitle {
   position: absolute;
   text-align: center;
@@ -9,9 +10,7 @@
   height: 50%;
   top: 0;
   outline: none;
-  user-select: none;
-  pointer-events: none;
-  touch-action: none;
+  @extend %Uninteractable;
   color: blueviolet;
   font-family: "Hi Melody", cursive;
   z-index: 999;
@@ -43,7 +42,7 @@
   color: blueviolet;
   font-family: "Hi Melody", cursive;
   z-index: -1;
-  transform: translateZ(-999px) ;
+  transform: translateZ(-999px);
   outline: none;
   user-select: none;
   touch-action: none;

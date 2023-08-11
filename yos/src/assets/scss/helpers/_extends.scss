@@ -1,10 +1,11 @@
-@use "@scss" as main;
-.band {
-  position: absolute;
-  right: -22px;
-  top: -17px;
-  z-index: 9;
+%Uninteractable {
+  touch-action: none;
+  user-select: none;
+  pointer-events: none;
+  // Additionally, Add `draggable="false"` in the HTML element.
+}
 
+%MaskingCardBand {
   //generate clip from https://www.cssportal.com/css-clip-path-generator/
   -webkit-clip-path: polygon(
     2% 0,
@@ -26,11 +27,4 @@
     11% 12%,
     2% 11%
   );
-  @extend %Uninteractable;
-  & > * {
-    position: relative;
-  }
-  image {
-    cursor: pointer;
-  }
 }

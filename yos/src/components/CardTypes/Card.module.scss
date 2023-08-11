@@ -1,9 +1,11 @@
+@use "@scss" as global;
 // scss file only contains these.
 // - constant properties
 // - responsive properties
 // - unrelated with animations.
 
 .cardWrapper {
+  @extend %Uninteractable;
   position: absolute;
   width: fit-content;
   height: fit-content;
@@ -11,8 +13,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  touch-action: none;
-  user-select: none;
   z-index: 1;
   .card {
     min-width: 360px;
@@ -20,8 +20,6 @@
     max-width: 540px;
     border-radius: 10px;
     will-change: transform;
-    touch-action: none;
-    user-select: none;
     transform-style: preserve-3d;
     &:active {
       cursor: grabbing;

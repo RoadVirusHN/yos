@@ -1,7 +1,7 @@
-@use "../../assets/css/helpers/variables.scss";
+@use "@scss" as global;
 body {
+  @extend %Uninteractable;  
   overflow-x: hidden;
-  touch-action: none;
 }
 
 .container {
