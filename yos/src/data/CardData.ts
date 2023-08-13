@@ -1,5 +1,4 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
-import { CardSide } from '@customTypes/Card';
 import {
   type ControllerProps,
   type GoalProp,
@@ -10,7 +9,7 @@ import {
   type SpringValues,
   config
 } from 'react-spring';
-import { CardSideEnum } from './enums/enums';
+import { CardSideEnum } from './Enums';
 
 export const flickableDistance = {
   w: 160,
@@ -42,7 +41,7 @@ export interface CardStyles extends Lookup<any> {
   shadow: boolean
   isTop: 1 | 0
   cursor: 'grab' | 'default' | 'grabbing' | 'alias'
-  side: CardSide
+  side: CardSideEnum
 }
 
 export type AnimStatesOutput<T extends Lookup<any>> =
@@ -92,7 +91,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       ratio: 89 / 64,
       shadow: true,
       cursor: order === deckLength - 1 ? 'grab' : 'default',
-      side: CardSideEnum.FRONT as CardSide,
+      side: CardSideEnum.FRONT,
       onAnim: ''
     };
   }
@@ -108,7 +107,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       rz: -8 + Math.random() * 16,
       gray: 0,
       blur: 0,
-      side: CardSideEnum.FRONT as CardSide,
+      side: CardSideEnum.FRONT,
       isTop: order === deckLength - 1 ? 1 : 0,
       cursor: order === deckLength - 1 ? 'grab' : 'default',
       delay: order * 200
@@ -226,7 +225,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       return {};
     }
     return {
-      from: { side: CardSideEnum.FRONT as CardSide },
+      from: { side: CardSideEnum.FRONT },
       to: [
         { ry: 0, rz: 45, z: 100, scale: 1.4 },
         {
@@ -249,7 +248,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       return {};
     }
     return {
-      from: { side: CardSideEnum.BACK as CardSide },
+      from: { side: CardSideEnum.BACK },
       to: [
         { ry: 180, rz: 45, z: 100, scale: 1.4 },
         {

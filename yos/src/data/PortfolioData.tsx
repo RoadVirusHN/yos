@@ -1,4 +1,4 @@
-import { BandEnum } from "./enums/enums";
+import { BandEnum } from "./Enums";
 import {
   type AllCardData,
   PjtCardProcessor,

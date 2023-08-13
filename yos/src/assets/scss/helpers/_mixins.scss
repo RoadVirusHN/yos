@@ -1,0 +1,84 @@
+@mixin shineAnimation($duration, $textHeight) {
+  background: #222 -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#222),
+      to(#222),
+      color-stop(0.5, #fff)
+    ) 0 0 no-repeat;
+  background-image: -webkit-linear-gradient(
+    -40deg,
+    transparent 0%,
+    transparent 40%,
+    #fff 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  color: rgba(155, 155, 155, 0.3);
+  -webkit-background-size: $textHeight;
+  -webkit-background-clip: text;
+  -webkit-animation-name: shine;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-iteration-count: infinite;
+
+  @keyframes shine {
+    0%,
+    10% {
+      background-position: -120vw;
+    }
+    20% {
+      background-position: top left;
+    }
+    90% {
+      background-position: top right;
+    }
+    100% {
+      background-position: 120vw;
+    }
+  }
+
+  @-webkit-keyframes shine {
+    0%,
+    10% {
+      background-position: -120vw;
+    }
+    20% {
+      background-position: top left;
+    }
+    90% {
+      background-position: top right;
+    }
+    100% {
+      background-position: 120vw;
+    }
+  }
+}
+
+@mixin responsiveWidth($selector, $mobile-size, $tablet-size, $pc-size) {
+  // pc devices
+  #{$selector} {
+    width: $pc-size;
+  }
+
+  // tablet devices
+  @media (min-width: --breakpoint-mobile) and (max-width: --breakpoint-tablet) {
+    #{$selector} {
+      width: $tablet-size;
+    }
+  }
+
+  // mobile horizontal
+  @media (max-width: --breakpoint-mobile) and (orientation: landscape) {
+    #{$selector} {
+      width: $mobile-size;
+    }
+  }
+
+  //mobile vertical
+  @media (max-width: --breakpoint-mobile) and (orientation: portrait) {
+    #{$selector} {
+      width: $mobile-size;
+    }
+  }
+}

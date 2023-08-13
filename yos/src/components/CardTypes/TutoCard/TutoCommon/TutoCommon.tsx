@@ -7,7 +7,7 @@ import { useState } from "react";
 import { animated, to } from "react-spring";
 import ClassNames from "./TutoCommon.module.scss";
 import { filt } from "@utils/MyAnimation";
-import { CardSideEnum } from "@data/enums/enums";
+import { CardSideEnum } from "@data/Enums";
 import PublicSVG from "@lib/SVG/PublicSVG";
 
 const TutoCommon = (
@@ -29,6 +29,12 @@ const TutoCommon = (
       e.stopPropagation();
       if (e.button === 0) {
         if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
+          // !!!TODO : Make band two sided div like card to get better ux.
+          setSide(
+            cardAnim.side.get() === CardSideEnum.FRONT
+              ? CardSideEnum.BACK
+              : CardSideEnum.FRONT
+          );
           if (cardAnim.side.get() === CardSideEnum.FRONT) {
             void cardAnimController.TransitionTo.StateBack();
           } else {
@@ -40,7 +46,7 @@ const TutoCommon = (
     };
     const onMouseDown = (e: React.MouseEvent) => {
       e.stopPropagation();
-      setSide(beforeBandMouseDown(e));
+      beforeBandMouseDown(e);
     };
     const { gray, blur } = cardAnim;
     const newHandler = {
@@ -50,15 +56,15 @@ const TutoCommon = (
     };
     return (
       <>
-        {side === "front" ? (
+        {side === CardSideEnum.FRONT ? (
           <animated.span
             className={ClassNames.indicator}
             style={{ filter: to([gray, blur], filt) }}
           >
-            <span>
+            <span style={{ fontSize: "2rem", fontWeight: "bold" }}>
               DO NOT <br /> CLICK IT
             </span>
-            <span style={{ fontSize: "180%", fontWeight: "bold" }}> →</span>
+            <span style={{ fontSize: "2rem", fontWeight: "bold" }}> →</span>
           </animated.span>
         ) : (
           ""

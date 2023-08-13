@@ -8,23 +8,16 @@
   transform-origin: center;
   .team {
     text-align: center;
-    font-size: calc(20px + 2vw);
+    font-size: 2rem;
     letter-spacing: -2px;
     width: 95%;
-    .meTheKing {
+    .meTheKing .me .teammate {
       display: inline-block;
-      width: calc(50px + 3.5vw);
       height: auto;
     }
-    .me {
-      display: inline-block;
-      width: calc(20px + 2vw);
-      height: auto;
-    }
-    .teammate {
-      display: inline-block;
-      width: calc(12px + 2vw);
-      height: auto;
-    }
+
+    @include global.mix-responsiveWidth(".meTheKing", 22px, 30px, 40px);
+    @include global.mix-responsiveWidth(".me", 18px, 24px, 32px);
+    @include global.mix-responsiveWidth(".teammate", 12px, 18px, 24px);
   }
 }

@@ -1,12 +1,7 @@
 @use "@scss" as global;
-body {
-  @extend %Uninteractable;  
-  overflow-x: hidden;
-}
-
 .container {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 3em;
+  font-size: 3rem;
   height: fit-content;
   // overflow-y: scroll;
   // overflow-x: hidden;

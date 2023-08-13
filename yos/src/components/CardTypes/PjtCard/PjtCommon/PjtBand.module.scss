@@ -1,6 +1,5 @@
 @use "@scss" as main;
 .band {
-  @extend %Uninteractable;
   @extend %MaskingCardBand;
   position: absolute;
   right: -22px;

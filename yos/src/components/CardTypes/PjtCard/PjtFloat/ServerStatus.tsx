@@ -1,30 +1,24 @@
 import ClassNames from "./PjtFloat.module.scss";
 import { animated, useSpring } from "react-spring";
 import PublicSVG from "@lib/SVG/PublicSVG";
+import { ServerStatusEnum } from "@data/Enums";
 
-export const ServerStatusEnum = {
-  CHECKING: "CHECKING",
-  UNAVAILABLE: "UNAVAILABLE",
-  READY: "READY",
-  PENDING: "PENDING",
-  STOPPED: "STOPPED",
-};
-export type ServerStatusType = keyof typeof ServerStatusEnum;
 
-const ServerStatus = ({ status }: { status: ServerStatusType }) => {
+
+const ServerStatus = ({ status }: { status: ServerStatusEnum }) => {
   return (
     <div className={ClassNames.serverStatus}>
       {status === ServerStatusEnum.CHECKING ||
       status === ServerStatusEnum.UNAVAILABLE ? (
-        <PublicSVG href={`commons/serviceCloud/${status}.svg`}/>
+        <PublicSVG href={`commons/serviceCloud/${status}.svg`} />
       ) : (
-        <Blinker status={status as ServerStatusType} />
+        <Blinker status={status as ServerStatusEnum} />
       )}
     </div>
   );
 };
 
-const Blinker = ({ status }: { status: ServerStatusType }) => {
+const Blinker = ({ status }: { status: ServerStatusEnum }) => {
   let color;
   switch (status) {
     case ServerStatusEnum.READY:

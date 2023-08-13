@@ -14,7 +14,6 @@
 }
 .band {
   @extend %MaskingCardBand;
-  @extend %Uninteractable;
   position: absolute;
   right: -0px;
   top: 4px;
@@ -23,7 +22,7 @@
   & > svg {
     position: relative;
   }
-  image {
+  img {
     cursor: pointer;
   }
 }

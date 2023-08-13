@@ -3,15 +3,13 @@ import { type CardComponentProps } from "@components/CardTypes/Card";
 import { useState } from "react";
 import { animated, to } from "react-spring";
 import { type BandStatus } from "@customTypes/Card";
-import { CardSideEnum } from "@data/enums/enums";
+import { CardSideEnum } from "@data/Enums";
 import ClassNames from "./PjtCommon.module.scss";
 import { filt } from "@utils/MyAnimation";
 import PublicSVG from "@lib/SVG/PublicSVG";
 
-const PjtBandMapper = (status: BandStatus, newHandler: Record<string, any>) => {
-  return (
-    <PublicSVG {...newHandler} href={`commons/bands/${status as string}.svg`} />
-  );
+const PjtBandMapper = (status: BandStatus) => {
+  return <PublicSVG href={`commons/bands/${status as string}.svg`} />;
 };
 const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.CommonFace,
@@ -30,6 +28,12 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
       e.stopPropagation();
       if (e.button === 0) {
         if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
+          // !!!TODO : Make band two sided div like card to get better ux.
+          setSide(
+            cardAnim.side.get() === CardSideEnum.FRONT
+              ? CardSideEnum.BACK
+              : CardSideEnum.FRONT
+          );
           if (cardAnim.side.get() === CardSideEnum.FRONT) {
             void cardAnimController.TransitionTo.StateBack();
           } else {
@@ -41,7 +45,7 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
     };
     const onMouseDown = (e: React.MouseEvent) => {
       e.stopPropagation();
-      setSide(beforeBandMouseDown(e));
+      beforeBandMouseDown(e);
     };
     const { gray, blur } = cardAnim;
     const newHandler = {
@@ -49,6 +53,7 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
       onDragOver: defaultPreventor,
       onDragStart: defaultPreventor,
     };
+
     return (
       <animated.div
         className={ClassNames.band}
@@ -61,7 +66,7 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         {side === CardSideEnum.FRONT ? (
           <PublicSVG href={`commons/bands/DEFAULT.svg`} />
         ) : (
-          PjtBandMapper(cardData.CommonFace.Status, newHandler)
+          PjtBandMapper(cardData.CommonFace.Status)
         )}
       </animated.div>
     );

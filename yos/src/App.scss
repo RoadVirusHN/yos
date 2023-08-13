@@ -1,0 +1,64 @@
+@use "@scss" as global;
+@import url("https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap");
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+div {
+  user-select: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --base-font-size: global.$var-base-font-size;
+  --breakpoint-mobile: global.$var-breakpoint-mobile;
+  --breakpoint-tablet: global.$var-breakpoint-tablet;
+  --font-size-ratio: global.$var-font-size-ratio;
+}
+
+// pc devices
+html {
+  font-size: calc(var(--base-font-size) * var(--font-size-ratio));
+  --title-font-size: 2rem;
+  --paragraph-font-size: 1.25rem;
+  --icon-font-size: 0.75rem;
+}
+
+// tablet devices
+@media (min-width: --breakpoint-mobile) and (max-width: --breakpoint-tablet) {
+  html {
+    font-size: calc(
+      var(--base-font-size) * var(--font-size-ratio) *
+        global.$var-tablet-font-size
+    );
+  }
+}
+
+// mobile horizontal
+@media (max-width: --breakpoint-mobile) and (orientation: landscape) {
+  html {
+    font-size: calc(
+      var(--base-font-size) * var(--font-size-ratio) *
+        global.$var-mobile-font-size
+    );
+  }
+}
+
+//mobile vertical
+@media (max-width: --breakpoint-mobile) and (orientation: portrait) {
+  html {
+    font-size: calc(
+      var(--base-font-size) * var(--font-size-ratio) *
+        global.$var-mobile-font-size
+    );
+  }
+}

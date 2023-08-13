@@ -1,6 +1,7 @@
-import AboutMe from './pages/AboutMe/AboutMe';
+import AboutMe from "./pages/AboutMe/AboutMe";
+import "./App.scss";
 
-function App () {
+function App() {
   return (
     <div className="App">
       <AboutMe />

@@ -8,7 +8,7 @@ import {
   type EndCardInfo,
   type BandStatus
 } from '@customTypes/Card';
-import { CardTypeEnum, BandEnum } from './enums/enums';
+import { CardTypeEnum, BandEnum } from './Enums';
 import TutoBack from '@assets/components/TutoCard/doodles/tutoBack/TutoBack';
 import TutoFront from '@assets/components/TutoCard/doodles/tutoFront/TutoFront';
 import TutoTitle from '@assets/components/TutoCard/doodles/tutoTitle/TutoTitle';

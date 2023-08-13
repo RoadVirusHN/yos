@@ -1,18 +1,15 @@
-import ClassNames from './PjtBand.module.scss';
-import { animated, to } from 'react-spring';
-import { ReactComponent as Default } from '@assets/img/cards/bands/DEFAULT.svg';
-import { ReactComponent as InProgress } from '@assets/img/cards/bands/INPROGRESS.svg';
-import { ReactComponent as DONE } from '@assets/img/cards/bands/DONE.svg';
-import { ReactComponent as DROPPED } from '@assets/img/cards/bands/DROPPED.svg';
-import { ReactComponent as POSTPONED } from '@assets/img/cards/bands/POSTPONED.svg';
-import { useState } from 'react';
-import { filt } from '@utils/MyAnimation';
-import { type BandStatus } from '@customTypes/Card';
-import { BandEnum } from '@data/enums/enums';
-const PjtBandMapper = (
-  status: BandStatus,
-  newHandler: Record<string, any>
-) => {
+import ClassNames from "./PjtBand.module.scss";
+import { animated, to } from "react-spring";
+import { ReactComponent as Default } from "@assets/img/cards/bands/DEFAULT.svg";
+import { ReactComponent as InProgress } from "@assets/img/cards/bands/INPROGRESS.svg";
+import { ReactComponent as DONE } from "@assets/img/cards/bands/DONE.svg";
+import { ReactComponent as DROPPED } from "@assets/img/cards/bands/DROPPED.svg";
+import { ReactComponent as POSTPONED } from "@assets/img/cards/bands/POSTPONED.svg";
+import { useState } from "react";
+import { filt } from "@utils/MyAnimation";
+import { type BandStatus } from "@customTypes/Card";
+import { BandEnum } from "@data/Enums";
+const PjtBandMapper = (status: BandStatus, newHandler: Record<string, any>) => {
   switch (status) {
     case BandEnum.INPROGRESS:
       return <InProgress {...newHandler} />;
@@ -30,17 +27,17 @@ const PjtBand = ({
   beforeMouseDown,
   handlers,
   status,
-  styles
+  styles,
 }: {
-  beforeMouseDown: (e: React.MouseEvent) => string
-  handlers: Record<string, any>
-  status: BandStatus
+  beforeMouseDown: (e: React.MouseEvent) => string;
+  handlers: Record<string, any>;
+  status: BandStatus;
   styles: {
-    gray: number
-    blur: number
-  }
+    gray: number;
+    blur: number;
+  };
 }) => {
-  const [side, setSide] = useState('front');
+  const [side, setSide] = useState("front");
 
   const onMouseDown = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -50,23 +47,22 @@ const PjtBand = ({
   const newHandler = {
     onMouseDown,
     onDragOver: handlers.onDragOver,
-    onDragStart: handlers.onDragStart
+    onDragStart: handlers.onDragStart,
   };
+
   return (
     <animated.div
       className={ClassNames.band}
       style={{
-        filter: to([gray, blur], filt)
+        filter: to([gray, blur], filt),
       }}
       draggable="false"
     >
-      {side === 'front'
-        ? (
+      {side === "front" ? (
         <Default {...newHandler} />
-          )
-        : (
-            PjtBandMapper(status, newHandler)
-          )}
+      ) : (
+        PjtBandMapper(status, newHandler)
+      )}
     </animated.div>
   );
 };

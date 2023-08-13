@@ -3,7 +3,7 @@ import { type BandStatus, type CardType } from "@customTypes/Card";
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import { type TagType } from "@components/InfinityLoopSlider/InfinityLoopSlider";
 import { type InfoItem } from "@components/InfoMapper/InfoMapper";
-import { CardTypeEnum } from "./enums/enums";
+import { CardTypeEnum } from "./Enums";
 import PjtBack from "@components/CardTypes/PjtCard/PjtBack/PjtBack";
 import PjtCommon from "@components/CardTypes/PjtCard/PjtCommon/PjtCommon";
 import PjtDesc from "@components/CardTypes/PjtCard/PjtDesc/PjtDesc";

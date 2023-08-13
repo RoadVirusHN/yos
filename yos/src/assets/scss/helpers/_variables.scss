@@ -1,14 +1,21 @@
-// colors, sizes, 
-$primary-color: #B6C7DB;
-$secondary-color: #2D69AF;
-$primary-background-color: #F5F0D6;
+// colors, sizes,
+$primary-color: #b6c7db;
+$secondary-color: #2d69af;
+$primary-background-color: #f5f0d6;
 $secondary-background-color: #616161;
 $background-gradient-image1: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
 $background-gradient-image2: linear-gradient(to top, #feada6 0%, #f5efef 100%);
 $background-gradient-image3: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);
-$warning-color: #EED22F;
-$danger-color: #C9274C;
-$info-color: #5C9F44;
+$warning-color: #eed22f;
+$danger-color: #c9274c;
+$info-color: #5c9f44;
 $black-color: #000000;
 $white-color: #ffffff;
 
+$breakpoint-tablet: 767px;
+$tablet-font-size: 0.75;
+$breakpoint-mobile: 479px;
+$mobile-font-size: 0.5;
+// $breakpoint-pc: 1024px;
+$base-font-size: 16px; // font-size of root tag => using with rem.
+$font-size-ratio: 1;

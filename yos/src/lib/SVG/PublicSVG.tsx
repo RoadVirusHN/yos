@@ -8,6 +8,7 @@ const PublicSVG = ({ href }: { href: string }) => {
     const fetchSvgContent = async () => {
       try {
         const res = await import(`@assets/${href}`);
+
         setSrc(res.default);
       } catch (error) {
         console.error("Error fetching SVG:", error);

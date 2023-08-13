@@ -5,10 +5,8 @@ import ClassNames from "./PjtFloat.module.scss";
 import { useEffect, useState } from "react";
 import { filt } from "@utils/MyAnimation";
 import Cloud from "@assets/commons/serviceCloud/Cloud.svg";
-import ServerStatus, {
-  ServerStatusEnum,
-  ServerStatusType,
-} from "./ServerStatus";
+import { ServerStatusEnum } from "@data/Enums";
+import ServerStatus from "./ServerStatus";
 
 const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.Float,
@@ -17,8 +15,8 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
     cardAnimController,
   }: CardComponentProps<PjtCardData>) => {
     const [url, _] = useState((cardData as PjtCardData).Float.URL);
-    const [status, _setStatus] = useState<ServerStatusType>(
-      ServerStatusEnum.CHECKING as ServerStatusType
+    const [status, _setStatus] = useState<ServerStatusEnum>(
+      ServerStatusEnum.CHECKING
     );
     const [{ scale }, api] = useSpring(() => ({
       scale: 1,
@@ -71,8 +69,6 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
           serviceDesc = <span>Error!</span>;
       }
     }
-    console.log(serviceDesc);
-
     return (
       <animated.div
         className={ClassNames.float}
@@ -95,7 +91,7 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
           status={
             (url === ""
               ? ServerStatusEnum.UNAVAILABLE
-              : status) as ServerStatusType
+              : status) as ServerStatusEnum
           }
         />
       </animated.div>

@@ -1,5 +1,5 @@
 import { type ReactElement } from 'react';
-import { CardSideEnum } from 'src/data/enums/enums';
+import { CardSideEnum } from '@data/Enums';
 
 export type BandStatus = keyof typeof BandEnum;
 

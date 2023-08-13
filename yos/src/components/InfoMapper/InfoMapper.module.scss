@@ -8,16 +8,13 @@
       vertical-align: middle;
       margin: 5px;
     }
-    svg, .infoItemIcon {
-      min-width: 36px;
-      min-height: 54px;
-      width: 7vw;
-      height: 7vw;
-      max-width: 64px;
-      max-height: 96px;
+    @include global.mix-responsiveWidth("svg, .infoItemIcon", 36px, 48px, 64px);
+    svg,
+    .infoItemIcon {
+      aspect-ratio: 1.5;
     }
     span {
-      font-size: calc(12px + 1vw);
+      font-size: 1rem;
       width: 100%;
       margin: 5px;
     }
