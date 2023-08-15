@@ -22,12 +22,16 @@
         flex-direction: column;
         align-items: center;
         height: fit-content;
-        @include global.mix-responsiveWidth("img", 16px, 24px, 32px);
         img {
+          @include global.mix-map-responsive(16px, 24px, 32px) using ($val) {
+            width: $val;
+          }
           aspect-ratio: 1;
         }
-        @include global.mix-responsiveWidth(".iconName", 16px, 24px, 32px);
         .iconName {
+          @include global.mix-map-responsive(16px, 24px, 32px) using ($val) {
+            width: $val;
+          }
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
           height: auto;
           display: flex;

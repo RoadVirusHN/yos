@@ -7,6 +7,7 @@ import {
 } from "@data/CardProcessors";
 import { ScalableSVGWrapper } from "@lib/SVG/ScalableSVG";
 import { useEffect, useRef } from "react";
+import React from "react";
 
 const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
   Data: tutoData.Description,
@@ -16,7 +17,9 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
     deckAnimAPI,
   }: CardComponentProps<TutoCardData>) => {
     const [props, api] = useSpring(() => ({ offset: 0, display: "block" }));
-
+    const ref = useRef<HTMLDivElement>(null);
+    const startTitle = `<span>DRAG&nbsp; <span class=${ClassNames.emphasis}>CARD</span> &nbsp;OVER<br />THE DASHED LINE.</span>`;
+    const thenTitle = `<span class=${ClassNames.emphasis}>DROP THE CARD!</span>`;
     useEffect(() => {
       api.start(() => ({
         from: { offset: 0 },
@@ -24,8 +27,8 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
         loop: true,
         config: { duration: 20000 },
       }));
+      if (ref.current != null) ref.current.innerHTML = startTitle;
     }, [api]);
-    const ref = useRef<HTMLDivElement>(null);
     const [cardAnim, deckAnim] = [
       cardAnimController.AnimStates.AnimAPI.AnimValues,
       deckAnimAPI.deckAnim,
@@ -45,20 +48,12 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
             }),
             content: blur.to((v) => {
               if (ref.current != null) {
-                if (v > 0.1) {
-                  ref.current.innerHTML = `<span class=${ClassNames.emphasis}>DROP THE CARD!</span>`;
-                } else {
-                  ref.current.innerHTML = `DRAG&nbsp; <span class=${ClassNames.emphasis}>CARD</span> &nbsp;OVER THE DASHED LINE.`;
-                }
+                ref.current.innerHTML = v > 0.1 ? thenTitle : startTitle;
               }
               return "";
             }),
           }}
-        >
-          DRAG&nbsp;
-          <span className={ClassNames.emphasis}>CARD</span>
-          &nbsp;OVER THE DASHED LINE.
-        </animated.div>
+        />
         <animated.div
           className={ClassNames.lineBox}
           style={{

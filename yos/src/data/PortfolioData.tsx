@@ -5,6 +5,7 @@ import {
   TutoCardProcessor,
 } from "./CardProcessors";
 import video from "@assets/components/PjtCard/previews/test-big.webm";
+import preview from "@assets/commons/img/coloredTwat.png"
 import SampleDoodle from "@assets/components/PjtCard/doodles/SampleDoodle";
 
 export const emptyCard = {
@@ -27,6 +28,7 @@ export const PortfolioCards: AllCardData[] = [
     Float: { URL: "asdf" },
     FrontFace: {
       VideoURL: video,
+      PreviewImage: preview,
       TechStacks: [{ tagName: "VUEJS" }],
     },
     BackFace: {
@@ -53,6 +55,7 @@ export const PortfolioCards: AllCardData[] = [
     Float: { URL: "asdf" },
     FrontFace: {
       VideoURL: video,
+      PreviewImage: preview,
       TechStacks: [{ tagName: "PYTORCH" }],
     },
     BackFace: {

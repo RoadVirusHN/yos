@@ -19,15 +19,17 @@ const TutoFront = (
   }: CardComponentProps<TutoCardData>) => {
     const ref = useRef<HTMLDivElement>(null);
     const [cardAnim, deckAnim] = [
-      cardAnimController.AnimStates.AnimAPI.AnimValues,
+      cardAnimController.AnimStates.AnimAPI,
       deckAnimAPI.deckAnim,
     ];
-
     return (
       <animated.div
         className={`${ClassNames.front} ${ClassNames.face}`}
         style={{
-          filter: to([cardAnim.gray, cardAnim.blur], filt),
+          filter: to(
+            [cardAnim.AnimValues.gray, cardAnim.AnimValues.blur],
+            filt
+          ),
           content: to([deckAnim.order], (order) => {
             if (order[1] === cardData.Index) {
               (ref.current as HTMLDivElement).innerText = "DONE!";
@@ -38,10 +40,12 @@ const TutoFront = (
       >
         <div className={ClassNames.container}>
           <div ref={ref} className={ClassNames.portfolio}>
-            <div style={{ fontSize: "50%", lineHeight: "30%" }}>THE</div>
+            <div style={{ fontSize: "2rem", lineHeight: "30%" }}>THE</div>
             LUXURIST
           </div>
-          <div className={ClassNames.name}>JUNSEOK-YUN PORTFOLIO</div>
+          <div className={ClassNames.name} style={{ cursor: "pointer" }}>
+            JUNSEOK-YUN PORTFOLIO
+          </div>
         </div>
       </animated.div>
     );

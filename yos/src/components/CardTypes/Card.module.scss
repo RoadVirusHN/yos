@@ -13,11 +13,13 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  @include global.mix-responsiveWidth(".card", 360px, 480px, 540px);
   .card {
     border-radius: 10px;
     will-change: transform;
     transform-style: preserve-3d;
+    @include global.mix-map-responsive(360px, 480px, 540px) using ($val) {
+      width: $val;
+    }
     &:active {
       cursor: grabbing;
     }

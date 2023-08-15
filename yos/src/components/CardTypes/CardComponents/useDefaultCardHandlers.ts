@@ -85,7 +85,8 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
       if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
         // pick card animation.
         dragStart.current = { x: e.pageX, y: e.pageY };
-        void cardAnimController.TransitionTo.StatePick();
+        console.log(
+          cardAnimController.TransitionTo.StatePick());
         window.addEventListener("mouseup", handleMouseUp);
         window.addEventListener("mousemove", handleMove);
       } else if (deckAnimAPI.deckAnim.order.get()[0] === cardData.Index) {

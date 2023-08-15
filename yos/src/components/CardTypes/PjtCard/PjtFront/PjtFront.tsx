@@ -11,11 +11,13 @@ import { useState } from "react";
  *- ResizeObserver loop problem.
  */
 const AnimatedReactPlayer = animated(ReactPlayer);
+
 const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.FrontFace,
   Component: ({ cardData, deckAnimAPI }: CardComponentProps<PjtCardData>) => {
     const [techStacks, _] = useState(cardData.FrontFace.TechStacks);
-
+    // console.log(cardData.FrontFace.PreviewImage);
+    
     return (
       <>
         <AnimatedReactPlayer
@@ -24,13 +26,14 @@ const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
           height="80%"
           url={cardData.FrontFace.VideoURL}
           // onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
-          loop
-          controls
+          light={<img style={{height: "100%", aspectRatio: 1, filter: "blur(2px)"}} src={cardData.FrontFace.PreviewImage} alt="Thumbnail" />} //image for previewing
           playing={to(
             [deckAnimAPI.deckAnim.order],
             (order: number[]) => order.at(-1) === cardData.Index
           )}
-          muted
+          muted // for auto playing
+          loop
+          controls
         />
         <TechStacks tags={techStacks} />
       </>

@@ -2,12 +2,16 @@
 .lineBox {
   overflow: hidden;
   position: absolute;
-  width: 75%;
-  height: 66%;
+  @include global.mix-map-responsive(460px, 580px, 660px) using ($val) {
+    width: $val;
+  }
+  aspect-ratio: 89 / 64;
   display: block;
   z-index: -1;
 }
 .chrome {
+  display: inline-block;
+  white-space: pre-line;
   @include global.mix-shineAnimation(7s, 9rem);
   position: absolute;
   top: 25px;
@@ -21,5 +25,6 @@
     color: rgba(134, 40, 129, 0.6);
     font-size: 140%;
     font-weight: bolder;
+    word-break: break-word;
   }
 }

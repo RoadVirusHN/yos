@@ -33,13 +33,6 @@ export interface CardComponentProps<CardData> {
 }
 const Card = ({ cardData, deckAnimAPI }: CardProps) => {
   const cardStates = cardData.Type(cardData);
-  // I hate this code below
-  // if ('Float' in cardData) {
-  //   cardStates = (cardData).Type(cardData);
-  // } else {
-  //   // cardData is of type TutoCardData
-  //   cardStates = (cardData).Type(cardData);
-  // }
   const [cardAnimValues, cardAnimRef] = useSpring<CardStyles>(() =>
     CardAnimStates.prototype.StateInit(
       cardStates.Index,
@@ -68,6 +61,7 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
     cardAnimAPI.AnimValues;
   const { onMouseDown, onDragOver, onDragStart } = Handlers;
   const CardBodyHandlers = { onMouseDown, onDragOver, onDragStart };
+
   return (
     <>
       {SpringValueListener}

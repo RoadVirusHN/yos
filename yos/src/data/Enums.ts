@@ -22,3 +22,7 @@ export enum ServerStatusEnum {
   PENDING = "PENDING",
   STOPPED = "STOPPED",
 }
+export enum AnimDefaultConfigEnum {
+  UNSTOPPABLE = "UNSTOPPABLE",
+  QUEUEABLE = "QUEUEABLE",
+}

@@ -59,12 +59,14 @@ const TutoCommon = (
         {side === CardSideEnum.FRONT ? (
           <animated.span
             className={ClassNames.indicator}
-            style={{ filter: to([gray, blur], filt) }}
+            style={{ filter: to([gray, blur], filt), content: to(side, side=>{
+              return ""
+            }) }}
           >
-            <span style={{ fontSize: "2rem", fontWeight: "bold" }}>
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
               DO NOT <br /> CLICK IT
             </span>
-            <span style={{ fontSize: "2rem", fontWeight: "bold" }}> →</span>
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}> →</span>
           </animated.span>
         ) : (
           ""

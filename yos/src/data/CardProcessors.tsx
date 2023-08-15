@@ -68,6 +68,7 @@ export interface PjtCardData {
   Float: { URL: string };
   FrontFace: {
     VideoURL: string;
+    PreviewImage: string;
     TechStacks: TagType[];
   };
   BackFace: {

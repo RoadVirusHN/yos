@@ -15,9 +15,20 @@
       display: inline-block;
       height: auto;
     }
-
-    @include global.mix-responsiveWidth(".meTheKing", 22px, 30px, 40px);
-    @include global.mix-responsiveWidth(".me", 18px, 24px, 32px);
-    @include global.mix-responsiveWidth(".teammate", 12px, 18px, 24px);
+    .meTheKing {
+      @include global.mix-map-responsive(22px, 30px, 40px) using ($val) {
+        width: $val;
+      }
+    }
+    .me {
+      @include global.mix-map-responsive(18px, 24px, 32px) using ($val) {
+        width: $val;
+      }
+    }
+    .teammate {
+      @include global.mix-map-responsive(12px, 18px, 24px) using ($val) {
+        width: $val;
+      }
+    }
   }
 }

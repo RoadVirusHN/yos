@@ -1,3 +1,5 @@
+@use "./variables" as var;
+// remember, css custom property is unavailable in the media query condition.
 @mixin shineAnimation($duration, $textHeight) {
   background: #222 -webkit-gradient(
       linear,
@@ -54,31 +56,22 @@
     }
   }
 }
-
-@mixin responsiveWidth($selector, $mobile-size, $tablet-size, $pc-size) {
+@mixin map-responsive($mobile-val, $tablet-val, $pc-val) {
   // pc devices
-  #{$selector} {
-    width: $pc-size;
-  }
+  @content ($pc-val);
 
   // tablet devices
-  @media (min-width: --breakpoint-mobile) and (max-width: --breakpoint-tablet) {
-    #{$selector} {
-      width: $tablet-size;
-    }
+  @media (min-width: calc(var.$breakpoint-mobile + 1px)) and (max-width: calc(var.$breakpoint-tablet + 1px)) {
+    @content ($tablet-val);
   }
 
   // mobile horizontal
-  @media (max-width: --breakpoint-mobile) and (orientation: landscape) {
-    #{$selector} {
-      width: $mobile-size;
-    }
+  @media (max-width: var.$breakpoint-mobile) and (orientation: landscape) {
+    @content ($mobile-val);
   }
 
   //mobile vertical
-  @media (max-width: --breakpoint-mobile) and (orientation: portrait) {
-    #{$selector} {
-      width: $mobile-size;
-    }
+  @media (max-width: var.$breakpoint-mobile) and (orientation: portrait) {
+    @content ($mobile-val);
   }
 }

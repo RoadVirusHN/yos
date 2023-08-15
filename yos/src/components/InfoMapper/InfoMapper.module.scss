@@ -8,9 +8,11 @@
       vertical-align: middle;
       margin: 5px;
     }
-    @include global.mix-responsiveWidth("svg, .infoItemIcon", 36px, 48px, 64px);
     svg,
     .infoItemIcon {
+      @include global.mix-map-responsive(36px, 48px, 64px) using ($val) {
+        width: $val;
+      }
       aspect-ratio: 1.5;
     }
     span {

@@ -1,4 +1,5 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
+import { animation, unstoppable } from '@lib/Animation/Animation';
 import {
   type ControllerProps,
   type GoalProp,
@@ -23,9 +24,9 @@ const snapDist = {
 
 export interface AnimDefaultStyle {
   // Common Styles for All Animations
-  onAnim: string
+  AnimConfig: { unstoppable: boolean, queueable: boolean }
 }
-export type initialStyles<T> = Partial<T> & AnimDefaultStyle;
+export type AnimAPIInput<T extends Lookup<any>> = AnimStatesOutput<T> & AnimDefaultStyle;
 export interface CardStyles extends Lookup<any> {
   // Styles for cards.
   x: number
@@ -70,10 +71,11 @@ export abstract class AnimStates<Styles extends Lookup<any>> {
   }) {
     this.AnimAPI = AnimAPI;
   }
-  abstract StateInit(...args: any): initialStyles<Styles>;
+  abstract StateInit(...args: any): AnimStatesOutput<Styles>;
 }
 export class CardAnimStates extends AnimStates<CardStyles> {
-  StateInit(order: number, deckLength: number): initialStyles<CardStyles> {
+  @unstoppable()
+  StateInit(order: number, deckLength: number): AnimStatesOutput<CardStyles> {
     const radians = (((order * 360) / deckLength + 180) * Math.PI) / 180;
     const x = window.innerWidth * 2 * Math.cos(radians);
     const y = window.innerWidth * 2 * Math.sin(radians);
@@ -92,10 +94,10 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       shadow: true,
       cursor: order === deckLength - 1 ? 'grab' : 'default',
       side: CardSideEnum.FRONT,
-      onAnim: ''
     };
   }
 
+  @animation()
   StateStart(order: number, deckLength: number): AnimStatesOutput<CardStyles> {
     return {
       x: 0,
@@ -114,6 +116,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @animation()
   StateTop(deckLength: number): AnimStatesOutput<CardStyles> {
     return {
       from: {
@@ -140,6 +143,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @animation()
   StatePick(): AnimStatesOutput<CardStyles> {
     return {
       scale: 1.1,
@@ -150,6 +154,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @animation()
   StateFloat(deckLength: number): AnimStatesOutput<CardStyles> {
     return {
       z: deckLength + 1,
@@ -161,6 +166,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @animation()
   StateFlickable(deckLength: number): AnimStatesOutput<CardStyles> {
     return {
       z: deckLength + 1,
@@ -171,6 +177,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @animation()
   StateMove(mouseDelta: {
     dX: number
     dY: number
@@ -194,6 +201,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @animation()
   StateDeck(order: number, deckLength: number): AnimStatesOutput<CardStyles> {
     return {
       x: 0,
@@ -208,6 +216,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @animation()
   StateFloor(): AnimStatesOutput<CardStyles> {
     return {
       z: 0,
@@ -220,6 +229,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @unstoppable()
   StateFront(): AnimStatesOutput<CardStyles> {
     if (this.AnimAPI.AnimValues.side.get() === CardSideEnum.FRONT) {
       return {};
@@ -243,6 +253,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
+  @unstoppable()
   StateBack(): AnimStatesOutput<CardStyles> {
     if (this.AnimAPI.AnimValues.side.get() === CardSideEnum.BACK) {
       return {};
