@@ -12,10 +12,7 @@ import {
 } from 'react-spring';
 import { CardSideEnum } from './Enums';
 
-export const flickableDistance = {
-  w: 160,
-  h: 128
-};
+export const flickableDistance = [160, 128]
 
 const snapDist = {
   sX: window.innerWidth / 3,
@@ -178,19 +175,16 @@ export class CardAnimStates extends AnimStates<CardStyles> {
   }
 
   @animation()
-  StateMove(mouseDelta: {
-    dX: number
-    dY: number
-  }): AnimStatesOutput<CardStyles> {
-    let { dX, dY } = mouseDelta;
+  StateMove(distance: [dX:number, dY:number]): AnimStatesOutput<CardStyles> {
+    let [ dX, dY ] = distance;
     const absX = Math.abs(dX);
     const absY = Math.abs(dY);
-    if (absX > flickableDistance.w && absX < snapDist.sX) {
+    if (absX > flickableDistance[0] && absX < snapDist.sX) {
       const ratio = snapDist.sX / absX;
       dX = dX * ratio;
     }
 
-    if (absY > flickableDistance.h && absY < snapDist.sY) {
+    if (absY > flickableDistance[1] && absY < snapDist.sY) {
       const ratio = snapDist.sY / absY;
       dY = dY * ratio;
     }

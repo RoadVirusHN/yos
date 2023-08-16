@@ -59,8 +59,8 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
   });
   const { x, y, z, rx, ry, rz, cursor, scale, ratio, shadow } =
     cardAnimAPI.AnimValues;
-  const { onMouseDown, onDragOver, onDragStart } = Handlers;
-  const CardBodyHandlers = { onMouseDown, onDragOver, onDragStart };
+  const { bind } = Handlers;
+  // const CardBodyHandlers = { onMouseDown, onDragOver, onDragStart };
 
   return (
     <>
@@ -70,13 +70,13 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
         <cardStates.Float.Component {...PropForComponents} />
         <animated.div
           className={ClassNames.card}
-          {...CardBodyHandlers}
+          {...bind()}
           {...cardStates.AdditionalHandlers(PropForComponents)}
           style={{
             cursor,
             transform: to([rx, ry, rz, scale, ratio], trans),
             aspectRatio: ratio.to((v) => {
-              if (v === 1) return "1 / 1  ";
+              if (v === 1) return "1 / 1";
               return "89 / 64";
             }),
             boxShadow: shadow.to((shadow) =>

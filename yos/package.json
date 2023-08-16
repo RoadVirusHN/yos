@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://roadvirushn.github.io/yos",
   "dependencies": {
+    "@use-gesture/react": "^10.2.27",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lazy-load-image-component": "^1.6.0",

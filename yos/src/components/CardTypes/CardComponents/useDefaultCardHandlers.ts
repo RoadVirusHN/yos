@@ -1,19 +1,16 @@
-import { type CardStyles, flickableDistance } from 'src/data/CardData';
-import { useEffect, useRef } from 'react';
-import { getManhattanDistance } from 'src/utils/MyMath';
+import { flickableDistance } from 'src/data/CardData';
+import { useEffect } from 'react';
 import { type CardComponentProps } from '../Card';
-import { type SpringValues } from 'react-spring';
 import { AllCardData } from 'src/data/CardProcessors';
+import { useGesture } from '@use-gesture/react';
 
-export function canFlick(props: SpringValues<CardStyles>) {
-  const [dX, dY] = [Math.abs(props.x.get()), Math.abs(props.y.get())];
-  const flickable = dX > flickableDistance.w || dY > flickableDistance.h;
+export function canFlick(distance: [dX: number, dY: number]) {
+  const [dX, dY] = distance
+  const flickable = dX > flickableDistance[0] || dY > flickableDistance[1];
   return flickable;
 }
 const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
-  const dragStart = useRef({ x: -1, y: -1 });
   const { cardData, cardAnimController, deckAnimAPI } = cardProps;
-
   useEffect(() => {
     void cardAnimController.TransitionTo.StateStart(
       cardData.Index,
@@ -22,88 +19,87 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const defaultPreventor = (e: React.MouseEvent) => {
-    e.preventDefault();
-  };
-
-  const handleMove = (e: MouseEvent) => {
-    // only dragging&top card can be moved.
-    if (
-      e.buttons === 1 &&
-      deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index
-    ) {
-      const fr = { x: e.pageX, y: e.pageY };
-      const dragDist = getManhattanDistance(fr, dragStart.current);
-
-      if (canFlick(cardAnimController.AnimStates.AnimAPI.AnimValues)) {
-        void cardAnimController.TransitionTo.StateFlickable(
-          deckAnimAPI.deckAnim.order.get().length
-        );
-      } else {
-        void cardAnimController.TransitionTo.StateFloat(
-          deckAnimAPI.deckAnim.order.get().length
-        );
-      }
-      void cardAnimController.TransitionTo.StateMove(dragDist);
-    } else if (
-      dragStart.current.x !== -1 &&
-      dragStart.current.y !== -1 &&
-      e.buttons === 0
-    ) {
-      handleMouseUp(e);
-    }
-  };
-  const handleMouseUp = (_e: MouseEvent) => {
-    // only top card can be placed.
-    if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
-      if (canFlick(
-        cardAnimController.AnimStates.AnimAPI.AnimValues
-      )) {
-        cardAnimController.TransitionTo.StateFloor().then((_res: any) => {
-          deckAnimAPI.setDeckAnim.set({
-            order: [cardData.Index].concat(
-              deckAnimAPI.deckAnim.order
-                .get()
-                .filter((ele) => ele !== cardData.Index)
+  const bind = useGesture({
+    onDrag: ({ first, dragging, movement, swipe, tap, last, event }) => {
+      // when the card is in top of the deck && click the exactly this card. (event.preventpropagation doesn't work!)
+      if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index && (event.target as HTMLElement).tagName === "DIV") {
+        if (first) cardAnimController.TransitionTo.StatePick()
+        if (dragging) {
+          // user dragging
+          // if distance > flickable, focused out
+          if (canFlick(movement)) {
+            void cardAnimController.TransitionTo.StateFlickable(
+              deckAnimAPI.deckAnim.order.get().length
             )
-          });
-        });
-      } else {
-        cardAnimController.TransitionTo.StateTop(
-          deckAnimAPI.deckAnim.order.get().length
-        )
-      }
-      dragStart.current = { x: -1, y: -1 };
-    }
-    window.removeEventListener('mouseup', handleMouseUp);
-    window.removeEventListener('mousemove', handleMove);
-  };
+          } else {
+            void cardAnimController.TransitionTo.StateFloat(
+              deckAnimAPI.deckAnim.order.get().length
+            );
+          }
+          //follow cursor
+          void cardAnimController.TransitionTo.StateMove(movement);
+        }
+        // released
+        // if distance > flickable, flicked to back, or get back.
+        if (last) {
+          if (canFlick(movement)) {
+            void cardAnimController.TransitionTo.StateFloor().then((_res: any) => {
+              deckAnimAPI.setDeckAnim.set({
+                order: [cardData.Index].concat(
+                  deckAnimAPI.deckAnim.order
+                    .get()
+                    .filter((ele) => ele !== cardData.Index)
+                )
+              });
+            })
+          } else {
+            cardAnimController.TransitionTo.StateTop(
+              deckAnimAPI.deckAnim.order.get().length
+            )
+          }
+        }
+        if (!swipe.every((i) => i === 0)) {
+          // user swipping (any directions)
+          // flickeded to back
+          console.log("swiped!", swipe);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (e.buttons === 1) {
-      // when clicked
-      if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
-        // pick card animation.
-        dragStart.current = { x: e.pageX, y: e.pageY };
-        console.log(
-          cardAnimController.TransitionTo.StatePick());
-        window.addEventListener("mouseup", handleMouseUp);
-        window.addEventListener("mousemove", handleMove);
+        }
+        if (tap) {
+          // user tapping
+          // card fill the screen.
+          console.log("tapped!");
+        }
       } else if (deckAnimAPI.deckAnim.order.get()[0] === cardData.Index) {
-        // floor card to top
-        void cardAnimController.TransitionTo.StateTop(
-          deckAnimAPI.deckAnim.order.get().length
-        );
-        // change deck Order
-        deckAnimAPI.setDeckAnim.set({
-          order: deckAnimAPI.deckAnim.order
-            .get()
-            .slice(1)
-            .concat([cardData.Index])
-        });
+        // most bottom card
+        if (tap) {
+          //use tapping
+          // get back to top card, make new bottom card to clickable.
+          void cardAnimController.TransitionTo.StateTop(
+            deckAnimAPI.deckAnim.order.get().length
+          );
+          // change deck Order
+          deckAnimAPI.setDeckAnim.set({
+            order: deckAnimAPI.deckAnim.order
+              .get()
+              .slice(1)
+              .concat([cardData.Index])
+          });
+        }
+      }
+    },
+    onPinch: ({ pinching, offset: [scaleDelta, angleDelta], movement, distance }) => {
+      console.log(scaleDelta, angleDelta, movement, distance);
+
+      if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
+        //when the card is in top of the deck.
+        if (pinching) {
+          // user pinching
+          //zoom by scale delta, spin by angle Delta, move by distance
+        }
       }
     }
-  };
+  }, { drag: { filterTaps: true } }
+  )
 
   const onChangeOrder = async (order: number[]) => {
     return await cardAnimController.TransitionTo.StateDeck(
@@ -113,9 +109,7 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
   };
 
   return {
-    onMouseDown: handleMouseDown,
-    onDragOver: defaultPreventor,
-    onDragStart: defaultPreventor,
+    bind,
     onChangeOrder,
     onChangeMode: (_mode: string) => { }
   };

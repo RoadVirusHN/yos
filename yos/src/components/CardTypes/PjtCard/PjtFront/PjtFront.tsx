@@ -17,16 +17,23 @@ const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Component: ({ cardData, deckAnimAPI }: CardComponentProps<PjtCardData>) => {
     const [techStacks, _] = useState(cardData.FrontFace.TechStacks);
     // console.log(cardData.FrontFace.PreviewImage);
-    
     return (
       <>
         <AnimatedReactPlayer
           className={ClassNames.preview}
           width="100%"
           height="80%"
+          draggable={false}
           url={cardData.FrontFace.VideoURL}
           // onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
-          light={<img style={{height: "100%", aspectRatio: 1, filter: "blur(2px)"}} src={cardData.FrontFace.PreviewImage} alt="Thumbnail" />} //image for previewing
+          light={
+            <img
+              style={{ height: "100%", aspectRatio: 1, filter: "blur(2px)" }}
+              src={cardData.FrontFace.PreviewImage}
+              alt="Thumbnail"
+              draggable={false}
+            />
+          } //image for previewing
           playing={to(
             [deckAnimAPI.deckAnim.order],
             (order: number[]) => order.at(-1) === cardData.Index

@@ -56,26 +56,20 @@ export default class AnimController<
 
       if (this.AnimationQueue.length > 0) {
         const animConfig = this.AnimationQueue[0].AnimConfig;
-        if (animConfig.queueable) {
-          this.AnimationQueue.push(animQData);
+        if (animConfig.unstoppable) {
+          if (animConfig.queueable) {
+            this.AnimationQueue.push(animQData);
+          } else {
+            console.log("animationPrevented");
+          }
           return new Promise(resolve => {
             resolve({
-              value: { queued: true } as never,
+              value: { queued: animConfig.queueable } as never,
               /** When true, no animation ever started. */
               noop: false,
               /** When true, the animation was neither cancelled nor stopped prematurely. */
               finished: false,
               /** When true, the animation was cancelled before it could finish. */
-              cancelled: true,
-            })
-          }) as Promise<AnimationResult<Controller<Styles>>>
-        } else if (animConfig.unstoppable) {
-          console.log("animationPrevented");
-          return new Promise(resolve => {
-            resolve({
-              value: {} as never,
-              noop: false,
-              finished: false,
               cancelled: true,
             })
           }) as Promise<AnimationResult<Controller<Styles>>>

@@ -17,6 +17,7 @@
     border-radius: 10px;
     will-change: transform;
     transform-style: preserve-3d;
+    touch-action: none;
     @include global.mix-map-responsive(360px, 480px, 540px) using ($val) {
       width: $val;
     }
