@@ -22,11 +22,12 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
   const bind = useGesture({
     onDrag: ({ first, dragging, movement, swipe, tap, last, event }) => {
       // when the card is in top of the deck && click the exactly this card. (event.preventpropagation doesn't work!)
-      if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index && (event.target as HTMLElement).tagName === "DIV") {
+      if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index && (event.target as HTMLElement).tagName !== "IMG") {
         if (first) cardAnimController.TransitionTo.StatePick()
         if (dragging) {
           // user dragging
           // if distance > flickable, focused out
+
           if (canFlick(movement)) {
             void cardAnimController.TransitionTo.StateFlickable(
               deckAnimAPI.deckAnim.order.get().length

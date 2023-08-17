@@ -21,13 +21,11 @@ const TutoCommon = (
     deckAnimAPI,
   }: CardComponentProps<TutoCardData>) => {
     const [side, setSide] = useState(CardSideEnum.FRONT);
-
     const bind = useGesture(
       {
         onDrag: ({ tap, event }) => {
           event.stopPropagation();
           if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
-            // !!!TODO : Make band two sided div like card to get better ux.
             if (tap) {
               setSide(
                 cardAnim.side.get() === CardSideEnum.FRONT
@@ -54,7 +52,7 @@ const TutoCommon = (
             className={ClassNames.indicator}
             style={{
               filter: to([gray, blur], filt),
-              content: to(side, (side) => {
+              content: to(side, (_side) => {
                 return "";
               }),
             }}
@@ -68,18 +66,24 @@ const TutoCommon = (
           ""
         )}
         <animated.div
-          className={ClassNames.band}
+          className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.front}`}
           style={{
             filter: to([gray, blur], filt),
           }}
           draggable={false}
           {...bind()}
         >
-          <PublicSVG
-            href={`commons/bands/${
-              side === CardSideEnum.FRONT ? "TUTODEFAULT" : "TUTORIAL"
-            }.svg`}
-          />
+          <PublicSVG href={`commons/bands/DEFAULT.svg`} />
+        </animated.div>
+        <animated.div
+          className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.back}`}
+          style={{
+            filter: to([gray, blur], filt),
+          }}
+          draggable={false}
+          {...bind()}
+        >
+          <PublicSVG href={`commons/bands/TUTORIAL.svg`} />
         </animated.div>
       </>
     );

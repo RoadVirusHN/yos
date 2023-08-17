@@ -4,7 +4,7 @@
   // Additionally, Add `draggable="false"` in the HTML element.
 }
 
-%MaskingCardBand {
+%MaskingCardBandRightUp {
   //generate clip from https://www.cssportal.com/css-clip-path-generator/
   -webkit-clip-path: polygon(
     2% 0,
@@ -25,5 +25,29 @@
     85% 88%,
     11% 12%,
     2% 11%
+  );
+}
+
+%MaskingCardBandLeftDown {
+  //generate clip from https://www.cssportal.com/css-clip-path-generator/
+  -webkit-clip-path: polygon(
+    15% 0%,
+    14% 6%,
+    88% 80%,
+    100% 79%,
+    100% 100%,
+    48% 100%,
+    0% 53%,
+    0% 0%
+  );
+  clip-path: polygon(
+    15% 0%,
+    14% 6%,
+    88% 80%,
+    100% 79%,
+    100% 100%,
+    48% 100%,
+    0% 53%,
+    0% 0%
   );
 }

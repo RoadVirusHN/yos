@@ -1,15 +1,38 @@
 @use "@scss" as main;
 .band {
-  position: absolute;
-  right: -22px;
-  top: -17px;
+  touch-action: none;
   z-index: 9;
-
-  @extend %MaskingCardBand;
-  & > * {
+  will-change: transform;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  & img {
     position: relative;
   }
   img {
     cursor: pointer;
   }
+}
+.face {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+}
+.front {
+  @extend %MaskingCardBandRightUp;
+  z-index: 1;
+  right: -24px;
+  top: -20px;
+  overflow: visible;
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.back {
+  @extend %MaskingCardBandLeftDown;
+  right: -33px;
+  top: -28px;
+  overflow: hidden;
+  display: block;
+  -webkit-transform: rotateY(180deg) rotateZ(90deg);
+  transform: rotateY(180deg) rotateZ(90deg);
 }

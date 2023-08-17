@@ -44,7 +44,8 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
     AnimValues: cardAnimValues as SpringValues<CardStyles>,
   };
   const cardAnimController = new AnimController<CardAnimStates, CardStyles>(
-    new CardAnimStates(cardAnimAPI)
+    new CardAnimStates(cardAnimAPI),
+    `${cardData.Index}`
   );
   const PropForComponents = {
     cardData,

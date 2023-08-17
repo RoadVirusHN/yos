@@ -28,7 +28,7 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
         config: { duration: 20000 },
       }));
       if (ref.current != null) ref.current.innerHTML = startTitle;
-    }, [api]);
+    }, [api, startTitle]);
     const [cardAnim, deckAnim] = [
       cardAnimController.AnimStates.AnimAPI.AnimValues,
       deckAnimAPI.deckAnim,

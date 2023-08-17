@@ -9,7 +9,6 @@
 
 import { AnimStates } from "@data/CardData";
 import { Lookup } from "react-spring";
-import AnimController from "./AnimController";
 
 //     // if (this.StyleValues.onAnim.get() === undefined) {
 //     //   throw Error("All Animations should have onAnim property.");
@@ -32,32 +31,29 @@ import AnimController from "./AnimController";
 // }
 export const animation =
   () => function <
-    T extends AnimStates<Styles>,
     Styles extends Lookup<any>>(
       _target: AnimStates<Styles>, // decorator function object
-      key: string, // decorator function name
+      _key: string, // decorator function name
       desc: PropertyDescriptor // additional infos
     ) {
     let method = desc.value;
-    desc.value = function (this: AnimController<T, Styles>, ...args: any[]) {
-      method = method.bind(this.AnimStates);
+    desc.value = function (this: AnimStates<Styles>, ...args: any[]) {
       return { ...method.call(this, ...args), AnimConfig: { unstoppable: false, queueable: false } }
     };
     return desc;
   };
 
 export const unstoppable =
-  ({ queueable = false } = {}) => function <
-    T extends AnimStates<Styles>,
+  ({ queueable = false, except = [] as string[] } = {}) => function <
     Styles extends Lookup<any>>(
       _target: AnimStates<Styles>, // decorator function object
-      key: string, // decorator function name
+      _key: string, // decorator function name
       desc: PropertyDescriptor // additional infos
     ) {
     let method = desc.value;
-    desc.value = function (this: AnimController<T, Styles>, ...args: any[]) {
-      method = method.bind(this.AnimStates);
-      return { ...method(...args), AnimConfig: { unstoppable: true, queueable } }
+    // method = method.bind(target);
+    desc.value = function (this: AnimStates<Styles>, ...args: any[]) {
+      return { ...method.call(this, ...args), AnimConfig: { unstoppable: { config: true, except }, queueable } }
     };
     return desc;
   };

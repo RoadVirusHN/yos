@@ -23,8 +23,8 @@ const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
           className={ClassNames.preview}
           width="100%"
           height="80%"
-          draggable={false}
           url={cardData.FrontFace.VideoURL}
+          draggable={false}
           // onMouseDown={(e: React.MouseEvent) => e.stopPropagation()} // for user who intend to control video, not pick the card
           light={
             <img

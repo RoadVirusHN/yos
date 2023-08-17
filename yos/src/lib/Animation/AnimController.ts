@@ -20,11 +20,13 @@ export default class AnimController<
   T extends AnimStates<Styles>,
   Styles extends Lookup<any>
 > {
+  public uniqueId: string;
   public AnimStates: T;
   public TransitionTo: StateTransitions<T, Styles>;
   public AnimationQueue: AnimAPIInput<Styles>[] //idx 0 = currently played animation.
 
-  constructor(AnimStates: T) {
+  constructor(AnimStates: T, uniqueId: string) {
+    this.uniqueId = uniqueId;
     this.AnimStates = AnimStates;
     this.TransitionTo = this.setTransitionTo(this.AnimStates);
     this.AnimationQueue = [];
@@ -34,13 +36,13 @@ export default class AnimController<
     const proto = Object.getPrototypeOf(States) as { [key in keyof T]: T[key] };
     const keys = Object.getOwnPropertyNames(proto) as Array<keyof T>;
     return keys.reduce<StateTransitions<T, Styles>>(
-      (transitionObj, k) => {
-        if ((k as string).startsWith('State') && typeof proto[k] === 'function') {
-          let stateFunc = proto[k] as (...args: any) => AnimAPIInput<Styles>;
-          stateFunc = stateFunc.bind(this)
+      (transitionObj, methodName) => {
+        if ((methodName as string).startsWith('State') && typeof proto[methodName] === 'function') {
+          let stateFunc = proto[methodName] as (...args: any) => AnimAPIInput<Styles>;
+          stateFunc = stateFunc.bind(this.AnimStates)
           return {
             ...transitionObj,
-            [k]: this.setTransitionToState(stateFunc)
+            [methodName]: this.setTransitionToState(stateFunc, methodName as string)
           };
         }
         return transitionObj;
@@ -49,14 +51,14 @@ export default class AnimController<
     )
   }
 
-  private setTransitionToState(stateFunc: (...args: any) => AnimAPIInput<Styles>) {
+  private setTransitionToState(stateFunc: (...args: any) => AnimAPIInput<Styles>, methodName: string) {
     //!!! refactoring later!
     return async (...args: Parameters<typeof stateFunc>) => {
       const animQData = stateFunc(...args);
 
       if (this.AnimationQueue.length > 0) {
         const animConfig = this.AnimationQueue[0].AnimConfig;
-        if (animConfig.unstoppable) {
+        if (animConfig.unstoppable.config && !animConfig.unstoppable.except.includes(methodName)) {
           if (animConfig.queueable) {
             this.AnimationQueue.push(animQData);
           } else {

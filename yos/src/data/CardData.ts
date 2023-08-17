@@ -21,7 +21,7 @@ const snapDist = {
 
 export interface AnimDefaultStyle {
   // Common Styles for All Animations
-  AnimConfig: { unstoppable: boolean, queueable: boolean }
+  AnimConfig: { unstoppable: { config: boolean, except: string[] }, queueable: boolean }
 }
 export type AnimAPIInput<T extends Lookup<any>> = AnimStatesOutput<T> & AnimDefaultStyle;
 export interface CardStyles extends Lookup<any> {
@@ -175,8 +175,8 @@ export class CardAnimStates extends AnimStates<CardStyles> {
   }
 
   @animation()
-  StateMove(distance: [dX:number, dY:number]): AnimStatesOutput<CardStyles> {
-    let [ dX, dY ] = distance;
+  StateMove(distance: [dX: number, dY: number]): AnimStatesOutput<CardStyles> {
+    let [dX, dY] = distance;
     const absX = Math.abs(dX);
     const absY = Math.abs(dY);
     if (absX > flickableDistance[0] && absX < snapDist.sX) {
@@ -223,7 +223,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
-  @unstoppable()
+  @unstoppable({ except: ["StateBack"] })
   StateFront(): AnimStatesOutput<CardStyles> {
     if (this.AnimAPI.AnimValues.side.get() === CardSideEnum.FRONT) {
       return {};
@@ -247,7 +247,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
-  @unstoppable()
+  @unstoppable({ except: ["StateFront"] })
   StateBack(): AnimStatesOutput<CardStyles> {
     if (this.AnimAPI.AnimValues.side.get() === CardSideEnum.BACK) {
       return {};
