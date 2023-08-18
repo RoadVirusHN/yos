@@ -22,7 +22,7 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
       scale: 1,
     }));
 
-    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
+    const { gray, blur, isTop } = cardAnimController.AnimStates.AnimValues;
     const onHover = (_e: React.MouseEvent) => {
       api.start(() => ({
         from: {},
@@ -75,8 +75,8 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         onMouseOver={onHover}
         onMouseOut={onHoverOut}
         style={{
-          filter: to([cardAnim.gray, cardAnim.blur], filt),
-          transform: to([cardAnim.isTop, scale], (isTop, scale) => {
+          filter: to([gray, blur], filt),
+          transform: to([isTop, scale], (isTop, scale) => {
             return `rotateZ(${(1 - isTop) * 160}deg) scale(${isTop * scale})`;
           }),
           backgroundImage: `url(${Cloud})`,

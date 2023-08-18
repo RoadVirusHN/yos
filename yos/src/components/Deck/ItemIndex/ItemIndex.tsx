@@ -26,7 +26,7 @@ const ItemIndex = ({
   });
 
   const SpringValueListener = useSpringValueListner(
-    AnimController.AnimStates.AnimAPI.AnimValues,
+    AnimController.AnimStates.AnimValues,
     {
       order: (order) => {
         refs.start((idx) => {
@@ -39,6 +39,7 @@ const ItemIndex = ({
         });
       },
       mode: () => {},
+      beforOrder: () => {},
     }
   );
   return (
@@ -58,7 +59,7 @@ const ItemIndex = ({
             />
           }
           initialOpacity={1}
-          initialDirection={DirectionEnum.LEFT}
+          initialDirection={DirectionEnum.TOP}
         />
       ))}
     </div>

@@ -81,7 +81,7 @@ export default class AnimController<
       }
       this.AnimationQueue.push(animQData);
 
-      return await this.AnimStates.AnimAPI.AnimRef.start({
+      return await this.AnimStates.AnimRef.start({
         ...animQData, onResolve: this.onResolve(animQData)
       })[0];
     };
@@ -92,7 +92,7 @@ export default class AnimController<
       if (animQData.onResolve !== undefined) animQData.onResolve(result, ctrl, item)
       this.AnimationQueue = this.AnimationQueue.slice(1)
       if (this.AnimationQueue.length > 0) {
-        this.AnimStates.AnimAPI.AnimRef.start({
+        this.AnimStates.AnimRef.start({
           ...this.AnimationQueue[0], onResolve: this.onResolve(this.AnimationQueue[0])
         })
       }

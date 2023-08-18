@@ -19,8 +19,8 @@ const TutoFront = (
   }: CardComponentProps<TutoCardData>) => {
     const ref = useRef<HTMLDivElement>(null);
     const [cardAnim, deckAnim] = [
-      cardAnimController.AnimStates.AnimAPI.AnimValues,
-      deckAnimController.AnimStates.AnimAPI.AnimValues,
+      cardAnimController.AnimStates.AnimValues,
+      deckAnimController.AnimStates.AnimValues,
     ];
     return (
       <animated.div

@@ -57,16 +57,15 @@ export type AnimStatesOutput<T extends Lookup<any>> =
  * you can add `State${StateName}` method for more states.
  */
 export abstract class AnimStates<Styles extends Lookup<any>> {
-  AnimAPI: {
-    AnimRef: SpringRef<Styles>
-    AnimValues: SpringValues<Styles>
-  };
+  AnimRef: SpringRef<Styles>
+  AnimValues: SpringValues<Styles>
 
-  constructor(AnimAPI: {
-    AnimRef: SpringRef<Styles>
+  constructor(
+    AnimRef: SpringRef<Styles>,
     AnimValues: SpringValues<Styles>
-  }) {
-    this.AnimAPI = AnimAPI;
+  ) {
+    this.AnimRef = AnimRef;
+    this.AnimValues = AnimValues;
   }
   abstract StateInit(...args: any): AnimStatesOutput<Styles>;
 }
@@ -124,7 +123,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
           z: deckLength,
           scale: 1.1,
           gray: 0,
-          rz: this.AnimAPI.AnimValues.rz.get() - 4 + Math.random() * 8,
+          rz: this.AnimValues.rz.get() - 4 + Math.random() * 8,
           blur: 0,
           cursor: 'grab',
           config: { tension: 210, friction: 20 }
@@ -141,10 +140,27 @@ export class CardAnimStates extends AnimStates<CardStyles> {
   }
 
   @animation()
+  StateFloor(): AnimStatesOutput<CardStyles> {
+    return {
+      from: {
+        isTop: 0,
+      },
+      to: [{
+        z: 0,
+        scale: 1,
+        gray: 0.7,
+        blur: 2,
+        cursor: 'alias',
+        config: config.stiff
+      }]
+    };
+  }
+
+  @animation()
   StatePick(): AnimStatesOutput<CardStyles> {
     return {
       scale: 1.1,
-      rz: this.AnimAPI.AnimValues.rz.get() + (Math.random() * 6 - 3),
+      rz: this.AnimValues.rz.get() + (Math.random() * 6 - 3),
       delay: undefined,
       cursor: 'grabbing',
       config: { friction: 50, tension: 800 }
@@ -210,22 +226,10 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
-  @animation()
-  StateFloor(): AnimStatesOutput<CardStyles> {
-    return {
-      z: 0,
-      scale: 1,
-      gray: 0.7,
-      blur: 2,
-      cursor: 'alias',
-      isTop: 0,
-      config: config.stiff
-    };
-  }
 
   @unstoppable({ except: ["StateBack"] })
   StateFront(): AnimStatesOutput<CardStyles> {
-    if (this.AnimAPI.AnimValues.side.get() === CardSideEnum.FRONT) {
+    if (this.AnimValues.side.get() === CardSideEnum.FRONT) {
       return {};
     }
     return {
@@ -236,7 +240,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
           rx: 0,
           ry: 0,
           rz: -8 + Math.random() * 16,
-          z: this.AnimAPI.AnimValues.z.get(),
+          z: this.AnimValues.z.get(),
           scale: 1
         }
       ],
@@ -249,7 +253,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
 
   @unstoppable({ except: ["StateFront"] })
   StateBack(): AnimStatesOutput<CardStyles> {
-    if (this.AnimAPI.AnimValues.side.get() === CardSideEnum.BACK) {
+    if (this.AnimValues.side.get() === CardSideEnum.BACK) {
       return {};
     }
     return {
@@ -259,7 +263,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
         {
           // rx: 180,
           rz: 90 - 4 + Math.random() * 8,
-          z: this.AnimAPI.AnimValues.z.get(),
+          z: this.AnimValues.z.get(),
           scale: 1
         }
       ],

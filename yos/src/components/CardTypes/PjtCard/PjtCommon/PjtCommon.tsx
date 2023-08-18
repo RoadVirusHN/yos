@@ -23,12 +23,14 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         onDrag: ({ tap, event }) => {
           event.stopPropagation();
           if (
-            deckAnimController.AnimStates.AnimAPI.AnimValues.order
-              .get()
-              .at(-1) === cardData.Index
+            deckAnimController.AnimStates.AnimValues.order.get().at(-1) ===
+            cardData.Index
           ) {
             if (tap) {
-              if (cardAnim.side.get() === CardSideEnum.FRONT) {
+              if (
+                cardAnimController.AnimStates.AnimValues.side.get() ===
+                CardSideEnum.FRONT
+              ) {
                 void cardAnimController.TransitionTo.StateBack();
               } else {
                 void cardAnimController.TransitionTo.StateFront();
@@ -39,8 +41,7 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
       },
       { drag: { filterTaps: true, preventDefault: true } }
     );
-    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
-    const { gray, blur } = cardAnim;
+    const { gray, blur } = cardAnimController.AnimStates.AnimValues;
 
     return (
       <>

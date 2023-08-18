@@ -18,7 +18,7 @@ const TutoBack = (tutoInfo: TutoCardData): CardComponentData<TutoCardData> => ({
     const ref = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
     const [_width, setWidth] = useState(0);
-    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI];
+    const { AnimRef, AnimValues } = cardAnimController.AnimStates;
     const resizeWH = (_e: Event) => {
       setWidth(ref.current != null ? ref.current.clientWidth : 0);
       setHeight(ref.current != null ? ref.current.clientHeight : 0);
@@ -29,7 +29,7 @@ const TutoBack = (tutoInfo: TutoCardData): CardComponentData<TutoCardData> => ({
       setHeight(ref.current != null ? ref.current.clientHeight : 0);
       window.addEventListener("resize", resizeWH);
 
-      cardAnim.AnimRef.set({
+      AnimRef.set({
         // initializing tutocard properties, it's not only for tutoBack!
         shadow: false,
         ratio: 1 / 1,
@@ -37,7 +37,7 @@ const TutoBack = (tutoInfo: TutoCardData): CardComponentData<TutoCardData> => ({
       return () => {
         window.removeEventListener("resize", resizeWH);
       };
-    }, [cardAnim]);
+    }, [AnimRef]);
     return (
       <animated.div
         ref={ref}

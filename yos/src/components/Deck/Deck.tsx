@@ -16,6 +16,7 @@ import { DeckAnimStates } from "@data/DeckData";
 export interface DeckStyles {
   mode: "DECK";
   order: number[];
+  beforOrder: number[];
 }
 
 export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {
@@ -23,10 +24,7 @@ export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {
     DeckAnimStates.prototype.StateInit(cardDatas.map((data) => data.Index))
   );
   const deckAnimController = new AnimController<DeckAnimStates, DeckStyles>(
-    new DeckAnimStates({
-      AnimRef,
-      AnimValues,
-    }),
+    new DeckAnimStates(AnimRef, AnimValues),
     `portfolioDeck`
   );
   return (

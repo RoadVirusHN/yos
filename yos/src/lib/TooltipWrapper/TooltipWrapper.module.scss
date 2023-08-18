@@ -1,70 +1,192 @@
 @use "@scss" as global;
 
-.toolipWrapper {
+.tooltipWrapper {
   user-select: none;
+  display: inline-block;
+  position: relative;
+  text-align: center;
   width: fit-content;
-  position: absolute;
-  display: inline;
-  margin: auto;
+  height: fit-content;
 }
-.tooltip {
-  & + .tooltiptext {
-    font-family: "Hi Melody", cursive;
-    font-weight: bold;
-    font-size: 1.2rem;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    &.UP {
-      width: 120px;
-      bottom: 100%;
-      left: 50%;
-      margin-left: -60px;
-    }
-    &.DOWN {
-      width: 120px;
-      top: 100%;
-      left: 50%;
-      margin-left: -60px;
-    }
-    &.LEFT {
-      top: -5px;
-      right: 105%;
-    }
-    &.RIGHT {
-      left: 15%;
-      top: 0;
-    }
+.tooltipWrapper .TOP {
+  font-family: "Hi Melody", cursive;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  max-width: 400px;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  padding: 10px 20px;
+  position: absolute;
+  z-index: 99999999;
+  box-sizing: border-box;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  i {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    height: 15px;
   }
 }
 
-.tooltip + .tooltiptext::after {
+.tooltipWrapper .TOP i::after {
   content: " ";
-  position: relative;
-  margin-top: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent transparent black;
-  &.UP {
-    top: 100%;
-    left: 50%;
-  }
-  &.DOWN {
-    bottom: 100%;
-    left: 50%;
-  }
-  &.LEFT {
-    top: 50%;
-    right: 100%;
-  }
-  &.RIGHT {
-    top: 50%;
-    left: 100%;
-  }
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 50%;
+  background-color: black;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
+/*
+<div class="tooltip">
+    Top
+    <div class="top">
+        <h3>Lorem Ipsum</h3>
+        <ul>
+            <li>Aliquam ac odio ut est</li>
+            <li>Cras porttitor orci</li>
+        </ul>
+        <i></i>
+    </div>
+</div>
+
+
+.tooltip .top {
+    top:-20px;
+    left:50%;
+    transform:translate(-30%,-100%);
+    padding:10px 20px
+    position:absolute;
+    z-index:99999999;
+    display:none;
+}
+
+.tooltip .top i {
+    position:absolute;
+    top:100%;
+    left:30%;
+    margin-left:-15px;
+    width:30px;
+    height:15px;
+    overflow:hidden;
+}
+
+.tooltip .top i::after {
+    content:'';
+    position:absolute;
+    width:15px;
+    height:15px;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+}
+-----
+
+.tooltip .right {
+
+    top:50%;
+    left:100%;
+    margin-left:20px;
+    transform:translate(0, -50%);
+    padding:0;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    visibility:hidden; opacity:0; transition:opacity 0.8s;
+}
+
+
+.tooltip .right i {
+    position:absolute;
+    top:50%;
+    right:100%;
+    margin-top:-12px;
+    width:12px;
+    height:24px;
+    overflow:hidden;
+}
+.tooltip .right i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:0;
+    top:50%;
+    transform:translate(50%,-50%) rotate(-45deg);
+}
+
+---
+
+.tooltip .bottom {
+
+    top:40px;
+    left:50%;
+    transform:translate(-50%, 0);
+    padding:20px;
+    position:absolute;
+    z-index:99999999;
+    display:none;
+}
+
+
+.tooltip .bottom i {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+}
+
+.tooltip .bottom i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
+}
+
+----
+
+.tooltip .left {
+    top:50%;
+    right:100%;
+    margin-right:20px;
+    transform:translate(0, -50%);
+    padding:20px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    display:none;
+}
+
+.tooltip .left i {
+    position:absolute;
+    top:50%;
+    left:100%;
+    margin-top:-12px;
+    width:12px;
+    height:24px;
+    overflow:hidden;
+}
+
+.tooltip .left i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:0;
+    top:50%;
+    transform:translate(-50%,-50%) rotate(-45deg);
+}
+
+
+*/

@@ -31,15 +31,14 @@ const Card = ({ cardData, deckAnimController }: CardProps) => {
   const [cardAnimValues, cardAnimRef] = useSpring<CardStyles>(() =>
     CardAnimStates.prototype.StateInit(
       cardStates.Index,
-      deckAnimController.AnimStates.AnimAPI.AnimValues.order.get().length
+      deckAnimController.AnimStates.AnimValues.order.get().length
     )
   );
-  const cardAnimAPI = {
-    AnimRef: cardAnimRef as unknown as SpringRef<CardStyles>,
-    AnimValues: cardAnimValues as SpringValues<CardStyles>,
-  };
   const cardAnimController = new AnimController<CardAnimStates, CardStyles>(
-    new CardAnimStates(cardAnimAPI),
+    new CardAnimStates(
+      cardAnimRef as unknown as SpringRef<CardStyles>,
+      cardAnimValues as SpringValues<CardStyles>
+    ),
     `${cardData.Index}`
   );
   const PropForComponents = {
@@ -50,13 +49,15 @@ const Card = ({ cardData, deckAnimController }: CardProps) => {
   const Handlers = useDefaultCardHandlers(PropForComponents);
 
   const SpringValueListener = useSpringValueListner(
-    deckAnimController.AnimStates.AnimAPI.AnimValues,
+    deckAnimController.AnimStates.AnimValues,
     {
       order: Handlers.onChangeOrder,
       mode: Handlers.onChangeMode,
+      beforOrder: () => {},
     }
   );
-  const { x, y, z, rx, ry, rz, cursor, scale, ratio } = cardAnimAPI.AnimValues;
+  const { x, y, z, rx, ry, rz, cursor, scale, ratio } =
+    cardAnimValues as SpringValues<CardStyles>;
   const { bind } = Handlers;
   // const CardBodyHandlers = { onMouseDown, onDragOver, onDragStart };
 

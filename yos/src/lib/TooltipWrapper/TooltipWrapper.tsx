@@ -14,16 +14,16 @@ interface TooltipWrapperProps {
 
 const directionClassMapper = (initialDirection: DirectionEnum) => {
   switch (initialDirection) {
-    case DirectionEnum.UP:
-      return ClassNames.UP;
-    case DirectionEnum.DOWN:
-      return ClassNames.DOWN;
+    case DirectionEnum.TOP:
+      return ClassNames.TOP;
+    case DirectionEnum.BOTTOM:
+      return ClassNames.DOBOTTOMWN;
     case DirectionEnum.LEFT:
       return ClassNames.LEFT;
     case DirectionEnum.RIGHT:
       return ClassNames.RIGHT;
     default:
-      return ClassNames.UP;
+      return ClassNames.TOP;
   }
 };
 
@@ -31,7 +31,7 @@ const TooltipWrapper = ({
   content,
   tooltip,
   initialOpacity = 1,
-  initialDirection = DirectionEnum.UP,
+  initialDirection = DirectionEnum.TOP,
 }: TooltipWrapperProps) => {
   const [values, ref] = useSpring(() => ({
     opacity: initialOpacity,
@@ -50,17 +50,21 @@ const TooltipWrapper = ({
     {}
   );
   return (
-    <div {...bind()} className={`${ClassNames.toolipWrapper}`}>
-      <animated.div className={`${ClassNames.tooltip}`} style={{ opacity }}>
+    <div {...bind()} className={`${ClassNames.tooltipWrapper}`}>
+      <animated.div
+        className={`${ClassNames.tooltipContent}`}
+        style={{ opacity }}
+      >
         {content}
       </animated.div>
       <animated.div
-        className={`${ClassNames.tooltiptext} ${directionClassMapper(
+        className={`${ClassNames.tooltip} ${directionClassMapper(
           initialDirection
         )}`}
         style={{ opacity: tooltipOpacity }}
       >
         {tooltip}
+        <i></i>
       </animated.div>
     </div>
   );

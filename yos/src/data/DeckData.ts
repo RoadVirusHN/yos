@@ -6,11 +6,20 @@ export class DeckAnimStates extends AnimStates<DeckStyles> {
   @unstoppable()
   StateInit(order: number[]): AnimStatesOutput<DeckStyles> {
     return {
+      beforOrder: order,
       order,
       mode: "DECK",
     };
   }
 
+  @animation()
+  StateShuffle(newOrder: number[]): AnimStatesOutput<DeckStyles> {
+    return {
+      beforOrder: this.AnimValues.order.get(),
+      order: newOrder,
+      immediate: true
+    }
+  }
   // @animation()
   // StateStart(order: number, deckLength: number): AnimStatesOutput<DeckStyles> {
   //   return {

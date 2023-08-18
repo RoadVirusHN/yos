@@ -1,10 +1,7 @@
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import { animated, to } from "react-spring";
 import ClassNames from "./PjtDesc.module.scss";
-import {
-  type CardComponentData,
-  type PjtCardData,
-} from "@data/CardProcessors";
+import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 
 interface DescData {
   Title: string;
@@ -14,15 +11,18 @@ interface DescData {
 
 const PjtDesc = (pjtData: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtData.Description,
-  Component: ({ cardData, cardAnimController }: CardComponentProps<PjtCardData>) => {
+  Component: ({
+    cardData,
+    cardAnimController,
+  }: CardComponentProps<PjtCardData>) => {
     const { Title, Subtitle, Doodle } = cardData.Description as DescData;
-    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
+    const { isTop } = cardAnimController.AnimStates.AnimValues;
     return (
       <>
         <animated.svg
           className={ClassNames.doodleTitle}
           style={{
-            opacity: cardAnim.isTop,
+            opacity: isTop,
           }}
         >
           <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
@@ -33,7 +33,7 @@ const PjtDesc = (pjtData: PjtCardData): CardComponentData<PjtCardData> => ({
         <animated.svg
           className={ClassNames.doodle}
           style={{
-            opacity: to([cardAnim.isTop], (isTop) => isTop),
+            opacity: to([isTop], (isTop) => isTop),
           }}
         >
           <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">

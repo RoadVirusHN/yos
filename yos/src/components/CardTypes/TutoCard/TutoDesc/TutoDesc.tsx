@@ -29,8 +29,8 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
       if (ref.current != null) ref.current.innerHTML = startTitle;
     }, [api, startTitle]);
     const [cardAnim, deckAnim] = [
-      cardAnimController.AnimStates.AnimAPI.AnimValues,
-      deckAnimController.AnimStates.AnimAPI.AnimValues,
+      cardAnimController.AnimStates.AnimValues,
+      deckAnimController.AnimStates.AnimValues,
     ];
     const { isTop, blur } = cardAnim;
     return (

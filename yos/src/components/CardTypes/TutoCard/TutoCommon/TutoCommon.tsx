@@ -26,9 +26,8 @@ const TutoCommon = (
         onDrag: ({ tap, event }) => {
           event.stopPropagation();
           if (
-            deckAnimController.AnimStates.AnimAPI.AnimValues.order
-              .get()
-              .at(-1) === cardData.Index
+            deckAnimController.AnimStates.AnimValues.order.get().at(-1) ===
+            cardData.Index
           ) {
             if (tap) {
               setSide(
@@ -47,7 +46,7 @@ const TutoCommon = (
       },
       { drag: { filterTaps: true, preventDefault: true } }
     );
-    const [cardAnim] = [cardAnimController.AnimStates.AnimAPI.AnimValues];
+    const [cardAnim] = [cardAnimController.AnimStates.AnimValues];
     const { gray, blur } = cardAnim;
     return (
       <>

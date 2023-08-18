@@ -28,8 +28,8 @@ export enum AnimDefaultConfigEnum {
 }
 
 export enum DirectionEnum {
-  UP = "UP",
-  DOWN = "DOWN",
+  TOP = "TOP",
+  BOTTOM = "BOTTOM",
   LEFT = "LEFT",
   RIGHT = "RIGHT"
 }

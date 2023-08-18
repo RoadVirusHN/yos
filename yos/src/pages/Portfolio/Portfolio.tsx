@@ -12,12 +12,14 @@ const Portfolio = () => {
       }}
     >
       <Deck cardDatas={PortfolioCards} />
-      <TooltipWrapper
-        content={<IconLink links={[{ content: "", name: "KOREAN" }]} />}
-        tooltip={<>ONE PAGE PORTFOLIO!</>}
-        initialOpacity={0.5}
-        initialDirection={DirectionEnum.RIGHT}
-      />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <TooltipWrapper
+          content={<IconLink links={[{ content: "", name: "KOREAN" }]} />}
+          tooltip={<>ONE PAGE PORTFOLIO!</>}
+          initialOpacity={0.5}
+          initialDirection={DirectionEnum.TOP}
+        />
+      </div>
     </div>
   );
 };

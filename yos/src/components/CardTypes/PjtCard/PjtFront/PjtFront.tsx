@@ -41,7 +41,7 @@ const PjtFront = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
             />
           } //image for previewing
           playing={to(
-            [deckAnimController.AnimStates.AnimAPI.AnimValues.order],
+            [deckAnimController.AnimStates.AnimValues.order],
             (order: number[]) => order.at(-1) === cardData.Index
           )}
           muted // for auto playing
