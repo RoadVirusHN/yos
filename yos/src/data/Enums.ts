@@ -26,3 +26,10 @@ export enum AnimDefaultConfigEnum {
   UNSTOPPABLE = "UNSTOPPABLE",
   QUEUEABLE = "QUEUEABLE",
 }
+
+export enum DirectionEnum {
+  UP = "UP",
+  DOWN = "DOWN",
+  LEFT = "LEFT",
+  RIGHT = "RIGHT"
+}

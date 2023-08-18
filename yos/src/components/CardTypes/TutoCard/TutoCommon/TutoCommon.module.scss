@@ -32,7 +32,9 @@
   height: fit-content;
 }
 .front {
-  @extend %MaskingCardBandRightUp;
+  svg {
+    @extend %MaskingCardBandRightUp;
+  }
   z-index: 1;
   right: -23px;
   top: -20px;
@@ -41,7 +43,9 @@
   transform: rotateY(0deg);
 }
 .back {
-  @extend %MaskingCardBandLeftDown;
+  svg {
+    @extend %MaskingCardBandLeftDown;
+  }
   right: -28px;
   top: -26px;
   overflow: hidden;

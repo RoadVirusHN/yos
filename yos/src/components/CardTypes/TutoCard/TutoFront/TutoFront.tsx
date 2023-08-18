@@ -15,21 +15,18 @@ const TutoFront = (
   Component: ({
     cardData,
     cardAnimController,
-    deckAnimAPI,
+    deckAnimController,
   }: CardComponentProps<TutoCardData>) => {
     const ref = useRef<HTMLDivElement>(null);
     const [cardAnim, deckAnim] = [
-      cardAnimController.AnimStates.AnimAPI,
-      deckAnimAPI.deckAnim,
+      cardAnimController.AnimStates.AnimAPI.AnimValues,
+      deckAnimController.AnimStates.AnimAPI.AnimValues,
     ];
     return (
       <animated.div
         className={`${ClassNames.front} ${ClassNames.face}`}
         style={{
-          filter: to(
-            [cardAnim.AnimValues.gray, cardAnim.AnimValues.blur],
-            filt
-          ),
+          filter: to([cardAnim.gray, cardAnim.blur], filt),
           content: to([deckAnim.order], (order) => {
             if (order[1] === cardData.Index) {
               (ref.current as HTMLDivElement).innerText = "DONE!";

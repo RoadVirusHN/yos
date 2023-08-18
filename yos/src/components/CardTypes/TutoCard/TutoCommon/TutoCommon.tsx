@@ -6,7 +6,7 @@ import { type CardComponentProps } from "@components/CardTypes/Card";
 import { useState } from "react";
 import { animated, to } from "react-spring";
 import ClassNames from "./TutoCommon.module.scss";
-import { filt } from "@utils/MyAnimation";
+import { faceFilt, filt } from "@utils/MyAnimation";
 import { CardSideEnum } from "@data/Enums";
 import PublicSVG from "@lib/SVG/PublicSVG";
 import { useGesture } from "@use-gesture/react";
@@ -18,14 +18,18 @@ const TutoCommon = (
   Component: ({
     cardData,
     cardAnimController,
-    deckAnimAPI,
+    deckAnimController,
   }: CardComponentProps<TutoCardData>) => {
     const [side, setSide] = useState(CardSideEnum.FRONT);
     const bind = useGesture(
       {
         onDrag: ({ tap, event }) => {
           event.stopPropagation();
-          if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
+          if (
+            deckAnimController.AnimStates.AnimAPI.AnimValues.order
+              .get()
+              .at(-1) === cardData.Index
+          ) {
             if (tap) {
               setSide(
                 cardAnim.side.get() === CardSideEnum.FRONT
@@ -68,7 +72,7 @@ const TutoCommon = (
         <animated.div
           className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.front}`}
           style={{
-            filter: to([gray, blur], filt),
+            filter: to([gray, blur], faceFilt),
           }}
           draggable={false}
           {...bind()}
@@ -78,7 +82,7 @@ const TutoCommon = (
         <animated.div
           className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.back}`}
           style={{
-            filter: to([gray, blur], filt),
+            filter: to([gray, blur], faceFilt),
           }}
           draggable={false}
           {...bind()}

@@ -17,25 +17,25 @@ type OnlyClassMethods<T> = {
 };
 
 export default class AnimController<
-  T extends AnimStates<Styles>,
+  States extends AnimStates<Styles>,
   Styles extends Lookup<any>
 > {
   public uniqueId: string;
-  public AnimStates: T;
-  public TransitionTo: StateTransitions<T, Styles>;
+  public AnimStates: States;
+  public TransitionTo: StateTransitions<States, Styles>;
   public AnimationQueue: AnimAPIInput<Styles>[] //idx 0 = currently played animation.
 
-  constructor(AnimStates: T, uniqueId: string) {
+  constructor(AnimStates: States, uniqueId: string) {
     this.uniqueId = uniqueId;
     this.AnimStates = AnimStates;
     this.TransitionTo = this.setTransitionTo(this.AnimStates);
     this.AnimationQueue = [];
   }
 
-  private setTransitionTo(States: T) {
-    const proto = Object.getPrototypeOf(States) as { [key in keyof T]: T[key] };
-    const keys = Object.getOwnPropertyNames(proto) as Array<keyof T>;
-    return keys.reduce<StateTransitions<T, Styles>>(
+  private setTransitionTo(States: States) {
+    const proto = Object.getPrototypeOf(States) as { [key in keyof States]: States[key] };
+    const keys = Object.getOwnPropertyNames(proto) as Array<keyof States>;
+    return keys.reduce<StateTransitions<States, Styles>>(
       (transitionObj, methodName) => {
         if ((methodName as string).startsWith('State') && typeof proto[methodName] === 'function') {
           let stateFunc = proto[methodName] as (...args: any) => AnimAPIInput<Styles>;

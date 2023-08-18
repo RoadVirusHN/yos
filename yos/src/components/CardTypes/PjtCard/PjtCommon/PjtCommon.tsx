@@ -4,7 +4,7 @@ import { animated, to } from "react-spring";
 import { type BandStatus } from "@customTypes/Card";
 import { CardSideEnum } from "@data/Enums";
 import ClassNames from "./PjtCommon.module.scss";
-import { filt } from "@utils/MyAnimation";
+import { faceFilt, filt } from "@utils/MyAnimation";
 import PublicSVG from "@lib/SVG/PublicSVG";
 import { useGesture } from "@use-gesture/react";
 
@@ -16,13 +16,17 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Component: ({
     cardData,
     cardAnimController,
-    deckAnimAPI,
+    deckAnimController,
   }: CardComponentProps<PjtCardData>) => {
     const bind = useGesture(
       {
         onDrag: ({ tap, event }) => {
           event.stopPropagation();
-          if (deckAnimAPI.deckAnim.order.get().at(-1) === cardData.Index) {
+          if (
+            deckAnimController.AnimStates.AnimAPI.AnimValues.order
+              .get()
+              .at(-1) === cardData.Index
+          ) {
             if (tap) {
               if (cardAnim.side.get() === CardSideEnum.FRONT) {
                 void cardAnimController.TransitionTo.StateBack();
@@ -43,7 +47,7 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         <animated.div
           className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.front}`}
           style={{
-            filter: to([gray, blur], filt),
+            filter: to([gray, blur], faceFilt),
           }}
           draggable={false}
           {...bind()}

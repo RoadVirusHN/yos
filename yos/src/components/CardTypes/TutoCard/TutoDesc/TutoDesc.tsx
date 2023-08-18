@@ -7,14 +7,13 @@ import {
 } from "@data/CardProcessors";
 import { ScalableSVGWrapper } from "@lib/SVG/ScalableSVG";
 import { useEffect, useRef } from "react";
-import React from "react";
 
 const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
   Data: tutoData.Description,
   Component: ({
     cardData,
     cardAnimController,
-    deckAnimAPI,
+    deckAnimController,
   }: CardComponentProps<TutoCardData>) => {
     const [props, api] = useSpring(() => ({ offset: 0, display: "block" }));
     const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +30,7 @@ const TutoDesc = (tutoData: TutoCardData): CardComponentData<TutoCardData> => ({
     }, [api, startTitle]);
     const [cardAnim, deckAnim] = [
       cardAnimController.AnimStates.AnimAPI.AnimValues,
-      deckAnimAPI.deckAnim,
+      deckAnimController.AnimStates.AnimAPI.AnimValues,
     ];
     const { isTop, blur } = cardAnim;
     return (

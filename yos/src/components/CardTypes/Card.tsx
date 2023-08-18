@@ -6,7 +6,7 @@ import {
   useSpring,
 } from "react-spring";
 import ClassNames from "./Card.module.scss";
-import { trans } from "@utils/MyAnimation";
+import { faceFilt, trans } from "@utils/MyAnimation";
 import useDefaultCardHandlers from "./CardComponents/useDefaultCardHandlers";
 import { type DeckStyles } from "@components/Deck/Deck";
 import { CardAnimStates, type CardStyles } from "@data/CardData";
@@ -15,28 +15,23 @@ import CardFrontFace from "./CardComponents/CardFrontFace";
 import CardBackFace from "./CardComponents/CardBackFace";
 import { type AllCardData } from "@data/CardProcessors";
 import AnimController from "@lib/Animation/AnimController";
+import { DeckAnimStates } from "@data/DeckData";
 export interface CardProps {
   cardData: AllCardData;
-  deckAnimAPI: {
-    setDeckAnim: SpringRef<DeckStyles>;
-    deckAnim: SpringValues<DeckStyles>;
-  };
+  deckAnimController: AnimController<DeckAnimStates, DeckStyles>;
 }
 
 export interface CardComponentProps<CardData> {
   cardData: CardData;
   cardAnimController: AnimController<CardAnimStates, CardStyles>;
-  deckAnimAPI: {
-    setDeckAnim: SpringRef<DeckStyles>;
-    deckAnim: SpringValues<DeckStyles>;
-  };
+  deckAnimController: AnimController<DeckAnimStates, DeckStyles>;
 }
-const Card = ({ cardData, deckAnimAPI }: CardProps) => {
+const Card = ({ cardData, deckAnimController }: CardProps) => {
   const cardStates = cardData.Type(cardData);
   const [cardAnimValues, cardAnimRef] = useSpring<CardStyles>(() =>
     CardAnimStates.prototype.StateInit(
       cardStates.Index,
-      deckAnimAPI.deckAnim.order.get().length
+      deckAnimController.AnimStates.AnimAPI.AnimValues.order.get().length
     )
   );
   const cardAnimAPI = {
@@ -50,16 +45,18 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
   const PropForComponents = {
     cardData,
     cardAnimController,
-    deckAnimAPI,
+    deckAnimController,
   };
   const Handlers = useDefaultCardHandlers(PropForComponents);
 
-  const SpringValueListener = useSpringValueListner(deckAnimAPI.deckAnim, {
-    order: Handlers.onChangeOrder,
-    mode: Handlers.onChangeMode,
-  });
-  const { x, y, z, rx, ry, rz, cursor, scale, ratio, shadow } =
-    cardAnimAPI.AnimValues;
+  const SpringValueListener = useSpringValueListner(
+    deckAnimController.AnimStates.AnimAPI.AnimValues,
+    {
+      order: Handlers.onChangeOrder,
+      mode: Handlers.onChangeMode,
+    }
+  );
+  const { x, y, z, rx, ry, rz, cursor, scale, ratio } = cardAnimAPI.AnimValues;
   const { bind } = Handlers;
   // const CardBodyHandlers = { onMouseDown, onDragOver, onDragStart };
 
@@ -80,11 +77,6 @@ const Card = ({ cardData, deckAnimAPI }: CardProps) => {
               if (v === 1) return "1 / 1";
               return "89 / 64";
             }),
-            boxShadow: shadow.to((shadow) =>
-              shadow
-                ? "0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3)"
-                : ""
-            ),
           }}
         >
           <CardFrontFace cardStates={cardStates} props={PropForComponents} />
