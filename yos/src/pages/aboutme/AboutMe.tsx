@@ -1,7 +1,7 @@
 import ClassNames from './AboutMe.module.scss';
 import Portfolio from '../Portfolio/Portfolio';
 
-function AboutMe () {
+function AboutMe () {  
   return (
     <div className={ClassNames.container}>
       <div className={ClassNames.wrapper}>

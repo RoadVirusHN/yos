@@ -59,7 +59,7 @@ export default class AnimController<
       if (this.AnimationQueue.length > 0) {
         const animConfig = this.AnimationQueue[0].AnimConfig;
         if (animConfig.unstoppable.config && !animConfig.unstoppable.except.includes(methodName)) {
-          if (animConfig.queueable) {
+          if (animConfig.queueable.length > 0 && (animConfig.queueable.includes(methodName) || animConfig.queueable.includes("*"))) {
             this.AnimationQueue.push(animQData);
           } else {
             console.log("animationPrevented");

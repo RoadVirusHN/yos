@@ -47,10 +47,10 @@ const ItemIndex = ({
       {SpringValueListener}
       {values.reverse().map((v, i) => (
         <TooltipWrapper
+          key={i}
           tooltip={<>asdfasdfasdf</>}
           content={
             <AnimatedDot
-              key={i}
               style={{
                 fill: v.fill.to((r, g, b) => `rgb(${r},${g},${b})`),
                 transform: v.scale.to((scale) => `scale(${scale})`),

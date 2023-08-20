@@ -4,7 +4,7 @@ import { DirectionEnum } from "@data/Enums";
 import { PortfolioCards } from "@data/PortfolioData";
 import TooltipWrapper from "@lib/TooltipWrapper/TooltipWrapper";
 
-const Portfolio = () => {
+const Portfolio = () => {  
   return (
     <div
       style={{

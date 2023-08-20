@@ -1,4 +1,5 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
+import { canFlick } from '@components/CardTypes/CardComponents/useDefaultCardHandlers';
 import { animation, unstoppable } from '@lib/Animation/Animation';
 import {
   type ControllerProps,
@@ -16,12 +17,12 @@ export const flickableDistance = [160, 128]
 
 const snapDist = {
   sX: window.innerWidth / 3,
-  sY: window.innerHeight / 3
+  sY: window.innerHeight / 2
 };
 
 export interface AnimDefaultStyle {
   // Common Styles for All Animations
-  AnimConfig: { unstoppable: { config: boolean, except: string[] }, queueable: boolean }
+  AnimConfig: { unstoppable: { config: boolean, except: string[] }, queueable: string[] }
 }
 export type AnimAPIInput<T extends Lookup<any>> = AnimStatesOutput<T> & AnimDefaultStyle;
 export interface CardStyles extends Lookup<any> {
@@ -112,7 +113,49 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
-  @animation()
+  @unstoppable({ except: ["StateReorder", "StateInit", "StateStart"] })
+  StateReorder(beforeOrder: number[], newOrder: number[], cardKey: number): AnimStatesOutput<CardStyles> {
+    // const beforeIdxOfCurrentTop = beforeOrder.indexOf(newOrder.at(-1) ?? 0);
+    // const shiftDist = beforeIdxOfCurrentTop + 1;
+    // const unshiftDist = newOrder.length - beforeIdxOfCurrentTop - 1;
+    // const isShift = unshiftDist > shiftDist;
+    // const cardHeight = window.innerHeight;
+
+    // const beforeIdx = beforeOrder.indexOf(cardKey);
+    const newIdx = newOrder.indexOf(cardKey)
+
+    return {
+      from: {
+        isTop: newOrder.at(-1) === cardKey ? 1 : 0
+      },
+      to: [
+        { // change z index, blur
+          rz: this.AnimValues.rz.get() - 4 + Math.random() * 8,
+          z: newIdx,
+          blur: newOrder[0] === cardKey ? 2 : 0,
+          gray: newOrder[0] === cardKey ? 0.7 : 0,
+          config: { tension: 210, friction: 20 }
+        },
+        { // move to deck, if card is palced in the floor by user, keep the position.
+          x: canFlick([this.AnimValues.x.get(), this.AnimValues.y.get()]) && newOrder[0] === cardKey ? undefined : 0,
+          scale: 1,
+          y: canFlick([this.AnimValues.x.get(), this.AnimValues.y.get()]) && newOrder[0] === cardKey ? undefined : newOrder.indexOf(cardKey) * -4,
+          cursor: 'grab',
+          config: { tension: 210, friction: 20 }
+        }
+      ]
+    };
+
+  }
+
+
+  /**
+   *  get the nearest flickable point from mouse pointer
+   *  change scale and z,
+   *  take it to the top
+   * @returns 
+   */
+  @unstoppable()
   StateTop(deckLength: number): AnimStatesOutput<CardStyles> {
     return {
       from: {
@@ -120,18 +163,19 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       },
       to: [
         {
+          y: this.AnimValues.y.get(),
+          rz: this.AnimValues.rz.get() - 4 + Math.random() * 8,
           z: deckLength,
           scale: 1.1,
-          gray: 0,
-          rz: this.AnimValues.rz.get() - 4 + Math.random() * 8,
           blur: 0,
-          cursor: 'grab',
+          gray: 0,
           config: { tension: 210, friction: 20 }
         },
         {
           x: 0,
-          y: deckLength * -4,
+          z: deckLength,
           scale: 1,
+          y: deckLength * -4,
           cursor: 'grab',
           config: { tension: 210, friction: 20 }
         }
@@ -139,22 +183,47 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     };
   }
 
-  @animation()
+  /**
+   *  get the nearest flickable point from mouse pointer
+   *  change scale and z,
+   *  take it to the bottom
+   * @returns 
+   */
+  @unstoppable()
   StateFloor(): AnimStatesOutput<CardStyles> {
     return {
       from: {
         isTop: 0,
       },
       to: [{
-        z: 0,
-        scale: 1,
         gray: 0.7,
         blur: 2,
+        cursor: 'grab',
+        config: config.stiff
+      }, {
+        z: 0,
+        scale: 1,
         cursor: 'alias',
         config: config.stiff
       }]
     };
   }
+
+  // @animation()
+  // StateReorder(order: number, deckLength: number): AnimStatesOutput<CardStyles> {
+  //   return {
+  //     x: 0,
+  //     y: order * -4,
+  //     z: order,
+  //     scale: 1,
+  //     gray: 0,
+  //     blur: 0,
+  //     isTop: order === deckLength - 1 ? 1 : 0,
+  //     cursor: order === deckLength - 1 ? 'grab' : 'default',
+  //     config: { tension: 200 }
+  //   };
+  // }
+
 
   @animation()
   StatePick(): AnimStatesOutput<CardStyles> {
@@ -210,22 +279,6 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       cursor: 'grabbing'
     };
   }
-
-  @animation()
-  StateDeck(order: number, deckLength: number): AnimStatesOutput<CardStyles> {
-    return {
-      x: 0,
-      y: order * -4,
-      z: order,
-      scale: 1,
-      gray: 0,
-      blur: 0,
-      isTop: order === deckLength - 1 ? 1 : 0,
-      cursor: order === deckLength - 1 ? 'grab' : 'default',
-      config: { tension: 200 }
-    };
-  }
-
 
   @unstoppable({ except: ["StateBack"] })
   StateFront(): AnimStatesOutput<CardStyles> {

@@ -38,13 +38,13 @@ export const animation =
     ) {
     let method = desc.value;
     desc.value = function (this: AnimStates<Styles>, ...args: any[]) {
-      return { ...method.call(this, ...args), AnimConfig: { unstoppable: false, queueable: false } }
+      return { ...method.call(this, ...args), AnimConfig: { unstoppable: { config: false, except: [] }, queueable: [] } }
     };
     return desc;
   };
 
 export const unstoppable =
-  ({ queueable = false, except = [] as string[] } = {}) => function <
+  ({ queueable = [] as string[], except = [] as string[] } = {}) => function <
     Styles extends Lookup<any>>(
       _target: AnimStates<Styles>, // decorator function object
       _key: string, // decorator function name

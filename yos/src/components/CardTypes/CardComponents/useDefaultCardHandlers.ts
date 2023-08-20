@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { type CardComponentProps } from '../Card';
 import { AllCardData } from 'src/data/CardProcessors';
 import { useGesture } from '@use-gesture/react';
-import { moveToFirst, moveToLast } from '@utils/MyArray';
+import { arraysAreEqual, moveToFirst, moveToLast } from '@utils/MyArray';
 
 export function canFlick(distance: [dX: number, dY: number]) {
   const [dX, dY] = distance
@@ -47,9 +47,14 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
         // released
         // if distance > flickable, flicked to back, or get back.
         if (last) {
-          if (canFlick(movement))
+          if (canFlick(movement)) {
+
             deckAnimController.TransitionTo.StateShuffle(
               moveToFirst(deckAnimValues.order.get(), cardData.Index))
+          }
+          else {
+            cardAnimController.TransitionTo.StateTop(deckAnimValues.order.get().length);
+          }
         }
         if (!swipe.every((i) => i === 0)) {
           // user swipping (any directions)
@@ -67,9 +72,9 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
         if (tap) {
           //use tapping
           // get back to top card, make new bottom card to clickable.
-          void cardAnimController.TransitionTo.StateTop(
-            deckAnimValues.order.get().length
-          );
+          // void cardAnimController.TransitionTo.StateTop(
+          //   deckAnimValues.order.get().length
+          // );
           // change deck Order
 
           deckAnimController.TransitionTo.StateShuffle(
@@ -93,15 +98,11 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
   )
 
   const onChangeOrder = async (newOrder: number[]) => {
-    if (deckAnimValues.beforOrder.get().at(-1) === newOrder[0] && newOrder[0] === cardData.Index) {
-      return cardAnimController.TransitionTo.StateFloor()
-    } else if ((deckAnimValues.beforOrder.get()[0] === newOrder.at(-1)) && newOrder.at(-1) === cardData.Index) {
-      return cardAnimController.TransitionTo.StateTop(newOrder.length)
+    const beforeOrder = deckAnimValues.beforOrder.get();
+    if (!arraysAreEqual(beforeOrder, newOrder)) {
+      cardAnimController.TransitionTo.StateReorder(beforeOrder, newOrder, cardData.Index)
     }
-    return await cardAnimController.TransitionTo.StateDeck(
-      newOrder.indexOf(cardData.Index),
-      newOrder.length
-    );
+    return {}
   };
 
   return {

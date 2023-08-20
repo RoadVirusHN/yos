@@ -14,6 +14,7 @@ export class DeckAnimStates extends AnimStates<DeckStyles> {
 
   @animation()
   StateShuffle(newOrder: number[]): AnimStatesOutput<DeckStyles> {
+    
     return {
       beforOrder: this.AnimValues.order.get(),
       order: newOrder,

@@ -19,7 +19,7 @@ export interface DeckStyles {
   beforOrder: number[];
 }
 
-export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {
+export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {  
   const [AnimValues, AnimRef] = useSpring<DeckStyles>(() =>
     DeckAnimStates.prototype.StateInit(cardDatas.map((data) => data.Index))
   );
