@@ -33,7 +33,7 @@ const PjtDesc = (pjtData: PjtCardData): CardComponentData<PjtCardData> => ({
         <animated.svg
           className={ClassNames.doodle}
           style={{
-            opacity: to([isTop], (isTop) => isTop),
+            opacity: isTop
           }}
         >
           <foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">

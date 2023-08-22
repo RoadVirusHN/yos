@@ -1,16 +1,16 @@
 @use "@scss" as main;
 .band {
-  touch-action: none;
   z-index: 9;
   will-change: transform;
   transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  overflow: visible;
   & img {
+    @extend %Uninteractable;
     position: relative;
-  }
-  img {
-    cursor: pointer;
+    filter: drop-shadow(0 6px 10px rgba(50, 50, 73, 0.4))
+      drop-shadow(0 5px 5px rgba(50, 50, 73, 0.3));
   }
 }
 .face {
@@ -19,23 +19,38 @@
   height: fit-content;
 }
 .front {
-  svg {
+  .clickMask {
+    z-index: 2;
+    touch-action: none;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
     @extend %MaskingCardBandRightUp;
   }
   z-index: 1;
   right: -24px;
   top: -20px;
-  overflow: visible;
+  // overflow: hidden;
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
 .back {
-  svg {
+  .clickMask {
+    z-index: 2;
+    touch-action: none;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
     @extend %MaskingCardBandLeftDown;
   }
+  z-index: 1;
   right: -33px;
   top: -28px;
-  overflow: hidden;
+  // overflow: hidden;
   display: block;
   -webkit-transform: rotateY(180deg) rotateZ(90deg);
   transform: rotateY(180deg) rotateZ(90deg);

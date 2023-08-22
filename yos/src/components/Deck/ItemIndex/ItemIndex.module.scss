@@ -1,9 +1,11 @@
 .itemIndex {
   width: fit-content;
+  height: fit-content;
   position: absolute;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  gap: 5px;
   z-index: 99;
   margin: {
     left: auto;
@@ -17,6 +19,7 @@
   //   0 10px 10px -10px rgba(50, 50, 73, 0.3)
   // );
   svg {
+    cursor: pointer;
     // stroke: black;
     // stroke-width: 0.5px;
     filter: drop-shadow(0 0 2px #00000059);

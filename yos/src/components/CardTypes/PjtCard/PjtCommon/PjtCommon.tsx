@@ -4,9 +4,9 @@ import { animated, to } from "react-spring";
 import { type BandStatus } from "@customTypes/Card";
 import { CardSideEnum } from "@data/Enums";
 import ClassNames from "./PjtCommon.module.scss";
-import { faceFilt, filt } from "@utils/MyAnimation";
+import { filt } from "@utils/MyAnimation";
 import PublicSVG from "@lib/SVG/PublicSVG";
-import { useGesture } from "@use-gesture/react";
+import { useDrag } from "@use-gesture/react";
 
 const PjtBandMapper = (status: BandStatus) => {
   return <PublicSVG href={`commons/bands/${status as string}.svg`} />;
@@ -15,31 +15,23 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
   Data: pjtInfo.CommonFace,
   Component: ({
     cardData,
-    cardAnimController,
-    deckAnimController,
+    cardAnimController
   }: CardComponentProps<PjtCardData>) => {
-    const bind = useGesture(
-      {
-        onDrag: ({ tap, event }) => {
-          event.stopPropagation();
+    const bind = useDrag(
+      ({ tap, event }) => {
+        event.stopPropagation();
+        if (cardAnimController.AnimStates.AnimValues.isTop.get() && tap) {
           if (
-            deckAnimController.AnimStates.AnimValues.order.get().at(-1) ===
-            cardData.Index
+            cardAnimController.AnimStates.AnimValues.side.get() ===
+            CardSideEnum.FRONT
           ) {
-            if (tap) {
-              if (
-                cardAnimController.AnimStates.AnimValues.side.get() ===
-                CardSideEnum.FRONT
-              ) {
-                void cardAnimController.TransitionTo.StateBack();
-              } else {
-                void cardAnimController.TransitionTo.StateFront();
-              }
-            }
+            void cardAnimController.TransitionTo.StateBack();
+          } else {
+            void cardAnimController.TransitionTo.StateFront();
           }
-        },
+        }
       },
-      { drag: { filterTaps: true, preventDefault: true } }
+      { filterTaps: true, preventDefault: true }
     );
     const { gray, blur } = cardAnimController.AnimStates.AnimValues;
 
@@ -48,11 +40,11 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         <animated.div
           className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.front}`}
           style={{
-            filter: to([gray, blur], faceFilt),
+            filter: to([gray, blur], filt),
           }}
           draggable={false}
-          {...bind()}
         >
+          <div className={ClassNames.clickMask} {...bind()} />
           <PublicSVG href={`commons/bands/DEFAULT.svg`} />
         </animated.div>
         <animated.div
@@ -61,8 +53,8 @@ const PjtCommon = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
             filter: to([gray, blur], filt),
           }}
           draggable={false}
-          {...bind()}
         >
+          <div className={ClassNames.clickMask} {...bind()} />
           {PjtBandMapper(cardData.CommonFace.Status)}
         </animated.div>
       </>

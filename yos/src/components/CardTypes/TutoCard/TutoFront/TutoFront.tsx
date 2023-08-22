@@ -40,9 +40,7 @@ const TutoFront = (
             <div style={{ fontSize: "2rem", lineHeight: "30%" }}>THE</div>
             LUXURIST
           </div>
-          <div className={ClassNames.name} style={{ cursor: "pointer" }}>
-            JUNSEOK-YUN PORTFOLIO
-          </div>
+          <div className={ClassNames.name}>JUNSEOK-YUN PORTFOLIO</div>
         </div>
       </animated.div>
     );

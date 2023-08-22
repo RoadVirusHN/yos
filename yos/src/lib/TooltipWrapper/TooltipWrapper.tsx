@@ -17,7 +17,7 @@ const directionClassMapper = (initialDirection: DirectionEnum) => {
     case DirectionEnum.TOP:
       return ClassNames.TOP;
     case DirectionEnum.BOTTOM:
-      return ClassNames.DOBOTTOMWN;
+      return ClassNames.BOTTOM;
     case DirectionEnum.LEFT:
       return ClassNames.LEFT;
     case DirectionEnum.RIGHT:
@@ -50,10 +50,11 @@ const TooltipWrapper = ({
     {}
   );
   return (
-    <div {...bind()} className={`${ClassNames.tooltipWrapper}`}>
+    <div className={`${ClassNames.tooltipWrapper}`}>
       <animated.div
-        className={`${ClassNames.tooltipContent}`}
+        className={`${ClassNames.contentWrapper}`}
         style={{ opacity }}
+        {...bind()}
       >
         {content}
       </animated.div>

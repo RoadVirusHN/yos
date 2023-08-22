@@ -9,42 +9,31 @@ import ClassNames from "./TutoCommon.module.scss";
 import { faceFilt, filt } from "@utils/MyAnimation";
 import { CardSideEnum } from "@data/Enums";
 import PublicSVG from "@lib/SVG/PublicSVG";
-import { useGesture } from "@use-gesture/react";
+import { useDrag } from "@use-gesture/react";
 
 const TutoCommon = (
   pjtInfo: TutoCardData
 ): CardComponentData<TutoCardData> => ({
   Data: pjtInfo.CommonFace,
-  Component: ({
-    cardData,
-    cardAnimController,
-    deckAnimController,
-  }: CardComponentProps<TutoCardData>) => {
+  Component: ({ cardAnimController }: CardComponentProps<TutoCardData>) => {
     const [side, setSide] = useState(CardSideEnum.FRONT);
-    const bind = useGesture(
-      {
-        onDrag: ({ tap, event }) => {
-          event.stopPropagation();
-          if (
-            deckAnimController.AnimStates.AnimValues.order.get().at(-1) ===
-            cardData.Index
-          ) {
-            if (tap) {
-              setSide(
-                cardAnim.side.get() === CardSideEnum.FRONT
-                  ? CardSideEnum.BACK
-                  : CardSideEnum.FRONT
-              );
-              if (cardAnim.side.get() === CardSideEnum.FRONT) {
-                void cardAnimController.TransitionTo.StateBack();
-              } else {
-                void cardAnimController.TransitionTo.StateFront();
-              }
-            }
+    const bind = useDrag(
+      ({ tap, event }) => {
+        event.stopPropagation();
+        if (cardAnimController.AnimStates.AnimValues.isTop.get() && tap) {
+          setSide(
+            cardAnim.side.get() === CardSideEnum.FRONT
+              ? CardSideEnum.BACK
+              : CardSideEnum.FRONT
+          );
+          if (cardAnim.side.get() === CardSideEnum.FRONT) {
+            void cardAnimController.TransitionTo.StateBack();
+          } else {
+            void cardAnimController.TransitionTo.StateFront();
           }
-        },
+        }
       },
-      { drag: { filterTaps: true, preventDefault: true } }
+      { filterTaps: true, preventDefault: true }
     );
     const [cardAnim] = [cardAnimController.AnimStates.AnimValues];
     const { gray, blur } = cardAnim;
@@ -74,8 +63,8 @@ const TutoCommon = (
             filter: to([gray, blur], faceFilt),
           }}
           draggable={false}
-          {...bind()}
         >
+          <div className={ClassNames.clickMask} {...bind()} />
           <PublicSVG href={`commons/bands/DEFAULT.svg`} />
         </animated.div>
         <animated.div
@@ -84,8 +73,8 @@ const TutoCommon = (
             filter: to([gray, blur], faceFilt),
           }}
           draggable={false}
-          {...bind()}
         >
+          <div className={ClassNames.clickMask} {...bind()} />
           <PublicSVG href={`commons/bands/TUTORIAL.svg`} />
         </animated.div>
       </>

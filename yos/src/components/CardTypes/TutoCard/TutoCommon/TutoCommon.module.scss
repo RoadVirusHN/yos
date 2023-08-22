@@ -13,17 +13,17 @@
   margin: 0;
 }
 .band {
-  touch-action: none;
   z-index: 9;
   will-change: transform;
   transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  overflow: visible;
   & img {
+    @extend %Uninteractable;
     position: relative;
-  }
-  img {
-    cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgba(51, 51, 63, 0.1))
+      drop-shadow(0 3px 3px rgba(51, 51, 63, 0.1));
   }
 }
 .face {
@@ -32,23 +32,36 @@
   height: fit-content;
 }
 .front {
-  svg {
+  .clickMask {
+    z-index: 2;
+    touch-action: none;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
     @extend %MaskingCardBandRightUp;
   }
   z-index: 1;
   right: -23px;
   top: -20px;
-  overflow: visible;
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
 .back {
-  svg {
+  .clickMask {
+    z-index: 2;
+    touch-action: none;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
     @extend %MaskingCardBandLeftDown;
   }
+  z-index: 1;
   right: -28px;
   top: -26px;
-  overflow: hidden;
   display: block;
   -webkit-transform: rotateY(180deg) rotateZ(90deg);
   transform: rotateY(180deg) rotateZ(90deg);

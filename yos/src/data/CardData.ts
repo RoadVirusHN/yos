@@ -1,6 +1,7 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
 import { canFlick } from '@components/CardTypes/CardComponents/useDefaultCardHandlers';
 import { animation, unstoppable } from '@lib/Animation/Animation';
+import { clamp } from '@utils/MyMath';
 import {
   type ControllerProps,
   type GoalProp,
@@ -38,7 +39,7 @@ export interface CardStyles extends Lookup<any> {
   scale: number
   ratio: number
   shadow: boolean
-  isTop: 1 | 0
+  isTop: number
   cursor: 'grab' | 'default' | 'grabbing' | 'alias'
   side: CardSideEnum
 }
@@ -103,7 +104,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       rx: 0,
       ry: 0,
       scale: 1,
-      rz: -8 + Math.random() * 16,
+      rz: -4 + Math.random() * 8,
       gray: 0,
       blur: 0,
       side: CardSideEnum.FRONT,
@@ -123,17 +124,14 @@ export class CardAnimStates extends AnimStates<CardStyles> {
 
     // const beforeIdx = beforeOrder.indexOf(cardKey);
     const newIdx = newOrder.indexOf(cardKey)
-
+    const isNewTop = newOrder.at(-1) === cardKey
     return {
-      from: {
-        isTop: newOrder.at(-1) === cardKey ? 1 : 0
-      },
       to: [
         { // change z index, blur
-          rz: this.AnimValues.rz.get() - 4 + Math.random() * 8,
+          rz: clamp(this.AnimValues.rz.get() - 2 + Math.random() * 4, -4, 4),
           z: newIdx,
-          blur: newOrder[0] === cardKey ? 2 : 0,
-          gray: newOrder[0] === cardKey ? 0.7 : 0,
+          blur: isNewTop ? 0 : 2,
+          gray: isNewTop ? 0 : 0.7,
           config: { tension: 210, friction: 20 }
         },
         { // move to deck, if card is palced in the floor by user, keep the position.
@@ -141,6 +139,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
           scale: 1,
           y: canFlick([this.AnimValues.x.get(), this.AnimValues.y.get()]) && newOrder[0] === cardKey ? undefined : newOrder.indexOf(cardKey) * -4,
           cursor: 'grab',
+          isTop: isNewTop ? 1 : 0,
           config: { tension: 210, friction: 20 }
         }
       ]
@@ -158,17 +157,15 @@ export class CardAnimStates extends AnimStates<CardStyles> {
   @unstoppable()
   StateTop(deckLength: number): AnimStatesOutput<CardStyles> {
     return {
-      from: {
-        isTop: 1
-      },
       to: [
         {
           y: this.AnimValues.y.get(),
-          rz: this.AnimValues.rz.get() - 4 + Math.random() * 8,
+          rz: clamp(this.AnimValues.rz.get() - 4 + Math.random() * 8, -4, 4),
           z: deckLength,
           scale: 1.1,
           blur: 0,
           gray: 0,
+          isTop: 1,
           config: { tension: 210, friction: 20 }
         },
         {
@@ -229,7 +226,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
   StatePick(): AnimStatesOutput<CardStyles> {
     return {
       scale: 1.1,
-      rz: this.AnimValues.rz.get() + (Math.random() * 6 - 3),
+      rz: clamp(this.AnimValues.rz.get() + (Math.random() * 6 - 3), -4, 4),
       delay: undefined,
       cursor: 'grabbing',
       config: { friction: 50, tension: 800 }
@@ -292,7 +289,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
         {
           rx: 0,
           ry: 0,
-          rz: -8 + Math.random() * 16,
+          rz: -4 + Math.random() * 8,
           z: this.AnimValues.z.get(),
           scale: 1
         }

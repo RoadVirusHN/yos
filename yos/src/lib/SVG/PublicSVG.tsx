@@ -18,6 +18,6 @@ const PublicSVG = ({ href }: { href: string }) => {
     fetchSvgContent();
   }, [href]);
 
-  return <img src={src} alt={src} />;
+  return <img src={src} alt={src} draggable={false} />;
 };
 export default PublicSVG;

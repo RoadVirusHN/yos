@@ -29,6 +29,19 @@ export const moveToFirst = (arr: any[], value: number) =>
 export const moveToLast = (arr: any[], value: number) =>
   arr.filter((ele) => ele !== value).concat([value]);
 
+export const sliceThenConcat = (arr: any[], value: any): any[] => {
+  const index = arr.indexOf(value);
+
+  if (index === -1) {
+    return arr;
+  }
+
+  const sliced1 = arr.slice(0, index);
+  const sliced2 = arr.slice(index + 1);
+
+  return [...sliced2, ...sliced1, value];
+};
+
 export const moveFirstToLast = (arr: any[]) => [arr.at(-1)].concat(arr.slice(0, -1));
 
 export const moveLastToFirst = (arr: any[]) => arr.slice(1).push(arr[0]);
