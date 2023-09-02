@@ -1,5 +1,5 @@
 import { type CardComponentProps } from "@components/CardTypes/Card";
-import { animated, to } from "react-spring";
+import { animated } from "react-spring";
 import ClassNames from "./PjtDesc.module.scss";
 import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 

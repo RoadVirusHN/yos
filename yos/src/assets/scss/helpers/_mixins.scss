@@ -75,3 +75,22 @@
     @content ($mobile-val);
   }
 }
+
+@mixin margin-x($margin-val) {
+  margin-left: $margin-val;
+  margin-right: $margin-val;
+}
+
+@mixin margin-y($margin-val) {
+  margin-top: $margin-val;
+  margin-bottom: $margin-val;
+}
+
+@mixin padding-x($padding-val) {
+  padding-left: $padding-val;
+  padding-right: $padding-val;
+}
+@mixin padding-y($padding-val) {
+  padding-top: $padding-val;
+  padding-bottom: $padding-val;
+}

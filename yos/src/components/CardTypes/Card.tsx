@@ -6,7 +6,7 @@ import {
   useSpring,
 } from "react-spring";
 import ClassNames from "./Card.module.scss";
-import { faceFilt, trans } from "@utils/MyAnimation";
+import { trans } from "@utils/MyAnimation";
 import useDefaultCardHandlers from "./CardComponents/useDefaultCardHandlers";
 import { type DeckStyles } from "@components/Deck/Deck";
 import { CardAnimStates, type CardStyles } from "@data/CardData";

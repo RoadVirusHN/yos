@@ -2,6 +2,15 @@
   width: fit-content;
   height: fit-content;
   position: absolute;
+  border-radius: 25px 25px 25px 25px;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: {
+    left: 40px;
+    right: 40px;
+    up: 10px;
+    bottom: 10px;
+  }
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -18,6 +27,25 @@
   //   0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
   //   0 10px 10px -10px rgba(50, 50, 73, 0.3)
   // );
+  .caret {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    fill: whitesmoke;
+    touch-action: none;
+    transform-origin: center;
+    &.left {
+      left: 5px;
+    }
+    &.right {
+      right: 5px;
+    }
+    transition: all 0.5s;
+    &:hover {
+      width: 40px;
+      height: 40px;
+    }
+  }
   svg {
     cursor: pointer;
     // stroke: black;

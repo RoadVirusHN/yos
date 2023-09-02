@@ -18,7 +18,7 @@ const TutoBack = (tutoInfo: TutoCardData): CardComponentData<TutoCardData> => ({
     const ref = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
     const [_width, setWidth] = useState(0);
-    const { AnimRef, AnimValues } = cardAnimController.AnimStates;
+    const { AnimRef } = cardAnimController.AnimStates;
     const resizeWH = (_e: Event) => {
       setWidth(ref.current != null ? ref.current.clientWidth : 0);
       setHeight(ref.current != null ? ref.current.clientHeight : 0);

@@ -42,6 +42,13 @@ export const sliceThenConcat = (arr: any[], value: any): any[] => {
   return [...sliced2, ...sliced1, value];
 };
 
-export const moveFirstToLast = (arr: any[]) => [arr.at(-1)].concat(arr.slice(0, -1));
+export const moveFirstToLast = (arr: any[]) => {
+  return [arr.at(-1)].concat(arr.slice(0, -1))
+};
 
-export const moveLastToFirst = (arr: any[]) => arr.slice(1).push(arr[0]);
+export const moveLastToFirst = (arr: any[]) => {
+  const newArr = arr.slice(1)
+  newArr.push(arr[0])
+
+  return newArr;
+};

@@ -1,6 +1,6 @@
 import ClassNames from "./Deck.module.scss";
 import Card from "../CardTypes/Card";
-import { SpringRef, SpringValues, useSpring } from "react-spring";
+import { useSpring } from "react-spring";
 import { type AllCardData } from "@data/CardProcessors";
 import SquiggleFilter from "../CardTypes/CardComponents/Filters/SquiggleFilter";
 import ItemIndex from "./ItemIndex/ItemIndex";
@@ -35,7 +35,7 @@ export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {
           tooltip: <>{data.Description.Title ?? "Cover"}</>,
           index: data.Index,
         }))}
-        AnimController={deckAnimController}
+        animController={deckAnimController}
       />
       <div className={ClassNames.deck}>
         {cardDatas.map((data) => {
