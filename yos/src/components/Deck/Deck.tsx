@@ -3,7 +3,7 @@ import Card from "../CardTypes/Card";
 import { useSpring } from "react-spring";
 import { type AllCardData } from "@data/CardProcessors";
 import SquiggleFilter from "../CardTypes/CardComponents/Filters/SquiggleFilter";
-import ItemIndex from "./ItemIndex/ItemIndex";
+import IndexList from "./IndexList/IndexList";
 import AnimController from "@lib/Animation/AnimController";
 import { DeckAnimStates } from "@data/DeckData";
 /**
@@ -30,7 +30,7 @@ export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {
   return (
     <div className={ClassNames.overflowHider}>
       <SquiggleFilter />
-      <ItemIndex
+      <IndexList
         items={cardDatas.map((data) => ({
           tooltip: <>{data.Description.Title ?? "Cover"}</>,
           index: data.Index,

@@ -3,20 +3,20 @@ import AnimController from "@lib/Animation/AnimController";
 import { DeckStyles } from "../Deck";
 import { ReactComponent as CaretLeft } from "@assets/commons/icons/caret-left.svg";
 import { ReactComponent as CaretRight } from "@assets/commons/icons/caret-right.svg";
-import ClassNames from "./ItemIndex.module.scss";
+import ClassNames from "./IndexList.module.scss";
 import { useDrag } from "@use-gesture/react";
 import { ReactElement } from "react";
 import { moveFirstToLast, moveLastToFirst } from "@utils/MyArray";
 import { ScalableSVGWrapper } from "@lib/SVG/ScalableSVG";
-import Item from "./Item";
+import IndexItem from "./IndexItem";
 
-const ItemIndex = ({
+const IndexList = ({
   items,
   animController,
 }: {
   items: { tooltip: ReactElement; index: number }[];
   animController: AnimController<DeckAnimStates, DeckStyles>;
-}) => {  
+}) => {
   const reversedItems = [...items].reverse();
   const caretLeftBind = useDrag(
     ({ tap }) => {
@@ -37,16 +37,18 @@ const ItemIndex = ({
     { filterTaps: true }
   );
   return (
-    <div className={ClassNames.itemIndex}>
+    <div className={ClassNames.indexList}>
       <div
         className={`${ClassNames.caret} ${ClassNames.left}`}
         {...caretLeftBind()}
       >
         <ScalableSVGWrapper content={<CaretLeft />} />
       </div>
+      {/* Itemsection */}
       {reversedItems.map((v, i) => (
-        <Item key={i} itemInfo={v} deckAnimController={animController} />
+        <IndexItem key={i} itemInfo={v} deckAnimController={animController} />
       ))}
+
       <div
         className={`${ClassNames.caret} ${ClassNames.right}`}
         {...caretRightBind()}
@@ -56,4 +58,4 @@ const ItemIndex = ({
     </div>
   );
 };
-export default ItemIndex;
+export default IndexList;

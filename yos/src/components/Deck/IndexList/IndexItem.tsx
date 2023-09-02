@@ -1,5 +1,5 @@
 import { DirectionEnum } from "@data/Enums";
-import { ItemIndexAnimStates, ItemIndexStyles } from "@data/ItemIndexData";
+import { IndexItemAnimStates, IndexItemStyles } from "@data/IndexItemData";
 import AnimController from "@lib/Animation/AnimController";
 import useSpringValueListner from "@lib/Animation/useSpringValueListener";
 import { ReactComponent as Dot } from "@assets/components/ItemIndex/IndexDot.svg";
@@ -12,18 +12,18 @@ import { DeckStyles } from "../Deck";
 import { ReactElement } from "react";
 
 const AnimatedDot = animated(Dot);
-const Item = ({
+const IndexItem = ({
   itemInfo,
   deckAnimController,
 }: {
   itemInfo: { tooltip: ReactElement; index: number };
   deckAnimController: AnimController<DeckAnimStates, DeckStyles>;
 }) => {
-  const [value, ref] = useSpring<ItemIndexStyles>(() => {
+  const [value, ref] = useSpring<IndexItemStyles>(() => {
     const isTop =
       deckAnimController.AnimStates.AnimValues.order.get().at(-1) ===
       itemInfo.index;
-    return ItemIndexAnimStates.prototype.StateInit(isTop);
+    return IndexItemAnimStates.prototype.StateInit(isTop);
   });
   const deckStateListener = useSpringValueListner(
     deckAnimController.AnimStates.AnimValues,
@@ -31,7 +31,7 @@ const Item = ({
       order: (order) => {
         ref.start(() => {
           const isTop = itemInfo.index === (order.at(-1) ?? 0);
-          return ItemIndexAnimStates.prototype.StateInit(isTop);
+          return IndexItemAnimStates.prototype.StateInit(isTop);
         });
       },
       mode: () => {},
@@ -75,4 +75,4 @@ const Item = ({
     </animated.div>
   );
 };
-export default Item;
+export default IndexItem;

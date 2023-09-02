@@ -128,7 +128,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     return {
       to: [
         { // change z index, blur
-          rz: clamp(this.AnimValues.rz.get() - 2 + Math.random() * 4, -4, 4),
+          rz: clamp(this.AnimValues.rz.get() - 2 + Math.random() * 4, this.AnimValues.rz.get() - 4, this.AnimValues.rz.get() + 4),
           z: newIdx,
           blur: isNewTop ? 0 : 2,
           gray: isNewTop ? 0 : 0.7,
