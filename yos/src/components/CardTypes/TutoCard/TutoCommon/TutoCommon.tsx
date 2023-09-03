@@ -6,7 +6,7 @@ import { type CardComponentProps } from "@components/CardTypes/Card";
 import { useState } from "react";
 import { animated, to } from "react-spring";
 import ClassNames from "./TutoCommon.module.scss";
-import { faceFilt, filt } from "@utils/MyAnimation";
+import { shadowFilt, filt } from "@utils/MyAnimation";
 import { CardSideEnum } from "@data/Enums";
 import PublicSVG from "@lib/SVG/PublicSVG";
 import { useDrag } from "@use-gesture/react";
@@ -60,7 +60,7 @@ const TutoCommon = (
         <animated.div
           className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.front}`}
           style={{
-            filter: to([gray, blur], faceFilt),
+            filter: to([gray, blur], shadowFilt),
           }}
           draggable={false}
         >
@@ -70,7 +70,7 @@ const TutoCommon = (
         <animated.div
           className={`${ClassNames.band} ${ClassNames.face} ${ClassNames.back}`}
           style={{
-            filter: to([gray, blur], faceFilt),
+            filter: to([gray, blur], shadowFilt),
           }}
           draggable={false}
         >

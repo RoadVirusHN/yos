@@ -11,7 +11,7 @@ export const trans = (
 
 export const filt = (gray: number, blur: number) =>
   `grayscale(${gray}) blur(${blur}px)`;
-export const faceFilt = (gray: number, blur: number) => `drop-shadow(0 6px 10px rgba(50, 50, 73, 0.4)) drop-shadow(0 5px 5px rgba(50, 50, 73, 0.3)) ${filt(gray, blur)}`
+export const shadowFilt = (gray: number, blur: number) => `drop-shadow(0 6px 10px rgba(50, 50, 73, 0.4)) drop-shadow(0 5px 5px rgba(50, 50, 73, 0.3)) ${filt(gray, blur)}`
 
 
 export const flip = (y: number, z: number) =>

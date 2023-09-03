@@ -1,5 +1,5 @@
 import { animated, to } from "react-spring";
-import { faceFilt } from "@utils/MyAnimation";
+import {  shadowFilt } from "@utils/MyAnimation";
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import { type AllCardData, type CardStates } from "@data/CardProcessors";
 import ClassNames from "./CardBackFace.module.scss";
@@ -16,7 +16,7 @@ const CardBackFace = ({
     <animated.div
       className={`${ClassNames.back} ${ClassNames.face}`}
       style={{
-        filter: to([gray, blur], faceFilt),
+        filter: to([gray, blur], shadowFilt),
       }}
     >
       <cardStates.BackFace.Component {...props} />

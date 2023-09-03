@@ -7,7 +7,7 @@ import { CardTypeEnum } from "./Enums";
 import PjtBack from "@components/CardTypes/PjtCard/PjtBack/PjtBack";
 import PjtCommon from "@components/CardTypes/PjtCard/PjtCommon/PjtCommon";
 import PjtDesc from "@components/CardTypes/PjtCard/PjtDesc/PjtDesc";
-import PjtFloat from "@components/CardTypes/PjtCard/PjtFloat/PjtFloat";
+//import PjtFloat from "@components/CardTypes/PjtCard/PjtFloat/PjtFloat";
 import PjtFront from "@components/CardTypes/PjtCard/PjtFront/PjtFront";
 import TutoCommon from "@components/CardTypes/TutoCard/TutoCommon/TutoCommon";
 import TutoBack from "@components/CardTypes/TutoCard/TutoBack/TutoBack";
@@ -100,7 +100,7 @@ export const PjtCardProcessor = (
     Index: cardData.Index,
     Type: CardTypeEnum.PROJTECT,
     Description: PjtDesc(cardData),
-    Float: PjtFloat(cardData),
+    Float: EmptyComponent as any,//PjtFloat(cardData),
     FrontFace: PjtFront(cardData),
     BackFace: PjtBack(cardData),
     CommonFace: PjtCommon(cardData),

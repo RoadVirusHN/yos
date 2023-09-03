@@ -19,4 +19,7 @@ $mobile-font-size: 0.6;
 // $breakpoint-pc: 1024px;
 $base-font-size: 16px; // font-size of root tag => using with rem.
 $font-size-ratio: 1;
-$card-portion: 64/89;
+$card-portion: calc(64/89);
+$card-width-sm: 360px;
+$card-width-md: 480px;
+$card-width-lg: 540px;

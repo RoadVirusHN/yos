@@ -1,13 +1,16 @@
-import { flickableDistance } from 'src/data/CardData';
 import { useEffect } from 'react';
 import { type CardComponentProps } from '../Card';
 import { AllCardData } from 'src/data/CardProcessors';
 import { useGesture } from '@use-gesture/react';
 import { arraysAreEqual, moveToFirst, moveToLast } from '@utils/MyArray';
+import { flickableDistance } from '@data/CardData';
+
+
 
 export function canFlick(distance: [dX: number, dY: number]) {
   const [dX, dY] = distance
-  const flickable = Math.abs(dX) > flickableDistance[0] || Math.abs(dY) > flickableDistance[1];
+  const { fW, fH } = flickableDistance();
+  const flickable = Math.abs(dX) > fW || Math.abs(dY) > fH;
   return flickable;
 }
 const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
@@ -29,9 +32,6 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
         if (dragging) {
           // user dragging
           // if distance > flickable, focused out
-          console.log("dragged");
-
-
           if (canFlick(movement)) {
             void cardAnimController.TransitionTo.StateFlickable(
               deckAnimValues.order.get().length
@@ -59,13 +59,11 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
         if (!swipe.every((i) => i === 0)) {
           // user swipping (any directions)
           // flickeded to back
-          console.log("swiped!", swipe);
 
         }
         if (tap) {
           // user tapping
           // card fill the screen.
-          console.log("tapped!");
         }
       } else if (deckAnimValues.order.get()[0] === cardData.Index) {
         // most bottom card
@@ -91,6 +89,8 @@ const useDefaultCardHandlers = (cardProps: CardComponentProps<AllCardData>) => {
         if (pinching) {
           // user pinching
           //zoom by scale delta, spin by angle Delta, move by distance
+          console.log(pinching, scaleDelta, angleDelta, movement, distance);
+
         }
       }
     }

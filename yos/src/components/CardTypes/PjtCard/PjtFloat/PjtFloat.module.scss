@@ -6,6 +6,7 @@
   width: fit-content;
   height: fit-content;
   transform-origin: center;
+  overflow: visible;
   z-index: 999;
   .serviceDesc {
     font-family: "Nanum Gothic Coding", monospace;
@@ -15,12 +16,10 @@
     z-index: 5;
     text-align: center;
     line-height: 100px;
-    min-width: 120px;
-    min-height: 83px;
-    width: 30vw;
-    height: 30vh;
-    max-width: 145px;
-    max-height: 101px;
+    @include global.mix-map-responsive(120px, 132px, 145px) using ($val) {
+      width: $val;
+    }
+    aspect-ratio: 145/100;
     font-size: 1.3rem;
     pointer-events: none;
     span {

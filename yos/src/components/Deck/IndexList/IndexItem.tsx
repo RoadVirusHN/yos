@@ -10,6 +10,8 @@ import { animated, useSpring } from "react-spring";
 import { DeckAnimStates } from "@data/DeckData";
 import { DeckStyles } from "../Deck";
 import { ReactElement } from "react";
+import { ScalableSVGWrapper } from "@lib/SVG/ScalableSVG";
+import classNames from "./IndexList.module.scss";
 
 const AnimatedDot = animated(Dot);
 const IndexItem = ({
@@ -52,26 +54,31 @@ const IndexItem = ({
   );
   return (
     <animated.div
+      className={classNames.index}
       style={{
         y: value.y,
       }}
     >
-      {deckStateListener}
       <TooltipWrapper
         tooltip={itemInfo.tooltip}
         content={
-          <AnimatedDot
-            {...bind(itemInfo.index)}
-            style={{
-              fill: value.fill.to((r, g, b) => `rgb(${r},${g},${b})`),
-              transform: value.scale.to((scale) => `scale(${scale})`),
-              touchAction: "none",
-            }}
+          <ScalableSVGWrapper
+            content={
+              <AnimatedDot
+                {...bind(itemInfo.index)}
+                style={{
+                  fill: value.fill.to((r, g, b) => `rgb(${r},${g},${b})`),
+                  transform: value.scale.to((scale) => `scale(${scale})`),
+                  touchAction: "none",
+                }}
+              />
+            }
           />
         }
         initialOpacity={1}
         initialDirection={DirectionEnum.BOTTOM}
       />
+      {deckStateListener}
     </animated.div>
   );
 };

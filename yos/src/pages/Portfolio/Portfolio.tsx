@@ -4,7 +4,7 @@ import { DirectionEnum } from "@data/Enums";
 import { PortfolioCards } from "@data/PortfolioData";
 import TooltipWrapper from "@lib/TooltipWrapper/TooltipWrapper";
 
-const Portfolio = () => {  
+const Portfolio = () => {
   return (
     <div
       style={{
@@ -12,12 +12,19 @@ const Portfolio = () => {
       }}
     >
       <Deck cardDatas={PortfolioCards} />
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          position: "absolute",
+          right: 0,
+          bottom: 0,
+          margin: "10px"
+        }}
+      >
         <TooltipWrapper
           content={<IconLink links={[{ content: "", name: "KOREAN" }]} />}
           tooltip={<>ONE PAGE PORTFOLIO!</>}
           initialOpacity={0.5}
-          initialDirection={DirectionEnum.TOP}
+          initialDirection={DirectionEnum.LEFT}
         />
       </div>
     </div>

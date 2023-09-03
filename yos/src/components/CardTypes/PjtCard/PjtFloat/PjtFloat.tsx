@@ -3,7 +3,7 @@ import { type CardComponentProps } from "@components/CardTypes/Card";
 import { animated, config, to, useSpring } from "react-spring";
 import ClassNames from "./PjtFloat.module.scss";
 import { useEffect, useState } from "react";
-import { filt } from "@utils/MyAnimation";
+import { shadowFilt } from "@utils/MyAnimation";
 import Cloud from "@assets/commons/serviceCloud/Cloud.svg";
 import { ServerStatusEnum } from "@data/Enums";
 import ServerStatus from "./ServerStatus";
@@ -75,7 +75,7 @@ const PjtFloat = (pjtInfo: PjtCardData): CardComponentData<PjtCardData> => ({
         onMouseOver={onHover}
         onMouseOut={onHoverOut}
         style={{
-          filter: to([gray, blur], filt),
+          filter: to([gray, blur], shadowFilt),
           transform: to([isTop, scale], (isTop, scale) => {
             return `rotateZ(${(1 - isTop) * 160}deg) scale(${isTop * scale})`;
           }),

@@ -14,13 +14,17 @@ import {
 } from 'react-spring';
 import { CardSideEnum } from './Enums';
 
-export const flickableDistance = [160, 128]
+const getCardWidth = () => Number.parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-width').replace("px", ""));
 
-const snapDist = {
-  sX: window.innerWidth / 3,
-  sY: window.innerHeight / 2
-};
+export const flickableDistance = () => ({
+  fW: getCardWidth() * 1 / 2,
+  fH: getCardWidth() * 64 / 89 * 1 / 2
+})
 
+export const snapDist = () => ({
+  sW: getCardWidth(),
+  sH: getCardWidth() * 64 / 89
+});
 export interface AnimDefaultStyle {
   // Common Styles for All Animations
   AnimConfig: { unstoppable: { config: boolean, except: string[] }, queueable: string[] }
@@ -125,12 +129,13 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     // const beforeIdx = beforeOrder.indexOf(cardKey);
     const newIdx = newOrder.indexOf(cardKey)
     const isNewTop = newOrder.at(-1) === cardKey
+    const isNewBottom = newOrder[0] === cardKey
     return {
       to: [
         { // change z index, blur
           rz: clamp(this.AnimValues.rz.get() - 2 + Math.random() * 4, this.AnimValues.rz.get() - 4, this.AnimValues.rz.get() + 4),
           z: newIdx,
-          blur: isNewTop ? 0 : 2,
+          blur: isNewBottom ? 2 : 0,
           gray: isNewTop ? 0 : 0.7,
           config: { tension: 210, friction: 20 }
         },
@@ -259,15 +264,17 @@ export class CardAnimStates extends AnimStates<CardStyles> {
   @animation()
   StateMove(distance: [dX: number, dY: number]): AnimStatesOutput<CardStyles> {
     let [dX, dY] = distance;
+    const { fW, fH } = flickableDistance();
+    const { sW, sH } = snapDist();
     const absX = Math.abs(dX);
     const absY = Math.abs(dY);
-    if (absX > flickableDistance[0] && absX < snapDist.sX) {
-      const ratio = snapDist.sX / absX;
+    if (absX > fW && absX < sW) {
+      const ratio = sW / absX;
       dX = dX * ratio;
     }
 
-    if (absY > flickableDistance[1] && absY < snapDist.sY) {
-      const ratio = snapDist.sY / absY;
+    if (absY > fH && absY < sH) {
+      const ratio = sH / absY;
       dY = dY * ratio;
     }
     return {

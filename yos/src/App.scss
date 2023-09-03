@@ -24,6 +24,7 @@ code {
   --breakpoint-tablet: #{global.$var-breakpoint-tablet};
   --font-size-ratio: #{global.$var-font-size-ratio};
   --title-font-size: 2rem;
+  --subtitle-font-size: 1.66rem;
   --paragraph-font-size: 1.25rem;
   --icon-font-size: 0.75rem;
   @include global.mix-map-responsive(
@@ -33,5 +34,13 @@ code {
     )
     using ($val) {
     font-size: calc(var(--base-font-size) * $val);
+  }
+  @include global.mix-map-responsive(
+      $mobile-val: global.$var-card-width-sm,
+      $tablet-val: global.$var-card-width-md,
+      $pc-val: global.$var-card-width-lg
+    )
+    using ($val) {
+    --card-width: #{$val};
   }
 }

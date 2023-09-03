@@ -1,20 +1,23 @@
+@use "@scss" as global;
 .indexList {
-  width: fit-content;
-  height: fit-content;
+  @include global.mix-map-responsive(128px, 128px, 128px) using ($val) {
+    width: $val;
+  }
+  aspect-ratio: 2;
   position: absolute;
   border-radius: 25px 25px 25px 25px;
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.2);
   padding: {
-    left: 40px;
-    right: 40px;
-    up: 10px;
-    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    top: 5px;
+    bottom: 5px;
   }
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
   gap: 5px;
+  align-items: center;
   z-index: 99;
   margin: {
     left: auto;
@@ -22,28 +25,31 @@
   }
   transform: translate(-50%, -50%);
   left: 50%;
-  bottom: 10%;
-  // filter: drop-shadow(
-  //   0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
-  //   0 10px 10px -10px rgba(50, 50, 73, 0.3)
-  // );
+  bottom: 5%;
+  .index {
+    width: 15%;
+    height: auto;
+  }
   .caret {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 45%;
+    height: 45%;
     fill: whitesmoke;
     touch-action: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transform-origin: center;
     &.left {
-      left: 5px;
+      left: -10%;
     }
     &.right {
-      right: 5px;
+      right: -10%;
     }
     transition: all 0.5s;
     &:hover {
-      width: 40px;
-      height: 40px;
+      width: 50%;
+      height: 50%;
     }
   }
   svg {

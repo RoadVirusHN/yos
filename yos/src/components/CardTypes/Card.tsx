@@ -58,8 +58,6 @@ const Card = ({ cardData, deckAnimController }: CardProps) => {
   );
   const { x, y, z, rx, ry, rz, cursor, scale, ratio } =
     cardAnimValues as SpringValues<CardStyles>;
-  const { bind } = Handlers;
-  // const CardBodyHandlers = { onMouseDown, onDragOver, onDragStart };
 
   return (
     <>
@@ -69,7 +67,7 @@ const Card = ({ cardData, deckAnimController }: CardProps) => {
         <cardStates.Float.Component {...PropForComponents} />
         <animated.div
           className={ClassNames.card}
-          {...bind()}
+          {...Handlers.bind()}
           {...cardStates.AdditionalHandlers(PropForComponents)}
           style={{
             cursor,
