@@ -1,6 +1,6 @@
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import ClassNames from "./TutoFront.module.scss";
-import { animated, to } from "react-spring";
+import { animated, to } from "@react-spring/web";
 import {
   type CardComponentData,
   type TutoCardData,

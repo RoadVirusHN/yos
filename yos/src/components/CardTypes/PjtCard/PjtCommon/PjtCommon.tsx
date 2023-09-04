@@ -1,6 +1,6 @@
 import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 import { type CardComponentProps } from "@components/CardTypes/Card";
-import { animated, to } from "react-spring";
+import { animated, to } from "@react-spring/web";
 import { type BandStatus } from "@customTypes/Card";
 import { CardSideEnum } from "@data/Enums";
 import ClassNames from "./PjtCommon.module.scss";

@@ -1,4 +1,4 @@
-import { animated, to } from "react-spring";
+import { animated, to } from "@react-spring/web";
 import { shadowFilt } from "@utils/MyAnimation";
 import ClassNames from "./CardFrontFace.module.scss";
 import { type CardComponentProps } from "../Card";

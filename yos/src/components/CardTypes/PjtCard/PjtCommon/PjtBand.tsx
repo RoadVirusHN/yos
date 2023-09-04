@@ -1,5 +1,5 @@
 import ClassNames from "./PjtBand.module.scss";
-import { animated, to } from "react-spring";
+import { animated, to } from "@react-spring/web";
 import { ReactComponent as Default } from "@assets/img/cards/bands/DEFAULT.svg";
 import { ReactComponent as InProgress } from "@assets/img/cards/bands/INPROGRESS.svg";
 import { ReactComponent as DONE } from "@assets/img/cards/bands/DONE.svg";

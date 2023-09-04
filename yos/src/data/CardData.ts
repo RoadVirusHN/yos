@@ -133,7 +133,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
     return {
       to: [
         { // change z index, blur
-          rz: clamp(this.AnimValues.rz.get() - 2 + Math.random() * 4, this.AnimValues.rz.get() - 4, this.AnimValues.rz.get() + 4),
+          rz: this.AnimValues.rz.get() + 2 - Math.random() * 4,
           z: newIdx,
           blur: isNewBottom ? 2 : 0,
           gray: isNewTop ? 0 : 0.7,
@@ -165,7 +165,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       to: [
         {
           y: this.AnimValues.y.get(),
-          rz: clamp(this.AnimValues.rz.get() - 4 + Math.random() * 8, -4, 4),
+          rz: this.AnimValues.rz.get() + 4 - Math.random() * 8,
           z: deckLength,
           scale: 1.1,
           blur: 0,
@@ -231,7 +231,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
   StatePick(): AnimStatesOutput<CardStyles> {
     return {
       scale: 1.1,
-      rz: clamp(this.AnimValues.rz.get() + (Math.random() * 6 - 3), -4, 4),
+      rz: this.AnimValues.rz.get() + (Math.random() * 6 - 3),
       delay: undefined,
       cursor: 'grabbing',
       config: { friction: 50, tension: 800 }
