@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/yos/static/css/main.9a86f728.css",
-    "main.js": "/yos/static/js/main.51d587cf.js",
+    "main.js": "/yos/static/js/main.5de2039b.js",
     "static/js/8749.864a7e65.chunk.js": "/yos/static/js/8749.864a7e65.chunk.js",
     "static/js/7717.eb52b126.chunk.js": "/yos/static/js/7717.eb52b126.chunk.js",
     "static/js/2902.5b4d203d.chunk.js": "/yos/static/js/2902.5b4d203d.chunk.js",
@@ -107,7 +107,7 @@
     "static/media/caret-left.svg": "/yos/static/media/caret-left.3a27a32ddc113853d7debbf9aecbaa23.svg",
     "static/media/IndexDot.svg": "/yos/static/media/IndexDot.d73ce937105ba7980ca9105880674e63.svg",
     "main.9a86f728.css.map": "/yos/static/css/main.9a86f728.css.map",
-    "main.51d587cf.js.map": "/yos/static/js/main.51d587cf.js.map",
+    "main.5de2039b.js.map": "/yos/static/js/main.5de2039b.js.map",
     "4214.623bde61.chunk.css.map": "/yos/static/css/4214.623bde61.chunk.css.map",
     "4214.6e400652.chunk.js.map": "/yos/static/js/4214.6e400652.chunk.js.map",
     "7256.623bde61.chunk.css.map": "/yos/static/css/7256.623bde61.chunk.css.map",
@@ -138,6 +138,6 @@
   },
   "entrypoints": [
     "static/css/main.9a86f728.css",
-    "static/js/main.51d587cf.js"
+    "static/js/main.5de2039b.js"
   ]
 }
