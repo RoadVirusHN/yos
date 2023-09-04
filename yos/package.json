@@ -16,13 +16,13 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-custom": "react-app-rewired start",
-    "build-custom": "react-app-rewired build",
-    "test-custom": "react-app-rewired test"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "start-origin": "react-scripts start",
+    "build-origin": "react-scripts build",
+    "test-oring": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
