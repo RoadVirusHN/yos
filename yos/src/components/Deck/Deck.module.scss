@@ -9,8 +9,36 @@
   background: global.$var-primary-color;
   height: 100vh;
   transform-style: preserve-3D;
+  .mobileWarning {
+    background-color: beige;
+    border: 2px solid burlywood;
+    border-radius: 5px;
+    z-index: 9999999999;
+    text-align: center;
+    @include global.mix-map-responsive(280px, 380px, 512px) using ($val) {
+      width: $val;
+    }
+    padding: 10px;
+    height: fit-content;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 5px grey;
+    div {
+      color: yellowgreen;
+      font-size: 2.2rem;
+    }
+    p {
+      word-wrap: break-word;
+      font-size: 1.8rem;
+    }
+    button {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+  }
 }
-
 .deck {
   display: flex;
   // overflow: hidden; // it brokes preserve-3d

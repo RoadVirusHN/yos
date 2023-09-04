@@ -14,7 +14,7 @@ const TutoBackInfo = ({
   return (
     <div
       className={ClassNames.backInfoContainer}
-      style={{ width: height, height: width, padding: "5px" }}
+      style={{ width: height, height: width}}
     >
       <ScalableSVGWrapper content={<TutoBack />} />
     </div>

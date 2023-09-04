@@ -1,7 +1,6 @@
 // Data about components, Animation State, Hard coded datas, Constants etc...
 import { canFlick } from '@components/CardTypes/CardComponents/useDefaultCardHandlers';
 import { animation, unstoppable } from '@lib/Animation/Animation';
-import { clamp } from '@utils/MyMath';
 import {
   type ControllerProps,
   type GoalProp,

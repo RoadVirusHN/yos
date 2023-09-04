@@ -1,17 +1,17 @@
-import { Fragment } from 'react';
-import ClassNames from './InfinityLoopSlider.module.scss';
-import { animated } from 'react-spring';
-import { range } from '@utils/MyArray';
-import useCreateHandlers from './useCreateHandlers';
-import Tag from './Tag';
+import { Fragment } from "react";
+import ClassNames from "./InfinityLoopSlider.module.scss";
+import { animated } from "react-spring";
+import { range } from "@utils/MyArray";
+import useCreateHandlers from "./useCreateHandlers";
+import Tag from "./Tag";
 export interface TagType {
-  tagName: string
-  color?: string
+  tagName: string;
+  color?: string;
 }
 /**
  * cool slide effect! : https://codepen.io/ykadosh/pen/KKezJzz
  */
-function repeatTags (tags: TagType[], sliderLength: number, tagLength: number) {
+function repeatTags(tags: TagType[], sliderLength: number, tagLength: number) {
   // repeat tags for circular animation.
   const repeatNumber = Math.ceil(
     (sliderLength * 2) / (tagLength * tags.length)
@@ -24,11 +24,7 @@ function repeatTags (tags: TagType[], sliderLength: number, tagLength: number) {
           <Tag key={i} text={tagName} color={color ?? undefined} />
         ))}
         {tags.map(({ tagName, color }, i) => (
-          <Tag
-            key={k * i + i}
-            text={tagName}
-            color={color ?? undefined}
-          /> // for showing tags after translate belt -50%
+          <Tag key={k * i + i} text={tagName} color={color ?? undefined} /> // for showing tags after translate belt -50%
         ))}
       </Fragment>
     );

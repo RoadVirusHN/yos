@@ -29,6 +29,17 @@ export default function Deck({ cardDatas }: { cardDatas: AllCardData[] }) {
   );
   return (
     <div className={ClassNames.overflowHider}>
+      <dialog
+        className={ClassNames.mobileWarning}
+        open={window.innerWidth < 1024}
+      >
+        <div>🛠️ On Working ⚒️</div>
+        <p>Mobile page is poorly optimized now.</p>
+        <p>Visit with PC for better experience.</p>
+        <form method="dialog">
+          <button>OK</button>
+        </form>
+      </dialog>
       <SquiggleFilter />
       <IndexList
         items={cardDatas.map((data) => ({

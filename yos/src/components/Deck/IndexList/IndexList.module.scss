@@ -1,9 +1,9 @@
 @use "@scss" as global;
 .indexList {
-  @include global.mix-map-responsive(128px, 128px, 128px) using ($val) {
+  @include global.mix-map-responsive(224px, 224px, 224px) using ($val) {
     width: $val;
   }
-  aspect-ratio: 2;
+  aspect-ratio: 3;
   position: absolute;
   border-radius: 25px 25px 25px 25px;
   backdrop-filter: blur(5px);
@@ -25,13 +25,13 @@
   }
   transform: translate(-50%, -50%);
   left: 50%;
-  bottom: 5%;
+  bottom: 20px;
   .index {
     width: 15%;
     height: auto;
   }
   .caret {
-    position: absolute;
+    // position: absolute;
     width: 45%;
     height: 45%;
     fill: whitesmoke;
@@ -40,12 +40,6 @@
     justify-content: center;
     align-items: center;
     transform-origin: center;
-    &.left {
-      left: -10%;
-    }
-    &.right {
-      right: -10%;
-    }
     transition: all 0.5s;
     &:hover {
       width: 50%;

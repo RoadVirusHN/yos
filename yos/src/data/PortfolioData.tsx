@@ -73,6 +73,114 @@ export const PortfolioCards: AllCardData[] = [
     CommonFace: { Status: BandEnum.POSTPONED },
   },
   {
+    Type: PjtCardProcessor,
+    Description: {
+      Title: "DNS: Developer Network Service",
+      Subtitle: "SNS Cloning Team Project",
+      Doodle: SampleDoodle,
+    },
+    Float: { URL: "asdf" },
+    FrontFace: {
+      VideoURL: video,
+      PreviewImage: preview,
+      TechStacks: [{ tagName: "VUEJS" }],
+    },
+    BackFace: {
+      Teammates: 6,
+      Infos: [
+        { name: "role", content: "As a Leader, Frontend, Backend Engineer" },
+        { name: "term", content: "2020.01 ~ 2020.02" },
+        { name: "group", content: "SSAFY" },
+      ],
+      Links: [
+        { name: "GITHUB", content: "." },
+        { name: "PPT", content: "." },
+      ],
+    },
+    CommonFace: { Status: BandEnum.DONE },
+  },
+  {
+    Type: PjtCardProcessor,
+    Description: {
+      Title: "Cat Swimming 😸",
+      Subtitle: "SecondHand Transaction Search & ML Based Filtering Service",
+      Doodle: SampleDoodle,
+    },
+    Float: { URL: "asdf" },
+    FrontFace: {
+      VideoURL: video,
+      PreviewImage: preview,
+      TechStacks: [{ tagName: "PYTORCH" }],
+    },
+    BackFace: {
+      Teammates: 6,
+      Infos: [
+        { name: "role", content: "As a Leader, Frontend, Backend Engineer" },
+        { name: "term", content: "2020.01 ~ 2020.02" },
+        { name: "group", content: "SSAFY" },
+      ],
+      Links: [
+        { name: "GITHUB", content: "." },
+        { name: "PPT", content: "." },
+      ],
+    },
+    CommonFace: { Status: BandEnum.POSTPONED },
+  },
+  {
+    Type: PjtCardProcessor,
+    Description: {
+      Title: "DNS: Developer Network Service",
+      Subtitle: "SNS Cloning Team Project",
+      Doodle: SampleDoodle,
+    },
+    Float: { URL: "asdf" },
+    FrontFace: {
+      VideoURL: video,
+      PreviewImage: preview,
+      TechStacks: [{ tagName: "VUEJS" }],
+    },
+    BackFace: {
+      Teammates: 6,
+      Infos: [
+        { name: "role", content: "As a Leader, Frontend, Backend Engineer" },
+        { name: "term", content: "2020.01 ~ 2020.02" },
+        { name: "group", content: "SSAFY" },
+      ],
+      Links: [
+        { name: "GITHUB", content: "." },
+        { name: "PPT", content: "." },
+      ],
+    },
+    CommonFace: { Status: BandEnum.DONE },
+  },
+  {
+    Type: PjtCardProcessor,
+    Description: {
+      Title: "Cat Swimming 😸",
+      Subtitle: "SecondHand Transaction Search & ML Based Filtering Service",
+      Doodle: SampleDoodle,
+    },
+    Float: { URL: "asdf" },
+    FrontFace: {
+      VideoURL: video,
+      PreviewImage: preview,
+      TechStacks: [{ tagName: "PYTORCH" }],
+    },
+    BackFace: {
+      Teammates: 6,
+      Infos: [
+        { name: "role", content: "As a Leader, Frontend, Backend Engineer" },
+        { name: "term", content: "2020.01 ~ 2020.02" },
+        { name: "group", content: "SSAFY" },
+      ],
+      Links: [
+        { name: "GITHUB", content: "." },
+        { name: "PPT", content: "." },
+      ],
+    },
+    CommonFace: { Status: BandEnum.POSTPONED },
+  },
+  {
     Type: TutoCardProcessor,
     Description: {
       Src: "img/cards/doodles/tutoBack/TutoBack",
