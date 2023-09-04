@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[7027],{7027:function(s,e,c){s.exports=c.p+"static/media/Cloud.cad8fe68820c4b7b84ed.svg"}}]);

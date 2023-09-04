@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[8357],{8357:function(s,e,c){s.exports=c.p+"static/media/anim1.8856ce47bdea421c4d83.svg"}}]);

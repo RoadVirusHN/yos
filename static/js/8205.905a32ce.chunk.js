@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[8205],{8205:function(s,e,a){s.exports=a.p+"static/media/POSTPONED.11a8c17f0a071cae34ff.svg"}}]);

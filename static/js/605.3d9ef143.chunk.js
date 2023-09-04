@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[605],{605:function(s,c,a){s.exports=a.p+"static/media/coolcat.fcbbd2b0a92111870f2a.svg"}}]);

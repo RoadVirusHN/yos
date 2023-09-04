@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[6060],{6060:function(s,e,b){s.exports=b.p+"static/media/balloonword.5b7fcbedddb7da38bed4.svg"}}]);

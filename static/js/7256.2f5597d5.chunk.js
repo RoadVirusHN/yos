@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[7256],{7256:function(o,t,n){n.r(t),t.default={indicator:"TutoFront_indicator__6mup-",arrow:"TutoFront_arrow__T+Tzn",container:"TutoFront_container__06hPc",portfolio:"TutoFront_portfolio__uNGdt",name:"TutoFront_name__vfdTs"}}}]);
+//# sourceMappingURL=7256.2f5597d5.chunk.js.map

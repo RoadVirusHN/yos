@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[2978],{2978:function(e,s,t){e.exports=t.p+"static/media/caret-left.3a27a32ddc113853d7de.svg"}}]);

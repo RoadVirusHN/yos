@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[8310],{8310:function(s,e,c){s.exports=c.p+"static/media/INPROGRESS.2cb271756159b26067df.svg"}}]);

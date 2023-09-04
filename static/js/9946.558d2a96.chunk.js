@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[9946,1633],{9946:function(e,s,t){t.r(s);var n=t(1633),o=t(184);s.default=function(){return(0,o.jsxs)("div",{className:n.default.chrome,children:["DRAG & DROP"," ",(0,o.jsx)("span",{style:{color:"rgba(134, 40, 129, 0.6)",fontSize:"140%",fontWeight:"bolder"},children:"CARD"})," ","TO NEXT."]})}},1633:function(e,s,t){t.r(s),s.default={chrome:"TutoTitle_chrome__s6HGi",shine:"TutoTitle_shine__XFNZY"}}}]);
+//# sourceMappingURL=9946.558d2a96.chunk.js.map

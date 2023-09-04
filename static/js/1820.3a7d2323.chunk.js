@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[1820],{1820:function(e,s,c){e.exports=c.p+"static/media/greeting.2f1c942cb9210b00b74e.gif"}}]);

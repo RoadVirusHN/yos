@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[5995],{5995:function(s,e,a){s.exports=a.p+"static/media/soloPicto.35b1da8df9cde73a864a.svg"}}]);

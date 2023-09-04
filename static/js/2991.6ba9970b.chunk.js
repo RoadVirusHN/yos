@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[2991],{2991:function(e,s,a){e.exports=a.p+"static/media/kejang-stand.62fae3c2e451e02afe89.svg"}}]);

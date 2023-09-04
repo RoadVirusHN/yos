@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[4182],{4182:function(s,e,c){s.exports=c.p+"static/media/mePicto.e07081247441fbcdb223.svg"}}]);

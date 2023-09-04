@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[2902],{2902:function(e,s,c){e.exports=c.p+"static/media/DROPPED.ec1023f805ed85622e25.svg"}}]);

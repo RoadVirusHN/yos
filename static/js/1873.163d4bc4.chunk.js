@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[1873],{1873:function(s,e,a){s.exports=a.p+"static/media/kejang-jump.3e82d8122314bba9d9a6.svg"}}]);

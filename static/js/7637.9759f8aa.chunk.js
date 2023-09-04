@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[7637],{7637:function(e,s,c){e.exports=c.p+"static/media/role.1a7eb05bce9f26694c0e.svg"}}]);

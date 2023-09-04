@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[7100],{7100:function(s,e,c){s.exports=c.p+"static/media/not-full-screen.e2221b6d28c1a0030241.svg"}}]);

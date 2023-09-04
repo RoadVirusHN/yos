@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[4240],{4240:function(s,e,c){s.exports=c.p+"static/media/IndexDot.d73ce937105ba7980ca9.svg"}}]);

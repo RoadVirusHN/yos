@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[2133],{2133:function(s,e,c){s.exports=c.p+"static/media/PPT.786c61fe4be6cb373009.svg"}}]);

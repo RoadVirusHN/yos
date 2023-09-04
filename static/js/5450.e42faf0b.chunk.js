@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[5450],{5450:function(s,e,c){s.exports=c.p+"static/media/border.b7c99f6bd3700784950d.svg"}}]);

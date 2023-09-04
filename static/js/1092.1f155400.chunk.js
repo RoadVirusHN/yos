@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[1092],{1092:function(s,e,a){s.exports=a.p+"static/media/GITHUB.f49950794aff99e74a22.svg"}}]);

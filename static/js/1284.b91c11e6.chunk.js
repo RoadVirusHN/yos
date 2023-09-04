@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyos=self.webpackChunkyos||[]).push([[1284],{1284:function(s,e,t){s.exports=t.p+"static/media/teammatePicto.d1b81f417938031a73fb.svg"}}]);
