@@ -9,7 +9,7 @@
   overflow: visible;
   z-index: 999;
   .serviceDesc {
-    font-family: "Nanum Gothic Coding", monospace;
+    font-family: global.$var-code-font;
     color: #b6c7db;
     text-shadow: 1px 1px 2px rgb(57, 57, 57);
     font-weight: bolder;

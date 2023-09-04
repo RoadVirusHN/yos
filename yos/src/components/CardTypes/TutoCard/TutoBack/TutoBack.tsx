@@ -32,7 +32,7 @@ const TutoBack = (tutoInfo: TutoCardData): CardComponentData<TutoCardData> => ({
       AnimRef.set({
         // initializing tutocard properties, it's not only for tutoBack!
         shadow: false,
-        ratio: 1 / 1,
+        ratio: "1/1",
       });
       return () => {
         window.removeEventListener("resize", resizeWH);

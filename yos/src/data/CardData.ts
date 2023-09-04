@@ -41,7 +41,7 @@ export interface CardStyles extends Lookup<any> {
   gray: number
   blur: number
   scale: number
-  ratio: number
+  ratio: string
   shadow: boolean
   isTop: number
   cursor: 'grab' | 'default' | 'grabbing' | 'alias'
@@ -92,7 +92,7 @@ export class CardAnimStates extends AnimStates<CardStyles> {
       blur: 0,
       scale: 1.5,
       isTop: order === deckLength - 1 ? 1 : 0,
-      ratio: 89 / 64,
+      ratio: "89/64",
       shadow: true,
       cursor: order === deckLength - 1 ? 'grab' : 'default',
       side: CardSideEnum.FRONT,

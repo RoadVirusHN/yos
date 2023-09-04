@@ -7,7 +7,7 @@ const TutoFront = () => {
         <span>
           DO NOT <br /> CLICK IT
         </span>
-        <span style={{ fontSize: '180%', fontWeight: 'bold' }}> →</span>
+        <span className={ClassNames.arrow}> →</span>
       </span>
       <div className={ClassNames.container}>
         <div className={ClassNames.portfolio}>

@@ -4,10 +4,10 @@ export const trans = (
   ry: number,
   rz: number,
   s: number,
-  r: number
+  r: string
 ) =>
   `perspective(1400px) rotateX(${rx + 15}deg) rotateY(${ry + Math.min(rz / 10, 1)
-  }deg) rotateZ(${rz}deg) scale(${r === 1 / 1 ? s - 0.2 : s})`;
+  }deg) rotateZ(${rz}deg) scale(${r === "1/1" ? s - 0.2 : s})`;
 
 export const filt = (gray: number, blur: number) =>
   `grayscale(${gray}) blur(${blur}px)`;

@@ -1,5 +1,5 @@
 // colors, sizes,
-$primary-color: #b6c7db;
+$primary-color: lightblue;
 $secondary-color: #2d69af;
 $primary-background-color: #f5f0d6;
 $secondary-background-color: #616161;
@@ -11,6 +11,9 @@ $danger-color: #c9274c;
 $info-color: #5c9f44;
 $black-color: #000000;
 $white-color: #ffffff;
+$funny-font: "Hi Melody", cursive;
+$fancy-font: "Times New Roman", Times, serif;
+$code-font: "Nanum Gothic Coding", monospace;
 
 $breakpoint-tablet: 768px;
 $tablet-font-size: 0.8;
@@ -23,3 +26,4 @@ $card-portion: calc(64/89);
 $card-width-sm: 360px;
 $card-width-md: 480px;
 $card-width-lg: 540px;
+

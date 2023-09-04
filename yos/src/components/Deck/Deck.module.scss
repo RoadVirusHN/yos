@@ -6,7 +6,7 @@
 
 .overflowHider {
   overflow: hidden;
-  background: lightblue;
+  background: global.$var-primary-color;
   height: 100vh;
   transform-style: preserve-3D;
 }

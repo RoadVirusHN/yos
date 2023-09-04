@@ -71,11 +71,17 @@ const Card = ({ cardData, deckAnimController }: CardProps) => {
           {...cardStates.AdditionalHandlers(PropForComponents)}
           style={{
             cursor,
-            transform: to([rx, ry, rz, scale, ratio], trans),
-            aspectRatio: ratio.to((v) => {
-              if (v === 1) return "1 / 1";
-              return "89 / 64";
-            }),
+            transform: to(
+              [rx, ry, rz, scale, ratio] as unknown as [
+                rx: number,
+                ry: number,
+                rz: number,
+                s: number,
+                r: string
+              ],
+              trans
+            ),
+            aspectRatio: ratio,
           }}
         >
           <CardFrontFace cardStates={cardStates} props={PropForComponents} />
