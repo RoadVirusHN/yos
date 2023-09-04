@@ -1,5 +1,5 @@
 import { type CardComponentProps } from "@components/CardTypes/Card";
-import { animated, to, useSpring } from "react-spring";
+import { animated, to, useSpring } from "@react-spring/web";
 import ClassNames from "./TutoDesc.module.scss";
 import {
   type CardComponentData,

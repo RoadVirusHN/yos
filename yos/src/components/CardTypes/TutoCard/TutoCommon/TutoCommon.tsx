@@ -4,7 +4,7 @@ import {
 } from "@data/CardProcessors";
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import { useState } from "react";
-import { animated, to } from "react-spring";
+import { animated, to } from "@react-spring/web";
 import ClassNames from "./TutoCommon.module.scss";
 import { shadowFilt, filt } from "@utils/MyAnimation";
 import { CardSideEnum } from "@data/Enums";

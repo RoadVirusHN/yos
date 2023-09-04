@@ -6,7 +6,7 @@ import { ReactComponent as Dot } from "@assets/components/ItemIndex/IndexDot.svg
 import TooltipWrapper from "@lib/TooltipWrapper/TooltipWrapper";
 import { useDrag } from "@use-gesture/react";
 import { sliceThenConcat } from "@utils/MyArray";
-import { animated, useSpring } from "react-spring";
+import { animated, useSpring } from "@react-spring/web";
 import { DeckAnimStates } from "@data/DeckData";
 import { DeckStyles } from "../Deck";
 import { ReactElement } from "react";

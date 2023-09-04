@@ -1,6 +1,6 @@
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import ClassNames from "./PjtFront.module.scss";
-import { animated, to } from "react-spring";
+import { animated, to } from "@react-spring/web";
 import ReactPlayer from "react-player/lazy";
 import TechStacks from "@components/InfinityLoopSlider/InfinityLoopSlider";
 import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";

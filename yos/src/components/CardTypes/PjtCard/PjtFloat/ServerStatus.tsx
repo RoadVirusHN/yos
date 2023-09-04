@@ -1,5 +1,5 @@
 import ClassNames from "./PjtFloat.module.scss";
-import { animated, useSpring } from "react-spring";
+import { animated, useSpring } from "@react-spring/web";
 import PublicSVG from "@lib/SVG/PublicSVG";
 import { ServerStatusEnum } from "@data/Enums";
 

@@ -4,7 +4,7 @@ import {
   animated,
   to,
   useSpring,
-} from "react-spring";
+} from "@react-spring/web";
 import ClassNames from "./Card.module.scss";
 import { trans } from "@utils/MyAnimation";
 import useDefaultCardHandlers from "./CardComponents/useDefaultCardHandlers";

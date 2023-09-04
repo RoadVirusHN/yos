@@ -8,7 +8,7 @@
 //     // method = method.bind(this); // this produces singleton controller.
 
 import { AnimStates } from "@data/CardData";
-import { Lookup } from "react-spring";
+import { Lookup } from "@react-spring/web";
 
 //     // if (this.StyleValues.onAnim.get() === undefined) {
 //     //   throw Error("All Animations should have onAnim property.");

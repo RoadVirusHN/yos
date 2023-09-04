@@ -1,6 +1,6 @@
 import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 import { type CardComponentProps } from "@components/CardTypes/Card";
-import { animated, config, to, useSpring } from "react-spring";
+import { animated, config, to, useSpring } from "@react-spring/web";
 import ClassNames from "./PjtFloat.module.scss";
 import { useEffect, useState } from "react";
 import { shadowFilt } from "@utils/MyAnimation";

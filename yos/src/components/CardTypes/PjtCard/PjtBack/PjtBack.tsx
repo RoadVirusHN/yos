@@ -2,7 +2,7 @@ import { type CardComponentData, type PjtCardData } from "@data/CardProcessors";
 import { type CardComponentProps } from "@components/CardTypes/Card";
 import BackTexture from "@assets/components/PjtCard/cardBack.jpg";
 import BackInfo from "./BackInfo";
-import { animated } from "react-spring";
+import { animated } from "@react-spring/web";
 import ClassNames from "./PjtBack.module.scss";
 import { useRef, useState, useEffect } from "react";
 

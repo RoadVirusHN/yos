@@ -2,7 +2,7 @@ import { DirectionEnum } from "@data/Enums";
 import { animated } from "@react-spring/web";
 import { useGesture } from "@use-gesture/react";
 import { ReactNode } from "react";
-import { useSpring } from "react-spring";
+import { useSpring } from "@react-spring/web";
 import ClassNames from "./TooltipWrapper.module.scss";
 
 interface TooltipWrapperProps {

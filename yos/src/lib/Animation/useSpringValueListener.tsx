@@ -1,4 +1,4 @@
-import { type Lookup, type SpringValues, animated, to } from "react-spring";
+import { type Lookup, type SpringValues, animated, to } from "@react-spring/web";
 
 type Handlers<T extends SpringValues<Lookup<any>>> = {
   [K in keyof T]: (_v: ReturnType<T[K]["get"]>) => void;

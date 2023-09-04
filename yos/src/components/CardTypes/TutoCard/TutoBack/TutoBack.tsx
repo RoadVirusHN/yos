@@ -3,7 +3,7 @@ import {
   type TutoCardData,
 } from "@data/CardProcessors";
 import { type CardComponentProps } from "@components/CardTypes/Card";
-import { animated } from "react-spring";
+import { animated } from "@react-spring/web";
 import BackTexture from "@assets/components/TutoCard/doodles/tutoBack/cardboard.webp";
 import ClassNames from "./TutoBack.module.scss";
 import { useRef, useState, useEffect } from "react";
